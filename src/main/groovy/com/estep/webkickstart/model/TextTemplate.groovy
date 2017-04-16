@@ -37,7 +37,8 @@ class TextTemplate {
                 "databaseDriverClass"    : Property.get("database_driver_class"),
                 "databaseUrl"            : Property.get("database_url"),
                 "databaseUsername"       : Property.get("database_username"),
-                "databasePassword"       : Property.get("database_password")
+                "databasePassword"       : Property.get("database_password"),
+                "codeAuthor"             : Property.get("code_author")
         ]
     }
 

@@ -82,6 +82,7 @@ class StructureManager {
         createCodeStructure(Property.get("model.shared.data"), path)
         createCodeStructure(Property.get("model.shared.message"), path)
         createCodeStructure(Property.get("model.shared.log"), path)
+        createCodeStructure(Property.get("model.shared.util"), path)
 
         path = createSourceStructure("shared.base.path", "test")
 
@@ -90,6 +91,7 @@ class StructureManager {
         createCodeStructure(Property.get("model.shared.data"), path)
         createCodeStructure(Property.get("model.shared.message"), path)
         createCodeStructure(Property.get("model.shared.log"), path)
+        createCodeStructure(Property.get("model.shared.util"), path)
     }
 
     private void createCodeStructure(String folderStructure, String path) {
