@@ -5,136 +5,17 @@ import com.estep.webkickstart.model.*
 StructureManager manager = new StructureManager()
 manager.createModelStructure()
 
+copyCheckstyle()
+copyPmd()
+copyModelGradleRootBuildScript()
+copyModelApplLogicGradleRootBuildScript()
+copyModelDataGradleRootBuildScript()
+copyModelSharedGradleRootBuildScript()
+copyModelSpringContextXml()
+copyModelTestSpringContextXml()
+
 copyModelProjectCode()
 copySharedProjectCode()
-
-private void copySharedProjectCode() {
-    copyCodeSharedPackage()
-    copyCodeSharedCriteriaPackage()
-    copyCodeSharedDataPackage()
-    copyCodeSharedEnumerationPackage()
-    copyCodeSharedExceptionPackage()
-    copyCodeSharedLogPackage()
-    copyCodeSharedUtilPackage()
-}
-
-private void copyCodeSharedPackage() {
-    List<Tuple> apps = new ArrayList<>()
-    apps.add(new Tuple("ConfigConstant.java", getPathToSharedCode("main", null, "ConfigConstant.java")))
-    apps.add(new Tuple("EnvironmentConfiguration.java", getPathToSharedCode("main", null, "EnvironmentConfiguration.java")))
-    apps.add(new Tuple("JsonResponseData.java", getPathToSharedCode("main", null, "JsonResponseData.java")))
-    apps.add(new Tuple("ModelHelper.java", getPathToSharedCode("main", null, "ModelHelper.java")))
-    apps.add(new Tuple("package-info.java", getPathToSharedCode("main", null, "package-info.java")))
-    apps.add(new Tuple("RoleConstant.java", getPathToSharedCode("main", null, "RoleConstant.java")))
-    apps.add(new Tuple("TomcatJndiTemplate.java", getPathToSharedCode("main", null, "TomcatJndiTemplate.java")))
-
-    render("shared-templates", apps)
-}
-
-private void copyCodeSharedCriteriaPackage() {
-    List<Tuple> apps = new ArrayList<>()
-    apps.add(new Tuple("UserSearchCriteriaData.java", getPathToSharedCode("main", "criteria", "UserSearchCriteriaData.java")))
-    apps.add(new Tuple("package-info.java", getPathToSharedCode("main", "criteria", "package-info.java")))
-
-    render("shared-criteria-templates", apps)
-}
-
-private void copyCodeSharedDataPackage() {
-    List<Tuple> apps = new ArrayList<>()
-    apps.add(new Tuple("LookupKeyValue.java", getPathToSharedCode("main", "data", "LookupKeyValue.java")))
-    apps.add(new Tuple("LookupKeyValuePK.java", getPathToSharedCode("main", "data", "LookupKeyValuePK.java")))
-    apps.add(new Tuple("MessageData.java", getPathToSharedCode("main", "data", "MessageData.java")))
-    apps.add(new Tuple("package-info.java", getPathToSharedCode("main", "data", "package-info.java")))
-    apps.add(new Tuple("RoleConverter.java", getPathToSharedCode("main", "data", "RoleConverter.java")))
-    apps.add(new Tuple("UserCredential.java", getPathToSharedCode("main", "data", "UserCredential.java")))
-    apps.add(new Tuple("UserProfile.java", getPathToSharedCode("main", "data", "UserProfile.java")))
-    apps.add(new Tuple("UserData.java", getPathToSharedCode("main", "data", "UserData.java")))
-    apps.add(new Tuple("UserRole.java", getPathToSharedCode("main", "data", "UserRole.java")))
-    apps.add(new Tuple("UserToken.java", getPathToSharedCode("main", "data", "UserToken.java")))
-
-    render("shared-data-templates", apps)
-}
-
-private void copyCodeSharedExceptionPackage() {
-    List<Tuple> apps = new ArrayList<>()
-    apps.add(new Tuple("DataInputException.java", getPathToSharedCode("main", "exception", "DataInputException.java")))
-    apps.add(new Tuple("SystemLoggedException.java", getPathToSharedCode("main", "exception", "SystemLoggedException.java")))
-    apps.add(new Tuple("package-info.java", getPathToSharedCode("main", "exception", "package-info.java")))
-
-    render("shared-exception-templates", apps)
-}
-
-private void copyCodeSharedLogPackage() {
-    List<Tuple> apps = new ArrayList<>()
-    apps.add(new Tuple("Log4JLoggerImpl.java", getPathToSharedCode("main", "log", "Log4JLoggerImpl.java")))
-    apps.add(new Tuple("LogFactory.java", getPathToSharedCode("main", "log", "LogFactory.java")))
-    apps.add(new Tuple("Logger.java", getPathToSharedCode("main", "log", "Logger.java")))
-    apps.add(new Tuple("package-info.java", getPathToSharedCode("main", "log", "package-info.java")))
-
-    render("shared-log-templates", apps)
-}
-
-private void copyCodeSharedUtilPackage() {
-    List<Tuple> apps = new ArrayList<>()
-    apps.add(new Tuple("NameParser.java", getPathToSharedCode("main", "util", "NameParser.java")))
-    apps.add(new Tuple("package-info.java", getPathToSharedCode("main", "util", "package-info.java")))
-
-    render("shared-util-templates", apps)
-}
-
-private void copyCodeSharedEnumerationPackage() {
-    List<Tuple> apps = new ArrayList<>()
-    apps.add(new Tuple("package-info.java", getPathToSharedCode("main", "enumeration", "package-info.java")))
-    apps.add(new Tuple("Region.java", getPathToSharedCode("main", "enumeration", "Region.java")))
-    apps.add(new Tuple("Role.java", getPathToSharedCode("main", "enumeration", "Role.java")))
-
-    render("shared-enumeration-templates", apps)
-
-    apps = new ArrayList<>()
-    apps.add(new Tuple("package-info.java", getPathToSharedCode("main",  createSubpackages("enumeration",
-            "message"),"package-info.java")))
-    apps.add(new Tuple("ServiceMessage.java", getPathToSharedCode("main",  createSubpackages("enumeration",
-            "message"),"ServiceMessage.java")))
-    apps.add(new Tuple("GeneralMessage.java", getPathToSharedCode("main",  createSubpackages("enumeration",
-            "message"),"GeneralMessage.java")))
-    apps.add(new Tuple("UserMessage.java", getPathToSharedCode("main",  createSubpackages("enumeration",
-            "message"),"UserMessage.java")))
-
-    render("shared-enumeration-message-templates", apps)
-}
-
-private String createSubpackages(startPackage, ...subPackages) {
-    StringBuilder buf = new StringBuilder()
-    buf.append(startPackage)
-
-    for (String subPackage in subPackages) {
-        buf.append(File.separator).append(subPackage)
-    }
-
-    buf.toString()
-}
-
-private void copyModelProjectCode() {
-    copyCheckstyle()
-    copyPmd()
-    copyModelGradleRootBuildScript()
-    copyModelApplLogicGradleRootBuildScript()
-    copyModelDataGradleRootBuildScript()
-    copyModelSharedGradleRootBuildScript()
-    copyModelSpringContextXml()
-    copyModelTestSpringContextXml()
-
-    copyCodeModelRepositoryPackage()
-    copyCodeModelRepositoryTestPackage()
-
-    copyCodeModelRepositoryLookupPackage()
-    copyCodeModelRepositoryLookupTestPackage()
-
-    copyCodeModelRepositoryMailPackage()
-
-    copyCodeModelRepositoryUserPackage()
-    copyCodeModelRepositoryUserTestPackage()
-}
 
 private void copyCheckstyle() {
     StringBuilder buf = new StringBuilder()
@@ -216,6 +97,19 @@ private void copyModelTestSpringContextXml() {
     templateCopy.renderAndCopy("model_test_spring_context_xml.txt", buf.toString())
 }
 
+private void copyModelProjectCode() {
+    copyCodeModelRepositoryPackage()
+    copyCodeModelRepositoryTestPackage()
+
+    copyCodeModelRepositoryLookupPackage()
+    copyCodeModelRepositoryLookupTestPackage()
+
+    copyCodeModelRepositoryMailPackage()
+
+    copyCodeModelRepositoryUserPackage()
+    copyCodeModelRepositoryUserTestPackage()
+}
+
 private void copyCodeModelRepositoryPackage() {
     List<Tuple> apps = new ArrayList<>()
     apps.add(new Tuple("ApplicationRepository.java", getPathToRepoCode("main", null, "ApplicationRepository.java")))
@@ -256,16 +150,6 @@ private void copyCodeModelRepositoryLookupTestPackage() {
     render("data-repository-test-lookup-templates", apps)
 }
 
-private void copyCodeModelRepositoryUserTestPackage() {
-    List<Tuple> apps = new ArrayList<>()
-    apps.add(new Tuple("TestJasyptEncryptorRepository.java", getPathToRepoCode("test", "user", "TestJasyptEncryptorRepository.java")))
-    apps.add(new Tuple("TestPasswordGeneratorRepository.java", getPathToRepoCode("test", "user", "TestPasswordGeneratorRepository.java")))
-    apps.add(new Tuple("TestUserCredentialValidator.java", getPathToRepoCode("test", "user", "TestUserCredentialValidator.java")))
-    apps.add(new Tuple("TestUserRepository.java", getPathToRepoCode("test", "user", "TestUserRepository.java")))
-
-    render("data-repository-test-user-templates", apps)
-}
-
 private void copyCodeModelRepositoryMailPackage() {
     List<Tuple> apps = new ArrayList<>()
     apps.add(new Tuple("MailRepository.java", getPathToRepoCode("main", "mail", "MailRepository.java")))
@@ -290,6 +174,161 @@ private void copyCodeModelRepositoryUserPackage() {
     apps.add(new Tuple("UserRepositoryImpl.java", getPathToRepoCode("main", "user", "UserRepositoryImpl.java")))
 
     render("data-repository-user-templates", apps)
+}
+
+private void copyCodeModelRepositoryUserTestPackage() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("TestJasyptEncryptorRepository.java", getPathToRepoCode("test", "user", "TestJasyptEncryptorRepository.java")))
+    apps.add(new Tuple("TestPasswordGeneratorRepository.java", getPathToRepoCode("test", "user", "TestPasswordGeneratorRepository.java")))
+    apps.add(new Tuple("TestUserCredentialValidator.java", getPathToRepoCode("test", "user", "TestUserCredentialValidator.java")))
+    apps.add(new Tuple("TestUserRepository.java", getPathToRepoCode("test", "user", "TestUserRepository.java")))
+
+    render("data-repository-test-user-templates", apps)
+}
+
+private void copySharedProjectCode() {
+    copyCodeSharedPackage()
+    copyCodeSharedTestPackage()
+
+    copyCodeSharedCriteriaPackage()
+    copyCodeSharedDataPackage()
+    copyCodeSharedEnumerationPackage()
+
+    copyCodeSharedExceptionPackage()
+    copyCodeSharedExceptionTestPackage()
+
+    copyCodeSharedLogPackage()
+    copyCodeSharedLogTestPackage()
+
+    copyCodeSharedUtilPackage()
+    copyCodeSharedUtilTestPackage()
+}
+
+private void copyCodeSharedPackage() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("ConfigConstant.java", getPathToSharedCode("main", null, "ConfigConstant.java")))
+    apps.add(new Tuple("EnvironmentConfiguration.java", getPathToSharedCode("main", null, "EnvironmentConfiguration.java")))
+    apps.add(new Tuple("JsonResponseData.java", getPathToSharedCode("main", null, "JsonResponseData.java")))
+    apps.add(new Tuple("ModelHelper.java", getPathToSharedCode("main", null, "ModelHelper.java")))
+    apps.add(new Tuple("package-info.java", getPathToSharedCode("main", null, "package-info.java")))
+    apps.add(new Tuple("RoleConstant.java", getPathToSharedCode("main", null, "RoleConstant.java")))
+    apps.add(new Tuple("TomcatJndiTemplate.java", getPathToSharedCode("main", null, "TomcatJndiTemplate.java")))
+
+    render("shared-templates", apps)
+}
+
+private void copyCodeSharedTestPackage() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("TestEnvironmentConfiguration.java", getPathToSharedCode("test", null, "TestEnvironmentConfiguration.java")))
+    apps.add(new Tuple("TestJsonResponseData.java", getPathToSharedCode("test", null, "TestJsonResponseData.java")))
+    apps.add(new Tuple("TestModelHelper.java", getPathToSharedCode("test", null, "TestModelHelper.java")))
+
+    render("shared-test-templates", apps)
+}
+
+private void copyCodeSharedCriteriaPackage() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("UserSearchCriteriaData.java", getPathToSharedCode("main", "criteria", "UserSearchCriteriaData.java")))
+    apps.add(new Tuple("package-info.java", getPathToSharedCode("main", "criteria", "package-info.java")))
+
+    render("shared-criteria-templates", apps)
+}
+
+private void copyCodeSharedDataPackage() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("LookupKeyValue.java", getPathToSharedCode("main", "data", "LookupKeyValue.java")))
+    apps.add(new Tuple("LookupKeyValuePK.java", getPathToSharedCode("main", "data", "LookupKeyValuePK.java")))
+    apps.add(new Tuple("MessageData.java", getPathToSharedCode("main", "data", "MessageData.java")))
+    apps.add(new Tuple("package-info.java", getPathToSharedCode("main", "data", "package-info.java")))
+    apps.add(new Tuple("RoleConverter.java", getPathToSharedCode("main", "data", "RoleConverter.java")))
+    apps.add(new Tuple("UserCredential.java", getPathToSharedCode("main", "data", "UserCredential.java")))
+    apps.add(new Tuple("UserProfile.java", getPathToSharedCode("main", "data", "UserProfile.java")))
+    apps.add(new Tuple("UserData.java", getPathToSharedCode("main", "data", "UserData.java")))
+    apps.add(new Tuple("UserRole.java", getPathToSharedCode("main", "data", "UserRole.java")))
+    apps.add(new Tuple("UserToken.java", getPathToSharedCode("main", "data", "UserToken.java")))
+
+    render("shared-data-templates", apps)
+}
+
+private void copyCodeSharedExceptionPackage() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("DataInputException.java", getPathToSharedCode("main", "exception", "DataInputException.java")))
+    apps.add(new Tuple("SystemLoggedException.java", getPathToSharedCode("main", "exception", "SystemLoggedException.java")))
+    apps.add(new Tuple("package-info.java", getPathToSharedCode("main", "exception", "package-info.java")))
+
+    render("shared-exception-templates", apps)
+}
+
+private void copyCodeSharedExceptionTestPackage() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("TestDataAccessException.java", getPathToSharedCode("test", "exception", "TestDataAccessException.java")))
+    apps.add(new Tuple("TestSystemLoggedException.java", getPathToSharedCode("test", "exception", "TestSystemLoggedException.java")))
+
+    render("shared-test-exception-templates", apps)
+}
+
+private void copyCodeSharedLogPackage() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("Log4JLoggerImpl.java", getPathToSharedCode("main", "log", "Log4JLoggerImpl.java")))
+    apps.add(new Tuple("LogFactory.java", getPathToSharedCode("main", "log", "LogFactory.java")))
+    apps.add(new Tuple("Logger.java", getPathToSharedCode("main", "log", "Logger.java")))
+    apps.add(new Tuple("package-info.java", getPathToSharedCode("main", "log", "package-info.java")))
+
+    render("shared-log-templates", apps)
+}
+
+private void copyCodeSharedLogTestPackage() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("TestLog4jLoggerImpl.java", getPathToSharedCode("test", "log", "TestLog4jLoggerImpl.java")))
+
+    render("shared-test-log-templates", apps)
+}
+
+private void copyCodeSharedUtilPackage() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("NameParser.java", getPathToSharedCode("main", "util", "NameParser.java")))
+    apps.add(new Tuple("package-info.java", getPathToSharedCode("main", "util", "package-info.java")))
+
+    render("shared-util-templates", apps)
+}
+
+private void copyCodeSharedUtilTestPackage() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("TestNameParser.java", getPathToSharedCode("test", "util", "TestNameParser.java")))
+
+    render("shared-test-util-templates", apps)
+}
+
+private void copyCodeSharedEnumerationPackage() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("package-info.java", getPathToSharedCode("main", "enumeration", "package-info.java")))
+    apps.add(new Tuple("Region.java", getPathToSharedCode("main", "enumeration", "Region.java")))
+    apps.add(new Tuple("Role.java", getPathToSharedCode("main", "enumeration", "Role.java")))
+
+    render("shared-enumeration-templates", apps)
+
+    apps = new ArrayList<>()
+    apps.add(new Tuple("package-info.java", getPathToSharedCode("main",  createSubpackages("enumeration",
+            "message"),"package-info.java")))
+    apps.add(new Tuple("ServiceMessage.java", getPathToSharedCode("main",  createSubpackages("enumeration",
+            "message"),"ServiceMessage.java")))
+    apps.add(new Tuple("GeneralMessage.java", getPathToSharedCode("main",  createSubpackages("enumeration",
+            "message"),"GeneralMessage.java")))
+    apps.add(new Tuple("UserMessage.java", getPathToSharedCode("main",  createSubpackages("enumeration",
+            "message"),"UserMessage.java")))
+
+    render("shared-enumeration-message-templates", apps)
+}
+
+private String createSubpackages(startPackage, ...subPackages) {
+    StringBuilder buf = new StringBuilder()
+    buf.append(startPackage)
+
+    for (String subPackage in subPackages) {
+        buf.append(File.separator).append(subPackage)
+    }
+
+    buf.toString()
 }
 
 private void render(templateFolder, paths) {
