@@ -16,6 +16,7 @@ copyModelTestSpringContextXml()
 
 copyModelProjectCode()
 copySharedProjectCode()
+copyAppLogicServiceCode()
 
 private void copyCheckstyle() {
     StringBuilder buf = new StringBuilder()
@@ -365,6 +366,81 @@ private String getPathToSharedCode(folderName, subPackage, programName) {
     StringBuilder buf = new StringBuilder()
 
     buf.append(render("shared.base.path"))
+    buf.append(File.separator).append(folderName)
+    buf.append(File.separator).append("java")
+    buf.append(File.separator).append("com")
+    buf.append(File.separator).append(render("company_name"))
+    buf.append(File.separator).append(render("product_name"))
+    buf.append(File.separator).append("model")
+    if (subPackage != null) {
+        buf.append(File.separator).append(subPackage)
+    }
+
+    buf.append(File.separator).append(programName)
+
+    buf.toString()
+}
+
+private void copyAppLogicServiceCode() {
+    copyAppLogicAspectPackage()
+    copyAppLogicServicePackage()
+    copyAppLogicServiceLookupPackage()
+    copyAppLogicServiceSecurityPackage()
+    copyAppLogicServiceUserPackage()
+}
+
+private void copyAppLogicAspectPackage() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("AspectAdvice.java", getPathToAppLogicCode("main", "aspect", "AspectAdvice.java")))
+    apps.add(new Tuple("package-info.java", getPathToAppLogicCode("main", "aspect", "package-info.java")))
+    apps.add(new Tuple("ServiceAroundAdvice.java", getPathToAppLogicCode("main", "aspect", "ServiceAroundAdvice" +
+            ".java")))
+
+    render("applogic-aspect-templates", apps)
+}
+
+private void copyAppLogicServicePackage() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("CrudService.java", getPathToAppLogicCode("main", "service", "CrudService.java")))
+    apps.add(new Tuple("CruService.java", getPathToAppLogicCode("main", "service", "CruService.java")))
+    apps.add(new Tuple("EntityAssertion.java", getPathToAppLogicCode("main", "service", "EntityAssertion.java")))
+    apps.add(new Tuple("package-info.java", getPathToAppLogicCode("main", "service", "package-info.java")))
+    apps.add(new Tuple("SecurityHelper.java", getPathToAppLogicCode("main", "service", "SecurityHelper.java")))
+
+    render("applogic-service-templates", apps)
+}
+
+private void copyAppLogicServiceLookupPackage() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("LookupKeyValueService.java", getPathToAppLogicCode("main", createSubpackages("service","lookup"), "LookupKeyValueService.java")))
+    apps.add(new Tuple("LookupKeyValueServiceImpl.java", getPathToAppLogicCode("main", createSubpackages("service","lookup"), "LookupKeyValueServiceImpl.java")))
+    apps.add(new Tuple("package-info.java", getPathToAppLogicCode("main", createSubpackages("service","lookup"),"package-info.java")))
+
+    render("applogic-service-lookup-templates", apps)
+}
+
+private void copyAppLogicServiceSecurityPackage() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("AuthenticationService.java", getPathToAppLogicCode("main", createSubpackages("service","security"), "AuthenticationService.java")))
+    apps.add(new Tuple("AuthenticationServiceImpl.java", getPathToAppLogicCode("main", createSubpackages("service","security"), "AuthenticationServiceImpl.java")))
+    apps.add(new Tuple("package-info.java", getPathToAppLogicCode("main", createSubpackages("service","security"),"package-info.java")))
+
+    render("applogic-security-templates", apps)
+}
+
+private void copyAppLogicServiceUserPackage() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("package-info.java", getPathToAppLogicCode("main", createSubpackages("service","user"),"package-info.java")))
+    apps.add(new Tuple("UserService.java", getPathToAppLogicCode("main", createSubpackages("service","user"),"UserService.java")))
+    apps.add(new Tuple("UserServiceImpl.java", getPathToAppLogicCode("main", createSubpackages("service","user"),"UserServiceImpl.java")))
+
+    render("applogic-user-templates", apps)
+}
+
+private String getPathToAppLogicCode(folderName, subPackage, programName) {
+    StringBuilder buf = new StringBuilder()
+
+    buf.append(render("applogic.base.path"))
     buf.append(File.separator).append(folderName)
     buf.append(File.separator).append("java")
     buf.append(File.separator).append("com")
