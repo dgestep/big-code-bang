@@ -7,6 +7,7 @@ manager.createModelStructure()
 
 copyCheckstyle()
 copyPmd()
+
 copyModelGradleRootBuildScript()
 copyModelApplLogicGradleRootBuildScript()
 copyModelDataGradleRootBuildScript()
@@ -317,6 +318,8 @@ private void copyCodeSharedEnumerationPackage() {
             "message"),"GeneralMessage.java")))
     apps.add(new Tuple("UserMessage.java", getPathToSharedCode("main",  createSubpackages("enumeration",
             "message"),"UserMessage.java")))
+    apps.add(new Tuple("SecurityMessage.java", getPathToSharedCode("main",  createSubpackages("enumeration",
+            "message"),"SecurityMessage.java")))
 
     render("shared-enumeration-message-templates", apps)
 }
@@ -383,10 +386,18 @@ private String getPathToSharedCode(folderName, subPackage, programName) {
 
 private void copyAppLogicServiceCode() {
     copyAppLogicAspectPackage()
+
     copyAppLogicServicePackage()
+    copyAppLogicServiceTestPackage()
+
     copyAppLogicServiceLookupPackage()
+    copyAppLogicServiceLookupTestPackage()
+
     copyAppLogicServiceSecurityPackage()
+    copyAppLogicServiceSecurityTestPackage()
+
     copyAppLogicServiceUserPackage()
+    copyAppLogicServiceUserTestPackage()
 }
 
 private void copyAppLogicAspectPackage() {
@@ -410,6 +421,13 @@ private void copyAppLogicServicePackage() {
     render("applogic-service-templates", apps)
 }
 
+private void copyAppLogicServiceTestPackage() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("TestEntityAssertion.java", getPathToAppLogicCode("test", "service", "TestEntityAssertion.java")))
+
+    render("applogic-test-service-templates", apps)
+}
+
 private void copyAppLogicServiceLookupPackage() {
     List<Tuple> apps = new ArrayList<>()
     apps.add(new Tuple("LookupKeyValueService.java", getPathToAppLogicCode("main", createSubpackages("service","lookup"), "LookupKeyValueService.java")))
@@ -417,6 +435,13 @@ private void copyAppLogicServiceLookupPackage() {
     apps.add(new Tuple("package-info.java", getPathToAppLogicCode("main", createSubpackages("service","lookup"),"package-info.java")))
 
     render("applogic-service-lookup-templates", apps)
+}
+
+private void copyAppLogicServiceLookupTestPackage() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("TestLookupKeyValueServiceImpl.java", getPathToAppLogicCode("test", createSubpackages("service","lookup"), "TestLookupKeyValueServiceImpl.java")))
+
+    render("applogic-test-service-lookup-templates", apps)
 }
 
 private void copyAppLogicServiceSecurityPackage() {
@@ -428,6 +453,13 @@ private void copyAppLogicServiceSecurityPackage() {
     render("applogic-security-templates", apps)
 }
 
+private void copyAppLogicServiceSecurityTestPackage() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("TestAuthenticationServiceImpl.java", getPathToAppLogicCode("test", createSubpackages("service","security"), "TestAuthenticationServiceImpl.java")))
+
+    render("applogic-test-service-security-templates", apps)
+}
+
 private void copyAppLogicServiceUserPackage() {
     List<Tuple> apps = new ArrayList<>()
     apps.add(new Tuple("package-info.java", getPathToAppLogicCode("main", createSubpackages("service","user"),"package-info.java")))
@@ -435,6 +467,13 @@ private void copyAppLogicServiceUserPackage() {
     apps.add(new Tuple("UserServiceImpl.java", getPathToAppLogicCode("main", createSubpackages("service","user"),"UserServiceImpl.java")))
 
     render("applogic-user-templates", apps)
+}
+
+private void copyAppLogicServiceUserTestPackage() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("TestUserServiceImpl.java", getPathToAppLogicCode("test", createSubpackages("service","user"), "TestUserServiceImpl.java")))
+
+    render("applogic-test-service-user-templates", apps)
 }
 
 private String getPathToAppLogicCode(folderName, subPackage, programName) {

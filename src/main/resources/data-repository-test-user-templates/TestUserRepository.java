@@ -4,7 +4,7 @@ import com.${companyName}.${productName}.model.criteria.UserSearchCriteriaData;
 import com.${companyName}.${productName}.model.data.UserCredential;
 import com.${companyName}.${productName}.model.data.UserProfile;
 import com.${companyName}.${productName}.model.enumeration.Role;
-import com.${companyName}.${productName}.model.repository.TriadTestCase;
+import com.${companyName}.${productName}.model.repository.ApplicationTestCase;
 import com.${companyName}.${productName}.model.repository.user.UserCredentialRepository;
 import com.${companyName}.${productName}.model.repository.user.UserRepository;
 import org.apache.commons.lang3.StringUtils;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class TestUserRepository extends TriadTestCase {
+public class TestUserRepository extends ApplicationTestCase {
     private static final String DEFAULT_PASSWORD = "BigKahunaBurger2017";
 
     @Resource(name = "UserRepository")

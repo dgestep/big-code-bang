@@ -27,11 +27,9 @@ import java.util.Set;
  * Creates an instance of a class which contains properties that are annotated by the javax.persistence.* annotations
  * and applies the data to the properties using the supplied {@link ResultSet}.
  * <p>
- * <p>
  * The population of the properties takes into consideration nested properties, meaning objects that themselves
  * contain properties that are annotated by the javax.persistence.* annotations are also evaluated.
  * </p>
- * <p>
  * <p>
  * Inheritance is also supported, meaning super classes that contain properties that are annotated by the
  * javax.persistence.* annotations are also evaluated.

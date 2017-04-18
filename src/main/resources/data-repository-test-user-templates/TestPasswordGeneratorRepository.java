@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class TestPasswordGeneratorRepository extends TestCase {
     private static final String ONE_UPPER = "^(?=.*[A-Z]).+\$";
-    private static final String ONE_NUMBER = "^(?=.*\\d).+\$";
+    private static final String ONE_NUMBER = "^(?=.*\\\\d).+\$";
 
     @Test
     public void testGenerate() {
