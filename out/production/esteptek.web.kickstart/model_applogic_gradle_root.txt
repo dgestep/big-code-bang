@@ -1,0 +1,29 @@
+// ${companyName}.${productName}.applogic
+
+apply plugin: "java"
+apply plugin: "maven-publish"
+
+sourceSets {
+    main {
+        output.resourcesDir = "build/resources"
+    }
+    test {
+        output.resourcesDir = "build/resources"
+    }
+}
+
+dependencies {
+    compile project(':${companyName}.${productName}.model:${companyName}.${productName}.shared')
+    compile project(':${companyName}.${productName}.model:${companyName}.${productName}.data')
+
+    // compiles the data access layer test classes into this output
+    testCompile project(':${companyName}.${productName}.model:${companyName}.${productName}.data').sourceSets.test.output
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}

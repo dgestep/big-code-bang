@@ -13,7 +13,7 @@ class TemplateCopy {
     void renderAndCopy(templateName, destination) {
         URI uri = this.getClass().getClassLoader().getResource(templateName).toURI()
         String contents = new File(uri).text
-        String data = TextTemplate.render(contents)
+        String data = TextTemplate.renderDeep(contents)
 
         File to = new File(destination);
         to.write(data)

@@ -14,6 +14,8 @@ class TextTemplate {
         engine = new SimpleTemplateEngine()
         bindings = [
                 "projectBase"            : Property.get("project_base_folder"),
+                "rootFolderName"         : Property.get("root.folder.name"),
+                "rootBasePath"           : Property.get("root.base.path"),
                 "companyName"            : Property.get("company_name"),
                 "companyNameLong"        : Property.get("company_name_long"),
                 "productName"            : Property.get("product_name"),
@@ -55,25 +57,22 @@ class TextTemplate {
      * @param templateString the template.
      * @return the rendered value.
      */
-    static String render(templateString) {
+    static String renderDeep(templateString) {
         TextTemplate tt = instanceOf()
-        tt.engine.createTemplate(templateString).make(tt.bindings).toString()
-    }
 
-    /**
-     * Returns the string using the supplied template.
-     *
-     * @param templateString the template.
-     * @param nestedPlaceHolderLevel the number of nested place holder levels to render.
-     * @return the rendered value.
-     */
-    static String render(templateString, nestedPlaceHolderLevel) {
         String value = templateString
 
-        for (int i = 0; i < nestedPlaceHolderLevel; i++) {
-            value = render(value)
+        while(true) {
+            value = tt.engine.createTemplate(value).make(tt.bindings).toString()
+            if (isDoneRendering(value)) {
+                break;
+            }
         }
 
         value
+    }
+
+    private static boolean isDoneRendering(String value) {
+        return value.indexOf('${') < 0
     }
 }

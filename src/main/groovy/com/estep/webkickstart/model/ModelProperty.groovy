@@ -1,17 +1,20 @@
 package com.estep.webkickstart.model
 
-model.base.path = '${projectBase}/${companyName}.${productName}/${companyName}.${productName}.model'
+root.folder.name = '${companyName}.${productName}'
+root.base.path = '${projectBase}/${rootFolderName}'
 
-applogic.folder.name = '${companyName}.${productName}.applogic'
-applogic.base.root = '${modelBasePath}/${companyName}.${productName}.applogic'
+model.base.path = '${rootBasePath}/${rootFolderName}.model'
+
+applogic.folder.name = '${rootFolderName}.applogic'
+applogic.base.root = '${modelBasePath}/${rootFolderName}.applogic'
 applogic.base.path = '${applogicBaseRoot}/src'
 
-data.folder.name = '${companyName}.${productName}.data'
-data.base.root = '${modelBasePath}/${companyName}.${productName}.data'
+data.folder.name = '${rootFolderName}.data'
+data.base.root = '${modelBasePath}/${rootFolderName}.data'
 data.base.path = '${dataBaseRoot}/src'
 
-shared.folder.name = '${companyName}.${productName}.shared'
-shared.base.root = '${modelBasePath}/${companyName}.${productName}.shared'
+shared.folder.name = '${rootFolderName}.shared'
+shared.base.root = '${modelBasePath}/${rootFolderName}.shared'
 shared.base.path = '${sharedBaseRoot}/src'
 
 applogic.aspect = 'com/${companyName}/${productName}/model/aspect'

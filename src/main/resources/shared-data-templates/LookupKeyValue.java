@@ -1,5 +1,6 @@
 package com.${companyName}.${productName}.model.data;
 
+// CHECKSTYLE:OFF
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -15,7 +16,6 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "LOOKUP_KEY_VALUE")
 @SuppressWarnings("PMD")
-// CHECKSTYLE:OFF
 @SuppressFBWarnings
 public class LookupKeyValue {
     @EmbeddedId

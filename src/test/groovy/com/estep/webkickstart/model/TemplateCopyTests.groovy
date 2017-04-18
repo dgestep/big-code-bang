@@ -24,6 +24,6 @@ class TemplateCopyTests extends GroovyTestCase {
     }
 
     private String render(propertyName) {
-        TextTemplate.render(Property.get(propertyName), 2)
+        TextTemplate.renderDeep(Property.get(propertyName), 2)
     }
 }

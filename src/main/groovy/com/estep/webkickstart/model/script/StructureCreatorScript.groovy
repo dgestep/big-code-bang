@@ -21,7 +21,7 @@ copyAppLogicServiceCode()
 
 private void copyCheckstyle() {
     StringBuilder buf = new StringBuilder()
-    buf.append(render("model.base.path"))
+    buf.append(render("root.base.path"))
     buf.append(File.separator).append("config")
     buf.append(File.separator).append("checkstyle")
     buf.append(File.separator).append("proj-checkstyle.xml")
@@ -32,7 +32,7 @@ private void copyCheckstyle() {
 
 private void copyPmd() {
     StringBuilder buf = new StringBuilder()
-    buf.append(render("model.base.path"))
+    buf.append(render("root.base.path"))
     buf.append(File.separator).append("config")
     buf.append(File.separator).append("rulesets")
     buf.append(File.separator).append("proj-pmd-rules.xml")
@@ -496,5 +496,5 @@ private String getPathToAppLogicCode(folderName, subPackage, programName) {
 }
 
 private String render(propertyName) {
-    TextTemplate.render(Property.get(propertyName), 3)
+    TextTemplate.renderDeep(Property.get(propertyName))
 }

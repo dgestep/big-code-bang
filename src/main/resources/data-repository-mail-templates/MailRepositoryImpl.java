@@ -27,7 +27,7 @@ public class MailRepositoryImpl implements MailRepository {
 
             sender.send(message);
         }
-        catch (final Exception exception) {
+        catch (final MessagingException exception) {
             throw new SystemLoggedException(exception);
         }
     }
@@ -41,7 +41,7 @@ public class MailRepositoryImpl implements MailRepository {
             final MimeMessage message = getMimeMessage(properties, sender, fileName, attachmentName);
             sender.send(message);
         }
-        catch (final Exception exception) {
+        catch (final MessagingException exception) {
             throw new SystemLoggedException(exception);
         }
     }

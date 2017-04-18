@@ -1,5 +1,6 @@
 package com.${companyName}.${productName}.model.data;
 
+// CHECKSTYLE:OFF
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -11,7 +12,6 @@ import java.io.Serializable;
 
 @Embeddable
 @SuppressWarnings("PMD")
-// CHECKSTYLE:OFF
 public class LookupKeyValuePK implements Serializable {
     private static final long serialVersionUID = 1061640693807555508L;
     @Column(name = "GROUP_CODE", nullable = false, length = 100)

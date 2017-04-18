@@ -152,12 +152,12 @@ class StructureManagerTests extends GroovyTestCase {
 
     private String renderValue(propertyName, folderName) {
         def template = Property.get(propertyName) + File.separator + folderName + File.separator + "java"
-        def path = TextTemplate.render(template, 3)
+        def path = TextTemplate.renderDeep(template, 3)
 
         path
     }
 
     private String render(propertyName) {
-        TextTemplate.render(Property.get(propertyName), 3)
+        TextTemplate.renderDeep(Property.get(propertyName), 3)
     }
 }

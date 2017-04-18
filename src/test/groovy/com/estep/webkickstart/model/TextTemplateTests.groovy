@@ -8,7 +8,7 @@ class TextTemplateTests extends GroovyTestCase {
         def productName = Property.get("product_name")
 
         def template = '${projectBase}/${companyName}.${productName}'
-        def value = TextTemplate.render(template, 2)
+        def value = TextTemplate.renderDeep(template, 2)
         assert value.equals(projectBase + "/" + companyName + "." + productName)
     }
 }

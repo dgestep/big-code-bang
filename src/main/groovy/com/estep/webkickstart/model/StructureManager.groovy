@@ -4,8 +4,6 @@ package com.estep.webkickstart.model
  * Handles the creation of the project and module folder structures.
  */
 class StructureManager {
-    private Properties properties;
-
     StructureManager() {
     }
 
@@ -23,7 +21,8 @@ class StructureManager {
      * Deletes the model structure from the file system.
      */
     void deleteModelStructure() {
-        def modelBasePath = renderPath(Property.get("model.base.path"), 2)
+        def modelBasePath = TextTemplate.renderDeep(Property.get("model.base.path"))
+
         File file = new File(modelBasePath)
         file.deleteDir()
     }
@@ -32,7 +31,7 @@ class StructureManager {
      * Creates the config folder structures.
      */
     protected void createConfigStructure() {
-        def basePath = renderPath(Property.get("model.base.path"), 1)
+        def basePath = TextTemplate.renderDeep(Property.get("root.base.path"))
         makeDirectories(basePath + File.separator + "config" + File.separator + "checkstyle")
         makeDirectories(basePath + File.separator + "config" + File.separator + "rulesets")
     }
@@ -95,14 +94,14 @@ class StructureManager {
     }
 
     private void createCodeStructure(String folderStructure, String path) {
-        def value = renderPath(folderStructure, 2)
+        def value = TextTemplate.renderDeep(folderStructure)
         File file = new File(path + File.separator + value)
         file.mkdirs()
     }
 
     private String createSourceStructure(basePathProperty, folderName) {
         def template = Property.get(basePathProperty) + File.separator + folderName
-        def path = renderPath(template, 3)
+        def path = TextTemplate.renderDeep(template)
 
         def resources = path + File.separator + "resources"
         makeDirectories(resources)
@@ -111,10 +110,6 @@ class StructureManager {
         makeDirectories(path)
 
         path
-    }
-
-    private String renderPath(templateString, nextedPlaceHolderLevel) {
-        TextTemplate.render(templateString, nextedPlaceHolderLevel)
     }
 
     private void makeDirectories(String path) {

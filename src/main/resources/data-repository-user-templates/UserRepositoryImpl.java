@@ -51,7 +51,7 @@ public class UserRepositoryImpl extends CrudRepositoryImpl<UserProfile> implemen
      * @param criteria the search criteria to apply.
      * @return the SQL.
      */
-    @SuppressWarnings("PMD.ConsecutiveLiteralAppends")
+    @SuppressWarnings({ "PMD.ConsecutiveLiteralAppends", "PMD.NPathComplexity" }) // NOCHECKSTYLE
     private String createMultiUserSql(final UserSearchCriteriaData criteria) {
         final boolean uniqueRow = criteria != null && (StringUtils.isNotEmpty(criteria.getUuid()) || StringUtils
                 .isNotEmpty(criteria.getEmailAddress()));
