@@ -1,6 +1,6 @@
 package com.estep.webkickstart.model.script
 
-import com.estep.webkickstart.model.StructureManager
+import com.estep.webkickstart.model.ModelStructureManager
 
-StructureManager manager = new StructureManager()
+ModelStructureManager manager = new ModelStructureManager()
 manager.deleteModelStructure()

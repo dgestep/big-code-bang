@@ -4,6 +4,7 @@ root.folder.name = '${companyName}.${productName}'
 root.base.path = '${projectBase}/${rootFolderName}'
 
 model.base.path = '${rootBasePath}/${rootFolderName}.model'
+web.base.path = '${rootBasePath}/${rootFolderName}.webservice'
 
 applogic.folder.name = '${rootFolderName}.applogic'
 applogic.base.root = '${modelBasePath}/${rootFolderName}.applogic'
@@ -32,3 +33,6 @@ model.shared.data = 'com/${companyName}/${productName}/model/data'
 model.shared.message = 'com/${companyName}/${productName}/model/enumeration/message'
 model.shared.log = 'com/${companyName}/${productName}/model/log'
 model.shared.util = 'com/${companyName}/${productName}/model/util'
+
+web.security.path = 'com/${companyName}/${productName}/restcontroller/security'
+web.user.path = 'com/${companyName}/${productName}/restcontroller/user'

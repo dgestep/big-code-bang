@@ -2,8 +2,14 @@ package com.estep.webkickstart.model.script
 
 import com.estep.webkickstart.model.*
 
-StructureManager manager = new StructureManager()
+ModelStructureManager manager = new ModelStructureManager()
 manager.createModelStructure()
+
+def includeWebProject = "Y".equalsIgnoreCase(Property.get("web_include_project"))
+if (includeWebProject) {
+    WebStructureManager webManager = new WebStructureManager()
+    webManager.createWebStructure()
+}
 
 copyCheckstyle()
 copyPmd()
@@ -18,6 +24,43 @@ copyModelTestSpringContextXml()
 copyModelProjectCode()
 copySharedProjectCode()
 copyAppLogicServiceCode()
+
+if (includeWebProject) {
+    copyWebProjectCode()
+    copyWebSecurityProjectCode()
+    copyWebUserProjectCode()
+}
+
+private void copyWebProjectCode() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("ControllerHelper.java", getPathToWebCode("main", null, "ControllerHelper.java")))
+    apps.add(new Tuple("EnvironmentSetupListener.java", getPathToWebCode("main", null, "EnvironmentSetupListener.java")))
+    apps.add(new Tuple("ErrorController.java", getPathToWebCode("main", null, "ErrorController.java")))
+    apps.add(new Tuple("HealthCheckController.java", getPathToWebCode("main", null, "HealthCheckController.java")))
+    apps.add(new Tuple("RestControllerJsonAroundAdvice.java", getPathToWebCode("main", null, "RestControllerJsonAroundAdvice.java")))
+
+    render("web-restcontroller-templates", apps)
+}
+
+private void copyWebSecurityProjectCode() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("CustomCookieCsrfTokenRepository.java", getPathToWebCode("main", "security", "CustomCookieCsrfTokenRepository.java")))
+    apps.add(new Tuple("RestAuthenticationEntryPoint.java", getPathToWebCode("main", "security", "RestAuthenticationEntryPoint.java")))
+    apps.add(new Tuple("RestAuthenticationManager.java", getPathToWebCode("main", "security", "RestAuthenticationManager.java")))
+    apps.add(new Tuple("RestServiceFilter.java", getPathToWebCode("main", "security", "RestServiceFilter.java")))
+    apps.add(new Tuple("SimpleCORSFilter.java", getPathToWebCode("main", "security", "SimpleCORSFilter.java")))
+    apps.add(new Tuple("TokenThreadLocal.java", getPathToWebCode("main", "security", "TokenThreadLocal.java")))
+    apps.add(new Tuple("UserThreadLocal.java", getPathToWebCode("main", "security", "UserThreadLocal.java")))
+
+    render("web-restcontroller-security-templates", apps)
+}
+
+private void copyWebUserProjectCode() {
+    List<Tuple> apps = new ArrayList<>()
+    apps.add(new Tuple("UserController.java", getPathToWebCode("main", "user","UserController.java")))
+
+    render("web-restcontroller-user-templates", apps)
+}
 
 private void copyCheckstyle() {
     StringBuilder buf = new StringBuilder()
@@ -486,6 +529,25 @@ private String getPathToAppLogicCode(folderName, subPackage, programName) {
     buf.append(File.separator).append(render("company_name"))
     buf.append(File.separator).append(render("product_name"))
     buf.append(File.separator).append("model")
+    if (subPackage != null) {
+        buf.append(File.separator).append(subPackage)
+    }
+
+    buf.append(File.separator).append(programName)
+
+    buf.toString()
+}
+
+private String getPathToWebCode(folderName, subPackage, programName) {
+    StringBuilder buf = new StringBuilder()
+
+    buf.append(render("web.base.path"))
+    buf.append(File.separator).append(folderName)
+    buf.append(File.separator).append("java")
+    buf.append(File.separator).append("com")
+    buf.append(File.separator).append(render("company_name"))
+    buf.append(File.separator).append(render("product_name"))
+    buf.append(File.separator).append("restcontroller")
     if (subPackage != null) {
         buf.append(File.separator).append(subPackage)
     }
