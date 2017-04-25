@@ -64,15 +64,11 @@ class TextTemplate {
 
         while(true) {
             value = tt.engine.createTemplate(value).make(tt.bindings).toString()
-            if (isDoneRendering(value)) {
+            if (value.indexOf('${') < 0) {
                 break;
             }
         }
 
-        value
-    }
-
-    private static boolean isDoneRendering(String value) {
-        return value.indexOf('${') < 0
+        value.replace("||||", "\${")
     }
 }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <appender name="ROOTLOG" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="||||LOG_PATH}/${companyName}.log" />
+        <param name="Append" value="true" />
+        <param name="MaxFileSize" value="5000KB"/>
+        <param name="MaxBackupIndex" value = "9" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%t] %x %c %p - %m%n"/>
+        </layout>
+    </appender>
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%t] %x %c %p - %m%n"/>
+        </layout>
+    </appender>
+
+    <!--  override default logging level for certain classes -->
+    <logger name="org.apache">
+        <level value="error"/>
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="ROOTLOG" />
+    </logger>
+
+    <logger name="org.springframework">
+        <level value="error"/>
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="ROOTLOG" />
+    </logger>
+
+    <logger name="org.hibernate">
+        <level value="error"/>
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="ROOTLOG" />
+    </logger>
+
+    <root>
+        <priority value="debug" />
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="ROOTLOG" />
+    </root>
+</log4j:configuration>

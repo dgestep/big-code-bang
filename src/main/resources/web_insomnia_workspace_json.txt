@@ -1,0 +1,995 @@
+{
+	"_type": "export",
+	"__export_format": 3,
+	"__export_date": "2017-03-24T20:39:40.920Z",
+	"__export_source": "insomnia.desktop.app:v4.2.14",
+	"resources": [
+		{
+			"_id": "wrk_d2233e5e8ba145bdbb145c7c2898b554",
+			"parentId": null,
+			"modified": 1489074575302,
+			"created": 1489074575302,
+			"name": "${companyNameLong}",
+			"description": "",
+			"certificates": [],
+			"_type": "workspace"
+		},
+		{
+			"_id": "env_d9606671193c4fc9a70469669b6205b3",
+			"parentId": "wrk_d2233e5e8ba145bdbb145c7c2898b554",
+			"modified": 1489074967018,
+			"created": 1489074967018,
+			"name": "Base Environment",
+			"data": {},
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_9da7d78d8b604b31a26415a2ecf3ae5d",
+			"parentId": "wrk_d2233e5e8ba145bdbb145c7c2898b554",
+			"modified": 1489839080237,
+			"created": 1489075904616,
+			"name": "Default Jar",
+			"cookies": [
+				{
+					"creation": "2017-03-10T02:33:14.930Z",
+					"key": "XSRF-TOKEN",
+					"value": "\"lkfdVzBZ1cCQ+C0b+uRD4flOosmcTcfVs4eReLZUECG0nYqrAw2ZhZ+t7EHBIODFzGxaBsz4syHn+rhYkDBjpo/vjQpGn15wIT0tDqxPPjSih4MoO8cQGg==\"",
+					"extensions": [
+						"Version=1"
+					],
+					"path": "/hsm",
+					"hostOnly": true,
+					"domain": "localhost",
+					"lastAccessed": "2017-03-18T12:11:20.230Z"
+				}
+			],
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "fld_bba8958b163a4f8bae22c24600f7d9f4",
+			"parentId": "wrk_d2233e5e8ba145bdbb145c7c2898b554",
+			"modified": 1489075050016,
+			"created": 1489075050016,
+			"name": "Health",
+			"environment": {},
+			"metaSortKey": -1489075050016,
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_becc0b4d85174c97908470fce27e13c5",
+			"parentId": "wrk_d2233e5e8ba145bdbb145c7c2898b554",
+			"modified": 1489076017301,
+			"created": 1489076017301,
+			"name": "Security",
+			"environment": {},
+			"metaSortKey": -1489076017301,
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_9c8ff4e20d1847b2b4489c28957e75ca",
+			"parentId": "wrk_d2233e5e8ba145bdbb145c7c2898b554",
+			"modified": 1489076973212,
+			"created": 1489076973212,
+			"name": "User",
+			"environment": {},
+			"metaSortKey": -1489076973212,
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_e221216c857a4dc7814c08283511ed0f",
+			"parentId": "wrk_d2233e5e8ba145bdbb145c7c2898b554",
+			"modified": 1489776016830,
+			"created": 1489776016830,
+			"name": "Catalog",
+			"environment": {},
+			"metaSortKey": -1489776016830,
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_387e828e3b21407fa2133f8b7da78b3f",
+			"parentId": "wrk_d2233e5e8ba145bdbb145c7c2898b554",
+			"modified": 1490113030312,
+			"created": 1490113030312,
+			"name": "Document",
+			"environment": {},
+			"metaSortKey": -1490113030312,
+			"_type": "request_group"
+		},
+		{
+			"_id": "env_597ac1eaf86b4a27901ebc8217f1a229",
+			"parentId": "env_d9606671193c4fc9a70469669b6205b3",
+			"modified": 1489075042635,
+			"created": 1489075021770,
+			"name": "Local Hypersonic Materials and Structures",
+			"data": {
+				"host": "http://localhost:8081/hsm/restcontroller"
+			},
+			"_type": "environment"
+		},
+		{
+			"_id": "req_0431af9342cc4537b7853fd052e6f0d3",
+			"parentId": "fld_bba8958b163a4f8bae22c24600f7d9f4",
+			"modified": 1489075096867,
+			"created": 1489075056589,
+			"url": "{{host}}/health",
+			"name": "Health",
+			"method": "GET",
+			"body": {
+				"text": ""
+			},
+			"parameters": [],
+			"headers": [],
+			"authentication": {},
+			"metaSortKey": -1489075056589,
+			"_type": "request"
+		},
+		{
+			"_id": "req_1fffaa9cce9b4a2b9b015a7041b27616",
+			"parentId": "fld_bba8958b163a4f8bae22c24600f7d9f4",
+			"modified": 1489075998287,
+			"created": 1489075984669,
+			"url": "{{host}}/health/version",
+			"name": "Version",
+			"method": "GET",
+			"body": {
+				"text": ""
+			},
+			"parameters": [],
+			"headers": [],
+			"authentication": {},
+			"metaSortKey": -1489075056588,
+			"_type": "request"
+		},
+		{
+			"_id": "req_d7e70ceec78a45db8c57f0580c6e5d88",
+			"parentId": "fld_becc0b4d85174c97908470fce27e13c5",
+			"modified": 1489501917851,
+			"created": 1489076046650,
+			"url": "{{host}}/security/login",
+			"name": "Login",
+			"method": "POST",
+			"body": {
+				"mimeType": "multipart/form-data",
+				"params": [
+					{
+						"name": "emailAddress",
+						"value": "douglas.estep2@gmail.com"
+					},
+					{
+						"name": "password",
+						"value": "DietCoke1"
+					}
+				]
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "multipart/form-data"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489076046650,
+			"_type": "request"
+		},
+		{
+			"_id": "req_3324df0e11e94b2ba61e348690f27ccf",
+			"parentId": "fld_becc0b4d85174c97908470fce27e13c5",
+			"modified": 1489113181392,
+			"created": 1489078793552,
+			"url": "{{host}}/security/logoff",
+			"name": "Logoff",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/x-www-form-urlencoded",
+				"params": []
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "TTjfS89RXsB4o+gcjDzvZl2msoEhQ6MXjv37jnyclxT5xiQERPoM2S8P8m77JCIXSZ4hX0+NPxXZMEDDKrUx6pzX9SjseuRyUOYAwcl86Szd2qwam5I5hoxj4vBWEglM"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489076046649,
+			"_type": "request"
+		},
+		{
+			"_id": "req_fccdbfe844924d629e99264020af449c",
+			"parentId": "fld_becc0b4d85174c97908470fce27e13c5",
+			"modified": 1489112573309,
+			"created": 1489112375471,
+			"url": "{{host}}/security/auto-login",
+			"name": "Auto Login",
+			"method": "POST",
+			"body": {
+				"mimeType": "multipart/form-data",
+				"params": [
+					{
+						"name": "emailAddress",
+						"value": "douglas.estep@udri.udayton.edu"
+					}
+				]
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "multipart/form-data"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489076046649,
+			"_type": "request"
+		},
+		{
+			"_id": "req_e36e4aaef8ff406fb4eaaf6bd363e01a",
+			"parentId": "fld_9c8ff4e20d1847b2b4489c28957e75ca",
+			"modified": 1489425860182,
+			"created": 1489076982204,
+			"url": "{{host}}/user/profile/add",
+			"name": "Add Profile",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"emailAddress\" : \"douglas.estep2@gmail.com\",\n\t\"firstName\" : \"Doug\",\n\t\"lastName\" : \"Estep\",\n\t\"role\" : \"ADMIN\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "y7VjVO2DPVi5QVl25FIj1954I0ogrqGWkHJ56EPsEpC6GZVd7GnLahuoSV5msckjj1F2AQfdnN0xiy1B9d/1ZQfHQyggHlO9AWweahSqYUdf0vhvRr2szjZ0ufC3+sag"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489076982204,
+			"_type": "request"
+		},
+		{
+			"_id": "req_b60d4509d1b649968d82c02c372036a4",
+			"parentId": "fld_9c8ff4e20d1847b2b4489c28957e75ca",
+			"modified": 1489426090785,
+			"created": 1489080399612,
+			"url": "{{host}}/user/profile/delete",
+			"name": "Delete Profile",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"uuid\" : \"924e7fa7-ac79-4f77-a070-1bf641ef4722\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "y7VjVO2DPVi5QVl25FIj1954I0ogrqGWkHJ56EPsEpC6GZVd7GnLahuoSV5msckjj1F2AQfdnN0xiy1B9d/1ZQfHQyggHlO9AWweahSqYUdf0vhvRr2szjZ0ufC3+sag"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489076982203,
+			"_type": "request"
+		},
+		{
+			"_id": "req_f2c220b37e6f497ab308a160090a3943",
+			"parentId": "fld_9c8ff4e20d1847b2b4489c28957e75ca",
+			"modified": 1489501660120,
+			"created": 1489087163586,
+			"url": "{{host}}/user/profile/save",
+			"name": "Save Profile",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"uuid\" : \"c3177131-6e95-455a-bbd0-5b5914c3f008\",\n\t\"role\" : \"USER\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "y7VjVO2DPVi5QVl25FIj1954I0ogrqGWkHJ56EPsEpC6GZVd7GnLahuoSV5msckjj1F2AQfdnN0xiy1B9d/1ZQfHQyggHlO9AWweahSqYUdf0vhvRr2szjZ0ufC3+sag"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489076982203,
+			"_type": "request"
+		},
+		{
+			"_id": "req_804e6f29439f4c55907bb4ce5cb0c0b0",
+			"parentId": "fld_9c8ff4e20d1847b2b4489c28957e75ca",
+			"modified": 1489507895832,
+			"created": 1489112217842,
+			"url": "{{host}}/user/search",
+			"name": "User Search",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"activeFlag\" : \"Y\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "FVSTE0ZOMTT3Af+ehIbBG85oXSSP3gugsYN3q2ce+BzAkkkalB9/W7hvhLJo2VtgfpB0IqXNE/FDBxe82qJu3Xe4pqEsZGt7J6Ii0CsVK/Gm0vIr4EP3qQ=="
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489076982202,
+			"_type": "request"
+		},
+		{
+			"_id": "req_bb80b1b2a2e348bcb1fbbce9a0efd8fe",
+			"parentId": "fld_9c8ff4e20d1847b2b4489c28957e75ca",
+			"modified": 1489501856118,
+			"created": 1489112771887,
+			"url": "{{host}}/user/password",
+			"name": "Change Password",
+			"method": "POST",
+			"body": {
+				"mimeType": "multipart/form-data",
+				"params": [
+					{
+						"name": "emailAddress",
+						"value": "douglas.estep2@gmail.com"
+					},
+					{
+						"name": "newPassword",
+						"value": "DietCoke1"
+					},
+					{
+						"name": "currentPassword",
+						"value": "SensorSystems2017"
+					}
+				]
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "multipart/form-data"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "y7VjVO2DPVi5QVl25FIj1954I0ogrqGWkHJ56EPsEpC6GZVd7GnLahuoSV5msckjj1F2AQfdnN0xiy1B9d/1ZQfHQyggHlO9AWweahSqYUdf0vhvRr2szjZ0ufC3+sag"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489076982152,
+			"_type": "request"
+		},
+		{
+			"_id": "req_333e0eb3057841ad80176df86894456a",
+			"parentId": "fld_9c8ff4e20d1847b2b4489c28957e75ca",
+			"modified": 1489416927059,
+			"created": 1489363014303,
+			"url": "{{host}}/user/reset-confirmation",
+			"name": "Send Reset Confirmation",
+			"method": "POST",
+			"body": {
+				"mimeType": "multipart/form-data",
+				"params": [
+					{
+						"name": "emailAddress",
+						"value": "douglas.estep@udri.udayton.edu"
+					}
+				]
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "multipart/form-data"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "y7VjVO2DPVi5QVl25FIj1954I0ogrqGWkHJ56EPsEpC6GZVd7GnLahuoSV5msckjj1F2AQfdnN0xiy1B9d/1ZQfHQyggHlO9AWweahSqYUdf0vhvRr2szjZ0ufC3+sag"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489076982151,
+			"_type": "request"
+		},
+		{
+			"_id": "req_7ef2e94559b6469a859ad95886c1dbb9",
+			"parentId": "fld_9c8ff4e20d1847b2b4489c28957e75ca",
+			"modified": 1489363688407,
+			"created": 1489363534540,
+			"url": "{{host}}/user/reset-password-by-confirmation",
+			"name": "Reset Password By Confirmation",
+			"method": "POST",
+			"body": {
+				"mimeType": "multipart/form-data",
+				"params": [
+					{
+						"name": "emailAddress",
+						"value": "douglas.estep@udri.udayton.edu"
+					},
+					{
+						"name": "resetUuid",
+						"value": "x"
+					}
+				]
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "multipart/form-data"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "y7VjVO2DPVi5QVl25FIj1954I0ogrqGWkHJ56EPsEpC6GZVd7GnLahuoSV5msckjj1F2AQfdnN0xiy1B9d/1ZQfHQyggHlO9AWweahSqYUdf0vhvRr2szjZ0ufC3+sag"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489076982150,
+			"_type": "request"
+		},
+		{
+			"_id": "req_eab7c6d8556345ccb9f8bb60a8651683",
+			"parentId": "fld_9c8ff4e20d1847b2b4489c28957e75ca",
+			"modified": 1489417140216,
+			"created": 1489363589755,
+			"url": "{{host}}/user/reset-password",
+			"name": "Reset Password",
+			"method": "POST",
+			"body": {
+				"mimeType": "multipart/form-data",
+				"params": [
+					{
+						"name": "emailAddress",
+						"value": "douglas.estep@gmail.com"
+					}
+				]
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "multipart/form-data"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "y7VjVO2DPVi5QVl25FIj1954I0ogrqGWkHJ56EPsEpC6GZVd7GnLahuoSV5msckjj1F2AQfdnN0xiy1B9d/1ZQfHQyggHlO9AWweahSqYUdf0vhvRr2szjZ0ufC3+sag"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489076982149,
+			"_type": "request"
+		},
+		{
+			"_id": "req_9af59c51dfac4a378267ab31bb13b6f0",
+			"parentId": "fld_9c8ff4e20d1847b2b4489c28957e75ca",
+			"modified": 1490114622397,
+			"created": 1490114512699,
+			"url": "{{host}}/user/retrieve?uuid=779632f0-2fb5-413b-8971-35b04f2f6339",
+			"name": "Retrieve",
+			"method": "GET",
+			"body": {
+				"mimeType": "application/x-www-form-urlencoded",
+				"params": [
+					{
+						"name": "",
+						"value": "",
+						"disabled": false
+					}
+				]
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "y7VjVO2DPVi5QVl25FIj1954I0ogrqGWkHJ56EPsEpC6GZVd7GnLahuoSV5msckjj1F2AQfdnN0xiy1B9d/1ZQfHQyggHlO9AWweahSqYUdf0vhvRr2szjZ0ufC3+sag"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489076982099,
+			"_type": "request"
+		},
+		{
+			"_id": "req_e8725997b54f4c4f8a9c191d6e05d1eb",
+			"parentId": "fld_e221216c857a4dc7814c08283511ed0f",
+			"modified": 1490387666944,
+			"created": 1489776030258,
+			"url": "{{host}}/catalog/retrieve?uuid=115",
+			"name": "Retrieve",
+			"method": "GET",
+			"body": {
+				"mimeType": "application/x-www-form-urlencoded",
+				"params": [
+					{
+						"name": "",
+						"value": "",
+						"disabled": false
+					}
+				]
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "y7VjVO2DPVi5QVl25FIj1954I0ogrqGWkHJ56EPsEpC6GZVd7GnLahuoSV5msckjj1F2AQfdnN0xiy1B9d/1ZQfHQyggHlO9AWweahSqYUdf0vhvRr2szjZ0ufC3+sag"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489776385544.5625,
+			"_type": "request"
+		},
+		{
+			"_id": "req_484b30ac41634bb7894724694aad0b64",
+			"parentId": "fld_e221216c857a4dc7814c08283511ed0f",
+			"modified": 1490386044100,
+			"created": 1489776385545,
+			"url": "{{host}}/catalog/add-catalog",
+			"name": "Add Catalog",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"catalog\": {\n\t\t\"name\": \"delete me again 2\",\n\t\t\"inputDataType\" : \"TEMPERATURE\"\n\t}\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "lkfdVzBZ1cCQ+C0b+uRD4flOosmcTcfVs4eReLZUECG0nYqrAw2ZhZ+t7EHBIODFzGxaBsz4syHn+rhYkDBjpo/vjQpGn15wIT0tDqxPPjSih4MoO8cQGg=="
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489776385545,
+			"_type": "request"
+		},
+		{
+			"_id": "req_c143c11aeef74c08b4fcd5aaf959c052",
+			"parentId": "fld_e221216c857a4dc7814c08283511ed0f",
+			"modified": 1490386144490,
+			"created": 1489778396100,
+			"url": "{{host}}/catalog/add-document-association",
+			"name": "Add Document Association",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"key\" : {\n\t\t\"parentUuid\" : 132,\n\t\t\"documentUuid\" : 1\n\t},\t\n\t\"textValue\": \"Test\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "lkfdVzBZ1cCQ+C0b+uRD4flOosmcTcfVs4eReLZUECG0nYqrAw2ZhZ+t7EHBIODFzGxaBsz4syHn+rhYkDBjpo/vjQpGn15wIT0tDqxPPjSih4MoO8cQGg=="
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489776385544,
+			"_type": "request"
+		},
+		{
+			"_id": "req_ee94e685038548afbd36a936a8df33a4",
+			"parentId": "fld_e221216c857a4dc7814c08283511ed0f",
+			"modified": 1490386051039,
+			"created": 1489778777482,
+			"url": "{{host}}/catalog/save-catalog",
+			"name": "Save Catalog",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"uuid\": 20,\n\t\"name\": \"Component\",\n\t\"description\": \"Component description\",\n\t\"createTs\": 1489840654000\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "lkfdVzBZ1cCQ+C0b+uRD4flOosmcTcfVs4eReLZUECG0nYqrAw2ZhZ+t7EHBIODFzGxaBsz4syHn+rhYkDBjpo/vjQpGn15wIT0tDqxPPjSih4MoO8cQGg=="
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489776385544.75,
+			"_type": "request"
+		},
+		{
+			"_id": "req_31c00c12c47f487782ede61b46378c53",
+			"parentId": "fld_e221216c857a4dc7814c08283511ed0f",
+			"modified": 1490386381454,
+			"created": 1489778826378,
+			"url": "{{host}}/catalog/copy-catalog-association",
+			"name": "Copy Catalog Association",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"parentUuid\": 130,\n\t\"childUuid\": 70\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "lkfdVzBZ1cCQ+C0b+uRD4flOosmcTcfVs4eReLZUECG0nYqrAw2ZhZ+t7EHBIODFzGxaBsz4syHn+rhYkDBjpo/vjQpGn15wIT0tDqxPPjSih4MoO8cQGg=="
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489776385544.5,
+			"_type": "request"
+		},
+		{
+			"_id": "req_43a76e0033dd4967b14339da37467a1a",
+			"parentId": "fld_e221216c857a4dc7814c08283511ed0f",
+			"modified": 1490386137305,
+			"created": 1489778900586,
+			"url": "{{host}}/catalog/remove-catalog-association",
+			"name": "Remove Catalog Association",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"parentUuid\": 130,\n\t\"childUuid\": 70\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "lkfdVzBZ1cCQ+C0b+uRD4flOosmcTcfVs4eReLZUECG0nYqrAw2ZhZ+t7EHBIODFzGxaBsz4syHn+rhYkDBjpo/vjQpGn15wIT0tDqxPPjSih4MoO8cQGg=="
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489776385544.125,
+			"_type": "request"
+		},
+		{
+			"_id": "req_893617562ce54d9c8ef54a10487ed89e",
+			"parentId": "fld_e221216c857a4dc7814c08283511ed0f",
+			"modified": 1490386157282,
+			"created": 1489778949865,
+			"url": "{{host}}/catalog/remove-document-association",
+			"name": "Remove Document Association",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"parentUuid\": 115,\n\t\"childUuid\": 16\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "lkfdVzBZ1cCQ+C0b+uRD4flOosmcTcfVs4eReLZUECG0nYqrAw2ZhZ+t7EHBIODFzGxaBsz4syHn+rhYkDBjpo/vjQpGn15wIT0tDqxPPjSih4MoO8cQGg=="
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489776385542.5,
+			"_type": "request"
+		},
+		{
+			"_id": "req_464aa4ad10174a1c8f2b9c6d1adf815d",
+			"parentId": "fld_e221216c857a4dc7814c08283511ed0f",
+			"modified": 1490387629357,
+			"created": 1489778975876,
+			"url": "{{host}}/catalog/delete-catalog",
+			"name": "Delete Catalog",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/x-www-form-urlencoded",
+				"params": [
+					{
+						"name": "uuid",
+						"value": "133",
+						"disabled": false
+					}
+				]
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "lkfdVzBZ1cCQ+C0b+uRD4flOosmcTcfVs4eReLZUECG0nYqrAw2ZhZ+t7EHBIODFzGxaBsz4syHn+rhYkDBjpo/vjQpGn15wIT0tDqxPPjSih4MoO8cQGg=="
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489776385544.625,
+			"_type": "request"
+		},
+		{
+			"_id": "req_4bc39b76572f4020a4dcd999d78322a8",
+			"parentId": "fld_e221216c857a4dc7814c08283511ed0f",
+			"modified": 1490386123508,
+			"created": 1489880308848,
+			"url": "{{host}}/catalog/move-catalog-association",
+			"name": "Move Catalog Association",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"fromParentUuid\": 130,\n\t\"fromChildUuid\": 58,\n\t\"toParentUuid\": 131\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "lkfdVzBZ1cCQ+C0b+uRD4flOosmcTcfVs4eReLZUECG0nYqrAw2ZhZ+t7EHBIODFzGxaBsz4syHn+rhYkDBjpo/vjQpGn15wIT0tDqxPPjSih4MoO8cQGg=="
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489776385544.25,
+			"_type": "request"
+		},
+		{
+			"_id": "req_5be39c5fbb63489f892771c04bb89db7",
+			"parentId": "fld_e221216c857a4dc7814c08283511ed0f",
+			"modified": 1490386186194,
+			"created": 1489976395852,
+			"url": "{{host}}/catalog/root-catalogs",
+			"name": "Get Root Catalogs",
+			"method": "GET",
+			"body": {
+				"mimeType": "application/x-www-form-urlencoded",
+				"params": [
+					{
+						"name": "",
+						"value": "",
+						"disabled": false
+					}
+				]
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "y7VjVO2DPVi5QVl25FIj1954I0ogrqGWkHJ56EPsEpC6GZVd7GnLahuoSV5msckjj1F2AQfdnN0xiy1B9d/1ZQfHQyggHlO9AWweahSqYUdf0vhvRr2szjZ0ufC3+sag"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489776385544.5312,
+			"_type": "request"
+		},
+		{
+			"_id": "req_f69ed7fa81d7403383b1d602a18c39df",
+			"parentId": "fld_e221216c857a4dc7814c08283511ed0f",
+			"modified": 1490386149638,
+			"created": 1490385525474,
+			"url": "{{host}}/catalog/move-document-association",
+			"name": "Move Document Association",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"fromParentUuid\": 132,\n\t\"fromDocumentUuid\" : 1,\n\t\"toParentUuid\" : 133\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "lkfdVzBZ1cCQ+C0b+uRD4flOosmcTcfVs4eReLZUECG0nYqrAw2ZhZ+t7EHBIODFzGxaBsz4syHn+rhYkDBjpo/vjQpGn15wIT0tDqxPPjSih4MoO8cQGg=="
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489776385543.75,
+			"_type": "request"
+		},
+		{
+			"_id": "req_9451337b907f465ab2012ce53690abf6",
+			"parentId": "fld_e221216c857a4dc7814c08283511ed0f",
+			"modified": 1490387565565,
+			"created": 1490386711547,
+			"url": "{{host}}/catalog/save-document-association",
+			"name": "Save Document Association",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"key\" : {\n\t\t\"parentUuid\" : 133,\n\t\t\"documentUuid\" : 1\n\t},\t\n\t\"unitOfMeasure\": \"FARENHEIT\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "lkfdVzBZ1cCQ+C0b+uRD4flOosmcTcfVs4eReLZUECG0nYqrAw2ZhZ+t7EHBIODFzGxaBsz4syHn+rhYkDBjpo/vjQpGn15wIT0tDqxPPjSih4MoO8cQGg=="
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489776385543.875,
+			"_type": "request"
+		},
+		{
+			"_id": "req_9bf781970fd2427d9e1f06fb1369b716",
+			"parentId": "fld_387e828e3b21407fa2133f8b7da78b3f",
+			"modified": 1490370646248,
+			"created": 1490113036103,
+			"url": "{{host}}/document/add",
+			"name": "Add",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"fileName\": \"Ohlhorst_1993.pdf\",\n\t\"authors\": \"Ohlhorst, C., Vaughn, W, and Barrett, D.\",\n\t\"title\": \"Current Research in Oxidation-Resistant Carbon-Carbon Composites at NASA Langley\",\n\t\"journal\": \"pp. 149-168, 1993(?)\",\n\t\"materialManufacturer\": \"\",\n\t\"tradeName\": \"\",\n\t\"materialName\": \"\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "lkfdVzBZ1cCQ+C0b+uRD4flOosmcTcfVs4eReLZUECG0nYqrAw2ZhZ+t7EHBIODFzGxaBsz4syHn+rhYkDBjpo/vjQpGn15wIT0tDqxPPjSih4MoO8cQGg=="
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489776385544,
+			"_type": "request"
+		},
+		{
+			"_id": "req_a6c3b46aa92741b983e9f3d04f609d53",
+			"parentId": "fld_387e828e3b21407fa2133f8b7da78b3f",
+			"modified": 1490369841457,
+			"created": 1490113877071,
+			"url": "{{host}}/document/save",
+			"name": "Save",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\t\"uuid\": 1,\n\t\t\"title\": \"Reusable Launchers Tank Structures--Requirements Definition and Experimental Development\",\n\t\t\"fileName\": \"Angelino_2016.pdf\",\n\t\t\"authors\": \"Angelino, E., Dosio, D., and Borriello, G.\",\n\t\t\"journal\": \"International Space Planes and Hypersonic Systems and Technologies Conferences, American Institute of Aeronautics and Astronautics, 2016\",\n\t\t\"materialManufacturer\": \"\",\n\t\t\"tradeName\": \"\",\n\t\t\"materialName\": \"\",\n\t\t\"createTs\": 1489186800000\n\t}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "lkfdVzBZ1cCQ+C0b+uRD4flOosmcTcfVs4eReLZUECG0nYqrAw2ZhZ+t7EHBIODFzGxaBsz4syHn+rhYkDBjpo/vjQpGn15wIT0tDqxPPjSih4MoO8cQGg=="
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489776385543,
+			"_type": "request"
+		},
+		{
+			"_id": "req_d2352033839a4167aeeaba400a9d21b4",
+			"parentId": "fld_387e828e3b21407fa2133f8b7da78b3f",
+			"modified": 1490114254805,
+			"created": 1490114186745,
+			"url": "{{host}}/document/delete",
+			"name": "Delete",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"uuid\" : 17\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "lkfdVzBZ1cCQ+C0b+uRD4flOosmcTcfVs4eReLZUECG0nYqrAw2ZhZ+t7EHBIODFzGxaBsz4syHn+rhYkDBjpo/vjQpGn15wIT0tDqxPPjSih4MoO8cQGg=="
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489776385542,
+			"_type": "request"
+		},
+		{
+			"_id": "req_09263499a89146839e3e88b48c06fdef",
+			"parentId": "fld_387e828e3b21407fa2133f8b7da78b3f",
+			"modified": 1490114325973,
+			"created": 1490114303935,
+			"url": "{{host}}/document/retrieve?uuid=1",
+			"name": "Retrieve",
+			"method": "GET",
+			"body": {
+				"mimeType": "application/x-www-form-urlencoded",
+				"params": [
+					{
+						"name": "",
+						"value": "",
+						"disabled": false
+					}
+				]
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "y7VjVO2DPVi5QVl25FIj1954I0ogrqGWkHJ56EPsEpC6GZVd7GnLahuoSV5msckjj1F2AQfdnN0xiy1B9d/1ZQfHQyggHlO9AWweahSqYUdf0vhvRr2szjZ0ufC3+sag"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489776385492,
+			"_type": "request"
+		},
+		{
+			"_id": "req_31bfe455e1be4e25adebe88ae8ae1d1d",
+			"parentId": "fld_387e828e3b21407fa2133f8b7da78b3f",
+			"modified": 1490114911731,
+			"created": 1490114769136,
+			"url": "{{host}}/document/search",
+			"name": "Search",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"fileName\" : \".pdf\",\n\t\"fileNameExact\" : false\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"name": "X-XSRF-TOKEN",
+					"value": "lkfdVzBZ1cCQ+C0b+uRD4flOosmcTcfVs4eReLZUECG0nYqrAw2ZhZ+t7EHBIODFzGxaBsz4syHn+rhYkDBjpo/vjQpGn15wIT0tDqxPPjSih4MoO8cQGg=="
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1489776385541,
+			"_type": "request"
+		}
+	]
+}
