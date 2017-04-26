@@ -1,4 +1,4 @@
-package com.${companyName}.${productName}.model.repository.user;
+package ${topLevelDomain}.${companyName}.${productName}.model.repository.user;
 
 import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.springframework.stereotype.Repository;

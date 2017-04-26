@@ -1,7 +1,7 @@
-package com.${companyName}.${productName}.restcontroller.security;
+package ${topLevelDomain}.${companyName}.${productName}.restcontroller.security;
 
-import com.${companyName}.${productName}.model.log.LogFactory;
-import com.${companyName}.${productName}.model.log.Logger;
+import ${topLevelDomain}.${companyName}.${productName}.model.log.LogFactory;
+import ${topLevelDomain}.${companyName}.${productName}.model.log.Logger;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;

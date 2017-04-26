@@ -1,10 +1,10 @@
-package com.${companyName}.${productName}.restcontroller.security;
+package ${topLevelDomain}.${companyName}.${productName}.restcontroller.security;
 
-import com.${companyName}.${productName}.model.JsonResponseData;
-import com.${companyName}.${productName}.model.data.UserData;
-import com.${companyName}.${productName}.model.enumeration.message.SecurityMessage;
-import com.${companyName}.${productName}.model.service.security.AuthenticationService;
-import com.${companyName}.${productName}.restcontroller.ControllerHelper;
+import ${topLevelDomain}.${companyName}.${productName}.model.JsonResponseData;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.UserData;
+import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.message.SecurityMessage;
+import ${topLevelDomain}.${companyName}.${productName}.model.service.security.AuthenticationService;
+import ${topLevelDomain}.${companyName}.${productName}.restcontroller.ControllerHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;

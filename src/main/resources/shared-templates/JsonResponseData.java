@@ -1,13 +1,13 @@
-package com.${companyName}.${productName}.model;
+package ${topLevelDomain}.${companyName}.${productName}.model;
 
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.${companyName}.${productName}.model.data.MessageData;
-import com.${companyName}.${productName}.model.enumeration.message.ServiceMessage;
-import com.${companyName}.${productName}.model.exception.SystemLoggedException;
-import com.${companyName}.${productName}.model.log.LogFactory;
-import com.${companyName}.${productName}.model.log.Logger;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.MessageData;
+import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.message.ServiceMessage;
+import ${topLevelDomain}.${companyName}.${productName}.model.exception.SystemLoggedException;
+import ${topLevelDomain}.${companyName}.${productName}.model.log.LogFactory;
+import ${topLevelDomain}.${companyName}.${productName}.model.log.Logger;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;

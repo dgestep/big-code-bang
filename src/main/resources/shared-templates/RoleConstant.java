@@ -1,4 +1,4 @@
-package com.${companyName}.${productName}.model;
+package ${topLevelDomain}.${companyName}.${productName}.model;
 
 /**
  * Contains string constant relating to user roles.

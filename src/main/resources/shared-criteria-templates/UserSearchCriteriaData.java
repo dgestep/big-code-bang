@@ -1,7 +1,7 @@
-package com.${companyName}.${productName}.model.criteria;
+package ${topLevelDomain}.${companyName}.${productName}.model.criteria;
 
-import com.${companyName}.${productName}.model.enumeration.Role;
-import com.${companyName}.${productName}.model.util.NameParser;
+import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.Role;
+import ${topLevelDomain}.${companyName}.${productName}.model.util.NameParser;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;

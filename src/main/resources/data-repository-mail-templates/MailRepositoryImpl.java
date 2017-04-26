@@ -1,6 +1,6 @@
-package com.${companyName}.${productName}.model.repository.mail;
+package ${topLevelDomain}.${companyName}.${productName}.model.repository.mail;
 
-import com.${companyName}.${productName}.model.exception.SystemLoggedException;
+import ${topLevelDomain}.${companyName}.${productName}.model.exception.SystemLoggedException;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Repository;

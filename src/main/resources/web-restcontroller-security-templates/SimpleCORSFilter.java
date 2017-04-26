@@ -1,4 +1,4 @@
-package com.${companyName}.${productName}.restcontroller.security;
+package ${topLevelDomain}.${companyName}.${productName}.restcontroller.security;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;

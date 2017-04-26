@@ -1,7 +1,7 @@
-package com.${companyName}.${productName}.model.log;
+package ${topLevelDomain}.${companyName}.${productName}.model.log;
 
-import com.${companyName}.${productName}.model.EnvironmentConfiguration;
-import com.${companyName}.${productName}.model.enumeration.Region;
+import ${topLevelDomain}.${companyName}.${productName}.model.EnvironmentConfiguration;
+import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.Region;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.xml.DOMConfigurator;
 

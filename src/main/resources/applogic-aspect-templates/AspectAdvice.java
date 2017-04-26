@@ -1,4 +1,4 @@
-package com.${companyName}.${productName}.model.aspect;
+package ${topLevelDomain}.${companyName}.${productName}.model.aspect;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 

@@ -1,4 +1,4 @@
-package com.${companyName}.${productName}.model.enumeration.message;
+package ${topLevelDomain}.${companyName}.${productName}.model.enumeration.message;
 
 /**
  * Represents any message.

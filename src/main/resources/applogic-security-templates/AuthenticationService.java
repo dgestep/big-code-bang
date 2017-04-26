@@ -1,7 +1,7 @@
-package com.${companyName}.${productName}.model.service.security;
+package ${topLevelDomain}.${companyName}.${productName}.model.service.security;
 
-import com.${companyName}.${productName}.model.data.UserData;
-import com.${companyName}.${productName}.model.data.UserToken; // NOCHECKSTYLE
+import ${topLevelDomain}.${companyName}.${productName}.model.data.UserData;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.UserToken; // NOCHECKSTYLE
 
 /**
  * Defines a class which authenticates a user in the application.

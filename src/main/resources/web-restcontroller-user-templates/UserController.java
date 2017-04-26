@@ -1,10 +1,10 @@
-package com.${companyName}.${productName}.restcontroller.user;
+package ${topLevelDomain}.${companyName}.${productName}.restcontroller.user;
 
-import com.${companyName}.${productName}.model.JsonResponseData;
-import com.${companyName}.${productName}.model.criteria.UserSearchCriteriaData;
-import com.${companyName}.${productName}.model.data.UserProfile;
-import com.${companyName}.${productName}.model.service.user.UserService;
-import com.${companyName}.${productName}.restcontroller.ControllerHelper;
+import ${topLevelDomain}.${companyName}.${productName}.model.JsonResponseData;
+import ${topLevelDomain}.${companyName}.${productName}.model.criteria.UserSearchCriteriaData;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.UserProfile;
+import ${topLevelDomain}.${companyName}.${productName}.model.service.user.UserService;
+import ${topLevelDomain}.${companyName}.${productName}.restcontroller.ControllerHelper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -1,6 +1,6 @@
-package com.${companyName}.${productName}.restcontroller.security;
+package ${topLevelDomain}.${companyName}.${productName}.restcontroller.security;
 
-import com.${companyName}.${productName}.model.data.UserData;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.UserData;
 
 /**
  * {@link ThreadLocal} implementation containing the authenticated user.

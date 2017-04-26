@@ -1,12 +1,12 @@
-package com.${companyName}.${productName}.model.repository.user;
+package ${topLevelDomain}.${companyName}.${productName}.model.repository.user;
 
-import com.${companyName}.${productName}.model.criteria.UserSearchCriteriaData;
-import com.${companyName}.${productName}.model.data.UserCredential;
-import com.${companyName}.${productName}.model.data.UserProfile;
-import com.${companyName}.${productName}.model.enumeration.Role;
-import com.${companyName}.${productName}.model.repository.ApplicationTestCase;
-import com.${companyName}.${productName}.model.repository.user.UserCredentialRepository;
-import com.${companyName}.${productName}.model.repository.user.UserRepository;
+import ${topLevelDomain}.${companyName}.${productName}.model.criteria.UserSearchCriteriaData;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.UserCredential;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.UserProfile;
+import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.Role;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.ApplicationTestCase;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.UserCredentialRepository;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.UserRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Test;

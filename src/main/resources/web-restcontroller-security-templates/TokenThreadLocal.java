@@ -1,4 +1,4 @@
-package com.${companyName}.${productName}.restcontroller.security;
+package ${topLevelDomain}.${companyName}.${productName}.restcontroller.security;
 
 /**
  * {@link ThreadLocal} implementation containing the authentication token.

@@ -1,7 +1,7 @@
-package com.${companyName}.${productName}.model.service.lookup;
+package ${topLevelDomain}.${companyName}.${productName}.model.service.lookup;
 
-import com.${companyName}.${productName}.model.data.LookupKeyValue;
-import com.${companyName}.${productName}.model.service.CrudService;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.LookupKeyValue;
+import ${topLevelDomain}.${companyName}.${productName}.model.service.CrudService;
 
 /**
  * Defines a class which can store and lookup key-value pair entries.

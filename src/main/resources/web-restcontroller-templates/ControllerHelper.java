@@ -1,12 +1,12 @@
-package com.${companyName}.${productName}.restcontroller;
+package ${topLevelDomain}.${companyName}.${productName}.restcontroller;
 
-import com.${companyName}.${productName}.model.JsonResponseData;
-import com.${companyName}.${productName}.model.data.MessageData;
-import com.${companyName}.${productName}.model.enumeration.message.GeneralMessage;
-import com.${companyName}.${productName}.model.exception.SystemLoggedException;
-import com.${companyName}.${productName}.model.log.LogFactory;
-import com.${companyName}.${productName}.model.log.Logger;
-import com.${companyName}.${productName}.restcontroller.security.CustomCookieCsrfTokenRepository;
+import ${topLevelDomain}.${companyName}.${productName}.model.JsonResponseData;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.MessageData;
+import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.message.GeneralMessage;
+import ${topLevelDomain}.${companyName}.${productName}.model.exception.SystemLoggedException;
+import ${topLevelDomain}.${companyName}.${productName}.model.log.LogFactory;
+import ${topLevelDomain}.${companyName}.${productName}.model.log.Logger;
+import ${topLevelDomain}.${companyName}.${productName}.restcontroller.security.CustomCookieCsrfTokenRepository;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;

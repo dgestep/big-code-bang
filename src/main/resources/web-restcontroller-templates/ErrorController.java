@@ -1,7 +1,7 @@
-package com.${companyName}.${productName}.restcontroller;
+package ${topLevelDomain}.${companyName}.${productName}.restcontroller;
 
-import com.${companyName}.${productName}.model.log.LogFactory;
-import com.${companyName}.${productName}.model.log.Logger;
+import ${topLevelDomain}.${companyName}.${productName}.model.log.LogFactory;
+import ${topLevelDomain}.${companyName}.${productName}.model.log.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 

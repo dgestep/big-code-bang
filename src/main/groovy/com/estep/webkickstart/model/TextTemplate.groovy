@@ -16,6 +16,7 @@ class TextTemplate {
                 "projectBase"            : Property.get("project_base_folder"),
                 "rootFolderName"         : Property.get("root.folder.name"),
                 "rootBasePath"           : Property.get("root.base.path"),
+                "topLevelDomain"         : Property.get("top_level_domain"),
                 "companyName"            : Property.get("company_name"),
                 "companyNameLong"        : Property.get("company_name_long"),
                 "productName"            : Property.get("product_name"),

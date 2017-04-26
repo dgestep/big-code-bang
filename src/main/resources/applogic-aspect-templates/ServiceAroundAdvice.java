@@ -1,9 +1,9 @@
-package com.${companyName}.${productName}.model.aspect;
+package ${topLevelDomain}.${companyName}.${productName}.model.aspect;
 
-import com.${companyName}.${productName}.model.data.MessageData;
-import com.${companyName}.${productName}.model.enumeration.message.GeneralMessage;
-import com.${companyName}.${productName}.model.exception.DataInputException;
-import com.${companyName}.${productName}.model.exception.SystemLoggedException;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.MessageData;
+import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.message.GeneralMessage;
+import ${topLevelDomain}.${companyName}.${productName}.model.exception.DataInputException;
+import ${topLevelDomain}.${companyName}.${productName}.model.exception.SystemLoggedException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.aspectj.lang.ProceedingJoinPoint;

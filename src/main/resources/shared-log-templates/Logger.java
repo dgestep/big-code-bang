@@ -1,4 +1,4 @@
-package com.${companyName}.${productName}.model.log;
+package ${topLevelDomain}.${companyName}.${productName}.model.log;
 
 /**
  * Defines a class which performs logging.

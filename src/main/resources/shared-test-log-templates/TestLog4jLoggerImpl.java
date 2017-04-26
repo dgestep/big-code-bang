@@ -1,4 +1,4 @@
-package com.${companyName}.${productName}.model.log;
+package ${topLevelDomain}.${companyName}.${productName}.model.log;
 
 import mockit.Expectations;
 import mockit.Mocked;

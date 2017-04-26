@@ -1,10 +1,10 @@
-package com.${companyName}.${productName}.model;
+package ${topLevelDomain}.${companyName}.${productName}.model;
 
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
-import com.${companyName}.${productName}.model.data.MessageData;
-import com.${companyName}.${productName}.model.enumeration.message.GeneralMessage;
-import com.${companyName}.${productName}.model.exception.SystemLoggedException;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.MessageData;
+import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.message.GeneralMessage;
+import ${topLevelDomain}.${companyName}.${productName}.model.exception.SystemLoggedException;
 import junit.framework.TestCase;
 import mockit.integration.junit4.JMockit;
 import org.junit.Assert;

@@ -1,6 +1,6 @@
-package com.${companyName}.${productName}.model;
+package ${topLevelDomain}.${companyName}.${productName}.model;
 
-import com.${companyName}.${productName}.model.enumeration.Region;
+import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.Region;
 import junit.framework.TestCase;
 import mockit.integration.junit4.JMockit;
 import org.junit.Assert;

@@ -1,6 +1,6 @@
-package com.${companyName}.${productName}.model.exception;
+package ${topLevelDomain}.${companyName}.${productName}.model.exception;
 
-import com.${companyName}.${productName}.model.data.MessageData;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.MessageData;
 import junit.framework.TestCase;
 import mockit.integration.junit4.JMockit;
 import org.junit.Assert;

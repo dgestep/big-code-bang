@@ -1,7 +1,7 @@
-package com.${companyName}.${productName}.model.service;
+package ${topLevelDomain}.${companyName}.${productName}.model.service;
 
-import com.${companyName}.${productName}.model.data.MessageData;
-import com.${companyName}.${productName}.model.exception.DataInputException;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.MessageData;
+import ${topLevelDomain}.${companyName}.${productName}.model.exception.DataInputException;
 import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Before;

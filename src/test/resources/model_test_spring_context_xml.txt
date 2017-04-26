@@ -15,7 +15,7 @@
 
     <tx:annotation-driven proxy-target-class="false" transaction-manager="transactionManager"/>
 
-    <context:component-scan base-package="com.${companyName}.${productName}.model"/>
+    <context:component-scan base-package="${topLevelDomain}.${companyName}.${productName}.model"/>
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
@@ -30,7 +30,7 @@
 
         <property name="packagesToScan">
             <list>
-                <value>com.${companyName}.${productName}.model.data</value>
+                <value>${topLevelDomain}.${companyName}.${productName}.model.data</value>
             </list>
         </property>
 
@@ -70,7 +70,7 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="ApplicationRepository" class="com.${companyName}.${productName}.model.repository.ApplicationRepositoryImpl">
+    <bean id="ApplicationRepository" class="${topLevelDomain}.${companyName}.${productName}.model.repository.ApplicationRepositoryImpl">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 

@@ -1,4 +1,4 @@
-package com.${companyName}.${productName}.model.repository.user;
+package ${topLevelDomain}.${companyName}.${productName}.model.repository.user;
 
 import junit.framework.TestCase;
 import org.junit.Assert;

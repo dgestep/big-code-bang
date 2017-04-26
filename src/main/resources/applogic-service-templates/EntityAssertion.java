@@ -1,10 +1,10 @@
-package com.${companyName}.${productName}.model.service;
+package ${topLevelDomain}.${companyName}.${productName}.model.service;
 
-import com.${companyName}.${productName}.model.data.MessageData;
-import com.${companyName}.${productName}.model.enumeration.message.GeneralMessage;
-import com.${companyName}.${productName}.model.exception.DataInputException;
-import com.${companyName}.${productName}.model.exception.SystemLoggedException;
-import com.${companyName}.${productName}.model.repository.DataSet;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.MessageData;
+import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.message.GeneralMessage;
+import ${topLevelDomain}.${companyName}.${productName}.model.exception.DataInputException;
+import ${topLevelDomain}.${companyName}.${productName}.model.exception.SystemLoggedException;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.DataSet;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;

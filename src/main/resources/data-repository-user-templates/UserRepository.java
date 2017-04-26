@@ -1,9 +1,9 @@
-package com.${companyName}.${productName}.model.repository.user;
+package ${topLevelDomain}.${companyName}.${productName}.model.repository.user;
 
 
-import com.${companyName}.${productName}.model.criteria.UserSearchCriteriaData;
-import com.${companyName}.${productName}.model.data.UserProfile;
-import com.${companyName}.${productName}.model.repository.CrudRepository;
+import ${topLevelDomain}.${companyName}.${productName}.model.criteria.UserSearchCriteriaData;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.UserProfile;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.CrudRepository;
 
 import java.util.List;
 

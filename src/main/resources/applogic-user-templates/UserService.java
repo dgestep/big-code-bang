@@ -1,8 +1,8 @@
-package com.${companyName}.${productName}.model.service.user;
+package ${topLevelDomain}.${companyName}.${productName}.model.service.user;
 
-import com.${companyName}.${productName}.model.criteria.UserSearchCriteriaData;
-import com.${companyName}.${productName}.model.data.UserProfile;
-import com.${companyName}.${productName}.model.service.CrudService;
+import ${topLevelDomain}.${companyName}.${productName}.model.criteria.UserSearchCriteriaData;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.UserProfile;
+import ${topLevelDomain}.${companyName}.${productName}.model.service.CrudService;
 
 import java.util.List;
 

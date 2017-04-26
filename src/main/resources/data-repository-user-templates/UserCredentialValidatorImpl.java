@@ -1,8 +1,8 @@
-package com.${companyName}.${productName}.model.repository.user;
+package ${topLevelDomain}.${companyName}.${productName}.model.repository.user;
 
-import com.${companyName}.${productName}.model.data.MessageData;
-import com.${companyName}.${productName}.model.enumeration.message.UserMessage;
-import com.${companyName}.${productName}.model.exception.DataInputException;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.MessageData;
+import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.message.UserMessage;
+import ${topLevelDomain}.${companyName}.${productName}.model.exception.DataInputException;
 import org.springframework.stereotype.Repository;
 
 /**

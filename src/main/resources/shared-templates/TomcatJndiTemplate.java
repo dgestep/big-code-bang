@@ -1,4 +1,4 @@
-package com.${companyName}.${productName}.model;
+package ${topLevelDomain}.${companyName}.${productName}.model;
 
 import org.springframework.jndi.JndiTemplate;
 

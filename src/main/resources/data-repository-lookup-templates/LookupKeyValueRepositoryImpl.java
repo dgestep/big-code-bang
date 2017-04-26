@@ -1,7 +1,7 @@
-package com.${companyName}.${productName}.model.repository.lookup;
+package ${topLevelDomain}.${companyName}.${productName}.model.repository.lookup;
 
-import com.${companyName}.${productName}.model.data.LookupKeyValue;
-import com.${companyName}.${productName}.model.repository.CrudRepositoryImpl;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.LookupKeyValue;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.CrudRepositoryImpl;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 

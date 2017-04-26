@@ -1,4 +1,4 @@
-package com.${companyName}.${productName}.model.repository;
+package ${topLevelDomain}.${companyName}.${productName}.model.repository;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.annotation.Rollback;

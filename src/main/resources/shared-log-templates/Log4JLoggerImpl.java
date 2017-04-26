@@ -1,4 +1,4 @@
-package com.${companyName}.${productName}.model.log;
+package ${topLevelDomain}.${companyName}.${productName}.model.log;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Level;

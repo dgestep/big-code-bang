@@ -1,4 +1,4 @@
-package com.${companyName}.${productName}.model.repository;
+package ${topLevelDomain}.${companyName}.${productName}.model.repository;
 
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
 

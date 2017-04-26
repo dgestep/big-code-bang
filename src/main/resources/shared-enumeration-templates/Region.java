@@ -1,4 +1,4 @@
-package com.${companyName}.${productName}.model.enumeration;
+package ${topLevelDomain}.${companyName}.${productName}.model.enumeration;
 
 /**
  * Represents the environment in which this application is running.

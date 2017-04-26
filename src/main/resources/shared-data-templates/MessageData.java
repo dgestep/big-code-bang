@@ -1,6 +1,6 @@
-package com.${companyName}.${productName}.model.data;
+package ${topLevelDomain}.${companyName}.${productName}.model.data;
 
-import com.${companyName}.${productName}.model.enumeration.message.ServiceMessage;
+import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.message.ServiceMessage;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;

@@ -1,12 +1,12 @@
-package com.${companyName}.${productName}.model.service.lookup;
+package ${topLevelDomain}.${companyName}.${productName}.model.service.lookup;
 
-import com.${companyName}.${productName}.model.ConfigConstant;
-import com.${companyName}.${productName}.model.data.LookupKeyValue;
-import com.${companyName}.${productName}.model.data.MessageData;
-import com.${companyName}.${productName}.model.enumeration.message.GeneralMessage;
-import com.${companyName}.${productName}.model.exception.DataInputException;
-import com.${companyName}.${productName}.model.repository.lookup.LookupKeyValueRepository;
-import com.${companyName}.${productName}.model.service.EntityAssertion;
+import ${topLevelDomain}.${companyName}.${productName}.model.ConfigConstant;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.LookupKeyValue;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.MessageData;
+import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.message.GeneralMessage;
+import ${topLevelDomain}.${companyName}.${productName}.model.exception.DataInputException;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.lookup.LookupKeyValueRepository;
+import ${topLevelDomain}.${companyName}.${productName}.model.service.EntityAssertion;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.stereotype.Service;
 

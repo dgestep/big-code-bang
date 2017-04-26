@@ -1,4 +1,4 @@
-package com.${companyName}.${productName}.model.data;
+package ${topLevelDomain}.${companyName}.${productName}.model.data;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.lang3.builder.EqualsBuilder;

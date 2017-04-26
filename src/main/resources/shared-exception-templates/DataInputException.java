@@ -1,6 +1,6 @@
-package com.${companyName}.${productName}.model.exception;
+package ${topLevelDomain}.${companyName}.${productName}.model.exception;
 
-import com.${companyName}.${productName}.model.data.MessageData;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.MessageData;
 import org.apache.commons.collections.CollectionUtils;
 
 import java.util.ArrayList;

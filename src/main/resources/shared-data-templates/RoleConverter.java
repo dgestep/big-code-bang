@@ -1,6 +1,6 @@
-package com.${companyName}.${productName}.model.data;
+package ${topLevelDomain}.${companyName}.${productName}.model.data;
 
-import com.${companyName}.${productName}.model.enumeration.Role;
+import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.Role;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

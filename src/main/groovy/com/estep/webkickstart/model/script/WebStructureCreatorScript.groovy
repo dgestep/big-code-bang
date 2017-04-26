@@ -133,7 +133,7 @@ class WebStructureCreatorScript {
         buf.append(File.separator).append("src")
         buf.append(File.separator).append(folderName)
         buf.append(File.separator).append("java")
-        buf.append(File.separator).append("com")
+        buf.append(File.separator).append(ScriptHelper.render("top_level_domain"))
         buf.append(File.separator).append(ScriptHelper.render("company_name"))
         buf.append(File.separator).append(ScriptHelper.render("product_name"))
         buf.append(File.separator).append("restcontroller")

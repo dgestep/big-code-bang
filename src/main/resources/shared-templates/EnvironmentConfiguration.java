@@ -1,6 +1,6 @@
-package com.${companyName}.${productName}.model;
+package ${topLevelDomain}.${companyName}.${productName}.model;
 
-import com.${companyName}.${productName}.model.enumeration.Region;
+import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.Region;
 
 /**
  * Evaluates the System property information to determine the Region.

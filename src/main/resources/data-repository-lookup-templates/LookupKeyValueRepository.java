@@ -1,7 +1,7 @@
-package com.${companyName}.${productName}.model.repository.lookup;
+package ${topLevelDomain}.${companyName}.${productName}.model.repository.lookup;
 
-import com.${companyName}.${productName}.model.data.LookupKeyValue;
-import com.${companyName}.${productName}.model.repository.CrudRepository;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.LookupKeyValue;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.CrudRepository;
 
 import java.util.Date;
 

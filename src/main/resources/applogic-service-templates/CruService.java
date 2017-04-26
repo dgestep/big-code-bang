@@ -1,4 +1,4 @@
-package com.${companyName}.${productName}.model.service;
+package ${topLevelDomain}.${companyName}.${productName}.model.service;
 
 /**
  * Represents a service which saves and retrieves information from the system.

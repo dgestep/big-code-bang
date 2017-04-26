@@ -1,4 +1,4 @@
-package com.${companyName}.${productName}.model.enumeration;
+package ${topLevelDomain}.${companyName}.${productName}.model.enumeration;
 
 /**
  * Enumeration of all possible roles

@@ -1,11 +1,11 @@
-package com.${companyName}.${productName}.model.service.lookup;
+package ${topLevelDomain}.${companyName}.${productName}.model.service.lookup;
 
-import com.${companyName}.${productName}.model.data.LookupKeyValue;
-import com.${companyName}.${productName}.model.data.LookupKeyValuePK;
-import com.${companyName}.${productName}.model.data.MessageData;
-import com.${companyName}.${productName}.model.exception.DataInputException;
-import com.${companyName}.${productName}.model.repository.lookup.LookupKeyValueRepository;
-import com.${companyName}.${productName}.model.service.user.UserServiceImpl;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.LookupKeyValue;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.LookupKeyValuePK;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.MessageData;
+import ${topLevelDomain}.${companyName}.${productName}.model.exception.DataInputException;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.lookup.LookupKeyValueRepository;
+import ${topLevelDomain}.${companyName}.${productName}.model.service.user.UserServiceImpl;
 import junit.framework.TestCase;
 import mockit.Injectable;
 import mockit.Tested;

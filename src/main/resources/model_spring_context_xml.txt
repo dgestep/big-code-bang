@@ -15,12 +15,12 @@
 
     <tx:annotation-driven proxy-target-class="false" transaction-manager="transactionManager"/>
 
-    <context:component-scan base-package="com.${companyName}.${productName}.model"/>
+    <context:component-scan base-package="${topLevelDomain}.${companyName}.${productName}.model"/>
 
-    <bean id="serviceAroundAdvice" class="com.${companyName}.${productName}.model.aspect.ServiceAroundAdvice"/>
+    <bean id="serviceAroundAdvice" class="${topLevelDomain}.${companyName}.${productName}.model.aspect.ServiceAroundAdvice"/>
 
     <aop:config>
-        <aop:pointcut id="servicesPointCut" expression="execution(* com.${companyName}.${productName}.model..*Service.*(..))"/>
+        <aop:pointcut id="servicesPointCut" expression="execution(* ${topLevelDomain}.${companyName}.${productName}.model..*Service.*(..))"/>
 
         <aop:aspect id="serviceProxy" ref="serviceAroundAdvice">
             <aop:around pointcut-ref="servicesPointCut" method="proxyService"/>
@@ -40,7 +40,7 @@
 
         <property name="packagesToScan">
             <list>
-                <value>com.${companyName}.${productName}.model.data</value>
+                <value>${topLevelDomain}.${companyName}.${productName}.model.data</value>
             </list>
         </property>
 
@@ -64,11 +64,11 @@
         <property name="generateDdl" value="false"/>
     </bean>
 
-    <bean id="ApplicationRepository" class="com.${companyName}.${productName}.model.repository.ApplicationRepositoryImpl">
+    <bean id="ApplicationRepository" class="${topLevelDomain}.${companyName}.${productName}.model.repository.ApplicationRepositoryImpl">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="jndiTomcatTemplate" class="com.${companyName}.${productName}.model.TomcatJndiTemplate"/>
+    <bean id="jndiTomcatTemplate" class="${topLevelDomain}.${companyName}.${productName}.model.TomcatJndiTemplate"/>
 
     <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
         <property name="jndiTemplate">

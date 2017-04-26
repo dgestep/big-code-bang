@@ -1,7 +1,7 @@
-package com.${companyName}.${productName}.model.exception;
+package ${topLevelDomain}.${companyName}.${productName}.model.exception;
 
-import com.${companyName}.${productName}.model.log.LogFactory;
-import com.${companyName}.${productName}.model.log.Logger;
+import ${topLevelDomain}.${companyName}.${productName}.model.log.LogFactory;
+import ${topLevelDomain}.${companyName}.${productName}.model.log.Logger;
 
 /**
  * A runtime exception representing any unrecoverable exception generated within the Model packages.

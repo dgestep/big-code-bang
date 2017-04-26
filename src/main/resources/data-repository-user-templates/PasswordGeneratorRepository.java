@@ -1,4 +1,4 @@
-package com.${companyName}.${productName}.model.repository.user;
+package ${topLevelDomain}.${companyName}.${productName}.model.repository.user;
 
 /**
  * Defines a class which generates a password.

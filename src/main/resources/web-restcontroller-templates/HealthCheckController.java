@@ -1,7 +1,7 @@
-package com.${companyName}.${productName}.restcontroller;
+package ${topLevelDomain}.${companyName}.${productName}.restcontroller;
 
-import com.${companyName}.${productName}.model.JsonResponseData;
-import com.${companyName}.${productName}.model.exception.SystemLoggedException;
+import ${topLevelDomain}.${companyName}.${productName}.model.JsonResponseData;
+import ${topLevelDomain}.${companyName}.${productName}.model.exception.SystemLoggedException;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;

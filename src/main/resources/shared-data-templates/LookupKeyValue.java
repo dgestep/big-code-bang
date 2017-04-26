@@ -1,4 +1,4 @@
-package com.${companyName}.${productName}.model.data;
+package ${topLevelDomain}.${companyName}.${productName}.model.data;
 
 // CHECKSTYLE:OFF
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;

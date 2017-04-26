@@ -1,7 +1,7 @@
-package com.${companyName}.${productName}.model.repository.user;
+package ${topLevelDomain}.${companyName}.${productName}.model.repository.user;
 
-import com.${companyName}.${productName}.model.data.UserCredential;
-import com.${companyName}.${productName}.model.repository.CrudRepositoryImpl;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.UserCredential;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.CrudRepositoryImpl;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 

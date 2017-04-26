@@ -1,13 +1,13 @@
-package com.${companyName}.${productName}.model.service;
+package ${topLevelDomain}.${companyName}.${productName}.model.service;
 
-import com.${companyName}.${productName}.model.criteria.UserSearchCriteriaData;
-import com.${companyName}.${productName}.model.data.MessageData;
-import com.${companyName}.${productName}.model.data.UserCredential;
-import com.${companyName}.${productName}.model.data.UserProfile;
-import com.${companyName}.${productName}.model.enumeration.message.UserMessage;
-import com.${companyName}.${productName}.model.exception.DataInputException;
-import com.${companyName}.${productName}.model.repository.user.PasswordValidator;
-import com.${companyName}.${productName}.model.repository.user.UserRepository;
+import ${topLevelDomain}.${companyName}.${productName}.model.criteria.UserSearchCriteriaData;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.MessageData;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.UserCredential;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.UserProfile;
+import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.message.UserMessage;
+import ${topLevelDomain}.${companyName}.${productName}.model.exception.DataInputException;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.PasswordValidator;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.UserRepository;
 
 import java.util.List;
 

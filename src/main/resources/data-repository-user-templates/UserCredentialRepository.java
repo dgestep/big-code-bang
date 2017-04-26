@@ -1,7 +1,7 @@
-package com.${companyName}.${productName}.model.repository.user;
+package ${topLevelDomain}.${companyName}.${productName}.model.repository.user;
 
-import com.${companyName}.${productName}.model.data.UserCredential;
-import com.${companyName}.${productName}.model.repository.CrudRepository;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.UserCredential;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.CrudRepository;
 
 /**
  * Allows clients to add, update, delete, and retrieve user credential information from the data repository.

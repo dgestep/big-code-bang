@@ -1,4 +1,4 @@
-package com.${companyName}.${productName}.model.util;
+package ${topLevelDomain}.${companyName}.${productName}.model.util;
 
 import mockit.integration.junit4.JMockit;
 import org.junit.Assert;

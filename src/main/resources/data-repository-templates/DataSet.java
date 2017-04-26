@@ -1,8 +1,8 @@
-package com.${companyName}.${productName}.model.repository;
+package ${topLevelDomain}.${companyName}.${productName}.model.repository;
 
-import com.${companyName}.${productName}.model.exception.SystemLoggedException;
-import com.${companyName}.${productName}.model.log.LogFactory;
-import com.${companyName}.${productName}.model.log.Logger;
+import ${topLevelDomain}.${companyName}.${productName}.model.exception.SystemLoggedException;
+import ${topLevelDomain}.${companyName}.${productName}.model.log.LogFactory;
+import ${topLevelDomain}.${companyName}.${productName}.model.log.Logger;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.Column;

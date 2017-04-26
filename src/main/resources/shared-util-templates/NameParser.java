@@ -1,4 +1,4 @@
-package com.${companyName}.${productName}.model.util;
+package ${topLevelDomain}.${companyName}.${productName}.model.util;
 
 import org.apache.commons.lang3.StringUtils;
 

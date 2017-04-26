@@ -5,4 +5,4 @@
  * @version 1.0
  * @since 1.0
  */
-package com.${companyName}.${productName}.model.service.user;
+package ${topLevelDomain}.${companyName}.${productName}.model.service.user;

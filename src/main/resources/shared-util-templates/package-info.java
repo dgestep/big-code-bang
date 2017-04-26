@@ -1,4 +1,4 @@
 /**
  * Contains common utility classes.
  */
-package com.${companyName}.${productName}.model.util;
+package ${topLevelDomain}.${companyName}.${productName}.model.util;

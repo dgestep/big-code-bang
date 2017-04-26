@@ -6,4 +6,4 @@
  * @version 1.0
  * @since 1.0
  */
-package com.${companyName}.${productName}.model.repository;
+package ${topLevelDomain}.${companyName}.${productName}.model.repository;

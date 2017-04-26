@@ -1,4 +1,4 @@
-package com.${companyName}.${productName}.model.repository.mail;
+package ${topLevelDomain}.${companyName}.${productName}.model.repository.mail;
 
 import java.util.Properties;
 

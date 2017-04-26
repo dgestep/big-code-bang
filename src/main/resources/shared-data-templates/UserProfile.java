@@ -1,6 +1,6 @@
-package com.${companyName}.${productName}.model.data;
+package ${topLevelDomain}.${companyName}.${productName}.model.data;
 
-import com.${companyName}.${productName}.model.enumeration.Role;
+import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.Role;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;

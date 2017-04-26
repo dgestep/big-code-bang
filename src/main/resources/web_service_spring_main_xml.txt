@@ -12,19 +12,19 @@
 
     <context:annotation-config/>
 
-    <beans:bean id="restControllerAroundAdvice" class="com.${companyName}.${productName}.restcontroller.RestControllerJsonAroundAdvice"/>
+    <beans:bean id="restControllerAroundAdvice" class="${topLevelDomain}.${companyName}.${productName}.restcontroller.RestControllerJsonAroundAdvice"/>
 
     <aop:config>
-        <aop:pointcut id="restControllerPointCut" expression="execution(* com.${companyName}.${productName}.restcontroller..*.*(..))"/>
+        <aop:pointcut id="restControllerPointCut" expression="execution(* ${topLevelDomain}.${companyName}.${productName}.restcontroller..*.*(..))"/>
 
         <aop:aspect id="restControllerProxy" ref="restControllerAroundAdvice">
             <aop:around pointcut-ref="restControllerPointCut" method="proxyService"/>
         </aop:aspect>
     </aop:config>
 
-    <context:component-scan base-package="com.${companyName}.${productName}.restcontroller"/>
+    <context:component-scan base-package="${topLevelDomain}.${companyName}.${productName}.restcontroller"/>
 
-    <beans:bean id="tokenRepository" class="com.${companyName}.${productName}.restcontroller.security.CustomCookieCsrfTokenRepository">
+    <beans:bean id="tokenRepository" class="${topLevelDomain}.${companyName}.${productName}.restcontroller.security.CustomCookieCsrfTokenRepository">
         <beans:property name="cookieHttpOnly" value="false"/>
     </beans:bean>
 
@@ -65,7 +65,7 @@
         </beans:property>
     </beans:bean>
 
-    <beans:bean id="restServicesFilter" class="com.${companyName}.${productName}.restcontroller.security.RestServiceFilter">
+    <beans:bean id="restServicesFilter" class="${topLevelDomain}.${companyName}.${productName}.restcontroller.security.RestServiceFilter">
         <beans:property name="postOnly" value="false"/>
         <beans:property name="authenticationManager" ref="authenticationManager"/>
     </beans:bean>

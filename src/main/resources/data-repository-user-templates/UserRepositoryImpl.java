@@ -1,11 +1,11 @@
-package com.${companyName}.${productName}.model.repository.user;
+package ${topLevelDomain}.${companyName}.${productName}.model.repository.user;
 
-import com.${companyName}.${productName}.model.repository.DataSet;
-import com.${companyName}.${productName}.model.criteria.UserSearchCriteriaData;
-import com.${companyName}.${productName}.model.data.RoleConverter;
-import com.${companyName}.${productName}.model.data.UserCredential;
-import com.${companyName}.${productName}.model.data.UserProfile;
-import com.${companyName}.${productName}.model.repository.CrudRepositoryImpl;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.DataSet;
+import ${topLevelDomain}.${companyName}.${productName}.model.criteria.UserSearchCriteriaData;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.RoleConverter;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.UserCredential;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.UserProfile;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.CrudRepositoryImpl;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;

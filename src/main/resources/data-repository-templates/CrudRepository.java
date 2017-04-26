@@ -1,4 +1,4 @@
-package com.${companyName}.${productName}.model.repository;
+package ${topLevelDomain}.${companyName}.${productName}.model.repository;
 
 /**
  * Defines a class which adds, updates, deletes, and retrieves generic information from the database.

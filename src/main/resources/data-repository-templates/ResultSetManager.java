@@ -1,6 +1,6 @@
-package com.${companyName}.${productName}.model.repository;
+package ${topLevelDomain}.${companyName}.${productName}.model.repository;
 
-import com.${companyName}.${productName}.model.exception.SystemLoggedException;
+import ${topLevelDomain}.${companyName}.${productName}.model.exception.SystemLoggedException;
 import org.apache.commons.io.IOUtils;
 
 import java.io.InputStream;

@@ -5,4 +5,4 @@
  * @author ${codeAuthor}.
  * @version 1.0
  */
-package com.${companyName}.${productName}.model.aspect;
+package ${topLevelDomain}.${companyName}.${productName}.model.aspect;

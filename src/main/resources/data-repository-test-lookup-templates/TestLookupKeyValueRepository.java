@@ -1,9 +1,9 @@
-package com.${companyName}.${productName}.model.repository.lookup;
+package ${topLevelDomain}.${companyName}.${productName}.model.repository.lookup;
 
-import com.${companyName}.${productName}.model.data.LookupKeyValue;
-import com.${companyName}.${productName}.model.data.LookupKeyValuePK;
-import com.${companyName}.${productName}.model.repository.ApplicationTestCase;
-import com.${companyName}.${productName}.model.repository.lookup.LookupKeyValueRepository;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.LookupKeyValue;
+import ${topLevelDomain}.${companyName}.${productName}.model.data.LookupKeyValuePK;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.ApplicationTestCase;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.lookup.LookupKeyValueRepository;
 import org.junit.Assert;
 import org.junit.Test;
 

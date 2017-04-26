@@ -1,10 +1,10 @@
-package com.${companyName}.${productName}.restcontroller;
+package ${topLevelDomain}.${companyName}.${productName}.restcontroller;
 
 
-import com.${companyName}.${productName}.model.EnvironmentConfiguration;
-import com.${companyName}.${productName}.model.enumeration.Region;
-import com.${companyName}.${productName}.model.log.LogFactory;
-import com.${companyName}.${productName}.model.log.Logger;
+import ${topLevelDomain}.${companyName}.${productName}.model.EnvironmentConfiguration;
+import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.Region;
+import ${topLevelDomain}.${companyName}.${productName}.model.log.LogFactory;
+import ${topLevelDomain}.${companyName}.${productName}.model.log.Logger;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

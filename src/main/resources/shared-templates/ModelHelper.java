@@ -1,6 +1,6 @@
-package com.${companyName}.${productName}.model;
+package ${topLevelDomain}.${companyName}.${productName}.model;
 
-import com.${companyName}.${productName}.model.exception.SystemLoggedException;
+import ${topLevelDomain}.${companyName}.${productName}.model.exception.SystemLoggedException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
