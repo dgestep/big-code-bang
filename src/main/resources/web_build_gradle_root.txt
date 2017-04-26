@@ -25,7 +25,7 @@ repositories {
 
 task versionTxt() << {
       def file = file(new File("\$projectDir/\$project.webAppDirName/version.txt"))
-      file.text = "||||project.version}-||||new java.text.SimpleDateFormat("yyyy-MM-dd:HH:mm:ss").format(new Date())}"
+      file.text = "||||project.version}-||||new SimpleDateFormat("yyyy-MM-dd:HH:mm:ss").format(new Date())}"
 }
 
 task copyVersionTxt(dependsOn: [versionTxt]) << {
@@ -48,9 +48,9 @@ eclipse {
 dependencies {
 	providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
 
-	compile project(':hypersonic.database.model:hypersonic.database.model.shared')
-	compile project(':hypersonic.database.model:hypersonic.database.model.applogic')
-	compile project(':hypersonic.database.model:hypersonic.database.model.data')
+	compile project(':${companyName}.${productName}.model:${companyName}.${productName}.shared')
+	compile project(':${companyName}.${productName}.model:${companyName}.${productName}.applogic')
+	compile project(':${companyName}.${productName}.model:${companyName}.${productName}.data')
 
 	compile 'org.springframework:spring-web:4.3.7.RELEASE'
 	compile 'org.springframework:spring-context:4.3.7.RELEASE'

@@ -1,0 +1,5 @@
+// ${companyName}.${productName}
+include "${companyName}.${productName}.web"
+include "${companyName}.${productName}.model:${companyName}.${productName}.shared"
+include "${companyName}.${productName}.model:${companyName}.${productName}.applogic"
+include "${companyName}.${productName}.model:${companyName}.${productName}.data"

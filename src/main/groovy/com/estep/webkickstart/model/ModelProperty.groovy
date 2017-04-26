@@ -4,7 +4,7 @@ root.folder.name = '${companyName}.${productName}'
 root.base.path = '${projectBase}/${rootFolderName}'
 
 model.base.path = '${rootBasePath}/${rootFolderName}.model'
-web.base.path = '${rootBasePath}/${rootFolderName}.webservice'
+web.base.path = '${rootBasePath}/${rootFolderName}.web'
 
 applogic.folder.name = '${rootFolderName}.applogic'
 applogic.base.root = '${modelBasePath}/${rootFolderName}.applogic'

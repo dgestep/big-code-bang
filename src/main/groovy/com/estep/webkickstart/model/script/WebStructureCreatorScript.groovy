@@ -2,6 +2,7 @@ package com.estep.webkickstart.model.script
 
 import com.estep.webkickstart.model.Property
 import com.estep.webkickstart.model.TemplateCopy
+import com.estep.webkickstart.model.TextTemplate
 import com.estep.webkickstart.model.Tuple
 
 class WebStructureCreatorScript {
@@ -16,6 +17,8 @@ class WebStructureCreatorScript {
         copyWebSecurityProjectCode()
         copyWebUserProjectCode()
 
+        copyWebOuterScripts("web_build_gradle_outer.txt", "build.gradle")
+        copyWebOuterScripts("web_settings_gradle_outer.txt", "settings.gradle")
         copyWebGradleRootBuildScript()
         copyInsomniaWorkspaceJson("test")
         copyLog4jDtd("main")
@@ -64,9 +67,21 @@ class WebStructureCreatorScript {
         templateCopy.renderAndCopy("web_build_gradle_root.txt", buf.toString())
     }
 
+    private void copyWebOuterScripts(templateName, fileName) {
+        StringBuilder buf = new StringBuilder()
+        def basePath = TextTemplate.renderDeep(Property.get("root.base.path"))
+
+        buf.append(ScriptHelper.render("root.base.path"))
+        buf.append(File.separator).append(fileName)
+
+        TemplateCopy templateCopy = new TemplateCopy()
+        templateCopy.renderAndCopy(templateName, buf.toString())
+    }
+
     private void copyInsomniaWorkspaceJson(folderName) {
         StringBuilder buf = new StringBuilder()
         buf.append(ScriptHelper.render("web.base.path"))
+        buf.append(File.separator).append("src")
         buf.append(File.separator).append(folderName)
         buf.append(File.separator).append("resources")
         buf.append(File.separator).append("insomnia-workspace.json")
@@ -78,6 +93,7 @@ class WebStructureCreatorScript {
     private void copyLog4jDtd(folderName) {
         StringBuilder buf = new StringBuilder()
         buf.append(ScriptHelper.render("web.base.path"))
+        buf.append(File.separator).append("src")
         buf.append(File.separator).append(folderName)
         buf.append(File.separator).append("resources")
         buf.append(File.separator).append("log4j.dtd")
@@ -89,6 +105,7 @@ class WebStructureCreatorScript {
     private void copyLog4XmlFiles(name, templateName) {
         StringBuilder buf = new StringBuilder()
         buf.append(ScriptHelper.render("web.base.path"))
+        buf.append(File.separator).append("src")
         buf.append(File.separator).append("main")
         buf.append(File.separator).append("resources")
         buf.append(File.separator).append(name).append(".xml")
@@ -100,6 +117,7 @@ class WebStructureCreatorScript {
     private void copyServiceSpringXml(folderName) {
         StringBuilder buf = new StringBuilder()
         buf.append(ScriptHelper.render("web.base.path"))
+        buf.append(File.separator).append("src")
         buf.append(File.separator).append(folderName)
         buf.append(File.separator).append("resources")
         buf.append(File.separator).append("service-spring-main.xml")
@@ -112,6 +130,7 @@ class WebStructureCreatorScript {
         StringBuilder buf = new StringBuilder()
 
         buf.append(ScriptHelper.render("web.base.path"))
+        buf.append(File.separator).append("src")
         buf.append(File.separator).append(folderName)
         buf.append(File.separator).append("java")
         buf.append(File.separator).append("com")

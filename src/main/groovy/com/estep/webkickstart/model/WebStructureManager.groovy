@@ -15,28 +15,38 @@ class WebStructureManager {
     void createWebStructure() {
         ProjectHelper.createConfigStructure()
 
-        createWebModuleStructure("main")
-        createWebModuleStructure("test")
+        createWebModuleSourceStructure("main")
+        createWebModuleSourceStructure("test")
+
+        createWebContentSourceStructure("app")
+        createWebContentSourceStructure("images")
+        createWebContentSourceStructure("WEB-INF")
     }
 
     /**
      * Deletes the web structure from the file system.
      */
     void deleteWebStructure() {
-
     }
 
     /**
-     * Creates the application logic module structure.
+     * Creates the web java source structure.
      * @param folderName the folder name to place the structure in.
      */
-    protected void createWebModuleStructure(folderName) {
-        def path = ProjectHelper.createSourceStructure("web.base.path", folderName)
+    protected void createWebModuleSourceStructure(folderName) {
+        def srcPath = "src" + File.separator + folderName
+        def path = ProjectHelper.createSourceStructure("web.base.path", srcPath)
         ProjectHelper.createCodeStructure("web.security.path", path)
         ProjectHelper.createCodeStructure("web.user.path", path)
+    }
 
-        path = ProjectHelper.createSourceStructure("web.base.path", folderName)
-        ProjectHelper.createCodeStructure("web.security.path", path)
-        ProjectHelper.createCodeStructure("web.user.path", path)
+    /**
+     * Creates the web content structure.
+     * @param folderName the folder name to place the structure in.
+     */
+    protected void createWebContentSourceStructure(folderName) {
+        def template = Property.get("web.base.path") + File.separator + "WebContent" + File.separator + folderName
+        def path = TextTemplate.renderDeep(template)
+        ProjectHelper.makeDirectories(path)
     }
 }
