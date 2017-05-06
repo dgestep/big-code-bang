@@ -1,6 +1,7 @@
 package com.estep.webkickstart.model
 
 import com.estep.webkickstart.ProjectHelper
+import com.estep.webkickstart.model.script.ScriptHelper
 
 /**
  * Handles the creation of the project and module folder structures for the web UI and services project.
@@ -21,6 +22,8 @@ class WebStructureManager {
         createWebContentSourceStructure("app")
         createWebContentSourceStructure("images")
         createWebContentSourceStructure("WEB-INF")
+        createWebContentSourceStructure(ScriptHelper.createSubpackages("spec", "support"))
+        createWebContentSourceStructure(ScriptHelper.createSubpackages("testing"))
     }
 
     /**

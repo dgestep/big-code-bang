@@ -18,13 +18,17 @@ class WebStructureCreatorScript {
         copyWebUserProjectCode()
 
         copyWebOuterScripts("web_build_gradle_outer.txt", "build.gradle")
-        copyWebOuterScripts("web_settings_gradle_outer.txt", "settings.gradle")
+        copyWebOuterScripts("settings_gradle_outer.txt", "settings.gradle")
+        copyWebOuterScripts("gitignore_outer.txt", ".gitignore")
         copyWebGradleRootBuildScript()
         copyInsomniaWorkspaceJson("test")
         copyLog4jDtd("main")
         copyLog4XmlFiles("log4j-development", "web_log4j_development_xml.txt")
         copyLog4XmlFiles("log4j-production", "web_log4j_production_xml.txt")
-        copyServiceSpringXml("main")
+        copyServicesServletXml()
+        copyWebXml()
+
+        copyViewCode()
     }
 
     private void copyWebProjectCode() {
@@ -69,7 +73,6 @@ class WebStructureCreatorScript {
 
     private void copyWebOuterScripts(templateName, fileName) {
         StringBuilder buf = new StringBuilder()
-        def basePath = TextTemplate.renderDeep(Property.get("root.base.path"))
 
         buf.append(ScriptHelper.render("root.base.path"))
         buf.append(File.separator).append(fileName)
@@ -114,16 +117,26 @@ class WebStructureCreatorScript {
         templateCopy.renderAndCopy(templateName, buf.toString())
     }
 
-    private void copyServiceSpringXml(folderName) {
+    private void copyServicesServletXml() {
         StringBuilder buf = new StringBuilder()
         buf.append(ScriptHelper.render("web.base.path"))
-        buf.append(File.separator).append("src")
-        buf.append(File.separator).append(folderName)
-        buf.append(File.separator).append("resources")
-        buf.append(File.separator).append("service-spring-main.xml")
+        buf.append(File.separator).append("WebContent")
+        buf.append(File.separator).append("WEB-INF")
+        buf.append(File.separator).append("services-servlet.xml")
 
         TemplateCopy templateCopy = new TemplateCopy()
-        templateCopy.renderAndCopy("web_service_spring_main_xml.txt", buf.toString())
+        templateCopy.renderAndCopy("services_servlet_xml.txt", buf.toString())
+    }
+
+    private void copyWebXml() {
+        StringBuilder buf = new StringBuilder()
+        buf.append(ScriptHelper.render("web.base.path"))
+        buf.append(File.separator).append("WebContent")
+        buf.append(File.separator).append("WEB-INF")
+        buf.append(File.separator).append("web.xml")
+
+        TemplateCopy templateCopy = new TemplateCopy()
+        templateCopy.renderAndCopy("web_xml.txt", buf.toString())
     }
 
     private String getPathToWebCode(folderName, subPackage, programName) {
@@ -142,6 +155,36 @@ class WebStructureCreatorScript {
         }
 
         buf.append(File.separator).append(programName)
+
+        buf.toString()
+    }
+
+    private void copyViewCode() {
+        List<Tuple> apps = new ArrayList<>()
+        apps.add(new Tuple("index_html.txt", getPathToViewCode(null, "index_html")))
+        apps.add(new Tuple("web_package_json.txt", getPathToViewCode(null, "package.json")))
+        apps.add(new Tuple("tsconfig_json.txt", getPathToViewCode(null, "tsconfig.json")))
+        apps.add(new Tuple("typings_json.txt", getPathToViewCode(null, "typings.json")))
+        apps.add(new Tuple("gulpfile_js.txt", getPathToViewCode(null, "gulpfile.js")))
+        apps.add(new Tuple("karma_conf_js.txt", getPathToViewCode(null, "karma.conf.js")))
+        apps.add(new Tuple("karma_test_shim_js.txt", getPathToViewCode(null, "karma-test-shim.js")))
+        apps.add(new Tuple("system_js_config_extras_js.txt", getPathToViewCode(null, "systemjs.config.extras.js")))
+        apps.add(new Tuple("system_js_config_js.txt", getPathToViewCode(null, "systemjs.config.js")))
+
+        String supportSubPkg = ScriptHelper.createSubpackages("spec", "support");
+        apps.add(new Tuple("jasmine_json.txt", getPathToViewCode(supportSubPkg, "jasmine.json")))
+
+        ScriptHelper.render("web-view-templates", apps)
+    }
+
+    private String getPathToViewCode(folderName, fileName) {
+        StringBuilder buf = new StringBuilder()
+        buf.append(ScriptHelper.render("web.base.path")).append(File.separator)
+        buf.append("WebContent").append(File.separator)
+        if (folderName != null) {
+            buf.append(folderName).append(File.separator)
+        }
+        buf.append(fileName)
 
         buf.toString()
     }

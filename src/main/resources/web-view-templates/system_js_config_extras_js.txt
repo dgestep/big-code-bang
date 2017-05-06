@@ -1,0 +1,9 @@
+/**
+ */
+/** App specific SystemJS configuration */
+System.config({
+    packages: {
+        // barrels: files which rollup exports into a single convenient module
+        'testing': {main:'index.js', defaultExtension:'js'}
+    }
+});

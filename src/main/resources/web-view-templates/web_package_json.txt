@@ -1,0 +1,62 @@
+{
+  "name": "${productName}",
+  "version": "0.0.1",
+  "description": "${applicationTitle}",
+  "scripts": {
+    "start": "tsc && concurrently \"tsc -w\" ",
+    "postinstall": "typings install",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "typings": "typings",
+    "test": "tsc && concurrently \"tsc -w\" \"karma start karma_conf_js.txt\""
+  },
+  "license": "Unlicense",
+  "repository": {
+    "type": "git",
+    "url": "git+https://bitbucket.org/private/%7Bproject%7D.git"
+  },
+  "dependencies": {
+    "@angular/common": "~2.0.2",
+    "@angular/compiler": "~2.0.2",
+    "@angular/core": "~2.0.2",
+    "@angular/forms": "~2.0.2",
+    "@angular/http": "~2.0.2",
+    "@angular/platform-browser": "~2.0.2",
+    "@angular/platform-browser-dynamic": "~2.0.2",
+    "@angular/router": "~3.0.2",
+    "@angular/upgrade": "~2.0.2",
+    "angular-in-memory-web-api": "~0.1.5",
+    "bootstrap": "^3.3.7",
+    "core-js": "^2.4.1",
+    "gulp": "^3.9.1",
+    "gulp-install": "^0.6.0",
+    "jquery": "^3.1.1",
+    "ng2-bootstrap": "1.1.14-1",
+    "reflect-metadata": "^0.1.8",
+    "rxjs": "^5.0.0-beta.12",
+    "systemjs": "0.19.39",
+    "zone.js": "^0.6.25"
+  },
+  "devDependencies": {
+    "concurrently": "^3.0.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-install": "^0.6.0",
+    "gulp-jasmine": "^2.4.2",
+    "gulp-sourcemaps": "^2.1.1",
+    "gulp-typescript": "^3.0.2",
+    "jasmine-core": "^2.5.2",
+    "jasmine-expect": "^3.0.1",
+    "karma": "^1.3.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-cli": "^1.0.1",
+    "karma-htmlfile-reporter": "^0.3.4",
+    "karma-jasmine": "^1.0.2",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "typescript": "^2.0.3",
+    "typings": "^1.4.0"
+  },
+  "homepage": "https://bitbucket.org/private/%7Bproject%7D#readme",
+  "main": "gulpfile.js",
+  "author": "${codeAuthor}"
+}

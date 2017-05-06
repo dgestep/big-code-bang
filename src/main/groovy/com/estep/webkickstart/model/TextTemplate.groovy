@@ -21,12 +21,17 @@ class TextTemplate {
                 "companyNameLong"        : Property.get("company_name_long"),
                 "productName"            : Property.get("product_name"),
                 "gradleVersion"          : Property.get("gradle_version"),
+                "modelFolderName"        : Property.get("model.folder.name"),
                 "modelBasePath"          : Property.get("model.base.path"),
+                "webFolderName"          : Property.get("web.folder.name"),
+                "webBasePath"            : Property.get("web.base.path"),
                 "applogicFolderName"     : Property.get("applogic.folder.name"),
                 "applogicBaseRoot"       : Property.get("applogic.base.root"),
                 "applogicBasePath"       : Property.get("applogic.base.path"),
+                "dataFolderName"         : Property.get("data.folder.name"),
                 "dataBaseRoot"           : Property.get("data.base.root"),
                 "dataBasePath"           : Property.get("data.base.path"),
+                "sharedFolderName"       : Property.get("shared.folder.name"),
                 "sharedBaseRoot"         : Property.get("shared.base.root"),
                 "sharedBasePath"         : Property.get("shared.base.path"),
                 "applogicAspect"         : Property.get("applogic.aspect"),
@@ -41,7 +46,9 @@ class TextTemplate {
                 "databaseUrl"            : Property.get("database_url"),
                 "databaseUsername"       : Property.get("database_username"),
                 "databasePassword"       : Property.get("database_password"),
-                "codeAuthor"             : Property.get("code_author")
+                "codeAuthor"             : Property.get("code_author"),
+                "applicationTitle"       : Property.get("application_title"),
+                "webWarName"             : Property.get("web_war_name")
         ]
     }
 
@@ -63,13 +70,14 @@ class TextTemplate {
 
         String value = templateString
 
-        while(true) {
+        while (true) {
             value = tt.engine.createTemplate(value).make(tt.bindings).toString()
             if (value.indexOf('${') < 0) {
                 break;
             }
         }
 
-        value.replace("||||", "\${")
+        value = value.replace("||||", "\${")
+        value.replace("~~", "\$")
     }
 }

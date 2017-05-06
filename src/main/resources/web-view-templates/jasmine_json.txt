@@ -1,0 +1,7 @@
+{
+  "spec_dir": "app",
+  "spec_files": ["**/*[sS]pec.js"],
+  "helpers": ["testing/**/*js"],
+  "topSpecOnExpectationFailure": false,
+  "random": false
+}

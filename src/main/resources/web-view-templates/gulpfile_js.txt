@@ -1,0 +1,76 @@
+var gulp = require('gulp');
+
+/**
+ * List of all defined tasks.
+ * @type {{defaultTask: string, installDeps: string, build: string, clean: string, test: string, testBuild: string, cleanTestBuild: string, karmaTest: string}}
+ */
+var tasks = {
+    defaultTask: 'default',
+    installDeps: 'install-deps',
+    build: 'build',
+    clean: 'clean',
+    test: 'test',
+    tdd: 'tdd'
+};
+
+/**
+ * Default task. Runs 'build'
+ */
+gulp.task(tasks.defaultTask, function() {
+    gulp.start(tasks.build);
+});
+
+/**
+ * Installs all needed dependencies
+ */
+gulp.task(tasks.installDeps, function() {
+    var install = require("gulp-install");
+    return gulp.src(['./package.json'])
+        .pipe(install());
+});
+
+/**
+ * Builds all source files
+ */
+gulp.task(tasks.build, [tasks.clean], function() {
+    var sourcemaps = require('gulp-sourcemaps');
+    var ts = require('gulp-typescript');
+    var typescript = require('typescript');
+    var tsProject = ts.createProject('tsconfig.json');
+    var tsResult = tsProject.src(['app/**/**.ts'])
+        .pipe(sourcemaps.init())
+        .pipe(tsProject());
+    return tsResult.js
+        .pipe(sourcemaps.write('maps'))
+        .pipe(gulp.dest('./'));
+});
+
+/**
+ * Clean all build and app directories
+ */
+gulp.task(tasks.clean, function() {
+    var del = require('del');
+    return del(['build/**', 'app/**/**.js', 'app/**/**.js.map', 'testing/**/**.js', 'testing/**/**.js.map']);
+});
+
+/**
+ * Run tests using Karma once and exit
+ */
+gulp.task(tasks.test, [tasks.build], function(done) {
+    var Server = require('karma').Server;
+    new Server({
+        configFile: __dirname + '/karma_conf_js.txt',
+        singleRun: true
+    }, done).start();
+});
+
+/**
+ * Use Karma and watch for file changes and re-run tests on each change
+ */
+gulp.task(tasks.tdd, [tasks.build], function (done) {
+    var Server = require('karma').Server;
+    new Server({
+        configFile: __dirname + '/karma_conf_js.txt'
+    }, done).start();
+});
+

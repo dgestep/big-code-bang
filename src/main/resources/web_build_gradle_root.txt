@@ -24,16 +24,16 @@ repositories {
 }
 
 task versionTxt() << {
-      def file = file(new File("\$projectDir/\$project.webAppDirName/version.txt"))
+      def file = file(new File("~~projectDir/~~project.webAppDirName/version.txt"))
       file.text = "||||project.version}-||||new SimpleDateFormat("yyyy-MM-dd:HH:mm:ss").format(new Date())}"
 }
 
 task copyVersionTxt(dependsOn: [versionTxt]) << {
   copy {
-    from ("\$projectDir/\$project.webAppDirName") {
+    from ("~~projectDir/~~project.webAppDirName") {
         include 'version.txt'
     }
-    into "\$projectDir/build/libs";
+    into "~~projectDir/build/libs";
   }
 }
 
@@ -48,9 +48,9 @@ eclipse {
 dependencies {
 	providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
 
-	compile project(':${companyName}.${productName}.model:${companyName}.${productName}.shared')
-	compile project(':${companyName}.${productName}.model:${companyName}.${productName}.applogic')
-	compile project(':${companyName}.${productName}.model:${companyName}.${productName}.data')
+	compile project(':${modelFolderName}:${applogicFolderName}')
+	compile project(':${modelFolderName}:${sharedFolderName}')
+	compile project(':${modelFolderName}:${dataFolderName}')
 
 	compile 'org.springframework:spring-web:4.3.7.RELEASE'
 	compile 'org.springframework:spring-context:4.3.7.RELEASE'
@@ -77,21 +77,21 @@ checkstyle {
 	sourceSets = [project.sourceSets.main]
 	ignoreFailures = false
 	configFile = rootProject.file('config/checkstyle/proj-checkstyle.xml')
-	reportsDir = file("\$project.buildDir/reports/checkstyle")
+	reportsDir = file("~~project.buildDir/reports/checkstyle")
 	showViolations = true
 }
 
 pmd {
 	ignoreFailures = false
 	sourceSets = [sourceSets.main]
-	reportsDir = file("\$project.buildDir/reports/pmd")
+	reportsDir = file("~~project.buildDir/reports/pmd")
 	ruleSetFiles = files("../config/rulesets/proj-pmd-rules.xml")
 }
 
 findbugs {
 	sourceSets = [sourceSets.main]
 	ignoreFailures = false
-	reportsDir = file("\$project.buildDir/reports/findbugs")
+	reportsDir = file("~~project.buildDir/reports/findbugs")
 	effort = "max"
 	reportLevel = "high"
 }
@@ -121,13 +121,12 @@ node {
 }
 
 war {
-	archiveName 'hsm.war'
+	archiveName '${webWarName}'
 	webInf {
 		from webInfPath
 	}
 	rootSpec.exclude ("**/karma*.*")
 	rootSpec.exclude ("**/*.ts")
-	rootSpec.exclude ("**/ojdbc7.jar")
     rootSpec.exclude ("**/spec/**")
     rootSpec.exclude ("**/jasmine/**")
     rootSpec.exclude ("**/karma/**")

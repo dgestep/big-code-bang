@@ -26,7 +26,7 @@ class ScriptHelper {
         TemplateCopy templateCopy = new TemplateCopy()
 
         for (Tuple path : paths) {
-            StringBuilder template = new StringBuilder().append(templateFolder).append("/").append(path.get(0))
+            StringBuilder template = new StringBuilder().append(templateFolder).append(File.separator).append(path.get(0))
 
             templateCopy.renderAndCopy(template.toString(), path.get(1))
         }

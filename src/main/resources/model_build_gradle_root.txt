@@ -1,4 +1,4 @@
-// ${companyName}.${productName}.model
+// ${modelFolderName}
 
 subprojects {
     apply plugin: 'java'
@@ -55,27 +55,27 @@ subprojects {
         sourceSets = [project.sourceSets.main]
         ignoreFailures = true
         configFile = rootProject.file('config/checkstyle/proj-checkstyle.xml')
-        reportsDir = file("\$project.buildDir/reports/checkstyle")
+        reportsDir = file("~~project.buildDir/reports/checkstyle")
         showViolations = true
     }
 
     pmd {
         ignoreFailures = true
         sourceSets = [sourceSets.main]
-        reportsDir = file("\$project.buildDir/reports/pmd")
+        reportsDir = file("~~project.buildDir/reports/pmd")
         ruleSetFiles = files("../../config/rulesets/proj-pmd-rules.xml")
     }
 
     findbugs {
         sourceSets = [sourceSets.main]
         ignoreFailures = true
-        reportsDir = file("\$project.buildDir/reports/findbugs")
+        reportsDir = file("~~project.buildDir/reports/findbugs")
         effort = "max"
         reportLevel = "low"
     }
 
     jacoco {
-        reportsDir = file("\$project.buildDir/reports/coverage")
+        reportsDir = file("~~project.buildDir/reports/coverage")
     }
 
     jacocoTestReport {
@@ -83,25 +83,25 @@ subprojects {
         reports {
             xml.enabled false
             csv.enabled true
-            html.destination "\$project.buildDir/reports/coverage"
+            html.destination "~~project.buildDir/reports/coverage"
         }
         // exclude these entries from the classpath to not report on them
         afterEvaluate {
             classDirectories = files(classDirectories.files.collect {
-                fileTree(dir: it, exclude: ['com/${companyName}/${productName}/model/data/**',
-                                            'com/${companyName}/${productName}/model/aspect/*ServiceAroundAdvice**',
-                                            'com/${companyName}/${productName}/model/criteria/**',
-                                            'com/${companyName}/${productName}/model/enumeration/**',
-                                            'com/${companyName}/${productName}/model/log/*LogFactory**',
-                                            'com/${companyName}/${productName}/model/*ConfigConstant**',
-                                            'com/${companyName}/${productName}/model/*RoleConstant**',
-                                            'com/${companyName}/${productName}/model/*TomcatJndiTemplate**',
-                                            'com/${companyName}/${productName}/model/repository/*ResultSetManager**',
-                                            'com/${companyName}/${productName}/model/repository/*DataSet**',
-                                            'com/${companyName}/${productName}/model/repository/*CruRepositoryImpl**',
-                                            'com/${companyName}/${productName}/model/repository/*RepositoryHelper**',
-                                            'com/${companyName}/${productName}/model/repository/*CrudRepositoryImpl**',
-                                            'com/${companyName}/${productName}/model/repository/mail/**'
+                fileTree(dir: it, exclude: ['${topLevelDomain}/${companyName}/${productName}/model/data/**',
+                                            '${topLevelDomain}/${companyName}/${productName}/model/aspect/*ServiceAroundAdvice**',
+                                            '${topLevelDomain}/${companyName}/${productName}/model/criteria/**',
+                                            '${topLevelDomain}/${companyName}/${productName}/model/enumeration/**',
+                                            '${topLevelDomain}/${companyName}/${productName}/model/log/*LogFactory**',
+                                            '${topLevelDomain}/${companyName}/${productName}/model/*ConfigConstant**',
+                                            '${topLevelDomain}/${companyName}/${productName}/model/*RoleConstant**',
+                                            '${topLevelDomain}/${companyName}/${productName}/model/*TomcatJndiTemplate**',
+                                            '${topLevelDomain}/${companyName}/${productName}/model/repository/*ResultSetManager**',
+                                            '${topLevelDomain}/${companyName}/${productName}/model/repository/*DataSet**',
+                                            '${topLevelDomain}/${companyName}/${productName}/model/repository/*CruRepositoryImpl**',
+                                            '${topLevelDomain}/${companyName}/${productName}/model/repository/*RepositoryHelper**',
+                                            '${topLevelDomain}/${companyName}/${productName}/model/repository/*CrudRepositoryImpl**',
+                                            '${topLevelDomain}/${companyName}/${productName}/model/repository/mail/**'
                 ])
             })
         }

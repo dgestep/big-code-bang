@@ -1,0 +1,5 @@
+// ${rootFolderName}
+include "${webFolderName}"
+include "${modelFolderName}:${sharedFolderName}"
+include "${modelFolderName}:${applogicFolderName}"
+include "${modelFolderName}:${dataFolderName}"
