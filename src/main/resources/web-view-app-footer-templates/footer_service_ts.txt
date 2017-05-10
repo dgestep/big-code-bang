@@ -1,0 +1,20 @@
+import {Injectable} from "@angular/core";
+import {Http} from "@angular/http";
+import {ServiceHelperService} from "../shared/service.helper";
+
+@Injectable()
+export class FooterService {
+
+    constructor(private http: Http, private serviceHelper: ServiceHelperService) {
+    }
+
+    /**
+     * Returns the build version for this application.
+     * @returns {Observable<R>} contains the version.
+     */
+    version() {
+        return this.http.get('restcontroller/health/version')
+            .map(this.serviceHelper.extractData)
+            .catch(this.serviceHelper.handleError);
+    }
+}

@@ -31,4 +31,14 @@ class ScriptHelper {
             templateCopy.renderAndCopy(template.toString(), path.get(1))
         }
     }
+
+    static void copy(templateFolder, paths) {
+        TemplateCopy templateCopy = new TemplateCopy()
+
+        for (Tuple path : paths) {
+            StringBuilder template = new StringBuilder().append(templateFolder).append(File.separator).append(path.get(0))
+
+            templateCopy.copy(template.toString(), path.get(1))
+        }
+    }
 }

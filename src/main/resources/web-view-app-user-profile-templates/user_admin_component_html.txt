@@ -1,0 +1,78 @@
+<main>
+    <h1>User Administration</h1>
+    <hr>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <form method="post" [formGroup]="searchForm" (ngSubmit)="parseSearch(searchForm.value)">
+                        <div class="col-md-3">
+                            <h5>Email address</h5>
+                            <input class="form-control" type="text" formControlName="emailAddress">
+                            <br>
+                            <h5>Status</h5>
+                            <select class="form-control" formControlName="activeFlag">
+                                <option value="ANY" selected="selected">Any</option>
+                                <option value="Y">Active</option>
+                                <option value="N">Inactive</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <h5>Name</h5>
+                            <input class="form-control" type="text" formControlName="userName">
+                            <br>
+                            <h5>Role</h5>
+                            <select class="form-control" formControlName="role">
+                                <option value="ANY" selected="selected">Any</option>
+                                <option value="ADMIN">Administrator</option>
+                                <option value="USER">User</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <br>
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                        <div class="col-md-3">
+                            <br>
+                            <button type="button" class="btn btn-default" (click)="addUser()">Add User</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <res-messages></res-messages>
+    <hr>
+    <div class="panel panel-default">
+        <table class="table">
+            <tr><th>Actions</th><th>Email Address</th><th>Name</th><th>Role</th><th>Distribution</th><th>Active</th></tr>
+            <tr *ngFor="let user of userList; let i = index">
+                <td>
+                    <div *ngIf="this.deleteSelect!=i && this.resetSelect!=i">
+                        <a (click)="actionDelete(i)">Delete</a> |
+                        <a (click)="actionReset(i)">Reset</a>
+                    </div>
+                    <div *ngIf="this.deleteSelect==i && this.resetSelect!=i">
+                        <a (click)="actionConfirmDelete(i)">Confirm Delete</a> |
+                        <a (click)="actionCancel()">Cancel</a>
+                    </div>
+                    <div *ngIf="this.resetSelect==i && this.deleteSelect!=i">
+                        <a (click)="actionConfirmReset(i)">Confirm Reset</a> |
+                        <a (click)="actionCancel()">Cancel</a>
+                    </div>
+                </td>
+                <td><a (click)="navigateProfile(user.emailAddress)">{{user.emailAddress}}</a></td>
+                <td>{{user.firstName}} {{user.lastName}}</td>
+                <td>{{user.role}}</td>
+                <td>undefined</td>
+                <td>{{user.activeFlag}}</td>
+            </tr>
+        </table>
+    </div>
+    <pager [name]="'userSearchResults'"
+           [allItems]="searchResults"
+           [pageSize]="pageSize">
+    </pager>
+    <br><br>
+</main>

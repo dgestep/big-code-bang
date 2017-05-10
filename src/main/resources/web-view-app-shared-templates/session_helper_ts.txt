@@ -1,0 +1,86 @@
+import {SESSION_OBJECT} from "./constants";
+import {SessionData} from "./session.data";
+import {Injectable} from "@angular/core";
+
+@Injectable()
+export class SessionHelper {
+    sessionData: SessionData;
+
+    public getSessionObject(): SessionData {
+        if(this.sessionData != null) {
+            return this.sessionData;
+        } else {
+            this.sessionData = JSON.parse(sessionStorage.getItem(SESSION_OBJECT)) as SessionData;
+            return this.sessionData;
+        }
+    }
+
+    public getUuid(): string {
+        if(this.sessionData === null) {
+            this.getSessionObject();
+        }
+
+        if (this.sessionData != null) {
+            return this.sessionData.userUuid;
+        } else {
+             return null;
+        }
+    }
+
+    public getAuthToken(): string {
+        if(this.sessionData === null) {
+            this.getSessionObject();
+        }
+
+        if (this.sessionData != null) {
+            return this.sessionData.token;
+        } else {
+            return null;
+        }
+    }
+
+    public getEmailAddress(): string {
+        if(this.sessionData === null) {
+            this.getSessionObject();
+        }
+
+        if(this.sessionData != null) {
+            return this.sessionData.emailAddress;
+        } else {
+            return null;
+        }
+    }
+
+    public getRole(): string {
+        if(this.sessionData === null) {
+            this.getSessionObject();
+        }
+
+        if (this.sessionData != null) {
+            return this.sessionData.role;
+        } else {
+            return null;
+        }
+    }
+
+    public setSessionData(data: SessionData) {
+        sessionStorage.setItem(SESSION_OBJECT, JSON.stringify(data));
+        this.sessionData = data;
+    }
+
+    // Perform a partial update of session data.  UUID and session token never change within a session
+    public updateSessionData(data: SessionData) {
+        if (data.hasOwnProperty("emailAddress")) {
+            this.sessionData.emailAddress = data.emailAddress;
+        }
+        if (data.hasOwnProperty("role")) {
+            this.sessionData.role = data.role;
+        }
+        sessionStorage.setItem(SESSION_OBJECT, JSON.stringify(this.sessionData));
+    }
+
+    public clearSessionData()
+    {
+        sessionStorage.removeItem(SESSION_OBJECT);
+    }
+}

@@ -1,0 +1,23 @@
+export class UserData {
+    uuid : string;
+    emailAddress : string;
+    firstName : string;
+    lastName : string;
+    createTs : number;
+    lastModifiedTs : number;
+    lastLoggedTs : number;
+    activeFlag : string;
+    role : string;
+
+    constructor() {
+        this.uuid = "";
+        this.emailAddress = "";
+        this.firstName = "";
+        this.lastName = "";
+        this.createTs = 0;
+        this.lastModifiedTs = 0;
+        this.lastLoggedTs = 0;
+        this.activeFlag = "";
+        this.role = "";
+    }
+}

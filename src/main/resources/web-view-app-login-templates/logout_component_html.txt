@@ -1,0 +1,8 @@
+<main>
+    <br><br>
+    <fieldset>
+        <legend><span class="glyphicon glyphicon-log-out"></span>  Logout Successful</legend>
+
+        You have successfully logged out from the system.
+    </fieldset>
+</main>

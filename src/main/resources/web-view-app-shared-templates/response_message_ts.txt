@@ -1,0 +1,9 @@
+export class ResponseMessage {
+    message: string;
+    type: string;
+
+    constructor(private msg: string, private msgType: string) {
+        this.message = msg;
+        this.type = msgType;
+    }
+}

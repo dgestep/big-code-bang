@@ -1,0 +1,7 @@
+<div style="padding: 1px"> <!-- error messages -->
+    <ul *ngFor="let message of messages">
+        <alert *ngIf="message"  [type]="message.type" dismissible="true" dismissOnTimeout="9000">
+            {{message.message}}
+        </alert>
+    </ul>
+</div>

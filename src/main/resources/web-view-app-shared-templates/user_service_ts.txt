@@ -1,0 +1,260 @@
+import {Injectable} from "@angular/core";
+import {Http, Headers} from "@angular/http";
+import "rxjs/Rx";
+import {Subject} from 'rxjs/Subject';
+import {SessionHelper} from "./session.helper";
+import {SessionData} from "./session.data";
+import {TabManagerService} from "../tabs/tab.manager.service";
+import {UserProfileService} from "../user-profile/user.profile.service";
+
+@Injectable()
+export class UserService {
+    private loggedIn = false;
+    loggedInMonitor : Subject<boolean> = new Subject<boolean>();
+
+    constructor(private http: Http, private sessionHelper: SessionHelper, private tabService : TabManagerService,
+                private profileService : UserProfileService) {
+        this.loggedIn = !!sessionHelper.getSessionObject();
+        this.loggedInChange();
+    }
+
+    getUserInfo(uuid : string) {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('X-XSRF-TOKEN', this.sessionHelper.getAuthToken());
+
+
+        return this.http
+            .get(
+                'restcontroller/user/retrieve?uuid='+uuid,
+                {headers}
+            )
+            .map(res => res.json())
+            .map((res) => {
+                if (res.statusCode === 200) {
+                    //Old way; new way doesn't use this anymore
+                    //this.userHelper.setUserData(res.data as UserData);
+                }
+                return res;
+            });
+    }
+
+    changeUserInfo(changes : any) {
+
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('X-XSRF-TOKEN', this.sessionHelper.getAuthToken());
+
+        return this.http
+            .post(
+                'restcontroller/user/profile/save',
+                changes,
+                {headers}
+            )
+            .map(res => res.json())
+            .map((res) => {
+                if (res.statusCode === 200) {
+                    //Old way; new way doesn't use this anymore
+                    //this.userHelper.setUserData(res.data as UserData);
+                    //this.sessionHelper.updateSessionData(res.data as SessionData);
+                }
+                return res;
+            });
+    }
+
+    addNewUser(userProfile : any) {
+
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('X-XSRF-TOKEN', this.sessionHelper.getAuthToken());
+
+        return this.http
+            .post(
+                'restcontroller/user/profile/add',
+                userProfile,
+                {headers}
+            )
+            .map(res => res.json())
+            .map((res) => {
+                if (res.statusCode === 200) {
+                    //For now do nothing
+                }
+                return res.messages;
+            });
+    }
+
+    searchUsers(searchTerms : any) {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('X-XSRF-TOKEN', this.sessionHelper.getAuthToken());
+
+        return this.http
+            .post(
+                'restcontroller/user/search',
+                searchTerms,
+                {headers}
+            )
+            .map(res => res.json())
+            .map((res) => {
+                if (res.statusCode === 200) {
+                    //For now do nothing
+                }
+                return {messages : res.messages, data : res.data};
+            });
+    }
+
+    sendPasswordResetConfirm(formData : any) {
+        let headers = new Headers();
+        headers.append('mimeType', 'multipart/form-data');
+        headers.append('X-XSRF-TOKEN', this.sessionHelper.getAuthToken());
+
+        return this.http
+            .post(
+                'restcontroller/user/reset-confirmation',
+                formData,
+                {headers}
+            )
+            .map(res => res.json())
+            .map((res) => {
+                if (res.statusCode === 200) {
+                    //For now do nothing
+                }
+                return res.messages;
+            });
+    }
+
+    resetPasswordByConfirm(formData : any) {
+        let headers = new Headers();
+        headers.append('mimeType', 'multipart/form-data');
+        headers.append('X-XSRF-TOKEN', this.sessionHelper.getAuthToken());
+
+        return this.http
+            .post(
+                'restcontroller/user/reset-password-by-confirmation',
+                formData,
+                {headers}
+            )
+            .map(res => res.json())
+            .map((res) => {
+                if (res.statusCode === 200) {
+                    //For now do nothing
+                }
+                return res.messages;
+            });
+    }
+
+    changeUserPassword(userObject : any) {
+        let headers = new Headers();
+        headers.append('mimeType', 'multipart/form-data');
+        headers.append('X-XSRF-TOKEN', this.sessionHelper.getAuthToken());
+
+        return this.http
+            .post(
+                'restcontroller/user/password',
+                userObject,
+                {headers}
+            )
+            .map(res => res.json())
+            .map((res) => {
+                if (res.statusCode === 200) {
+                    //For now do nothing
+                }
+                return res.messages;
+            });
+    }
+
+    deleteUser(jsonObj : any) {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('X-XSRF-TOKEN', this.sessionHelper.getAuthToken());
+
+        return this.http
+            .post(
+                'restcontroller/user/profile/delete',
+                jsonObj,
+                {headers}
+            )
+            .map(res => res.json())
+            .map((res) => {
+                if (res.statusCode === 200) {
+                    //For now do nothing
+                }
+                return res.messages;
+            });
+    }
+
+    /**
+     * Authenticates a user.
+     *
+     * @param username identifies the user.
+     * @param password the credentials.
+     * @returns {Observable<R>} contains the message.
+     */
+    login(username: String, password: String) {
+
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+        return this.http
+            .post(
+                'restcontroller/security/login',
+                "emailAddress=" + username + "&password=" + password,
+                {headers}
+            )
+            .map(res => res.json())
+            .map((res) => {
+                if (res.statusCode === 200) {
+                    this.sessionHelper.setSessionData(res.data as SessionData);
+                    this.loggedIn = true;
+                    this.loggedInChange()
+                }
+                return res.messages;
+            });
+    }
+
+    /**
+     * Logs a user out of the application.
+     *
+     * @returns {Observable<R>} contains the message.
+     */
+    logout() {
+        let token = this.sessionHelper.getAuthToken();
+        // if token is null, we aren't logged in.
+        if (token === null) {
+            token = "";
+        }
+        this.loggedIn = false;
+        this.loggedInChange();
+        let body = '_csrf=' + token;
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        return this.http
+            .post(
+                'restcontroller/security/logoff',
+                body,
+                {headers}
+            )
+            .map(re => re.json())
+            .map((re) => {
+                if (re.statusCode === 200) {
+                    this.sessionHelper.clearSessionData();
+                    this.tabService.clearAllTabs();
+                    this.profileService.clearAllProfiles();
+                    this.loggedIn = false;
+                }
+                return re.messages[0].message;
+            });
+    }
+
+    /**
+     * Returns true if there is a currently logged in user on this session.
+     * @returns {boolean} true if logged in.
+     */
+    isLoggedIn() {
+        return this.loggedIn;
+    }
+
+    loggedInChange() {
+        this.loggedInMonitor.next(this.loggedIn);
+    }
+}

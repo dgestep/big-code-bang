@@ -2,7 +2,6 @@ package com.estep.webkickstart.model.script
 
 import com.estep.webkickstart.model.Property
 import com.estep.webkickstart.model.TemplateCopy
-import com.estep.webkickstart.model.TextTemplate
 import com.estep.webkickstart.model.Tuple
 
 class WebStructureCreatorScript {
@@ -29,6 +28,15 @@ class WebStructureCreatorScript {
         copyWebXml()
 
         copyViewCode()
+        copyViewAppCode()
+        copyViewAppLoginCode()
+        copyViewAppCssCode()
+        copyAllFonts()
+        copyViewAppFooterCode()
+        copyViewAppHeaderCode()
+        copyViewAppSessionLostCode()
+        copyViewAppSharedCode()
+        copyViewAppUserProfileCode()
     }
 
     private void copyWebProjectCode() {
@@ -161,7 +169,7 @@ class WebStructureCreatorScript {
 
     private void copyViewCode() {
         List<Tuple> apps = new ArrayList<>()
-        apps.add(new Tuple("index_html.txt", getPathToViewCode(null, "index_html")))
+        apps.add(new Tuple("index_html.txt", getPathToViewCode(null, "index.html")))
         apps.add(new Tuple("web_package_json.txt", getPathToViewCode(null, "package.json")))
         apps.add(new Tuple("tsconfig_json.txt", getPathToViewCode(null, "tsconfig.json")))
         apps.add(new Tuple("typings_json.txt", getPathToViewCode(null, "typings.json")))
@@ -177,13 +185,170 @@ class WebStructureCreatorScript {
         ScriptHelper.render("web-view-templates", apps)
     }
 
-    private String getPathToViewCode(folderName, fileName) {
+    private void copyViewAppCode() {
+        List<Tuple> apps = new ArrayList<>()
+        apps.add(new Tuple("main_ts.txt", getPathToViewCode("app", "main.ts")))
+        apps.add(new Tuple("app_module_ts.txt", getPathToViewCode("app", "app.module.ts")))
+        apps.add(new Tuple("app_component_ts.txt", getPathToViewCode("app", "app.component.ts")))
+        apps.add(new Tuple("app_component_html.txt", getPathToViewCode("app", "app.component.html")))
+        apps.add(new Tuple("app_routes_ts.txt", getPathToViewCode("app", "app.routes.ts")))
+        apps.add(new Tuple("landing_page_component_html.txt", getPathToViewCode("app", "landing.page.componenent.html")))
+        apps.add(new Tuple("landing_page_component_ts.txt", getPathToViewCode("app", "landing.page.componenent.ts")))
+
+        ScriptHelper.render("web-view-app-templates", apps)
+    }
+
+    private void copyViewAppLoginCode() {
+        List<Tuple> apps = new ArrayList<>()
+        apps.add(new Tuple("logged_in_guard_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages("app",
+                "login"), "logged-in.guard.ts")))
+        apps.add(new Tuple("logout_component_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages("app",
+                "login"), "logout.component.ts")))
+        apps.add(new Tuple("logout_component_html.txt", getPathToViewCode(ScriptHelper.createSubpackages("app",
+                "login"), "logout.component.html")))
+        apps.add(new Tuple("catch_reset_component_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages("app",
+                "login"), "catch.reset.component.ts")))
+        apps.add(new Tuple("catch_reset_component_html.txt", getPathToViewCode(ScriptHelper.createSubpackages("app",
+                "login"), "catch.reset.component.html")))
+        apps.add(new Tuple("password_reset_component_html.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "login"), "password.reset.component.html")))
+        apps.add(new Tuple("password_reset_component_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "login"), "password.reset.component.ts")))
+
+        ScriptHelper.render("web-view-app-login-templates", apps)
+    }
+
+    private void copyViewAppCssCode() {
+        List<Tuple> apps = new ArrayList<>()
+        apps.add(new Tuple("bootstrap.css", getPathToViewCode(ScriptHelper.createSubpackages("app",
+                "css"), "bootstrap.css")))
+        apps.add(new Tuple("bootstrap-theme.css", getPathToViewCode(ScriptHelper.createSubpackages("app",
+                "css"), "bootstrap-theme.css")))
+        apps.add(new Tuple("main.css", getPathToViewCode(ScriptHelper.createSubpackages("app",
+                "css"), "main.css")))
+
+        ScriptHelper.copy("web-view-app-css-templates", apps)
+    }
+
+    private void copyViewAppFooterCode() {
+        List<Tuple> apps = new ArrayList<>()
+        apps.add(new Tuple("footer_component_html.txt", getPathToViewCode(ScriptHelper.createSubpackages("app",
+                "footer"), "footer.component.html")))
+        apps.add(new Tuple("footer_component_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages("app",
+                "footer"), "footer.component.ts")))
+        apps.add(new Tuple("footer_service_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages("app",
+                "footer"), "footer.service.ts")))
+
+        ScriptHelper.render("web-view-app-footer-templates", apps)
+    }
+
+    private void copyViewAppHeaderCode() {
+        List<Tuple> apps = new ArrayList<>()
+        apps.add(new Tuple("header_component_html.txt", getPathToViewCode(ScriptHelper.createSubpackages("app",
+                "header"), "header.component.html")))
+        apps.add(new Tuple("header_component_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages("app",
+                "header"), "header.component.ts")))
+
+        ScriptHelper.render("web-view-app-header-templates", apps)
+    }
+
+    private void copyViewAppSessionLostCode() {
+        List<Tuple> apps = new ArrayList<>()
+        apps.add(new Tuple("session_lost_component_html.txt", getPathToViewCode(ScriptHelper.createSubpackages("app",
+                "session-lost"), "session.lost.component.html")))
+        apps.add(new Tuple("session_lost_component_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages("app",
+                "session-lost"), "session.lost.component.ts")))
+
+        ScriptHelper.render("web-view-app-session-lost-templates", apps)
+    }
+
+    private void copyViewAppSharedCode() {
+        List<Tuple> apps = new ArrayList<>()
+        apps.add(new Tuple("constants_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages("app",
+                "shared"), "constants.ts")))
+        apps.add(new Tuple("name_value_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages("app",
+                "shared"), "name.value.ts")))
+        apps.add(new Tuple("pager_communication_service_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "shared"), "pager.communication.service.ts")))
+        apps.add(new Tuple("pager_component_html.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "shared"), "pager.component.html")))
+        apps.add(new Tuple("pager_component_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "shared"), "pager.component.ts")))
+        apps.add(new Tuple("pager_data_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "shared"), "pager.data.ts")))
+        apps.add(new Tuple("pager_service_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "shared"), "pager.service.ts")))
+        apps.add(new Tuple("response_message_component_html.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "shared"), "response.message.component.html")))
+        apps.add(new Tuple("response_message_component_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "shared"), "response.message.component.ts")))
+        apps.add(new Tuple("response_message_helper_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "shared"), "response.message.helper.ts")))
+        apps.add(new Tuple("response_message_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "shared"), "response.message.ts")))
+        apps.add(new Tuple("service_error_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "shared"), "service.error.ts")))
+        apps.add(new Tuple("service_helper_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "shared"), "service.helper.ts")))
+        apps.add(new Tuple("service_results_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "shared"), "service.results.ts")))
+        apps.add(new Tuple("session_data_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "shared"), "session.data.ts")))
+        apps.add(new Tuple("session_helper_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "shared"), "session.helper.ts")))
+        apps.add(new Tuple("state_change_communication_service_ts.txt", getPathToViewCode(ScriptHelper
+                .createSubpackages("app", "shared"), "state.change.communication.service.ts")))
+        apps.add(new Tuple("user_add_data_ts.txt", getPathToViewCode(ScriptHelper
+                .createSubpackages("app", "shared"), "user.add.data.ts")))
+        apps.add(new Tuple("user_data_ts.txt", getPathToViewCode(ScriptHelper
+                .createSubpackages("app", "shared"), "user.data.ts")))
+        apps.add(new Tuple("user_service_spec_ts.txt", getPathToViewCode(ScriptHelper
+                .createSubpackages("app", "shared"), "user.service.spec.ts")))
+        apps.add(new Tuple("user_service_ts.txt", getPathToViewCode(ScriptHelper
+                .createSubpackages("app", "shared"), "user.service.ts")))
+
+        ScriptHelper.render("web-view-app-shared-templates", apps)
+    }
+
+    private void copyViewAppUserProfileCode() {
+        List<Tuple> apps = new ArrayList<>()
+        apps.add(new Tuple("change_password_component_html.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "user-profile"), "change.password.component.html")))
+        apps.add(new Tuple("change_password_component_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "user-profile"), "change.password.component.ts")))
+        apps.add(new Tuple("user_add_component_html.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "user-profile"), "user.add.component.html")))
+        apps.add(new Tuple("user_add_component_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "user-profile"), "user.add.component.ts")))
+        apps.add(new Tuple("user_admin_component_html.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "user-profile"), "user.admin.component.html")))
+        apps.add(new Tuple("user_admin_component_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "user-profile"), "user.admin.component.ts")))
+
+        ScriptHelper.render("web-view-app-user-profile-templates", apps)
+    }
+
+    private void copyAllFonts() {
+        TemplateCopy copy = new TemplateCopy()
+        String destinationFolder = getPathToViewCode(ScriptHelper.createSubpackages("app",
+                "fonts"))
+        copy.copyAll("web-view-app-fonts-templates", destinationFolder)
+    }
+
+    private String getPathToViewCode(folderName) {
         StringBuilder buf = new StringBuilder()
         buf.append(ScriptHelper.render("web.base.path")).append(File.separator)
         buf.append("WebContent").append(File.separator)
         if (folderName != null) {
             buf.append(folderName).append(File.separator)
         }
+
+        buf.toString()
+    }
+
+    private String getPathToViewCode(folderName, fileName) {
+        StringBuilder buf = new StringBuilder()
+        buf.append(getPathToViewCode(folderName))
         buf.append(fileName)
 
         buf.toString()

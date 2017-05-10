@@ -1,0 +1,50 @@
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
+import {HttpModule} from "@angular/http";
+import {Ng2BootstrapModule} from "ng2-bootstrap/ng2-bootstrap";
+import {AppComponent} from "./app.component";
+import {routes} from './app.routes';
+
+import {LoginComponent} from './login/login.component'
+import {HeaderComponent} from "./header/header.component";
+import {FooterComponent} from "./footer/footer.component";
+import {LandingPageComponent} from "./landing.page.component";
+import {ResponseMessageComponent} from "./shared/response.message.component";
+import {SessionLostComponent} from "./session-lost/session.lost.component";
+import {UserProfileComponent} from "./user-profile/user.profile.component";
+import {ChangePasswordComponent} from "./user-profile/change.password.component";
+import {UserAddComponent} from "./user-profile/user.add.component";
+import {PasswordResetComponent} from "./login/password.reset.component";
+import {CatchResetComponent} from "./login/catch.reset.component";
+import {UserAdminComponent} from "./user-profile/user.admin.component";
+import {LogoutComponent} from "./login/logout.component";
+
+import {UserService} from './shared/user.service';
+import {SessionHelper} from "./shared/session.helper";
+import {ResponseMessageHelper} from "./shared/response.message.helper";
+import {LoggedInGuard} from "./login/logged-in.guard";
+import {FooterService} from "./footer/footer.service";
+import {ServiceHelperService} from "./shared/service.helper";
+import {PagerComponent} from "./shared/pager.component";
+import {PagerCommunicationService} from "./shared/pager.communication.service";
+import {PagerService} from "./shared/pager.service";
+import {UserProfileService} from "./user-profile/user.profile.service";
+
+@NgModule({
+    imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes), ReactiveFormsModule, HttpModule, Ng2BootstrapModule],
+    declarations: [
+        AppComponent, LoginComponent, HeaderComponent, FooterComponent, LandingPageComponent, ResponseMessageComponent,
+        SessionLostComponent, UserProfileComponent, UserAddComponent, ChangePasswordComponent, PasswordResetComponent,
+        CatchResetComponent, UserAdminComponent, PagerComponent, LogoutComponent
+    ],
+    bootstrap: [AppComponent],
+    providers: [
+        UserService, LoggedInGuard, SessionHelper, ResponseMessageHelper, FooterService, ServiceHelperService,
+        PagerCommunicationService, PagerService, UserProfileService
+    ]
+})
+
+export class AppModule {
+}

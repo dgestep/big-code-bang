@@ -1,0 +1,39 @@
+<main>
+    <h1>Add User</h1>
+    <hr>
+    <form method="post" [formGroup]="addForm" (ngSubmit)="addUser(addForm.value)">
+        <div class="panel panel-default">
+            <table class="table">
+                <tr>
+                    <td>First Name:</td>
+                    <td><input formControlName="firstName" name="firstName" type="text" class="form-control" placeholder="First Name"></td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td><input formControlName="lastName" name="lastName" type="text" class="form-control" placeholder="Last Name"></td>
+                </tr>
+                <tr>
+                    <td>Email Address:</td>
+                    <td><input formControlName="emailAddress" name="emailAddress" type="text" class="form-control" placeholder="Email Address"></td>
+                </tr>
+                <tr>
+                    <td>User Group:</td>
+                    <td>
+                        <select formControlName="role" name="role" class="form-control">
+                            <option value="ADMIN">ADMIN</option>
+                            <option value="USER" selected="selected">USER</option>
+                            <option value="READONLY">READONLY</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <button type="submit" class="btn btn-primary" aria-label="Left Align" >
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create New User
+        </button>
+        <button type="button" class="btn btn-secondary" aria-label="Right Align" (click)="closeTab()">
+            Cancel
+        </button>
+    </form>
+    <res-messages></res-messages>
+</main>

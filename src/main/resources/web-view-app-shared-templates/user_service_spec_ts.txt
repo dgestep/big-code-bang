@@ -1,0 +1,49 @@
+import {ComponentFixture, TestBed, async, inject} from '@angular/core/testing';
+import { Http, BaseRequestOptions } from '@angular/http';
+import { MockBackend } from '@angular/http/testing';
+import { UserService } from './user.service';
+
+describe('UserServiceTest', () => {
+
+    beforeEach(() => {
+
+        TestBed.configureTestingModule({
+            providers: [UserService,MockBackend,
+                BaseRequestOptions,
+                {
+                    provide: Http,
+                    useFactory: (backendInstance: MockBackend, defaultOptions: BaseRequestOptions) => {
+                        return new Http(backendInstance, defaultOptions);
+                    },
+                    deps: [MockBackend, BaseRequestOptions]
+                }]
+        })
+    });
+
+    it('isLoggedIn should return false after creation', inject([UserService], (service: UserService) => {
+        expect(service.isLoggedIn()).toBeFalsy();
+    }));
+
+    it('should send the login request to the server', (done) => {
+        done();
+    });
+
+    it('Checking token', () => {
+        let token = "asdjkag98091&(*adjhwjhqwhkwh";
+        sessionStorage.setItem('test_token',token);
+        expect(sessionStorage.getItem('test_token')).toBe(token);
+    });
+
+    it('Checking token removal from localStorage',() => {
+        if(sessionStorage.getItem('test_token') != null) {
+            sessionStorage.removeItem('test_token');
+            expect(sessionStorage.getItem('test_token')).toBe(null);
+        }
+        else {
+            var token = "sgfksgf3287&*(*&*safhwle*sf";
+            sessionStorage.setItem('test_token',token);
+            sessionStorage.removeItem('test_token');
+            expect(sessionStorage.getItem('test_token')).toBe(null);
+        }
+    });
+});

@@ -1,0 +1,28 @@
+import { Injectable } from "@angular/core";
+import { Subject } from "rxjs/Rx";
+import { ResponseMessage } from "./response.message";
+
+@Injectable()
+export class ResponseMessageHelper {
+    messages: Array<ResponseMessage> = [];
+
+    messageUpdate: Subject<Array<ResponseMessage>> = new Subject<Array<ResponseMessage>>();
+
+    public setMessages(msgs: Array<ResponseMessage>) {
+        this.messages = msgs;
+        this.messageUpdate.next(this.messages);
+    }
+
+    public clearMessages() {
+        this.messages = [];
+        this.messageUpdate.next(this.messages);
+    }
+
+    public parseAndPushMessages(rawMessages : any, alertLevel : any) {
+        let msgs : Array<ResponseMessage> = [];
+        for (let i = 0; i < rawMessages.length; i++) {
+            msgs.push(new ResponseMessage(rawMessages[i], alertLevel));
+        }
+        this.setMessages(msgs);
+    }
+}

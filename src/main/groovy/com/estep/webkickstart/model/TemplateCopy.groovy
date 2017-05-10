@@ -10,6 +10,19 @@ class TemplateCopy {
         to.write(data)
     }
 
+    void copyAll(sourceFolder, destination) {
+        URI uri = this.getClass().getClassLoader().getResource(sourceFolder).toURI()
+        File source = new File(uri)
+        File[] files = source.listFiles()
+        for (File file : files) {
+            String contents = file.text
+
+            File to = new File(destination + File.separator + file.getName())
+            to.write(contents)
+        }
+
+    }
+
     void renderAndCopy(templateName, destination) {
         URI uri = this.getClass().getClassLoader().getResource(templateName).toURI()
         String contents = new File(uri).text

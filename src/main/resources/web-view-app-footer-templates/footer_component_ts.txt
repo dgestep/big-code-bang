@@ -1,0 +1,23 @@
+import {Component, OnInit} from "@angular/core";
+import {FooterService} from "./footer.service";
+import {ServiceResults} from "../shared/service.results";
+
+@Component({
+    selector: 'footer',
+    templateUrl: './app/footer/footer.component.html'
+})
+export class FooterComponent implements OnInit {
+    version: string;
+
+    constructor(private footerService: FooterService) {}
+
+    ngOnInit(): void {
+        if (!this.version) {
+            this.footerService.version().subscribe(versionData => {
+                if (versionData instanceof ServiceResults) {
+                    this.version = (versionData as ServiceResults).data.version;
+                }
+            });
+        }
+    }
+}
