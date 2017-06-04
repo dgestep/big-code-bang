@@ -16,6 +16,8 @@ public class UserData {
     private String emailAddress;
     private String token;
     private String role;
+    private String firstName;
+    private String lastName;
 
     public String getUserUuid() {
         return userUuid;
@@ -47,6 +49,22 @@ public class UserData {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     @Override

@@ -37,6 +37,7 @@ class WebStructureCreatorScript {
         copyViewAppSessionLostCode()
         copyViewAppSharedCode()
         copyViewAppUserProfileCode()
+        copyViewAppTabsCode();
     }
 
     private void copyWebProjectCode() {
@@ -192,8 +193,8 @@ class WebStructureCreatorScript {
         apps.add(new Tuple("app_component_ts.txt", getPathToViewCode("app", "app.component.ts")))
         apps.add(new Tuple("app_component_html.txt", getPathToViewCode("app", "app.component.html")))
         apps.add(new Tuple("app_routes_ts.txt", getPathToViewCode("app", "app.routes.ts")))
-        apps.add(new Tuple("landing_page_component_html.txt", getPathToViewCode("app", "landing.page.componenent.html")))
-        apps.add(new Tuple("landing_page_component_ts.txt", getPathToViewCode("app", "landing.page.componenent.ts")))
+        apps.add(new Tuple("landing_page_component_html.txt", getPathToViewCode("app", "landing.page.component.html")))
+        apps.add(new Tuple("landing_page_component_ts.txt", getPathToViewCode("app", "landing.page.component.ts")))
 
         ScriptHelper.render("web-view-app-templates", apps)
     }
@@ -324,8 +325,32 @@ class WebStructureCreatorScript {
                 ("app", "user-profile"), "user.admin.component.html")))
         apps.add(new Tuple("user_admin_component_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
                 ("app", "user-profile"), "user.admin.component.ts")))
+        apps.add(new Tuple("user_profile_component_html.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "user-profile"), "user.profile.component.html")))
+        apps.add(new Tuple("user_profile_component_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "user-profile"), "user.profile.component.ts")))
+        apps.add(new Tuple("user_profile_data_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "user-profile"), "user.profile.data.ts")))
+        apps.add(new Tuple("user_profile_service_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "user-profile"), "user.profile.service.ts")))
+        apps.add(new Tuple("user_profile_tab_data_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "user-profile"), "user.profile.tab.data.ts")))
 
         ScriptHelper.render("web-view-app-user-profile-templates", apps)
+    }
+
+    private void copyViewAppTabsCode() {
+        List<Tuple> apps = new ArrayList<>()
+        apps.add(new Tuple("tab_link_data_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "tabs"), "tab.link.data.ts")))
+        apps.add(new Tuple("tab_manager_component_html.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "tabs"), "tab.manager.component.html")))
+        apps.add(new Tuple("tab_manager_component_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "tabs"), "tab.manager.component.ts")))
+        apps.add(new Tuple("tab_manager_service_ts.txt", getPathToViewCode(ScriptHelper.createSubpackages
+                ("app", "tabs"), "tab.manager.service.ts")))
+
+        ScriptHelper.render("web-view-app-tabs-templates", apps)
     }
 
     private void copyAllFonts() {

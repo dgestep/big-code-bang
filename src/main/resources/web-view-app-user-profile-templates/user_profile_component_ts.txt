@@ -1,0 +1,143 @@
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {SessionHelper} from "../shared/session.helper";
+import {UserService} from "../shared/user.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {UserProfileData} from "./user.profile.data"
+import { ResponseMessageHelper } from "../shared/response.message.helper";
+import { ResponseMessage } from "../shared/response.message";
+import { ALERT_DANGER, ALERT_WARN } from "../shared/constants";
+import { AddUserData } from "../shared/user.add.data";
+import {FormGroup, FormBuilder} from "@angular/forms";
+import {TabManagerService} from "../tabs/tab.manager.service";
+import {UserProfileService} from "./user.profile.service";
+import {SessionData} from "../shared/session.data";
+import {UserProfileTabData} from "./user.profile.tab.data";
+import {Subscription} from "rxjs";
+
+@Component ({
+    selector: 'user-profile',
+    templateUrl: 'app/user-profile/user.profile.component.html'
+})
+export class UserProfileComponent implements OnInit, OnDestroy {
+    private userData : UserProfileData;
+    private profileForm : FormGroup;
+    private uuid : string;
+    private tabName : string;
+    private isCurrentUser : boolean;
+    private sub : Subscription;
+
+    private page = "view";
+
+    constructor(private sessionHelper: SessionHelper, private userService: UserService,
+                private msgHelper: ResponseMessageHelper, private router: Router, private formBuilder : FormBuilder,
+                private tabService : TabManagerService, private profileService : UserProfileService,
+                private route : ActivatedRoute) {
+
+    }
+
+    ngOnInit() {
+        this.profileForm = this.formBuilder.group({
+            firstName : [''],
+            lastName  : [''],
+            emailAddress : [''],
+            role : ['']
+        });
+        this.msgHelper.clearMessages();
+        this.userData = new UserProfileData();
+
+        let tabIndex : number;
+        this.sub = this.route.params.subscribe(params => {
+            tabIndex = +params['id'];
+            let tabData : UserProfileTabData = this.profileService.getProfile(tabIndex);
+            this.uuid = tabData.uuid;
+            this.tabName = tabData.tabName;
+
+            this.isCurrentUser = (this.sessionHelper.getUuid() === this.uuid);
+            this.getInfo();
+        });
+
+
+    }
+
+    ngOnDestroy() {
+        this.sub.unsubscribe();
+    }
+
+    private getInfo() {
+        this.userService.getUserInfo(this.uuid).subscribe((res) => {
+            this.updateInfo(res);
+        })
+    }
+
+    private updateInfo(res : any) {
+        this.userData = res.data as UserProfileData;
+        this.userData.lastLogin = this.parseTimestamp(res.data.lastLoggedTs);
+        this.userData.userCreated = this.parseTimestamp(res.data.createTs);
+    }
+
+    private parseTimestamp(timeStamp : number): string {
+        let a = new Date(timeStamp);
+        return a.toLocaleString();
+    }
+
+    private saveChanges(newUserData : AddUserData) {
+        let updateObj : any = {};
+        let messages: Array<ResponseMessage> = [];
+        let requireRelog : Boolean = false;
+        this.msgHelper.clearMessages();
+
+        if (newUserData.firstName !== this.userData.firstName && newUserData.firstName !== "") {
+            updateObj.firstName = newUserData.firstName;
+        }
+        if (newUserData.lastName !== this.userData.lastName && newUserData.lastName !== "") {
+            updateObj.lastName = newUserData.lastName;
+        }
+        //Email address is apparently a required field, so always add it
+        if ((newUserData.emailAddress !== this.userData.emailAddress) && (newUserData.emailAddress !== "")) {
+            updateObj.emailAddress = newUserData.emailAddress;
+            requireRelog = this.isCurrentUser;
+        } else {
+            updateObj.emailAddress = this.userData.emailAddress;
+        }
+        if (newUserData.role !== this.userData.role && newUserData.role !== "") {
+            updateObj.role = newUserData.role;
+        }
+        updateObj.uuid = this.uuid;
+
+        this.userService.changeUserInfo(updateObj).subscribe((res) => {
+            if (res.messages[0].message === "Success.") {
+                this.updateInfo(res);
+                this.page = "view";
+                if (this.isCurrentUser){
+                    this.sessionHelper.updateSessionData(res.data as SessionData);
+                }
+                if (requireRelog) {
+                    this.userService.logout();
+                    this.router.navigate(['session-lost']);
+                }
+            }
+            else {
+                while (messages.length != 0) {
+                    messages.pop();
+                }
+                for (let i = 0; i < res.length; i++) {
+                    messages.push(new ResponseMessage(res.messages[i].message, ALERT_DANGER));
+                }
+                this.msgHelper.setMessages(messages);
+            }
+        });
+    }
+
+    private gotoEdit() {
+        this.page="edit";
+    }
+
+    private cancelChanges() {
+        this.page="view";
+    }
+
+    private closeTab() {
+        let tabIndex = this.tabService.getTabIndex(this.tabName, "user-profile");
+        this.tabService.deleteTab(tabIndex);
+    }
+}

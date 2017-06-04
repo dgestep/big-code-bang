@@ -37,9 +37,9 @@ public enum UserMessage implements ServiceMessage {
      */
     U007("A user already exists for the supplied email address. ( %s )"),
     /**
-     * There needs to be at least on administrative user in the system.
+     * There needs to be at least one administrative user in the system.
      */
-    U008("There needs to be at least on administrative user in the system.");
+    U008("There needs to be at least one administrative user in the system.");
 
     private String message;
 

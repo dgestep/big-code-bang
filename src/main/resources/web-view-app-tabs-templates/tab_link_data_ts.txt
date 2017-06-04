@@ -1,0 +1,5 @@
+export class TabLink {
+    route : String;
+    title : String;
+    navIdx : String;
+}

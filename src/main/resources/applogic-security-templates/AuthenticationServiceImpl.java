@@ -35,7 +35,7 @@ import java.util.UUID;
 /**
  * Authenticates a user in the application.
  *
- * @author dougestep
+ * @author ${codeAuthor}.
  */
 @Service("AuthenticationService") //NOCHECKSTYLE coupling
 public class AuthenticationServiceImpl implements AuthenticationService {
@@ -251,6 +251,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             userData.setToken(token);
             userData.setRole(userProfile.getRole().getValue());
             userData.setUserUuid(userProfile.getUuid());
+            userData.setFirstName(userProfile.getFirstName());
+            userData.setLastName(userProfile.getLastName());
         }
         return userData;
     }

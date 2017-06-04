@@ -25,6 +25,14 @@ import java.util.List;
  * @author ${codeAuthor}.
  */
 public final class ControllerHelper {
+    /**
+     * Constant indicating administration permissions are required to access the requested resource.
+     */
+    public static final String PERMISSION_ADMIN = "ADMIN";
+    /**
+     * Constant indicating app user permissions are required to access the requested resource.
+     */
+    public static final String PERMISSION_USER = "USER";
     private static final int BUF_CAPACITY = 64;
     /**
      * Default constructor.

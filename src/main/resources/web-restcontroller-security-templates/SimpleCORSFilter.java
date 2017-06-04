@@ -25,8 +25,7 @@ public class SimpleCORSFilter implements Filter {
 
         String origin = request.getHeader("Origin");
         if (origin != null) {
-            final String urlOrigin = URLEncoder.encode(origin, "UTF-8");
-            response.setHeader("Access-Control-Allow-Origin", urlOrigin);
+            response.setHeader("Access-Control-Allow-Origin", origin);
             response.setHeader("Access-Control-Allow-Credentials", "true");
             response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
 

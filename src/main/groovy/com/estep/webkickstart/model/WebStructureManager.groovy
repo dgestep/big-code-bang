@@ -27,6 +27,7 @@ class WebStructureManager {
         createWebContentSourceStructure(ScriptHelper.createSubpackages("app", "session-lost"))
         createWebContentSourceStructure(ScriptHelper.createSubpackages("app", "shared"))
         createWebContentSourceStructure(ScriptHelper.createSubpackages("app", "user-profile"))
+        createWebContentSourceStructure(ScriptHelper.createSubpackages("app", "tabs"))
         createWebContentSourceStructure("images")
         createWebContentSourceStructure("WEB-INF")
         createWebContentSourceStructure(ScriptHelper.createSubpackages("spec", "support"))

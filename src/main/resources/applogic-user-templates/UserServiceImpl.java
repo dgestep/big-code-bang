@@ -39,7 +39,7 @@ import java.util.UUID;
  */
 @Service("UserService") // NOCHECKSTYLE coupling
 public class UserServiceImpl implements UserService {
-    private static final String DEFAULT_PASSWORD = "SensorSystems2017";
+    private static final String DEFAULT_PASSWORD = "StarWars1977";
 
     @Resource(name = "UserRepository")
     private UserRepository userRepository;
@@ -163,7 +163,7 @@ public class UserServiceImpl implements UserService {
      * @param user the user profile being updated.
      * @return the updated profile.
      */
-    @SuppressWarnings("PMD.NPathComplexity")
+    @SuppressWarnings("PMD.NPathComplexity") // NOCHECKSTYLE NPath Complexity
     private UserProfile setDefaultValuesForUpdate(final UserProfile retr, final UserProfile user) {
         if (user.getActiveFlag() != null) {
             if (!user.getActiveFlag().equals("Y") && !user.getActiveFlag().equals("N")) {
@@ -232,13 +232,20 @@ public class UserServiceImpl implements UserService {
             return;
         }
 
-        final UserSearchCriteriaData criteria = new UserSearchCriteriaData();
-        criteria.setRole(Role.ADMIN);
-        final List<UserProfile> admins = userRepository.search(criteria);
-        if (admins.size() == 1) {
-            // can't delete the last admin user
-            final MessageData md = new MessageData(UserMessage.U008);
-            throw new DataInputException(md);
+        final UserProfile profile = retrieve(data.getUuid());
+        if (profile == null) {
+            return;
+        }
+
+        if (profile.getRole() == Role.ADMIN) {
+            final UserSearchCriteriaData criteria = new UserSearchCriteriaData();
+            criteria.setRole(Role.ADMIN);
+            final List<UserProfile> admins = userRepository.search(criteria);
+            if (admins.size() == 1) {
+                // can't delete the last admin user
+                final MessageData md = new MessageData(UserMessage.U008);
+                throw new DataInputException(md);
+            }
         }
 
         userCredentialRepository.delete(UserCredential.class, data.getUuid());
@@ -357,6 +364,9 @@ public class UserServiceImpl implements UserService {
         final String to = retrUser.getEmailAddress();
         final String body = String.format(ConfigConstant.EMAIL_RESET_PASSWORD_BODY, newPassword);
         sendEmail(to, String.format(body, newPassword));
+        //
+        //        Logger logger = LogFactory.getLogger();
+        //        logger.debug("\nPassword Reset Email Contents:\n" + body);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -383,6 +393,9 @@ public class UserServiceImpl implements UserService {
         final String html = getResetHtml(retr, lookupUuid);
         final String body = String.format(ConfigConstant.EMAIL_RESET_PASSWORD_CONFIRMATION_BODY, html);
         sendEmail(to, String.format(body, body));
+        //
+        //        Logger logger = LogFactory.getLogger();
+        //        logger.debug("\nPassword Reset Email Contents:\n" + body);
     }
 
     /**
