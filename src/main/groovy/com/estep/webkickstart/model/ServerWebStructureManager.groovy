@@ -2,12 +2,13 @@ package com.estep.webkickstart.model
 
 import com.estep.webkickstart.ProjectHelper
 import com.estep.webkickstart.model.script.ScriptHelper
+import sun.reflect.generics.reflectiveObjects.NotImplementedException
 
 /**
- * Handles the creation of the project and module folder structures for the web UI and services project.
+ * Handles the creation of the project and module folder structures for the web services project.
  */
-class WebStructureManager {
-    WebStructureManager() {
+class ServerWebStructureManager {
+    ServerWebStructureManager() {
     }
 
     /**
@@ -19,25 +20,14 @@ class WebStructureManager {
         createWebModuleSourceStructure("main")
         createWebModuleSourceStructure("test")
 
-        createWebContentSourceStructure(ScriptHelper.createSubpackages("app", "css"))
-        createWebContentSourceStructure(ScriptHelper.createSubpackages("app", "fonts"))
-        createWebContentSourceStructure(ScriptHelper.createSubpackages("app", "footer"))
-        createWebContentSourceStructure(ScriptHelper.createSubpackages("app", "header"))
-        createWebContentSourceStructure(ScriptHelper.createSubpackages("app", "login"))
-        createWebContentSourceStructure(ScriptHelper.createSubpackages("app", "session-lost"))
-        createWebContentSourceStructure(ScriptHelper.createSubpackages("app", "shared"))
-        createWebContentSourceStructure(ScriptHelper.createSubpackages("app", "user-profile"))
-        createWebContentSourceStructure(ScriptHelper.createSubpackages("app", "tabs"))
-        createWebContentSourceStructure("images")
         createWebContentSourceStructure("WEB-INF")
-        createWebContentSourceStructure(ScriptHelper.createSubpackages("spec", "support"))
-        createWebContentSourceStructure(ScriptHelper.createSubpackages("testing"))
     }
 
     /**
      * Deletes the web structure from the file system.
      */
     void deleteWebStructure() {
+        throw new NotImplementedException();
     }
 
     /**
@@ -56,7 +46,7 @@ class WebStructureManager {
      * @param folderName the folder name to place the structure in.
      */
     protected void createWebContentSourceStructure(folderName) {
-        def template = Property.get("web.base.path") + File.separator + "WebContent" + File.separator + folderName
+        def template = ServerProperty.get("web.base.path") + File.separator + "WebContent" + File.separator + folderName
         def path = TextTemplate.renderDeep(template)
         ProjectHelper.makeDirectories(path)
     }

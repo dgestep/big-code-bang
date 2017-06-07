@@ -1,23 +1,23 @@
 package com.estep.webkickstart.model
 
 /**
- * Manages the interaction between classes and project properties.
+ * Returns properties related to the View project.
  */
-class Property {
-    static Property INSTANCE
+class ViewProperty {
+    static ViewProperty INSTANCE
     ConfigObject configs
 
-    private Property() {
-        configs = new ConfigSlurper().parse(ModelProperty.class)
+    private ViewProperty() {
+        configs = new ConfigSlurper().parse(WebProperty.class)
 
-        final URL url = this.getClass().getClassLoader().getResource("project.properties").toURI().toURL()
+        final URL url = this.getClass().getClassLoader().getResource("view_project.properties").toURI().toURL()
         final ConfigObject projectProps = new ConfigSlurper().parse(url)
         configs.merge(projectProps)
     }
 
-    private static Property instanceOf() {
+    private static ViewProperty instanceOf() {
         if (INSTANCE == null) {
-            INSTANCE = new Property()
+            INSTANCE = new ViewProperty()
         }
         return INSTANCE
     }
@@ -29,7 +29,7 @@ class Property {
      * @return the value or null if not found.
      */
     static String get(propertyName) {
-        Property manager = Property.instanceOf()
+        ViewProperty manager = ViewProperty.instanceOf()
         def value
 
         def elements = propertyName.split("\\.")

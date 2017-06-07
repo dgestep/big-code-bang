@@ -5,10 +5,10 @@ import com.estep.webkickstart.model.*
 ModelStructureManager manager = new ModelStructureManager()
 manager.createModelStructure()
 
-def includeWebProject = "Y".equalsIgnoreCase(Property.get("web_include_project"))
+def includeWebProject = "Y".equalsIgnoreCase(ServerProperty.get("web_include_project"))
 if (includeWebProject) {
-    WebStructureManager webManager = new WebStructureManager()
-    webManager.createWebStructure()
+    ViewStructureManager webManager = new ViewStructureManager()
+    webManager.createViewStructure()
 }
 
 copyCheckstyle()

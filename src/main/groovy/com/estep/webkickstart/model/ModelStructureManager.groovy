@@ -28,7 +28,7 @@ class ModelStructureManager {
      * Deletes the model structure from the file system.
      */
     void deleteModelStructure() {
-        def modelBasePath = TextTemplate.renderDeep(Property.get("model.base.path"))
+        def modelBasePath = TextTemplate.renderDeep(ServerProperty.get("model.base.path"))
 
         File file = new File(modelBasePath)
         file.deleteDir()

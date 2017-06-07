@@ -1,13 +1,13 @@
 package com.estep.webkickstart.model.script
 
-import com.estep.webkickstart.model.Property
+import com.estep.webkickstart.model.ServerProperty
 import com.estep.webkickstart.model.TemplateCopy
 import com.estep.webkickstart.model.Tuple
 
 class WebStructureCreatorScript {
 
     void execute() {
-        def notIncludeWebProject = !"Y".equalsIgnoreCase(Property.get("web_include_project"))
+        def notIncludeWebProject = !"Y".equalsIgnoreCase(ServerProperty.get("web_include_project"))
         if (notIncludeWebProject) {
             return
         }

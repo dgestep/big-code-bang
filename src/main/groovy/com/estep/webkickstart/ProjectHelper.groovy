@@ -1,6 +1,6 @@
 package com.estep.webkickstart
 
-import com.estep.webkickstart.model.Property
+import com.estep.webkickstart.model.ServerProperty
 import com.estep.webkickstart.model.TextTemplate
 
 /**
@@ -12,7 +12,7 @@ class ProjectHelper {
      * Creates the config folder structures.
      */
     static void createConfigStructure() {
-        def basePath = TextTemplate.renderDeep(Property.get("root.base.path"))
+        def basePath = TextTemplate.renderDeep(ServerProperty.get("root.base.path"))
         makeDirectories(basePath + File.separator + "config" + File.separator + "checkstyle")
         makeDirectories(basePath + File.separator + "config" + File.separator + "rulesets")
     }
@@ -37,7 +37,7 @@ class ProjectHelper {
      * @return the created path.
      */
     static void createCodeStructure(basePathProperty, path) {
-        def value = TextTemplate.renderDeep(Property.get(basePathProperty))
+        def value = TextTemplate.renderDeep(ServerProperty.get(basePathProperty))
         File file = new File(path + File.separator + value)
         file.mkdirs()
     }
@@ -50,7 +50,7 @@ class ProjectHelper {
      * @return the created path.
      */
     static String createSourceStructure(basePathProperty, folderName) {
-        def template = Property.get(basePathProperty) + File.separator + folderName
+        def template = ServerProperty.get(basePathProperty) + File.separator + folderName
         def path = TextTemplate.renderDeep(template)
 
         def resources = path + File.separator + "resources"

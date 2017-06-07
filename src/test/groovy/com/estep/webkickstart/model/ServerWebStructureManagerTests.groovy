@@ -1,11 +1,11 @@
 package com.estep.webkickstart.model
 
-class WebStructureManagerTests extends GroovyTestCase {
-    WebStructureManager manager
+class ServerWebStructureManagerTests extends GroovyTestCase {
+    ServerWebStructureManager manager
     TemplateCopy templateCopy
 
     void setUp() {
-        manager = new WebStructureManager()
+        manager = new ServerWebStructureManager()
         templateCopy = new TemplateCopy()
     }
 
@@ -19,20 +19,20 @@ class WebStructureManagerTests extends GroovyTestCase {
     }
 
     private void assertWebStructure() {
-        def mainPath = renderValue("web.base.path", "main")
-        def testPath = renderValue("web.base.path", "test")
-        assertWebcPathsExist(mainPath, true)
-        assertWebcPathsExist(testPath, true)
+        def mainPath = renderValue("web.base.path", "src" + File.separator + "main")
+        def testPath = renderValue("web.base.path", "src" + File.separator + "test")
+        assertWebPathsExist(mainPath, true)
+        assertWebPathsExist(testPath, true)
     }
 
     private String renderValue(propertyName, folderName) {
-        def template = Property.get(propertyName) + File.separator + folderName + File.separator + "java"
+        def template = ServerProperty.get(propertyName) + File.separator + folderName + File.separator + "java"
         def path = TextTemplate.renderDeep(template)
 
         path
     }
 
-    private void assertWebcPathsExist(path, exists) {
+    private void assertWebPathsExist(path, exists) {
         assertPath(path, exists)
 
         assertPath(path + File.separator + render("web.security.path"), exists)
@@ -45,6 +45,6 @@ class WebStructureManagerTests extends GroovyTestCase {
     }
 
     private String render(propertyName) {
-        TextTemplate.renderDeep(Property.get(propertyName))
+        TextTemplate.renderDeep(ServerProperty.get(propertyName))
     }
 }

@@ -1,6 +1,6 @@
 package com.estep.webkickstart.model.script
 
-import com.estep.webkickstart.model.Property
+import com.estep.webkickstart.model.ServerProperty
 import com.estep.webkickstart.model.TemplateCopy
 import com.estep.webkickstart.model.TextTemplate
 import com.estep.webkickstart.model.Tuple
@@ -19,7 +19,7 @@ class ScriptHelper {
     }
 
     static String render(propertyName) {
-        TextTemplate.renderDeep(Property.get(propertyName))
+        TextTemplate.renderDeep(ServerProperty.get(propertyName))
     }
 
     static void render(templateFolder, paths) {
