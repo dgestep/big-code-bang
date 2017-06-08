@@ -27,8 +27,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-task createModelStructure(type: JavaExec) {
-    description 'Creates the model structure on the file system.'
+task createServerStructure(type: JavaExec) {
+    description 'Creates the server structure on the file system.'
 
     // Set main property to name of Groovy script class.
     main = 'com.estep.webkickstart.model.script.StructureCreatorScript'

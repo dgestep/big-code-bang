@@ -2,28 +2,31 @@ package com.estep.webkickstart.model.script
 
 import com.estep.webkickstart.model.*
 
-ModelStructureManager manager = new ModelStructureManager()
-manager.createModelStructure()
+//ModelStructureManager modelManager = new ModelStructureManager()
+//modelManager.createModelStructure()
+//
+//ServerWebStructureManager serverManager = new ServerWebStructureManager()
+//serverManager.createWebStructure()
 
-def includeWebProject = "Y".equalsIgnoreCase(ServerProperty.get("web_include_project"))
-if (includeWebProject) {
-    ViewStructureManager webManager = new ViewStructureManager()
-    webManager.createViewStructure()
-}
+ViewStructureManager viewManager = new ViewStructureManager()
+viewManager.createViewStructure()
 
-copyCheckstyle()
-copyPmd()
+//copyCheckstyle()
+//copyPmd()
+//
+//ModelStructureCreatorScript modelScript = new ModelStructureCreatorScript()
+//modelScript.execute()
+//
+//ServerWebStructureCreatorScript serverRest = new ServerWebStructureCreatorScript()
+//serverRest.execute()
 
-ModelStructureCreatorScript modelScript = new ModelStructureCreatorScript()
-modelScript.execute()
-
-WebStructureCreatorScript webScript = new WebStructureCreatorScript()
-webScript.execute()
+ViewStructureCreatorScript viewScript = new ViewStructureCreatorScript();
+viewScript.execute()
 
 
 private void copyCheckstyle() {
     StringBuilder buf = new StringBuilder()
-    buf.append(ScriptHelper.render("root.base.path"))
+    buf.append(ScriptHelper.serverRender("root.base.path"))
     buf.append(File.separator).append("config")
     buf.append(File.separator).append("checkstyle")
     buf.append(File.separator).append("proj-checkstyle.xml")
@@ -34,7 +37,7 @@ private void copyCheckstyle() {
 
 private void copyPmd() {
     StringBuilder buf = new StringBuilder()
-    buf.append(ScriptHelper.render("root.base.path"))
+    buf.append(ScriptHelper.serverRender("root.base.path"))
     buf.append(File.separator).append("config")
     buf.append(File.separator).append("rulesets")
     buf.append(File.separator).append("proj-pmd-rules.xml")

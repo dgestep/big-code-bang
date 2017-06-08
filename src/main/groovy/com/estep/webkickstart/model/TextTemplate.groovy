@@ -15,6 +15,7 @@ class TextTemplate {
         bindings = [
                 "projectBase"            : ServerProperty.get("project_base_folder"),
                 "rootFolderName"         : ServerProperty.get("root.folder.name"),
+                "viewRootFolderName"     : ViewProperty.get("view_root_folder_name"),
                 "rootBasePath"           : ServerProperty.get("root.base.path"),
                 "topLevelDomain"         : ServerProperty.get("top_level_domain"),
                 "companyName"            : ServerProperty.get("company_name"),

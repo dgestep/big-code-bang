@@ -20,12 +20,11 @@ class ModelStructureCreatorScript {
         copyModelProjectCode()
         copySharedProjectCode()
         copyAppLogicServiceCode()
-
     }
 
     private void copyModelGradleRootBuildScript() {
         StringBuilder buf = new StringBuilder()
-        buf.append(ScriptHelper.render("model.base.path"))
+        buf.append(ScriptHelper.serverRender("model.base.path"))
         buf.append(File.separator).append("build.gradle")
 
         TemplateCopy templateCopy = new TemplateCopy()
@@ -34,7 +33,7 @@ class ModelStructureCreatorScript {
 
     private void copyModelApplLogicGradleRootBuildScript() {
         StringBuilder buf = new StringBuilder()
-        buf.append(ScriptHelper.render("applogic.base.root"))
+        buf.append(ScriptHelper.serverRender("applogic.base.root"))
         buf.append(File.separator).append("build.gradle")
 
         TemplateCopy templateCopy = new TemplateCopy()
@@ -43,7 +42,7 @@ class ModelStructureCreatorScript {
 
     private void copyModelDataGradleRootBuildScript() {
         StringBuilder buf = new StringBuilder()
-        buf.append(ScriptHelper.render("data.base.root"))
+        buf.append(ScriptHelper.serverRender("data.base.root"))
         buf.append(File.separator).append("build.gradle")
 
         TemplateCopy templateCopy = new TemplateCopy()
@@ -52,7 +51,7 @@ class ModelStructureCreatorScript {
 
     private void copyModelSharedGradleRootBuildScript() {
         StringBuilder buf = new StringBuilder()
-        buf.append(ScriptHelper.render("shared.base.root"))
+        buf.append(ScriptHelper.serverRender("shared.base.root"))
         buf.append(File.separator).append("build.gradle")
 
         TemplateCopy templateCopy = new TemplateCopy()
@@ -61,7 +60,7 @@ class ModelStructureCreatorScript {
 
     private void copyModelSpringContextXml() {
         StringBuilder buf = new StringBuilder()
-        buf.append(ScriptHelper.render("applogic.base.path"))
+        buf.append(ScriptHelper.serverRender("applogic.base.path"))
         buf.append(File.separator).append("main")
         buf.append(File.separator).append("resources")
         buf.append(File.separator).append("model-spring-context.xml")
@@ -72,7 +71,7 @@ class ModelStructureCreatorScript {
 
     private void copyModelTestSpringContextXml() {
         StringBuilder buf = new StringBuilder()
-        buf.append(ScriptHelper.render("data.base.path"))
+        buf.append(ScriptHelper.serverRender("data.base.path"))
         buf.append(File.separator).append("test")
         buf.append(File.separator).append("resources")
         buf.append(File.separator).append("test-model-spring-context.xml")
@@ -401,12 +400,12 @@ class ModelStructureCreatorScript {
     private String getPathToAppLogicCode(folderName, subPackage, programName) {
         StringBuilder buf = new StringBuilder()
 
-        buf.append(ScriptHelper.render("applogic.base.path"))
+        buf.append(ScriptHelper.serverRender("applogic.base.path"))
         buf.append(File.separator).append(folderName)
         buf.append(File.separator).append("java")
-        buf.append(File.separator).append(ScriptHelper.render("top_level_domain"))
-        buf.append(File.separator).append(ScriptHelper.render("company_name"))
-        buf.append(File.separator).append(ScriptHelper.render("product_name"))
+        buf.append(File.separator).append(ScriptHelper.serverRender("top_level_domain"))
+        buf.append(File.separator).append(ScriptHelper.serverRender("company_name"))
+        buf.append(File.separator).append(ScriptHelper.serverRender("product_name"))
         buf.append(File.separator).append("model")
         if (subPackage != null) {
             buf.append(File.separator).append(subPackage)
@@ -420,12 +419,12 @@ class ModelStructureCreatorScript {
     private String getPathToRepoCode(folderName, subPackage, programName) {
         StringBuilder buf = new StringBuilder()
 
-        buf.append(ScriptHelper.render("data.base.path"))
+        buf.append(ScriptHelper.serverRender("data.base.path"))
         buf.append(File.separator).append(folderName)
         buf.append(File.separator).append("java")
-        buf.append(File.separator).append(ScriptHelper.render("top_level_domain"))
-        buf.append(File.separator).append(ScriptHelper.render("company_name"))
-        buf.append(File.separator).append(ScriptHelper.render("product_name"))
+        buf.append(File.separator).append(ScriptHelper.serverRender("top_level_domain"))
+        buf.append(File.separator).append(ScriptHelper.serverRender("company_name"))
+        buf.append(File.separator).append(ScriptHelper.serverRender("product_name"))
         buf.append(File.separator).append("model")
         buf.append(File.separator).append("repository")
         if (subPackage != null) {
@@ -440,12 +439,12 @@ class ModelStructureCreatorScript {
     private String getPathToSharedCode(folderName, subPackage, programName) {
         StringBuilder buf = new StringBuilder()
 
-        buf.append(ScriptHelper.render("shared.base.path"))
+        buf.append(ScriptHelper.serverRender("shared.base.path"))
         buf.append(File.separator).append(folderName)
         buf.append(File.separator).append("java")
-        buf.append(File.separator).append(ScriptHelper.render("top_level_domain"))
-        buf.append(File.separator).append(ScriptHelper.render("company_name"))
-        buf.append(File.separator).append(ScriptHelper.render("product_name"))
+        buf.append(File.separator).append(ScriptHelper.serverRender("top_level_domain"))
+        buf.append(File.separator).append(ScriptHelper.serverRender("company_name"))
+        buf.append(File.separator).append(ScriptHelper.serverRender("product_name"))
         buf.append(File.separator).append("model")
         if (subPackage != null) {
             buf.append(File.separator).append(subPackage)

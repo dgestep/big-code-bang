@@ -1,9 +1,0 @@
-export class UserProfileTabData {
-    uuid : string;
-    tabName : string;
-
-    constructor(uuid : string, tabName : string) {
-        this.uuid = uuid;
-        this.tabName = tabName;
-    }
-}

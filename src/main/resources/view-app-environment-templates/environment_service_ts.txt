@@ -1,0 +1,50 @@
+import {Injectable} from '@angular/core';
+import {Http} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
+import {environment} from '../../environments/environment.prod';
+import {NameValuePairData} from '../shared/name.value.pair';
+
+@Injectable()
+export class EnvironmentService {
+  configs: Map<string, string> = new Map<string, string>();
+
+  constructor(private http: Http) {
+    this.readJSON().subscribe(data => {
+        const nvps: Array<NameValuePairData>  = data as Array<NameValuePairData>;
+        nvps.forEach((nvp: NameValuePairData) => {
+          const obj: Object = nvp;
+          const key = Object.keys(obj)[0];
+          const value = nvp[key];
+
+          this.configs.set(key, value);
+        });
+      },
+      error => {
+        throw new Error(error);
+      });
+  }
+
+  /**
+   * Returns the configuration entry related to the supplied key name.
+   * @param key the name.
+   * @returns {undefined|string} returns the value or undefined if not found.
+   */
+  config(key: string): string {
+    return this.configs.get(key);
+  }
+
+  private readJSON(): Observable<any> {
+    let configFile = 'environment.config.json';
+    if (environment.production) {
+      configFile = 'environment.production.config.json';
+    }
+
+    return this.http.get('/assets/' + configFile)
+      .map(response => response.json())
+      .catch(error => {
+        throw new Error(error);
+      });
+  }
+
+}
+

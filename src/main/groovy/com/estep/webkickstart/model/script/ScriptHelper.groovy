@@ -4,6 +4,7 @@ import com.estep.webkickstart.model.ServerProperty
 import com.estep.webkickstart.model.TemplateCopy
 import com.estep.webkickstart.model.TextTemplate
 import com.estep.webkickstart.model.Tuple
+import com.estep.webkickstart.model.ViewProperty
 
 class ScriptHelper {
 
@@ -18,7 +19,11 @@ class ScriptHelper {
         buf.toString()
     }
 
-    static String render(propertyName) {
+    static String viewRender(propertyName) {
+        TextTemplate.renderDeep(ViewProperty.get(propertyName))
+    }
+
+    static String serverRender(propertyName) {
         TextTemplate.renderDeep(ServerProperty.get(propertyName))
     }
 

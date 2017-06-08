@@ -1,8 +1,0 @@
-export const AUTH_TOKEN = 'auth_token';
-export const SESSION_OBJECT = 'data_object';
-export const ALERT_SUCC = 'success';
-export const ALERT_INFO = 'info';
-export const ALERT_WARN = 'warning';
-export const ALERT_DANGER = 'danger';
-
-export const STATE_PAGE_UPDATE = 'state_page_update';
