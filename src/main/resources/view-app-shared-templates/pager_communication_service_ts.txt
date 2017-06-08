@@ -1,0 +1,33 @@
+import {Injectable} from '@angular/core';
+import {Subject} from 'rxjs/Subject';
+import {PagerData} from './pager.data';
+
+/**
+ * Communication service between the parent and pager components.
+ */
+@Injectable()
+export class PagerCommunicationService {
+  private resetPagerSubject = new Subject<PagerData>();
+  resetPagerObservable = this.resetPagerSubject.asObservable();
+
+  private pageSetSubject = new Subject<PagerData>();
+  pageSetObservable = this.pageSetSubject.asObservable();
+
+  /**
+   * Resets the pager to the state represented in the supplied pager data.
+   *
+   * @param pagerData the pager data.
+   */
+  fireResetPagerEvent(pagerData: PagerData) {
+    this.resetPagerSubject.next(pagerData);
+  }
+
+  /**
+   * Sends the page data to all subscribers listening when a user is taken to a page.
+   *
+   * @param pagerData the pager data.
+   */
+  firePageSetEvent(pagerData: PagerData) {
+    this.pageSetSubject.next(pagerData);
+  }
+}

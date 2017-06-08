@@ -32,9 +32,13 @@ class ViewStructureManager {
         createCodeStructure(bf, rf, SRC_FOLDER + File.separator + APP_FOLDER + File.separator + "shared")
         createCodeStructure(bf, rf, SRC_FOLDER + File.separator + APP_FOLDER + File.separator + "user")
 
-        createCodeStructure(bf, rf, SRC_FOLDER + File.separator + "assets")
-        createCodeStructure(bf, rf, SRC_FOLDER + File.separator + "assets" + File.separator + "bootstrap")
-        createCodeStructure(bf, rf, SRC_FOLDER + File.separator + "assets" + File.separator + "font-awesome")
+        createCodeStructure(bf, rf, SRC_FOLDER + File.separator + "assets" + File.separator + "bootstrap" + File.separator + "css")
+        createCodeStructure(bf, rf, SRC_FOLDER + File.separator + "assets" + File.separator + "bootstrap" + File.separator + "fonts")
+        createCodeStructure(bf, rf, SRC_FOLDER + File.separator + "assets" + File.separator + "bootstrap" + File.separator + "js")
+
+        createCodeStructure(bf, rf, SRC_FOLDER + File.separator + "assets" + File.separator + "font-awesome" + File.separator + "css")
+        createCodeStructure(bf, rf, SRC_FOLDER + File.separator + "assets" + File.separator + "font-awesome" + File.separator + "fonts")
+
         createCodeStructure(bf, rf, SRC_FOLDER + File.separator + "assets" + File.separator + "google")
 
         createCodeStructure(bf, rf, SRC_FOLDER + File.separator + "environments")

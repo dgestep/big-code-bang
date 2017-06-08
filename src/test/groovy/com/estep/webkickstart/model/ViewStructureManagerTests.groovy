@@ -24,37 +24,43 @@ class ViewStructureManagerTests extends GroovyTestCase {
     }
 
     private void assertViewStructure() {
-        def path = renderValue("project_base_folder", "e2e")
+        def path = renderFromBase("e2e")
         assertPath(path, true)
 
-        path = renderValue("project_base_folder", "src" + File.separator + "app" + File.separator + "environment")
+        path = renderFromBase("src" + File.separator + "app" + File.separator + "environment")
         assertPath(path, true)
-        path = renderValue("project_base_folder", "src" + File.separator + "app" + File.separator + "footer")
+        path = renderFromBase("src" + File.separator + "app" + File.separator + "footer")
         assertPath(path, true)
-        path = renderValue("project_base_folder", "src" + File.separator + "app" + File.separator + "header")
+        path = renderFromBase("src" + File.separator + "app" + File.separator + "header")
         assertPath(path, true)
-        path = renderValue("project_base_folder", "src" + File.separator + "app" + File.separator + "home")
+        path = renderFromBase("src" + File.separator + "app" + File.separator + "home")
         assertPath(path, true)
-        path = renderValue("project_base_folder", "src" + File.separator + "app" + File.separator + "security")
+        path = renderFromBase("src" + File.separator + "app" + File.separator + "security")
         assertPath(path, true)
-        path = renderValue("project_base_folder", "src" + File.separator + "app" + File.separator + "shared")
+        path = renderFromBase("src" + File.separator + "app" + File.separator + "shared")
         assertPath(path, true)
-        path = renderValue("project_base_folder", "src" + File.separator + "app" + File.separator + "user")
+        path = renderFromBase("src" + File.separator + "app" + File.separator + "user")
         assertPath(path, true)
-        path = renderValue("project_base_folder", "src" + File.separator + "assets")
+        path = renderFromBase("src" + File.separator + "environments")
         assertPath(path, true)
-        path = renderValue("project_base_folder", "src" + File.separator + "bootstrap")
+        path = renderFromBase("src" + File.separator + "assets" + File.separator + "bootstrap")
         assertPath(path, true)
-        path = renderValue("project_base_folder", "src" + File.separator + "environments")
+        path = renderFromBase("src" + File.separator + "assets" + File.separator + "font-awesome")
         assertPath(path, true)
-        path = renderValue("project_base_folder", "src" + File.separator + "font-awesome")
-        assertPath(path, true)
-        path = renderValue("project_base_folder", "src" + File.separator + "google")
+        path = renderFromBase("src" + File.separator + "assets" + File.separator + "google")
         assertPath(path, true)
     }
 
-    private String renderValue(propertyName, folderName) {
-        def template = ViewProperty.get(propertyName) + File.separator + folderName
+    private String renderFromBase(folderName) {
+        def base = renderValue("project_base_folder") + File.separator + renderValue("view_root_folder_name")
+        def template = base + File.separator + folderName
+        def path = TextTemplate.renderDeep(template)
+
+        path
+    }
+
+    private String renderValue(propertyName) {
+        def template = ViewProperty.get(propertyName)
         def path = TextTemplate.renderDeep(template)
 
         path

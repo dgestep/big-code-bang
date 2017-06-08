@@ -1,0 +1,65 @@
+import {Component, OnInit} from '@angular/core';
+import {UserProfile} from './user.profile';
+import {UserService} from './user.service';
+import {SessionHelper} from 'app/shared/session.helper';
+import {ViewHelper} from '../shared/view.helper';
+import {ResponseMessage} from '../shared/response.message';
+import {ServiceResults} from '../shared/service.results';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {UserProfileFormData} from './user.profile.form.data';
+import {ALERT_DANGER, ALERT_SUCC} from '../shared/constants';
+import {ServiceError} from '../shared/service.error';
+
+@Component({
+  selector: 'app-user-profile',
+  templateUrl: 'user.profile.component.html'
+})
+export class UserProfileComponent implements OnInit {
+  formData: FormGroup;
+
+  constructor(private userService: UserService, private sessionHelper: SessionHelper, private viewHelper: ViewHelper,
+              private formBuilder: FormBuilder) {
+  }
+
+  ngOnInit(): void {
+    const uuid: string = this.sessionHelper.getSessionObject().userUuid;
+    this.userService.getUserInfo(uuid).subscribe(response => {
+        if (response instanceof ServiceResults) {
+          const results: ServiceResults = response as ServiceResults;
+          const userProfile: UserProfile = results.data;
+
+          const userProfileFormData: UserProfileFormData = new UserProfileFormData();
+          userProfileFormData.firstName.push(userProfile.firstName);
+          userProfileFormData.lastName.push(userProfile.lastName);
+          userProfileFormData.emailAddress.push(userProfile.emailAddress);
+          userProfileFormData.lastLoggedTs.push(userProfile.lastLoggedTs);
+          userProfileFormData.uuid.push(userProfile.uuid);
+
+          this.formData = this.formBuilder.group(userProfileFormData);
+        } else {
+          const serviceError = response as ServiceError;
+          this.viewHelper.setMessages(serviceError.messages);
+        }
+      },
+      error => {
+        this.viewHelper.setMessages(error as Array<ResponseMessage>);
+      });
+  }
+
+  save(userProfile: UserProfile): void {
+    this.userService.saveUser(userProfile).subscribe(response => {
+        if (response instanceof ServiceResults) {
+          const profile: UserProfile = (response as ServiceResults).data;
+          this.sessionHelper.setSessionDataFromProfile(profile);
+
+          this.viewHelper.setMessage('Saved OK', ALERT_SUCC);
+        } else {
+          const serviceError = response as ServiceError;
+          this.viewHelper.setMessages(serviceError.messages);
+        }
+      },
+      error => {
+        this.viewHelper.setMessages(error as Array<ResponseMessage>);
+      });
+  }
+}

@@ -1,0 +1,52 @@
+import {Component} from '@angular/core';
+import {ResponseMessage} from '../shared/response.message';
+import {SessionHelper} from '../shared/session.helper';
+import {UserService} from 'app/user/user.service';
+import {ViewHelper} from '../shared/view.helper';
+import {Router} from '@angular/router';
+import {SessionData} from '../shared/session.data';
+import {ServiceResults} from '../shared/service.results';
+import {ServiceError} from '../shared/service.error';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: 'login.component.html'
+})
+export class LoginComponent {
+  adminUser = false;
+
+  constructor(private userService: UserService, private sessionHelper: SessionHelper,
+              private viewHelper: ViewHelper, private router: Router) {
+    this.viewHelper.clearMessages();
+  }
+
+  /**
+   * Submits a login request.
+   * @param username the user name.
+   * @param password the password.
+   */
+  onSubmit(username: string, password: string) {
+    const messages: Array<ResponseMessage> = [];
+    this.viewHelper.clearMessages();
+
+    this.userService.login(username, password).subscribe(res => {
+      if (res instanceof ServiceResults) {
+        const results: ServiceResults = res as ServiceResults;
+        this.sessionHelper.setSessionData(results.data);
+        this.sessionHelper.triggerLoginStateChange();
+
+        const sessionData: SessionData = this.sessionHelper.getSessionObject();
+        const message: string = 'Welcome ' + sessionData.firstName + ' ' + sessionData.lastName;
+        this.viewHelper.setMessage(message, null);
+
+        this.adminUser = sessionData.role === 'ADMIN';
+        this.router.navigate(['app-home']);
+      } else {
+        this.viewHelper.setMessagesFromServiceError(res as ServiceError);
+      }
+    },
+    error => {
+      this.viewHelper.setMessages(error as Array<ResponseMessage>);
+    });
+  }
+}

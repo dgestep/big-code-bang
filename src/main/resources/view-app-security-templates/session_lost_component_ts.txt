@@ -1,0 +1,17 @@
+import {Component, OnInit} from '@angular/core';
+import {ViewHelper} from '../shared/view.helper';
+import {Router} from '@angular/router';
+
+@Component({
+  selector: 'app-session-lost',
+  templateUrl: 'session.lost.component.html'
+})
+export class SessionLostComponent implements OnInit {
+  constructor(private viewHelper: ViewHelper, private router: Router) {
+    this.viewHelper.clearMessages();
+  }
+
+  ngOnInit(): void {
+    this.router.navigate(['/app-login']);
+  }
+}

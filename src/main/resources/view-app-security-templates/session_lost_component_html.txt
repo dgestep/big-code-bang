@@ -1,0 +1,4 @@
+You've been logged out.
+<p>
+  <a [routerLink]="['/app-login']">Login</a>
+</p>

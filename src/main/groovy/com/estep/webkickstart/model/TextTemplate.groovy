@@ -15,7 +15,6 @@ class TextTemplate {
         bindings = [
                 "projectBase"            : ServerProperty.get("project_base_folder"),
                 "rootFolderName"         : ServerProperty.get("root.folder.name"),
-                "viewRootFolderName"     : ViewProperty.get("view_root_folder_name"),
                 "rootBasePath"           : ServerProperty.get("root.base.path"),
                 "topLevelDomain"         : ServerProperty.get("top_level_domain"),
                 "companyName"            : ServerProperty.get("company_name"),
@@ -48,8 +47,9 @@ class TextTemplate {
                 "databaseUsername"       : ServerProperty.get("database_username"),
                 "databasePassword"       : ServerProperty.get("database_password"),
                 "codeAuthor"             : ServerProperty.get("code_author"),
-                "applicationTitle"       : ServerProperty.get("application_title"),
-                "webWarName"             : ServerProperty.get("web_war_name")
+                "webWarName"             : ServerProperty.get("web_war_name"),
+                "viewRootFolderName"     : ViewProperty.get("view_root_folder_name"),
+                "applicationTitle"       : ViewProperty.get("application_title")
         ]
     }
 

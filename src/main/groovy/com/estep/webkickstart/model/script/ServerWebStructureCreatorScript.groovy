@@ -150,13 +150,6 @@ class ServerWebStructureCreatorScript {
         buf.toString()
     }
 
-    private void copyAllFonts() {
-        TemplateCopy copy = new TemplateCopy()
-        String destinationFolder = getPathToViewCode(ScriptHelper.createSubpackages("app",
-                "fonts"))
-        copy.copyAll("web-view-app-fonts-templates", destinationFolder)
-    }
-
     private String getPathToViewCode(folderName) {
         StringBuilder buf = new StringBuilder()
         buf.append(ScriptHelper.serverRender("web.base.path")).append(File.separator)

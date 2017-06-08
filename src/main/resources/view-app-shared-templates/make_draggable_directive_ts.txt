@@ -1,0 +1,36 @@
+import {Directive, ElementRef, Input, OnInit} from '@angular/core';
+
+@Directive({
+  selector: '[appMakeDraggable]'
+})
+export class MakeDraggableDirective implements OnInit {
+  @Input()
+  appMakeDraggable: any;
+
+  constructor(private _elementRef: ElementRef) {
+  }
+
+  ngOnInit(): void {
+    // Get the current element
+    const el = this._elementRef.nativeElement.querySelector('li');
+
+    // Set the draggable attribute to the element
+    el.draggable = 'true';
+
+    // Set up the dragstart event and add the drag-src CSS class
+    // to change the visual appearance.
+    el.addEventListener('dragstart', (e) => {
+      el.classList.add('drag-src');
+
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('app-data', JSON.stringify(this.appMakeDraggable));
+    });
+
+    // Remove the drag-src class
+    el.addEventListener('dragend', (e) => {
+      e.preventDefault();
+
+      el.classList.remove('drag-src');
+    });
+  }
+}

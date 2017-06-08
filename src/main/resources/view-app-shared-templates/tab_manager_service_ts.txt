@@ -1,0 +1,119 @@
+import {Injectable} from '@angular/core';
+import {TabData} from './tab.data';
+import {Http} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
+import {NameValuePairData} from './name.value.pair';
+
+@Injectable()
+export class TabManagerService {
+  allTabs: Map<string, TabData> = new Map<string, TabData>();
+  displayedTabMap: Map<string, TabData> = new Map<string, TabData>();
+  displayedTabs: Array<TabData> = new Array<TabData>();
+  selectedIndex: number;
+
+  constructor(private http: Http) {
+    this.getTabJSON().subscribe(data => {
+        const tabs: Array<TabData>  = data as Array<TabData>;
+        tabs.forEach((tab: TabData) => {
+          this.allTabs.set(tab.selector, tab);
+        });
+      },
+      error => {
+        throw new Error(error);
+      });
+  }
+
+  private getTabJSON(): Observable<any> {
+    return this.http.get('/assets/tabs.json')
+      .map(response => response.json())
+      .catch(error => {
+        throw new Error(error);
+      });
+  }
+
+  addTab(selector: string, allowMultiples: boolean, id?: string, title?: any, ...params: NameValuePairData[]): void {
+    let selectedTab: TabData = this.allTabs.get(selector);
+    if (!selectedTab) {
+      throw new Error('Unknown tab: ' + selector + '. Ensure the tab is properly defined in the assests/tabs.json file.');
+    }
+
+    const key = this.createTabKey(selector, id);
+
+    if (allowMultiples) {
+      const tab: TabData = new TabData(selectedTab.selector, selectedTab.title, selectedTab.params);
+      selectedTab = tab;
+    }
+
+    if (title != null) {
+      selectedTab.title = title;
+    }
+
+    if (params) {
+      if (!selectedTab.params) {
+        selectedTab.params  = new Map<string, string>();
+      }
+      for (let i = 0; i < params.length; i++) {
+        const nvp = params[i];
+        selectedTab.params.set(nvp.name, nvp.value);
+      }
+    }
+
+    selectedTab.id = key;
+
+    const idx = this.indexOf(key);
+    if (idx < 0) {
+      this.displayedTabMap.set(key, selectedTab);
+      this.applyMapToArray();
+      this.selectedIndex = this.displayedTabs.length;
+    } else {
+      // this.displayedTabs = [];
+      // this.selectedIndex = this.displayedTabs.length;
+      this.applyMapToArray();
+      this.selectedIndex = idx;
+    }
+  }
+
+  private applyMapToArray(): void {
+    this.displayedTabs = [];
+    this.displayedTabMap.forEach((value: TabData) => {
+      this.displayedTabs.push(value);
+    });
+  }
+
+  private indexOf(key: string): number {
+    let foundIdx = -1;
+    if (!this.displayedTabMap.has(key)) {
+      return foundIdx;
+    }
+
+    let idx = 1;
+    this.displayedTabMap.forEach((value: TabData, mapKey: string) => {
+      if (mapKey === key) {
+        foundIdx = idx;
+      }
+      idx++;
+    });
+
+    return foundIdx;
+  }
+
+  private createTabKey(selector: string, id?: string, ) {
+    return id ? id : selector;
+  }
+
+  removeTab(tab: TabData): void {
+    this.displayedTabMap.delete(tab.id);
+    this.applyMapToArray();
+  }
+
+  removeTabById(selector: string, id?: string): void {
+    const tab: TabData = new TabData(selector, null, null);
+    tab.id = this.createTabKey(selector, id);
+    this.removeTab(tab);
+  }
+
+  clearTabs(): void {
+    this.displayedTabMap.clear();
+    this.displayedTabs = [];
+  }
+}

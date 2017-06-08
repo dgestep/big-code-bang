@@ -1,0 +1,35 @@
+<div *ngIf="tabManager.displayedTabs">
+  <md-tab-group [selectedIndex]="tabManager.displayedTabs.length">
+    <md-tab label="Start">
+      <div class="container content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="widget-content">
+
+              <div class="jumbotron">
+                <div class="container">
+                  <h2>Welcome to ${applicationTitle}</h2>
+                  <p>Describe your application here</p>
+                  <p><a class="btn btn-primary btn-lg" [routerLink]="['/app-home']" role="button">Learn more &raquo;</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </md-tab>
+
+    <md-tab *ngFor="let tab of tabManager.displayedTabs">
+      <ng-template md-tab-label>
+        {{tab.title}} &nbsp; <a (click)="removeTab(tab)"><i class="fa fa-close" *ngIf="tab.closeable"></i></a>
+      </ng-template>
+
+      <br><br>
+      <app-user-profile *ngIf="tab.selector === 'app-user-profile'"></app-user-profile>
+      <app-user-list *ngIf="tab.selector === 'app-user-list'"></app-user-list>
+      <app-change-password *ngIf="tab.selector === 'app-change-password'"></app-change-password>
+      <app-add-profile *ngIf="tab.selector === 'app-add-profile'"></app-add-profile>
+      <app-edit-profile *ngIf="tab.selector === 'app-edit-profile'" [uuid]="tab.params.get('uuid')"></app-edit-profile>
+    </md-tab>
+  </md-tab-group>
+</div>

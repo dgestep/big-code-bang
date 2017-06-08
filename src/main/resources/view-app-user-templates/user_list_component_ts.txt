@@ -1,0 +1,240 @@
+import {Component, OnInit} from '@angular/core';
+import {UserService} from './user.service';
+import {SessionHelper} from '../shared/session.helper';
+import {ViewHelper} from '../shared/view.helper';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {ServiceError} from '../shared/service.error';
+import {ServiceResults} from '../shared/service.results';
+import {UserProfile} from './user.profile';
+import {Subscription} from 'rxjs/Subscription';
+import {PagerService} from '../shared/pager.service';
+import {PagerCommunicationService} from '../shared/pager.communication.service';
+import {PagerData} from '../shared/pager.data';
+import {UserProfileFormData} from './user.profile.form.data';
+import {SessionData} from '../shared/session.data';
+import {Router} from '@angular/router';
+import {ALERT_SUCC} from '../shared/constants';
+import {TabManagerService} from '../shared/tab.manager.service';
+import {NameValuePairData} from '../shared/name.value.pair';
+import {ResponseMessage} from '../shared/response.message';
+
+@Component({
+  selector: 'app-user-list',
+  templateUrl: 'user.list.component.html',
+  styles: ['.filter-area { width: 90%; margin-bottom: 10px; }']
+})
+export class UserListComponent implements OnInit {
+  pageData: Array<UserProfile>;
+  users: Array<UserProfile>;
+  pageSetSubscription: Subscription;
+  pageSize = 15;
+  searchAreaFlag = 'COLLAPSED';
+  formData: FormGroup;
+  private savedCriteria: UserProfile;
+
+  deleteSelect: number;
+  resetSelect: number;
+
+  profileChangeSubscription: Subscription;
+
+  constructor(private userService: UserService, private sessionHelper: SessionHelper, private viewHelper: ViewHelper,
+              private formBuilder: FormBuilder, private pagerService: PagerService, private tabManager: TabManagerService,
+              private pagerCommunicationService: PagerCommunicationService, private router: Router) {
+  }
+
+  ngOnInit(): void {
+    this.pageSetSubscription = this.pagerCommunicationService.pageSetObservable
+      .subscribe(pagerData => this.onNotify(pagerData));
+
+    this.profileChangeSubscription = this.userService.profileChangeObservable.subscribe(userProfile => {
+      this.doSearch(this.savedCriteria);
+    });
+
+    const userProfileFormData: UserProfileFormData = new UserProfileFormData();
+    this.formData = this.formBuilder.group(userProfileFormData);
+    this.search();
+
+    this.deleteSelect = -1;
+    this.resetSelect = -1;
+  }
+
+  /**
+   * Performs a user search.
+   */
+  search() {
+    const criteria: UserProfile = this.parseForm();
+    this.doSearch(criteria);
+  }
+
+  private doSearch(criteria: UserProfile) {
+    this.userService.searchUsers(criteria).subscribe(response => {
+      const pageNumber = 1;
+
+      if (response instanceof ServiceResults) {
+        this.users = response.data as Array<UserProfile>;
+        this.pageData = this.pagerService.getCurrentPageData(this.users, pageNumber, this.pageSize);
+
+        this.searchAreaFlag = 'COLLAPSED';
+        this.savedCriteria = criteria;
+      } else {
+        this.users = new Array<UserProfile>();
+        this.pageData = this.pagerService.getCurrentPageData(this.users, pageNumber, this.pageSize);
+
+        this.searchAreaFlag = 'EXPANDED';
+
+        const serviceError = response as ServiceError;
+        this.viewHelper.setMessages(serviceError.messages);
+      }
+    });
+  }
+
+  /**
+   * Triggers the view logic to prompt the user for confirmation before deleting a profile.
+   * @param idx identifies the record within the page data which was chosen for deletion.
+   */
+  triggerDeleteConfirmation(idx: number) {
+    this.deleteSelect = idx;
+    this.resetSelect  = -1;
+  }
+
+  /**
+   * Deletes a user profile associated with the selected email address.
+   * @param idx identifies the record within the page data to obtain the email address.
+   */
+  deleteUser(idx: number) {
+    const jsonObj: any = {};
+    const sessionData: SessionData = this.sessionHelper.getSessionObject();
+    const isCurrentUser: boolean = (sessionData.userUuid === this.pageData[idx].uuid);
+
+    jsonObj.uuid = this.pageData[idx].uuid;
+
+    this.userService.deleteUser(jsonObj).subscribe(response => {
+      if (response instanceof ServiceResults) {
+        if (isCurrentUser) {
+          this.userService.logout();
+          this.router.navigate(['session-lost']);
+        } else {
+          this.doSearch(this.savedCriteria);
+        }
+      } else {
+        const serviceError = response as ServiceError;
+        this.viewHelper.setMessages(serviceError.messages);
+      }
+    });
+
+    this.deleteSelect = -1;
+    this.resetSelect  = -1;
+  }
+
+  /**
+   * Triggers the view to confirm a password reset action.
+   * @param idx identifies the record within the page data which was chosen for a password reset.
+   */
+  triggerResetConfirmation(idx: number) {
+    this.resetSelect = idx;
+    this.deleteSelect = -1;
+  }
+
+  /**
+   * Start the logic to reset a users password for the selected email address.
+   * @param idx identifies the record within the page data to obtain the email address.
+   */
+  resetPassword(idx: number) {
+    const emailAddress: string = this.pageData[idx].emailAddress;
+
+    this.userService.sendPasswordResetConfirm(emailAddress).subscribe(response => {
+      if (response instanceof ServiceResults) {
+        this.viewHelper.setMessage('Success!', ALERT_SUCC);
+      } else {
+        const serviceError = response as ServiceError;
+        this.viewHelper.setMessages(serviceError.messages);
+      }
+    });
+
+    this.deleteSelect = -1;
+    this.resetSelect  = -1;
+  }
+
+  /**
+   * Triggers the view logic to restore an action without acting on it.
+   */
+  cancelAction() {
+    this.resetSelect  = -1;
+    this.deleteSelect = -1;
+  }
+
+  private parseForm(): UserProfile {
+    const userProfile: UserProfile = new UserProfile();
+    const formData: FormGroup = this.formData;
+    if (!formData) {
+      return userProfile;
+    }
+
+    const controls = formData.controls;
+    if (!controls) {
+      return userProfile;
+    }
+    userProfile.role = controls.role.value;
+    userProfile.name = controls.name.value;
+    userProfile.emailAddress = controls.emailAddress.value;
+    userProfile.activeFlag = controls.activeFlag.value;
+
+    return userProfile;
+  }
+
+  /**
+   * Toggles the search form area.
+   */
+  toggleArea() {
+    if (this.searchAreaFlag === 'EXPANDED') {
+      this.searchAreaFlag = 'COLLAPSED';
+    } else {
+      this.searchAreaFlag = 'EXPANDED';
+    }
+  }
+
+  /**
+   * Sets the page data for the user search pager.
+   * @param pagerData the pager data.
+   */
+  onNotify(pagerData: PagerData) {
+    const pageName = pagerData.pagerName;
+
+    if (pageName === 'userSearchResults') {
+      this.pageData = pagerData.data;
+    } else {
+      // unknown or unhandled pager
+    }
+  }
+
+  /**
+   * Opens the tab to add a user profile.
+   */
+  openAddTab(): void {
+    this.tabManager.addTab('app-add-profile', false);
+  }
+
+  /**
+   * Opens the tab to edit a user profile.
+   * @param uuid identifies the user profile to edit.
+   */
+  openEditTab(uuid: string): void {
+    const nvp: NameValuePairData = new NameValuePairData('uuid', uuid);
+
+    this.userService.getUserInfo(uuid).subscribe(response => {
+        if (response instanceof ServiceResults) {
+          const results: ServiceResults = response as ServiceResults;
+          const userProfile: UserProfile = results.data;
+
+          const name: string = userProfile.firstName + ' ' + userProfile.lastName;
+          this.tabManager.addTab('app-edit-profile', true, uuid, name, nvp);
+        } else {
+          const serviceError = response as ServiceError;
+          this.viewHelper.setMessages(serviceError.messages);
+        }
+      },
+      error => {
+        this.viewHelper.setMessages(error as Array<ResponseMessage>);
+      });
+  }
+}

@@ -1,0 +1,11 @@
+import {HomeComponent} from './home/home.component';
+import {LoggedInGuard} from './security/logged-in.guard';
+import {LoginComponent} from './security/login.component';
+import {SessionLostComponent} from './security/session.lost.component';
+
+export const routes = [
+  {path: '', redirectTo: '/app-home', pathMatch: 'full' },
+  {path: 'app-login', component: LoginComponent, useAsDefault: true},
+  {path: 'app-session-lost', component: SessionLostComponent},
+  {path: 'app-home', component: HomeComponent, canActivate: [ LoggedInGuard ]}
+];

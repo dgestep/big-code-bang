@@ -1,0 +1,17 @@
+import {Component} from '@angular/core';
+import {TabManagerService} from '../shared/tab.manager.service';
+import {TabData} from '../shared/tab.data';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: 'home.component.html'
+})
+export class HomeComponent {
+
+  constructor(public tabManager: TabManagerService) {
+  }
+
+  removeTab(tab: TabData): void {
+    this.tabManager.removeTab(tab);
+  }
+}

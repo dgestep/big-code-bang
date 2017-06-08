@@ -1,0 +1,35 @@
+<md-toolbar color="primary">
+  <a [routerLink]="['/']"><img class="logo hidden-sm hidden-xs" alt="${applicationTitle} Logo" src="assets/Logo.png"/></a>
+  &nbsp;<span class="logotype"><a [routerLink]="['/']">${applicationTitle}</a></span>
+  <span class="header-spacer"></span>
+
+  <button class="user-button" *ngIf="isLoggedIn()" md-button [mdMenuTriggerFor]="appMenu">
+    <md-icon>more_vert</md-icon> {{session().firstName}} {{session().lastName}}
+  </button>
+</md-toolbar>
+
+<md-menu #appMenu="mdMenu">
+  <div *ngIf="isAdmin()">
+    <hr />
+    <button md-menu-item (click)="tabManager.addTab('app-user-list', false)">
+      <md-icon>group</md-icon> User Administration
+    </button>
+  </div>
+
+  <hr />
+  <button md-menu-item (click)="tabManager.addTab('app-user-profile', false, null, 'My Profile')">
+    <md-icon>person</md-icon> User Profile
+  </button>
+
+  <button md-menu-item (click)="tabManager.addTab('app-change-password', false, null, 'Change Password')">
+    <md-icon>star</md-icon> Change Password
+  </button>
+
+  <hr />
+  <button md-menu-item (click)="logout()">
+    <md-icon>exit_to_app</md-icon> Logout
+  </button>
+</md-menu>
+
+
+
