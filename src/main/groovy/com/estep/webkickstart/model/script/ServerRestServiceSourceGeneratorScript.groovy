@@ -3,7 +3,7 @@ package com.estep.webkickstart.model.script
 import com.estep.webkickstart.model.TemplateCopy
 import com.estep.webkickstart.model.Tuple
 
-class ServerWebStructureCreatorScript {
+class ServerRestServiceSourceGeneratorScript {
 
     void execute() {
         copyWebProjectCode()
@@ -42,6 +42,7 @@ class ServerWebStructureCreatorScript {
         apps.add(new Tuple("SimpleCORSFilter.java", getPathToWebCode("main", "security", "SimpleCORSFilter.java")))
         apps.add(new Tuple("TokenThreadLocal.java", getPathToWebCode("main", "security", "TokenThreadLocal.java")))
         apps.add(new Tuple("UserThreadLocal.java", getPathToWebCode("main", "security", "UserThreadLocal.java")))
+        apps.add(new Tuple("SecurityController.java", getPathToWebCode("main", "security", "SecurityController.java")))
 
         ScriptHelper.render("web-restcontroller-security-templates", apps)
     }

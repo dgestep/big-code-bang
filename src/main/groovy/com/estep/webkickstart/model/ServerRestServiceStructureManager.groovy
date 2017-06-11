@@ -5,16 +5,16 @@ import com.estep.webkickstart.model.script.ScriptHelper
 import sun.reflect.generics.reflectiveObjects.NotImplementedException
 
 /**
- * Handles the creation of the project and module folder structures for the web services project.
+ * Handles the creation of the project and module folder structures for the REST services project.
  */
-class ServerWebStructureManager {
-    ServerWebStructureManager() {
+class ServerRestServiceStructureManager {
+    ServerRestServiceStructureManager() {
     }
 
     /**
      * Creates the web structure on the file system.
      */
-    void createWebStructure() {
+    void createRestServiceStructure() {
         ProjectHelper.createConfigStructure()
 
         createWebModuleSourceStructure("main")
@@ -26,8 +26,11 @@ class ServerWebStructureManager {
     /**
      * Deletes the web structure from the file system.
      */
-    void deleteWebStructure() {
-        throw new NotImplementedException();
+    void deleteRestServiceStructure() {
+        def modelBasePath = TextTemplate.renderDeep(ServerProperty.get("web.base.path"))
+
+        File file = new File(modelBasePath)
+        file.deleteDir()
     }
 
     /**

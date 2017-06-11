@@ -2,27 +2,26 @@ package com.estep.webkickstart.model.script
 
 import com.estep.webkickstart.model.*
 
-//ModelStructureManager modelManager = new ModelStructureManager()
-//modelManager.createModelStructure()
-//
-//ServerWebStructureManager serverManager = new ServerWebStructureManager()
-//serverManager.createWebStructure()
+ServerModelStructureManager modelManager = new ServerModelStructureManager()
+modelManager.createModelStructure()
+
+ServerRestServiceStructureManager serverManager = new ServerRestServiceStructureManager()
+serverManager.createRestServiceStructure()
 
 ViewStructureManager viewManager = new ViewStructureManager()
 viewManager.createViewStructure()
 
-//copyCheckstyle()
-//copyPmd()
-//
-//ModelStructureCreatorScript modelScript = new ModelStructureCreatorScript()
-//modelScript.execute()
-//
-//ServerWebStructureCreatorScript serverRest = new ServerWebStructureCreatorScript()
-//serverRest.execute()
+copyCheckstyle()
+copyPmd()
 
-ViewStructureCreatorScript viewScript = new ViewStructureCreatorScript();
+ServerModelSourceGeneratorScript modelScript = new ServerModelSourceGeneratorScript()
+modelScript.execute()
+
+ServerRestServiceSourceGeneratorScript serverRest = new ServerRestServiceSourceGeneratorScript()
+serverRest.execute()
+
+ViewSourceGeneratorScript viewScript = new ViewSourceGeneratorScript();
 viewScript.execute()
-
 
 private void copyCheckstyle() {
     StringBuilder buf = new StringBuilder()

@@ -3,12 +3,14 @@ package com.estep.webkickstart.model.script
 import com.estep.webkickstart.model.TemplateCopy
 import com.estep.webkickstart.model.Tuple
 
-class ViewStructureCreatorScript {
+class ViewSourceGeneratorScript {
 
     void execute() {
         copyRootFiles()
-        copyE2eCode()
+//        copyE2eCode()
         copyEnvironments()
+
+        copyAssets()
 
         copyBootstrapCssAssets()
         copyBootstrapFontsAssets()
@@ -36,10 +38,10 @@ class ViewStructureCreatorScript {
         apps.add(new Tuple("angular_cli_json.txt", getPathToViewCode(null, ".angular-cli.json")))
         apps.add(new Tuple("editorconfig.txt", getPathToViewCode(null, ".editorconfig")))
         apps.add(new Tuple("gitignore.txt", getPathToViewCode(null, ".gitignore")))
-        apps.add(new Tuple("karma_conf_js.txt", getPathToViewCode(null, "karma.conf.js")))
+//        apps.add(new Tuple("karma_conf_js.txt", getPathToViewCode(null, "karma.conf.js")))
         apps.add(new Tuple("package_json.txt", getPathToViewCode(null, "package.json")))
 //        apps.add(new Tuple("package_lock_json.txt", getPathToViewCode(null, "package-lock.json")))
-        apps.add(new Tuple("protractor_conf_js.txt", getPathToViewCode(null, "protractor.conf.js")))
+//        apps.add(new Tuple("protractor_conf_js.txt", getPathToViewCode(null, "protractor.conf.js")))
         apps.add(new Tuple("readme_md.txt", getPathToViewCode(null, "README.md")))
         apps.add(new Tuple("tsconfig_json.txt", getPathToViewCode(null, "tsconfig.json")))
         apps.add(new Tuple("tslint_json.txt", getPathToViewCode(null, "tslint.json")))
@@ -52,7 +54,7 @@ class ViewStructureCreatorScript {
         List<Tuple> apps = new ArrayList<>()
         apps.add(new Tuple("app_e2e_spec_ts.txt", getPathToViewCode("e2e", "app.e2e-spec.ts")))
         apps.add(new Tuple("app_po_ts.txt", getPathToViewCode("e2e", "app.po.ts")))
-        apps.add(new Tuple("tsconfig_e2e_json.txt", getPathToViewCode("e2e", "tsconfig.e2e.json.ts")))
+        apps.add(new Tuple("tsconfig_e2e_json.txt", getPathToViewCode("e2e", "tsconfig.e2e.json")))
 
         ScriptHelper.render("view-e2e-templates", apps)
     }
@@ -121,8 +123,6 @@ class ViewStructureCreatorScript {
         List<Tuple> apps = new ArrayList<>()
         apps.add(new Tuple("constants_ts.txt", getPathToViewCode(appRoot, "constants.ts")))
         apps.add(new Tuple("list_result_summary_component_ts.txt", getPathToViewCode(appRoot, "list.result.summary.component.ts")))
-        apps.add(new Tuple("make_draggable_directive_ts.txt", getPathToViewCode(appRoot, "make.draggable.directive.ts")))
-        apps.add(new Tuple("make_dropable_directive_ts.txt", getPathToViewCode(appRoot, "make.dropable.directive.ts")))
         apps.add(new Tuple("name_value_pair_ts.txt", getPathToViewCode(appRoot, "name.value.pair.ts")))
         apps.add(new Tuple("pager_communication_service_ts.txt", getPathToViewCode(appRoot, "pager.communication.service.ts")))
         apps.add(new Tuple("pager_component_html.txt", getPathToViewCode(appRoot, "pager.component.html")))
@@ -132,7 +132,7 @@ class ViewStructureCreatorScript {
         apps.add(new Tuple("progress_component_ts.txt", getPathToViewCode(appRoot, "progress.component.ts")))
         apps.add(new Tuple("response_message_ts.txt", getPathToViewCode(appRoot, "response.message.ts")))
         apps.add(new Tuple("service_error_ts.txt", getPathToViewCode(appRoot, "service.error.ts")))
-        apps.add(new Tuple("service_result_ts.txt", getPathToViewCode(appRoot, "service.result.ts")))
+        apps.add(new Tuple("service_results_ts.txt", getPathToViewCode(appRoot, "service.results.ts")))
         apps.add(new Tuple("session_data_ts.txt", getPathToViewCode(appRoot, "session.data.ts")))
         apps.add(new Tuple("session_helper_ts.txt", getPathToViewCode(appRoot, "session.helper.ts")))
         apps.add(new Tuple("tab_data_ts.txt", getPathToViewCode(appRoot, "tab.data.ts")))
@@ -169,7 +169,7 @@ class ViewStructureCreatorScript {
         List<Tuple> apps = new ArrayList<>()
         apps.add(new Tuple("app_component_css.txt", getPathToViewCode(appRoot, "app.component.css")))
         apps.add(new Tuple("app_component_html.txt", getPathToViewCode(appRoot, "app.component.html")))
-        apps.add(new Tuple("app_component_spec_ts.txt", getPathToViewCode(appRoot, "app.component.spec.ts")))
+//        apps.add(new Tuple("app_component_spec_ts.txt", getPathToViewCode(appRoot, "app.component.spec.ts")))
         apps.add(new Tuple("app_component_ts.txt", getPathToViewCode(appRoot, "app.component.ts")))
         apps.add(new Tuple("app_module_ts.txt", getPathToViewCode(appRoot, "app.module.ts")))
         apps.add(new Tuple("app_routes_ts.txt", getPathToViewCode(appRoot, "app.routes.ts")))
@@ -187,14 +187,30 @@ class ViewStructureCreatorScript {
         copy.copy(tmplFolder + "polyfills.ts", getPathToViewCode(appRoot, "polyfills.ts"))
         copy.copy(tmplFolder + "typings.d.ts", getPathToViewCode(appRoot, "typings.d.ts"))
         copy.copy(tmplFolder + "tsconfig.app.json", getPathToViewCode(appRoot, "tsconfig.app.json"))
-        copy.copy(tmplFolder + "tsconfig.spec.json", getPathToViewCode(appRoot, "tsconfig.spec.json"))
-        copy.copy(tmplFolder + "test.ts", getPathToViewCode(appRoot, "test.ts"))
+//        copy.copy(tmplFolder + "tsconfig.spec.json", getPathToViewCode(appRoot, "tsconfig.spec.json"))
+//        copy.copy(tmplFolder + "test.ts", getPathToViewCode(appRoot, "test.ts"))
 
         List<Tuple> apps = new ArrayList<>()
         apps.add(new Tuple("index_html.txt", getPathToViewCode(appRoot, "index.html")))
         apps.add(new Tuple("styles_css.txt", getPathToViewCode(appRoot, "styles.css")))
 
         ScriptHelper.render("view-src-templates", apps)
+    }
+
+    private void copyAssets() {
+        def appRoot = "src" + File.separator + "assets";
+
+        def tmplFolder = "view-assets" + File.separator;
+        TemplateCopy copy = new TemplateCopy()
+        copy.copy(tmplFolder + "Logo.png", getPathToViewCode(appRoot, "Logo.png"))
+        copy.copy(tmplFolder + "tabs.json", getPathToViewCode(appRoot, "tabs.json"))
+
+        List<Tuple> apps = new ArrayList<>()
+        apps.add(new Tuple("environment_config_json.txt", getPathToViewCode(appRoot, "environment.config.json")))
+        apps.add(new Tuple("environment_production_config_json.txt", getPathToViewCode(appRoot, "environment" +
+                ".production.config.json")))
+
+        ScriptHelper.render("view-assets", apps)
     }
 
     private void copyBootstrapCssAssets() {

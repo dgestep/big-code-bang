@@ -27,21 +27,21 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-task createServerStructure(type: JavaExec) {
-    description 'Creates the server structure on the file system.'
+task generateSource(type: JavaExec) {
+    description 'Generates the source code for the model, view, and controller code.'
 
     // Set main property to name of Groovy script class.
-    main = 'com.estep.webkickstart.model.script.StructureCreatorScript'
+    main = 'com.estep.webkickstart.model.script.SourceCodeGeneratorScript'
 
     // Set classpath for running the Groovy script.
     classpath = sourceSets.main.runtimeClasspath
 }
 
-task removeModelStructure(type: JavaExec) {
+task deleteSource(type: JavaExec) {
     description 'Deletes the model structure from the file system.'
 
     // Set main property to name of Groovy script class.
-    main = 'com.estep.webkickstart.model.script.StructureRemoveScript'
+    main = 'com.estep.webkickstart.model.script.SourceCodeRemoveScript'
 
     // Set classpath for running the Groovy script.
     classpath = sourceSets.main.runtimeClasspath

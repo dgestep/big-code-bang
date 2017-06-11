@@ -27,30 +27,12 @@ import {UserListComponent} from './user/user.list.component';
 import {PagerCommunicationService} from './shared/pager.communication.service';
 import {PagerService} from './shared/pager.service';
 import {PagerComponent} from './shared/pager.component';
-import {HsmHelpDialogComponent} from './home/hsm.help.component';
-import {DocumentSearchComponent} from './document/document.search.component';
 import {ProgressComponent} from './shared/progress.component';
 import {EnvironmentService} from './environment/environment.service';
 import {UserProfileEditComponent} from './user/user.edit.profile.component';
 import {ListResultSummaryComponent} from './shared/list.result.summary.component';
 import {UserProfileAddComponent} from './user/user.add.profile.component';
 import {UserChangePasswordComponent} from './user/user.change.password.component';
-import {CatalogService} from './catalog/catalog.service';
-import {DocumentService} from './document/document.service';
-import {DocumentViewComponent} from './document/document.view.component';
-import {CatalogAddComponent} from './catalog/catalog.add.component';
-import {CatalogComponent} from './catalog/catalog.component';
-import {CatalogDeleteComponent} from './catalog/catalog.delete.component';
-import {CatalogCopyMoveComponent} from './catalog/catalog.copy.move.component';
-import {CatalogSelectorComponent} from './catalog/catalog.selector.component';
-import {CatalogUnassociateComponent} from './catalog/catalog.unassociate.component';
-import {DocumentUnassociateComponent} from './catalog/document.unassociate.component';
-import {DocumentCopyMoveComponent} from './catalog/document.copy.move.component';
-import {CatalogAssociateComponent} from './catalog/catalog.associate.component';
-import {CatalogEditComponent} from './catalog/catalog.edit.component';
-import {MakeDropableDirective} from './shared/make.dropable.directive';
-import {MakeDraggableDirective} from './shared/make.draggable.directive';
-import {TopLevelCatagoryComponent} from './catalog/top.level.catalog.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +62,8 @@ import {TopLevelCatagoryComponent} from './catalog/top.level.catalog.component';
     MdSlideToggleModule,
     MdAutocompleteModule
   ],
-  providers: [UserService, SessionHelper, ViewHelper, LoggedInGuard, PagerCommunicationService, PagerService, EnvironmentService],
+  providers: [UserService, SessionHelper, ViewHelper, LoggedInGuard, PagerCommunicationService, PagerService,
+    EnvironmentService, TabManagerService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -3,11 +3,36 @@ package com.estep.webkickstart.model
 class TemplateCopy {
 
     void copy(fileName, destination) {
-        URI uri = this.getClass().getClassLoader().getResource(fileName).toURI()
-        String data = new File(uri).text
+        FileInputStream fis = null
+        FileOutputStream fos = null
+        try {
+            String sourceName = getSourceName(fileName)
+            fis = new FileInputStream(sourceName)
+            fos = new FileOutputStream(destination)
 
-        File to = new File(destination);
-        to.write(data)
+            byte[] buffer = new byte[1024]
+            int noOfBytes = 0
+
+            while ((noOfBytes = fis.read(buffer)) != -1) {
+                fos.write(buffer, 0, noOfBytes);
+            }
+        } finally {
+            if (fis != null) {
+                fis.close()
+            }
+            if (fos != null) {
+                fos.close()
+            }
+        }
+    }
+
+    private String getSourceName(fileName) {
+        String sourceFileName = fileName;
+        if (!new File(fileName).exists()) {
+            URI uri = this.getClass().getClassLoader().getResource(fileName).toURI()
+            sourceFileName = new File(uri).absolutePath;
+        }
+        sourceFileName
     }
 
     void copyAll(sourceFolder, destination) {
@@ -15,12 +40,10 @@ class TemplateCopy {
         File source = new File(uri)
         File[] files = source.listFiles()
         for (File file : files) {
-            String contents = file.text
-
-            File to = new File(destination + File.separator + file.getName())
-            to.write(contents)
+            String sourceFileName = file.absolutePath;
+            String destinationFileName = destination + File.separator + file.name;
+            copy(sourceFileName, destinationFileName)
         }
-
     }
 
     void renderAndCopy(templateName, destination) {

@@ -5,8 +5,8 @@ import com.estep.webkickstart.ProjectHelper
 /**
  * Handles the creation of the project and module folder structures for the Model projects.
  */
-class ModelStructureManager {
-    ModelStructureManager() {
+class ServerModelStructureManager {
+    ServerModelStructureManager() {
     }
 
     /**

@@ -49,7 +49,11 @@ class TextTemplate {
                 "codeAuthor"             : ServerProperty.get("code_author"),
                 "webWarName"             : ServerProperty.get("web_war_name"),
                 "viewRootFolderName"     : ViewProperty.get("view_root_folder_name"),
-                "applicationTitle"       : ViewProperty.get("application_title")
+                "applicationTitle"       : ViewProperty.get("application_title"),
+                "contextRoot"            : ViewProperty.get("context_root"),
+                "localhostPort"          : ViewProperty.get("localhost_port"),
+                "serverHostName"         : ViewProperty.get("server_host_name"),
+                "serverPort"             : ViewProperty.get("server_port")
         ]
     }
 

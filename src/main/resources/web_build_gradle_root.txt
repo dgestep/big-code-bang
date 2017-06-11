@@ -1,10 +1,5 @@
 import java.text.SimpleDateFormat
 
-plugins {
-	id "com.moowork.gulp" version "0.13"
-	id "com.moowork.node" version "0.13"
-}
-
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'eclipse-wtp'
@@ -96,42 +91,13 @@ findbugs {
 	reportLevel = "high"
 }
 
-gulp_default.dependsOn 'npmInstall'
-gulp_default.dependsOn 'installGulp'
-
-processResources.dependsOn gulp_default
-
-gulp_build.dependsOn 'installGulp'
-gulp_build.dependsOn 'npmInstall'
-
 war.dependsOn copyVersionTxt
-build.dependsOn gulp_build
-
-gulp {
-	workDir = file("||||project.webAppDirName}/node_modules")
-	colors = true
-	bufferOutput = false
-}
-
-node {
-	version = '6.7.0'
-	npmVersion = '3.10.9'
-	nodeModulesDir = file("||||project.webAppDirName}")
-	download = true
-}
 
 war {
 	archiveName '${webWarName}'
 	webInf {
 		from webInfPath
 	}
-	rootSpec.exclude ("**/karma*.*")
-	rootSpec.exclude ("**/*.ts")
-    rootSpec.exclude ("**/spec/**")
-    rootSpec.exclude ("**/jasmine/**")
-    rootSpec.exclude ("**/karma/**")
-    rootSpec.exclude ("**/npm/**")
-    rootSpec.exclude ("**/typescript/**")
 	classpath fileTree(webInfPath + "/" + "lib")
 	duplicatesStrategy org.gradle.api.file.DuplicatesStrategy.EXCLUDE
 }

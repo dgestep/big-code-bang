@@ -1,0 +1,27 @@
+[
+  {
+    "selector": "app-user-profile",
+    "title": "User Profile",
+    "closeable": true
+  },
+  {
+    "selector": "app-change-password",
+    "title": "Change Password",
+    "closeable": true
+  },
+  {
+    "selector": "app-add-profile",
+    "title": "Add Profile",
+    "closeable": true
+  },
+  {
+    "selector": "app-edit-profile",
+    "title": "Edit Profile",
+    "closeable": true
+  },
+  {
+    "selector": "app-user-list",
+    "title": "User Administration",
+    "closeable": true
+  }
+]

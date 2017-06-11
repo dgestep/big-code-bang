@@ -3,8 +3,8 @@ package com.estep.webkickstart.model.script
 import com.estep.webkickstart.model.TemplateCopy
 import com.estep.webkickstart.model.Tuple
 
-class ModelStructureCreatorScript {
-    ModelStructureCreatorScript() {
+class ServerModelSourceGeneratorScript {
+    ServerModelSourceGeneratorScript() {
     }
 
     void execute() {

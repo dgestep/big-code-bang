@@ -30,7 +30,7 @@ export class HeaderComponent {
     this.userService.logout().subscribe((result) => {
         if (result instanceof ServiceResults) {
           this.sessionHelper.abandon();
-          this.viewHelper.setMessage('You\'re done. Have a nice day!', ALERT_SUCC);
+          this.viewHelper.setMessage('You\\'re done. Have a nice day!', ALERT_SUCC);
 
           this.router.navigate(['app-session-lost']);
         } else {

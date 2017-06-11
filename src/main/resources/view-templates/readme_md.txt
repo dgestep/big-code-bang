@@ -10,7 +10,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     - Install dependencies declared in the package.json by running `npm install`
 
 
-NOTE: all ng commands should be executed from the afrl-triad-view directory.
+NOTE: all ng commands should be executed from the ${viewRootFolderName} directory.
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

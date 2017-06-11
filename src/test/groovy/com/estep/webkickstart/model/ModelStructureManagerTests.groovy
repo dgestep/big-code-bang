@@ -1,11 +1,11 @@
 package com.estep.webkickstart.model
 
 class ModelStructureManagerTests extends GroovyTestCase {
-    ModelStructureManager manager
+    ServerModelStructureManager manager
     TemplateCopy templateCopy
 
     void setUp() {
-        manager = new ModelStructureManager()
+        manager = new ServerModelStructureManager()
         templateCopy = new TemplateCopy()
     }
 
