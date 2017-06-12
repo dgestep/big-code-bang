@@ -5,7 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
   - Install NodeJS and NPM
     - Issue command: `node -v`. If node is installed, it will display the version.
     - If node is not installed, download [node.js](https://nodejs.org/en/) and follow directions to install it. After it installs, issue the `node -v` command to verify it installed successfully.
-  - From the command prompt, navigate to the afrl-triad-view directory
+  - From the command prompt, navigate to the ${viewRootFolderName} directory
     - Initialize NPM by running `npm init`
     - Install dependencies declared in the package.json by running `npm install`
 
