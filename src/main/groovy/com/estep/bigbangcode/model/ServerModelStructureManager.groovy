@@ -1,6 +1,7 @@
-package com.estep.webkickstart.model
+package com.estep.bigbangcode.model
 
-import com.estep.webkickstart.ProjectHelper
+import com.estep.bigbangcode.ProjectHelper
+import com.estep.bigbangcode.ProjectHelper
 
 /**
  * Handles the creation of the project and module folder structures for the Model projects.

@@ -1,7 +1,8 @@
-package com.estep.webkickstart.model
+package com.estep.bigbangcode.model
 
-import com.estep.webkickstart.ProjectHelper
-import com.estep.webkickstart.model.script.ScriptHelper
+import com.estep.bigbangcode.ProjectHelper
+import com.estep.bigbangcode.ProjectHelper
+import com.estep.bigbangcode.model.script.ScriptHelper
 import sun.reflect.generics.reflectiveObjects.NotImplementedException
 
 /**

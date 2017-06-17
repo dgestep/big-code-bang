@@ -1,8 +1,8 @@
-package com.estep.webkickstart.model.script
+package com.estep.bigbangcode.model.script
 
-import com.estep.webkickstart.model.ServerProperty
-import com.estep.webkickstart.model.TextTemplate
-import com.estep.webkickstart.model.ViewStructureManager
+import com.estep.bigbangcode.model.ServerProperty
+import com.estep.bigbangcode.model.TextTemplate
+import com.estep.bigbangcode.model.ViewStructureManager
 
 def prop = ServerProperty.get("project_base_folder")
 def projectBasePath = TextTemplate.renderDeep(prop)

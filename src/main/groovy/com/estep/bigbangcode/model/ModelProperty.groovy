@@ -1,4 +1,4 @@
-package com.estep.webkickstart.model
+package com.estep.bigbangcode.model
 
 root.folder.name = '${companyName}-${productName}'
 root.base.path = '${projectBase}/${rootFolderName}'

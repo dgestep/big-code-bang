@@ -1,7 +1,7 @@
-package com.estep.webkickstart
+package com.estep.bigbangcode
 
-import com.estep.webkickstart.model.ServerProperty
-import com.estep.webkickstart.model.TextTemplate
+import com.estep.bigbangcode.model.ServerProperty
+import com.estep.bigbangcode.model.TextTemplate
 
 /**
  * Contains static helper methods for project creation purposes.

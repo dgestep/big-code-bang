@@ -31,7 +31,7 @@ task generateProjects(type: JavaExec) {
     description 'Generates the projects for the model, view, and controller applications.'
 
     // Set main property to name of Groovy script class.
-    main = 'com.estep.webkickstart.model.script.SourceCodeGeneratorScript'
+    main = 'com.estep.bigbangcode.model.script.SourceCodeGeneratorScript'
 
     // Set classpath for running the Groovy script.
     classpath = sourceSets.main.runtimeClasspath
@@ -41,7 +41,7 @@ task generateViewProject(type: JavaExec) {
     description 'Generates the View project'
 
     // Set main property to name of Groovy script class.
-    main = 'com.estep.webkickstart.model.script.ViewSourceGeneratorScript'
+    main = 'com.estep.bigbangcode.model.script.ViewSourceGeneratorScript'
 
     // Set classpath for running the Groovy script.
     classpath = sourceSets.main.runtimeClasspath
@@ -51,7 +51,7 @@ task deleteProjects(type: JavaExec) {
     description 'Deletes the projects from the file system.'
 
     // Set main property to name of Groovy script class.
-    main = 'com.estep.webkickstart.model.script.SourceCodeRemoveScript'
+    main = 'com.estep.bigbangcode.model.script.SourceCodeRemoveScript'
 
     // Set classpath for running the Groovy script.
     classpath = sourceSets.main.runtimeClasspath

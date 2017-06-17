@@ -1,6 +1,6 @@
-package com.estep.webkickstart.model
+package com.estep.bigbangcode.model
 
-import com.estep.webkickstart.model.script.ScriptHelper
+import com.estep.bigbangcode.model.script.ScriptHelper
 
 class TemplateCopyTests extends GroovyTestCase {
     TemplateCopy manager

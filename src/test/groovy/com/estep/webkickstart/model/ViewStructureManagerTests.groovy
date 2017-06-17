@@ -1,4 +1,4 @@
-package com.estep.webkickstart.model
+package com.estep.bigbangcode.model
 
 class ViewStructureManagerTests extends GroovyTestCase {
     ViewStructureManager manager

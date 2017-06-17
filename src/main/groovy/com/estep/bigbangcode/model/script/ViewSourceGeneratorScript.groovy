@@ -1,13 +1,14 @@
-package com.estep.webkickstart.model.script
+package com.estep.bigbangcode.model.script
 
-import com.estep.webkickstart.model.TemplateCopy
-import com.estep.webkickstart.model.Tuple
+import com.estep.bigbangcode.model.TemplateCopy
+import com.estep.bigbangcode.model.Tuple
+import com.estep.bigbangcode.model.TemplateCopy
+import com.estep.bigbangcode.model.Tuple
 
 class ViewSourceGeneratorScript {
 
     void execute() {
         copyRootFiles()
-//        copyE2eCode()
         copyEnvironments()
 
         copyAssets()

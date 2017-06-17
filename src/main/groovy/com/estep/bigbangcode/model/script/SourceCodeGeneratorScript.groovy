@@ -1,6 +1,6 @@
-package com.estep.webkickstart.model.script
+package com.estep.bigbangcode.model.script
 
-import com.estep.webkickstart.model.*
+import com.estep.bigbangcode.model.*
 
 ServerModelStructureManager modelManager = new ServerModelStructureManager()
 modelManager.createModelStructure()
