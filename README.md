@@ -9,6 +9,6 @@ regards to the implementation details. Big Code Bang generates the projects and 
  containing your View logic.  Go ahead and give it a bang! :-)
 
 
-Almost done... More to follow... 
+**Note:** This project is almost done... Stay tuned, more to follow... 
 
 
