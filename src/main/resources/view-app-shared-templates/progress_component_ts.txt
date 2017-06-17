@@ -1,0 +1,8 @@
+import {Component} from '@angular/core';
+
+@Component({
+  selector: 'app-progress-spinner',
+  template: '<md-spinner style="margin:0 auto;" mode="indeterminate"></md-spinner>'
+})
+export class ProgressComponent {
+}

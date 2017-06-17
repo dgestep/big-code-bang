@@ -5,6 +5,7 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.DefaultCsrfToken;
+import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
@@ -26,6 +27,7 @@ import java.lang.reflect.Method;
  * @author ${codeAuthor}.
  */
 // CHECKSTYLE:OFF
+@Repository("CsrfTokenRepository")
 public class CustomCookieCsrfTokenRepository implements CsrfTokenRepository {
     public static final String DEFAULT_CSRF_COOKIE_NAME = "XSRF-TOKEN";
 

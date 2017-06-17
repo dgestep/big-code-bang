@@ -1,0 +1,184 @@
+import {Injectable} from '@angular/core';
+import {Http, Headers} from '@angular/http';
+import {SessionHelper} from '../shared/session.helper';
+import {ViewHelper} from '../shared/view.helper';
+import {Subject} from 'rxjs/Subject';
+import {UserProfile} from './user.profile';
+import {ServiceResults} from '../shared/service.results';
+import {UserPasswordData} from './user.password.data';
+
+@Injectable()
+export class UserService {
+  private profileChangeSubject = new Subject<UserProfile>();
+  profileChangeObservable = this.profileChangeSubject.asObservable();
+
+  constructor(private http: Http, private sessionHelper: SessionHelper, private viewHelper: ViewHelper) {
+  }
+
+  /**
+   * Returns the user profile information related to the supplied UUID.
+   * @param uuid identifies the user.
+   * @returns {Observable<R>} contains the user information.
+   */
+  getUserInfo(uuid: string) {
+    const headers: Headers = this.viewHelper.headersForm();
+    const url = this.viewHelper.service('/user/retrieve?uuid=' + uuid);
+    return this.http.get(url, {headers})
+      .map(res => this.viewHelper.extractData(res))
+      .catch(res => this.viewHelper.handleError(res));
+  }
+
+  /**
+   * Saves the supplied user information.
+   * @param userProfile the user information.
+   * @returns {Observable<R>} the observable.
+   */
+  saveUser(userProfile: UserProfile) {
+    const headers: Headers = this.viewHelper.headersJson();
+    const url = this.viewHelper.service('/user/profile/save');
+    return this.http.post(url, userProfile, {headers})
+      .map(res => {
+        const data: object = this.viewHelper.extractData(res);
+        if (data instanceof ServiceResults) {
+          this.profileChangeSubject.next(userProfile);
+        }
+
+        return data;
+      })
+      .catch(res => this.viewHelper.handleError(res));
+  }
+
+  /**
+   * Adds the supplied user profile.
+   * @param userProfile the user profile.
+   * @returns {Observable<R>} the observable.
+   */
+  addUser(userProfile: UserProfile) {
+    const headers: Headers = this.viewHelper.headersJson();
+    const url = this.viewHelper.service('/user/profile/add');
+    return this.http.post(url, userProfile, {headers})
+      .map(res => {
+        const data: object = this.viewHelper.extractData(res);
+        if (data instanceof ServiceResults) {
+          this.profileChangeSubject.next(userProfile);
+        }
+
+        return data;
+      })
+      .catch(res => this.viewHelper.handleError(res));
+  }
+
+  /**
+   * Issues a user search.
+   * @param searchTerms the search criteria.
+   * @returns {Observable<R>} the observable.
+   */
+  searchUsers(searchTerms: any) {
+    const headers: Headers = this.viewHelper.headersJson();
+    const url = this.viewHelper.service('/user/search');
+    return this.http.post(url, searchTerms, {headers})
+      .map(res => this.viewHelper.extractData(res))
+      .catch(res => this.viewHelper.handleError(res));
+  }
+
+  /**
+   * Sends a password reset request.
+   * @param emailAddress the users email address.
+   * @returns {Observable<R>} the observable.
+   */
+  sendPasswordResetConfirm(emailAddress: string) {
+    const headers: Headers = this.viewHelper.headersForm();
+    const url = this.viewHelper.service('/user/reset-confirmation');
+    return this.http.post(url, 'emailAddress=' + emailAddress, {headers})
+      .map(res => this.viewHelper.extractData(res))
+      .catch(res => this.viewHelper.handleError(res));
+  }
+
+  /**
+   * Issues a password reset using the supplied confirmation data.
+   * @param formData the HTML form data.
+   * @returns {Observable<R>} the observable.
+   */
+  resetPasswordByConfirm(formData: any) {
+    const headers: Headers = this.viewHelper.headersForm();
+    const url = this.viewHelper.service('/user/reset-password-by-confirmation');
+    return this.http.post(url, formData, {headers})
+      .map(res => this.viewHelper.extractData(res))
+      .catch(res => this.viewHelper.handleError(res));
+  }
+
+  /**
+   * Issues a password onResult.
+   * @param userPasswordData the password information.
+   * @returns {Observable<R>} the observable.
+   */
+  changeUserPassword(userPasswordData: UserPasswordData) {
+    const headers: Headers = this.viewHelper.headersForm();
+    const url = this.viewHelper.service('/user/password');
+    const params = 'emailAddress=' + userPasswordData.emailAddress + '&newPassword='
+      + userPasswordData.newPassword + '&currentPassword=' + userPasswordData.currentPassword;
+    return this.http.post(url, params, {headers})
+      .map(res => this.viewHelper.extractData(res))
+      .catch(res => this.viewHelper.handleError(res));
+  }
+
+  /**
+   * Issues a user delete.
+   * @param uuidJson contains the UUID identifying the user to delete.
+   * @returns {Observable<R>} the observable.
+   */
+  deleteUser(uuidJson: any) {
+    const headers: Headers = this.viewHelper.headersJson();
+    const url = this.viewHelper.service('/user/profile/delete');
+    return this.http.post(url, uuidJson, {headers})
+      .map(res => {
+        const data: object = this.viewHelper.extractData(res);
+        if (data instanceof ServiceResults) {
+          const userProfile: UserProfile = new UserProfile();
+          userProfile.uuid = uuidJson.uuid;
+          this.profileChangeSubject.next(userProfile);
+        }
+
+        return data;
+      })
+      .catch(res => this.viewHelper.handleError(res));
+  }
+
+  /**
+   * Authenticates a user.
+   * @param username identifies the user.
+   * @param password the credentials.
+   * @returns {Observable<R>} contains the message.
+   */
+  login(username: String, password: String) {
+    const headers = this.viewHelper.headersForm();
+    const url = this.viewHelper.service('/security/login');
+
+    return this.http.post(url, 'emailAddress=' + username + '&password=' + password, {headers})
+      .map(res => {
+        return this.viewHelper.extractData(res);
+      })
+      .catch(res => this.viewHelper.handleError(res));
+  }
+
+  /**
+   * Logs a user out of the application.
+   *
+   * @returns {Observable<R>} contains the message.
+   */
+  logout() {
+    let token = this.sessionHelper.getSessionObject().token;
+    // if token is null, we aren't logged in.
+    if (token === null) {
+      token = '';
+    }
+    this.sessionHelper.triggerLoginStateChange();
+
+    const headers: Headers = this.viewHelper.headersForm();
+    const url = this.viewHelper.service('/security/logoff');
+    return this.http
+      .post(url, '_csrf=' + token, {headers})
+      .map(res => this.viewHelper.extractData(res))
+      .catch(res => this.viewHelper.handleError(res));
+  }
+}

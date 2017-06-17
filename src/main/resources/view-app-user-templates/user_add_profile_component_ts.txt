@@ -1,0 +1,42 @@
+import {Component, Input, OnInit} from '@angular/core';
+import {UserService} from './user.service';
+import {ViewHelper} from '../shared/view.helper';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {UserProfile} from './user.profile';
+import {ServiceResults} from '../shared/service.results';
+import {UserProfileFormData} from './user.profile.form.data';
+import {ServiceError} from '../shared/service.error';
+import {ResponseMessage} from '../shared/response.message';
+import {ALERT_SUCC} from '../shared/constants';
+
+@Component({
+  selector: 'app-add-profile',
+  templateUrl: 'add.profile.component.html'
+})
+export class UserProfileAddComponent implements OnInit {
+  formData: FormGroup;
+
+  constructor(private userService: UserService, private viewHelper: ViewHelper, private formBuilder: FormBuilder) {
+  }
+
+  ngOnInit(): void {
+    const userProfileFormData: UserProfileFormData = new UserProfileFormData();
+    userProfileFormData.activeFlag.push('Y');
+    userProfileFormData.role.push('USER');
+    this.formData = this.formBuilder.group(userProfileFormData);
+  }
+
+  save(userProfile: UserProfile): void {
+    this.userService.addUser(userProfile).subscribe(response => {
+        if (response instanceof ServiceResults) {
+          this.viewHelper.setMessage('Saved OK', ALERT_SUCC);
+        } else {
+          const serviceError = response as ServiceError;
+          this.viewHelper.setMessages(serviceError.messages);
+        }
+      },
+      error => {
+        this.viewHelper.setMessages(error as Array<ResponseMessage>);
+      });
+  }
+}

@@ -1,0 +1,70 @@
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
+import {routes} from './app.routes';
+import {AppComponent} from './app.component';
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {
+  MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule,
+  MdInputModule, MdGridListModule, MdSnackBarModule, MdTabsModule, MdProgressSpinnerModule, MdSelectModule,
+  MdTooltipModule, MdSlideToggleModule, MdAutocompleteModule
+} from '@angular/material';
+import {HeaderComponent} from './header/header.component';
+import {UserService} from './user/user.service';
+import {SessionHelper} from './shared/session.helper';
+import {ViewHelper} from './shared/view.helper';
+import {RouterModule} from '@angular/router';
+import {FooterComponent} from './footer/footer.component';
+import {LoginComponent} from './security/login.component';
+import {HomeComponent} from './home/home.component';
+import {LoggedInGuard} from './security/logged-in.guard';
+import {SessionLostComponent} from './security/session.lost.component';
+import {UserProfileComponent} from './user/user.profile.component';
+import {TabManagerService} from './shared/tab.manager.service';
+import {UserListComponent} from './user/user.list.component';
+import {PagerCommunicationService} from './shared/pager.communication.service';
+import {PagerService} from './shared/pager.service';
+import {PagerComponent} from './shared/pager.component';
+import {ProgressComponent} from './shared/progress.component';
+import {EnvironmentService} from './environment/environment.service';
+import {UserProfileEditComponent} from './user/user.edit.profile.component';
+import {ListResultSummaryComponent} from './shared/list.result.summary.component';
+import {UserProfileAddComponent} from './user/user.add.profile.component';
+import {UserChangePasswordComponent} from './user/user.change.password.component';
+
+@NgModule({
+  declarations: [
+    AppComponent, HeaderComponent, FooterComponent, LoginComponent, HomeComponent, SessionLostComponent,
+    UserProfileComponent, UserListComponent, PagerComponent, ProgressComponent, UserProfileEditComponent,
+    ListResultSummaryComponent, UserProfileAddComponent, UserChangePasswordComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    RouterModule.forRoot(routes),
+    ReactiveFormsModule,
+    HttpModule,
+    BrowserAnimationsModule,
+    MdButtonModule,
+    MdMenuModule,
+    MdCardModule,
+    MdToolbarModule,
+    MdIconModule,
+    MdInputModule,
+    MdGridListModule,
+    MdSnackBarModule,
+    MdTabsModule,
+    MdProgressSpinnerModule,
+    MdSelectModule,
+    MdTooltipModule,
+    MdSlideToggleModule,
+    MdAutocompleteModule
+  ],
+  providers: [UserService, SessionHelper, ViewHelper, LoggedInGuard, PagerCommunicationService, PagerService,
+    EnvironmentService, TabManagerService],
+  bootstrap: [AppComponent]
+})
+export class AppModule {
+}

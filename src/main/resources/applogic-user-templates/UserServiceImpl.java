@@ -366,7 +366,7 @@ public class UserServiceImpl implements UserService {
         sendEmail(to, String.format(body, newPassword));
         //
         //        Logger logger = LogFactory.getLogger();
-        //        logger.debug("\nPassword Reset Email Contents:\n" + body);
+        //        logger.debug("\\nPassword Reset Email Contents:\\n" + body);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -395,7 +395,7 @@ public class UserServiceImpl implements UserService {
         sendEmail(to, String.format(body, body));
         //
         //        Logger logger = LogFactory.getLogger();
-        //        logger.debug("\nPassword Reset Email Contents:\n" + body);
+        //        logger.debug("\\nPassword Reset Email Contents:\\n" + body);
     }
 
     /**

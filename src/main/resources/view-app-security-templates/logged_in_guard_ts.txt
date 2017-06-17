@@ -1,0 +1,16 @@
+import {CanActivate, Router} from '@angular/router';
+import {Injectable} from '@angular/core';
+import {SessionHelper} from '../shared/session.helper';
+
+@Injectable()
+export class LoggedInGuard implements CanActivate {
+  constructor(private sessionHelper: SessionHelper, private router: Router) {}
+
+  canActivate() {
+    const loggedId: boolean = this.sessionHelper.isLoggedIn();
+    if (!loggedId) {
+      this.router.navigate(['app-session-lost']);
+    }
+    return loggedId;
+  }
+}

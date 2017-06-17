@@ -1,0 +1,20 @@
+/* ==========================================================================
+   footer styles
+   ========================================================================== */
+.footer-logo {
+  max-height: 20px;
+  width: auto;
+  margin-top: -5px;
+}
+.footer {
+  min-height: 44px;
+  margin-bottom: 0px;
+}
+.footer > div{
+  height: 44px;
+  width: 100%;
+  padding: 10px;
+  background-color: #98a5a1;
+  border-top: 1px solid;
+  border-top-color: #889390;
+}

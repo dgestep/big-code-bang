@@ -1,0 +1,109 @@
+import {SESSION_OBJECT} from './constants';
+import {SessionData} from './session.data';
+import {Injectable, OnDestroy, OnInit} from '@angular/core';
+import {Subject} from 'rxjs/Subject';
+import {UserProfile} from '../user/user.profile';
+import {TabManagerService} from './tab.manager.service';
+
+@Injectable()
+export class SessionHelper implements OnDestroy {
+  sessionData: SessionData;
+  loggedInMonitor: Subject<boolean> = new Subject<boolean>();
+
+  constructor(private tabManager: TabManagerService) {
+    this.triggerLoginStateChange();
+  }
+
+  ngOnDestroy(): void {
+    this.loggedInMonitor.unsubscribe();
+  }
+
+  /**
+   * Returns the session data or null if not logged in.
+   * @returns {SessionData} the session data or null.
+   */
+  getSessionObject(): SessionData {
+    let data: SessionData = null;
+    if (this.isLoggedIn()) {
+      if (this.sessionData != null) {
+        data = this.sessionData;
+      } else {
+        data = this.sessionData = JSON.parse(sessionStorage.getItem(SESSION_OBJECT)) as SessionData;
+      }
+    }
+    return data;
+  }
+
+  /**
+   * Returns true if the logged in user is an administrator.
+   * @returns {boolean} true if an administrator.
+   */
+  isAdmin(): boolean {
+    return this.getSessionObject().role === 'ADMIN';
+  }
+
+  /**
+   * Sets the supplied data to the session.
+   * @param data the data.
+   */
+  setSessionData(data: SessionData) {
+    if (data !== null) {
+      sessionStorage.setItem(SESSION_OBJECT, JSON.stringify(data));
+      this.sessionData = data;
+    }
+  }
+
+  /**
+   * Applies the supplied user profile data to the current session.
+   * @param userProfile the user profile.
+   */
+  setSessionDataFromProfile(userProfile: UserProfile) {
+    if (userProfile != null) {
+      this.sessionData.emailAddress = userProfile.emailAddress;
+      this.sessionData.firstName = userProfile.firstName;
+      this.sessionData.lastName = userProfile.lastName;
+      this.sessionData.userUuid = userProfile.uuid;
+      this.sessionData.role = userProfile.role;
+    }
+  }
+
+  /**
+   * Creates a user profile instance using the data from the supplied session data.
+   * @param sessionData the session data.
+   */
+  createProfileFromSessionData(sessionData: SessionData) {
+    const userProfile: UserProfile = new UserProfile();
+    if (sessionData != null) {
+      userProfile.uuid = sessionData.userUuid;
+      userProfile.firstName = sessionData.firstName;
+      userProfile.lastName = sessionData.lastName;
+      userProfile.emailAddress = sessionData.emailAddress;
+      userProfile.role = sessionData.role;
+    }
+    return userProfile;
+  }
+
+  /**
+   * Removes the session data.
+   */
+  abandon() {
+    sessionStorage.removeItem(SESSION_OBJECT);
+    this.tabManager.clearTabs();
+    this.triggerLoginStateChange();
+  }
+
+  /**
+   * Returns true if their is a session associated with a logged in user.
+   * @returns {boolean} true if logged in.
+   */
+  isLoggedIn() {
+    return sessionStorage.getItem(SESSION_OBJECT) !== null;
+  }
+
+  /**
+   * Updates the logged in monitor with the current login state.
+   */
+  triggerLoginStateChange() {
+    this.loggedInMonitor.next(this.isLoggedIn());
+  }
+}

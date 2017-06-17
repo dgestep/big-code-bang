@@ -42,7 +42,7 @@ public final class EnvironmentConfiguration {
         System.out.println("");
         System.out.println("=> Begin Runtime Environment Region Configuration");
 
-        System.out.println("=> Looking for System Property named: " + RUNTIME_SYSTEM_PROPERTY);
+        System.out.println("=> Looking for System ServerProperty named: " + RUNTIME_SYSTEM_PROPERTY);
         final String regionValue = System.getProperty(RUNTIME_SYSTEM_PROPERTY);
         System.out.println("=> " + RUNTIME_SYSTEM_PROPERTY + ": " + regionValue);
 

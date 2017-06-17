@@ -1,0 +1,5 @@
+[
+  {
+    "rest.service.uri" : "http://${serverHostName}:${serverPort}/${contextRoot}/restcontroller"
+  }
+]

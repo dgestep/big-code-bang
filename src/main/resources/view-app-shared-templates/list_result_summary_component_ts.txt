@@ -1,0 +1,11 @@
+import {Component, Input} from '@angular/core';
+
+@Component({
+  selector: 'app-list-result-summary',
+  template: '<em>{{listData.length}} rows returned</em>'
+})
+export class ListResultSummaryComponent {
+  @Input()
+  listData: Array<any>;
+}
+

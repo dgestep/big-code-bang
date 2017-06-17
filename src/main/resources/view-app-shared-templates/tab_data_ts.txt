@@ -1,0 +1,13 @@
+export class TabData {
+  id: string;
+  title: string;
+  selector: string;
+  closeable = true;
+  params: Map<string, string>;
+
+  constructor(selector: string, title: string, params: Map<string, string>) {
+    this.selector = selector;
+    this.title = title;
+    this.params = params;
+  }
+}

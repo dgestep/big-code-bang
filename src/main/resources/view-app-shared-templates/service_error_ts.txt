@@ -1,0 +1,7 @@
+export class ServiceError {
+  messages: Array<any>;
+
+  constructor(msg: Array<any>) {
+    this.messages = msg;
+  }
+}

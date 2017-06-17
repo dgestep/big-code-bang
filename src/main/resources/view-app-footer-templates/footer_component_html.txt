@@ -1,0 +1,7 @@
+<footer class="footer">
+    <div>
+        <img class="footer-logo" alt="${applicationTitle} Logo" src="assets/Logo.png"/>
+        <small>&copy; ${applicationTitle}. All rights reserved.</small>
+    </div>
+</footer>
+

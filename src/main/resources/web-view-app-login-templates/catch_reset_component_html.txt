@@ -1,3 +1,0 @@
-<main>
-    <res-messages></res-messages>
-</main>

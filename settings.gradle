@@ -16,4 +16,4 @@ include 'api'
 include 'services:webservice'
 */
 
-rootProject.name = 'esteptek.web.kickstart'
+rootProject.name = 'big.bang.code'

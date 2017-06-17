@@ -1,0 +1,120 @@
+<app-progress-spinner *ngIf="!users"></app-progress-spinner>
+
+<div class="tab-pane" *ngIf="users">
+  <button (click)="openAddTab()" class="pull-right" mdTooltip="Create a New User Profile" mdTooltipPosition="left" md-mini-fab color="accent"><md-icon>open_in_new</md-icon></button>
+  <button (click)="toggleArea()" class="pull-right" mdTooltip="Search for users" mdTooltipPosition="above" md-mini-fab color="primary"><md-icon>find_in_page</md-icon></button>
+
+  <fieldset>
+    <legend>User Administration</legend>
+
+    <div class="filter-area center-block" *ngIf="searchAreaFlag === 'EXPANDED'">
+      <md-card>
+          <md-card-content>
+            <form class="form-horizontal" [formGroup]="formData">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">&nbsp;</label>
+                <div class="col-sm-4">
+                  <md-input-container>
+                    <input mdInput type="text" placeholder="name (ex Jim Smith)" formControlName="name" size="35">
+                  </md-input-container>
+                </div>
+
+                <label class="col-sm-2 control-label">&nbsp;</label>
+                <div class="col-sm-4">
+                  <md-input-container>
+                    <input mdInput type="email" placeholder="email address" formControlName="emailAddress" size="40">
+                  </md-input-container>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">&nbsp;</label>
+                <div class="col-sm-4">
+                  <md-select placeholder="active status" formControlName="activeFlag">
+                    <md-option value=""></md-option>
+                    <md-option value="Y">Yes</md-option>
+                    <md-option value="N">No</md-option>
+                  </md-select>
+                </div>
+
+                <label class="col-sm-2 control-label">&nbsp;</label>
+                <div class="col-sm-4">
+                  <md-select placeholder="role" formControlName="role">
+                    <md-option value=""></md-option>
+                    <md-option value="USER">Site Users</md-option>
+                    <md-option value="ADMIN">Administrators</md-option>
+                  </md-select>
+                </div>
+              </div>
+            </form>
+          </md-card-content>
+          <md-card-actions>
+            <hr />
+            <div class="center-block">
+              <button type="button" color="primary" (click)="search()" md-fab>Search</button>
+              <button type="button" (click)="formData.reset()" md-button>Clear Form</button>
+              <button type="button" (click)="toggleArea()" md-button>Cancel</button>
+            </div>
+          </md-card-actions>
+        </md-card>
+    </div>
+  </fieldset>
+
+  <table class="table table-striped table-hover" *ngIf="pageData.length > 0">
+    <thead>
+      <th>&nbsp;</th>
+      <th>Email Address</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Role</th>
+      <th>Active</th>
+      <th>Created On</th>
+      <th>Last Modified</th>
+      <th>Last Logged In</th>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let user of pageData; let i = index">
+        <td>
+          <div *ngIf="deleteSelect !== i &&  resetSelect !== i">
+            <a (click)="triggerDeleteConfirmation(i)" class="btn btn-default btn-sm" mdTooltip="Deletes this user" mdTooltipPosition="right">
+              <i class="fa fa-trash"></i>
+            </a>
+            <a (click)="triggerResetConfirmation(i)" class="btn btn-default btn-sm" mdTooltip="Resets this users password" mdTooltipPosition="right">
+              <i class="fa fa-asterisk"></i>
+            </a>
+          </div>
+
+          <div *ngIf="deleteSelect === i && resetSelect !== i">
+            <a (click)="deleteUser(i)">Confirm Delete</a> | <a (click)="cancelAction()">Cancel</a>
+          </div>
+
+          <div *ngIf="resetSelect === i && deleteSelect !== i">
+            <a (click)="resetPassword(i)">Confirm Reset</a> | <a (click)="cancelAction()">Cancel</a>
+          </div>
+        </td>
+
+        <td>
+          <a (click)="openEditTab(user.uuid)">{{user.emailAddress}}</a>
+        </td>
+
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.role}}</td>
+        <td>
+          <span class="fa fa-check" *ngIf="user.activeFlag === 'Y'"></span>
+        </td>
+        <td>{{user.createTs | date: 'MM/dd/yyyy HH:mm:ss' }}</td>
+        <td>{{user.lastModifiedTs | date: 'MM/dd/yyyy HH:mm:ss' }}</td>
+        <td>{{user.lastLoggedTs | date: 'MM/dd/yyyy HH:mm:ss' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    <app-list-result-summary [listData]="users"></app-list-result-summary>
+  </p>
+
+  <app-pager [name]="'userSearchResults'" [allItems]="users" [pageSize]="pageSize"></app-pager>
+  <br><br>
+</div>

@@ -1,0 +1,46 @@
+<div class="container content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="widget-content">
+        <div class="jumbotron">
+          <div class="container">
+            <h2>${applicationTitle}</h2>
+            <p>Your application description goes here</p>
+
+            <md-grid-list cols="1" rowHeight="150px">
+              <md-grid-tile>
+                <md-card>
+                  <md-card-content>
+                    <md-card-header>
+                      <md-card-title>Enter your email address and password to begin.</md-card-title>
+                    </md-card-header>
+
+                    <md-card-content>
+                      <md-input-container>
+                        <input mdInput placeholder="Email Address" name="username" size="25" type="email" #username required>
+                      </md-input-container>
+
+                      <md-input-container>
+                        <input mdInput placeholder="Password" name="password" size="25" type="password" #password required>
+                      </md-input-container>
+
+                      <button md-fab color="primary" (click)="onSubmit(username.value, password.value)">Login</button>
+                    </md-card-content>
+                  </md-card-content>
+                </md-card>
+              </md-grid-tile>
+            </md-grid-list>
+
+            <br><br>
+            <fieldset>
+              <legend>Warning</legend>
+
+              This application is restricted to authorized users as determined by the ${applicationTitle}.
+              Unauthorized access is strictly prohibited and punishable by domestic and international law.
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

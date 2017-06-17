@@ -1,0 +1,56 @@
+import {Component} from '@angular/core';
+import {UserService} from '../user/user.service';
+import {Router} from '@angular/router';
+import {SessionHelper} from '../shared/session.helper';
+import {ViewHelper} from '../shared/view.helper';
+import {ServiceResults} from '../shared/service.results';
+import {ServiceError} from '../shared/service.error';
+import {ResponseMessage} from '../shared/response.message';
+import {ALERT_SUCC} from '../shared/constants';
+import {SessionData} from '../shared/session.data';
+import {TabManagerService} from '../shared/tab.manager.service';
+import {NameValuePairData} from '../shared/name.value.pair';
+
+@Component({
+  selector: 'app-header',
+  templateUrl: 'header.component.html'
+})
+export class HeaderComponent {
+  constructor(private userService: UserService, private router: Router, private sessionHelper: SessionHelper,
+              private viewHelper: ViewHelper, public tabManager: TabManagerService) {
+    this.viewHelper.clearMessages();
+  }
+
+  /**
+   * Issues a logout request.
+   */
+  logout() {
+    this.viewHelper.clearMessages();
+
+    this.userService.logout().subscribe((result) => {
+        if (result instanceof ServiceResults) {
+          this.sessionHelper.abandon();
+          this.viewHelper.setMessage('You\\'re done. Have a nice day!', ALERT_SUCC);
+
+          this.router.navigate(['app-session-lost']);
+        } else {
+          this.viewHelper.setMessagesFromServiceError(result as ServiceError);
+        }
+      },
+      error => {
+        this.viewHelper.setMessages(error as Array<ResponseMessage>);
+      });
+  }
+
+  isLoggedIn(): boolean {
+    return this.sessionHelper.isLoggedIn();
+  }
+
+  session(): SessionData {
+    return this.sessionHelper.getSessionObject();
+  }
+
+  isAdmin(): boolean {
+    return this.isLoggedIn() && this.session().role === 'ADMIN';
+  }
+}

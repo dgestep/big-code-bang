@@ -1,0 +1,27 @@
+.content{
+  min-height: 100%;
+  padding-top: 69px; /*navbar height + 5px*/
+  padding-bottom: 49px; /*footer height + 5px*/
+  width: auto;
+  overflow-y: auto;
+  vertical-align: top;
+}
+
+.widget-content{
+  padding: 0 5px;
+}
+
+.button-container {
+  width: 500px;
+}
+
+.button-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.tab-pane {
+  margin: auto;
+  padding: 0 15px;
+}
