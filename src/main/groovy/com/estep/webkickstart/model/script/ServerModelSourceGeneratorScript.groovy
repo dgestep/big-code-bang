@@ -28,7 +28,7 @@ class ServerModelSourceGeneratorScript {
         buf.append(File.separator).append("build.gradle")
 
         TemplateCopy templateCopy = new TemplateCopy()
-        templateCopy.renderAndCopy("model_build_gradle_root.txt", buf.toString())
+        templateCopy.renderAndCopy("gradle-scripts-templates/model_build_gradle_root.txt", buf.toString())
     }
 
     private void copyModelApplLogicGradleRootBuildScript() {
@@ -37,7 +37,7 @@ class ServerModelSourceGeneratorScript {
         buf.append(File.separator).append("build.gradle")
 
         TemplateCopy templateCopy = new TemplateCopy()
-        templateCopy.renderAndCopy("model_applogic_gradle_root.txt", buf.toString())
+        templateCopy.renderAndCopy("gradle-scripts-templates/model_applogic_gradle_root.txt", buf.toString())
     }
 
     private void copyModelDataGradleRootBuildScript() {
@@ -46,7 +46,7 @@ class ServerModelSourceGeneratorScript {
         buf.append(File.separator).append("build.gradle")
 
         TemplateCopy templateCopy = new TemplateCopy()
-        templateCopy.renderAndCopy("model_data_gradle_root.txt", buf.toString())
+        templateCopy.renderAndCopy("gradle-scripts-templates/model_data_gradle_root.txt", buf.toString())
     }
 
     private void copyModelSharedGradleRootBuildScript() {
@@ -55,7 +55,7 @@ class ServerModelSourceGeneratorScript {
         buf.append(File.separator).append("build.gradle")
 
         TemplateCopy templateCopy = new TemplateCopy()
-        templateCopy.renderAndCopy("model_shared_gradle_root.txt", buf.toString())
+        templateCopy.renderAndCopy("gradle-scripts-templates/model_shared_gradle_root.txt", buf.toString())
     }
 
     private void copyModelSpringContextXml() {
@@ -66,7 +66,7 @@ class ServerModelSourceGeneratorScript {
         buf.append(File.separator).append("model-spring-context.xml")
 
         TemplateCopy templateCopy = new TemplateCopy()
-        templateCopy.renderAndCopy("model_spring_context_xml.txt", buf.toString())
+        templateCopy.renderAndCopy("applogic-spring-templates/model_spring_context_xml.txt", buf.toString())
     }
 
     private void copyModelTestSpringContextXml() {
@@ -77,7 +77,7 @@ class ServerModelSourceGeneratorScript {
         buf.append(File.separator).append("test-model-spring-context.xml")
 
         TemplateCopy templateCopy = new TemplateCopy()
-        templateCopy.renderAndCopy("model_test_spring_context_xml.txt", buf.toString())
+        templateCopy.renderAndCopy("applogic-spring-templates/model_test_spring_context_xml.txt", buf.toString())
     }
 
     private void copyModelProjectCode() {

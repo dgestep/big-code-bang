@@ -27,8 +27,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-task generateSource(type: JavaExec) {
-    description 'Generates the source code for the model, view, and controller code.'
+task generateProjects(type: JavaExec) {
+    description 'Generates the projects for the model, view, and controller applications.'
 
     // Set main property to name of Groovy script class.
     main = 'com.estep.webkickstart.model.script.SourceCodeGeneratorScript'
@@ -37,8 +37,18 @@ task generateSource(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
 }
 
-task deleteSource(type: JavaExec) {
-    description 'Deletes the model structure from the file system.'
+task generateViewProject(type: JavaExec) {
+    description 'Generates the View project'
+
+    // Set main property to name of Groovy script class.
+    main = 'com.estep.webkickstart.model.script.ViewSourceGeneratorScript'
+
+    // Set classpath for running the Groovy script.
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task deleteProjects(type: JavaExec) {
+    description 'Deletes the projects from the file system.'
 
     // Set main property to name of Groovy script class.
     main = 'com.estep.webkickstart.model.script.SourceCodeRemoveScript'
