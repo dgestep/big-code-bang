@@ -1,4 +1,4 @@
-package com.estep.bigbangcode.model
+package com.estep.bigcodebang.model
 
 class ViewStructureManagerTests extends GroovyTestCase {
     ViewStructureManager manager
@@ -24,10 +24,7 @@ class ViewStructureManagerTests extends GroovyTestCase {
     }
 
     private void assertViewStructure() {
-        def path = renderFromBase("e2e")
-        assertPath(path, true)
-
-        path = renderFromBase("src" + File.separator + "app" + File.separator + "environment")
+        def path = renderFromBase("src" + File.separator + "app" + File.separator + "environment")
         assertPath(path, true)
         path = renderFromBase("src" + File.separator + "app" + File.separator + "footer")
         assertPath(path, true)

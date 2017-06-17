@@ -1,4 +1,4 @@
-package com.estep.bigbangcode.model
+package com.estep.bigcodebang.model
 
 /**
  * Modeled after Python's Tuple implementation, this class is an immutable container for a finite list of values of any

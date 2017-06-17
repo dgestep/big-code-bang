@@ -1,4 +1,4 @@
-package com.estep.bigbangcode.model
+package com.estep.bigcodebang.model
 
 class TemplateCopy {
 

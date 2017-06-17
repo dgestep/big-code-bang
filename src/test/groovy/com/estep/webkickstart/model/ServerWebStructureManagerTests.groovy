@@ -1,4 +1,4 @@
-package com.estep.bigbangcode.model
+package com.estep.bigcodebang.model
 
 class ServerWebStructureManagerTests extends GroovyTestCase {
     ServerRestServiceStructureManager manager

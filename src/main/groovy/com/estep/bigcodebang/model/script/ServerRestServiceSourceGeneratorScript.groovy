@@ -1,8 +1,8 @@
-package com.estep.bigbangcode.model.script
+package com.estep.bigcodebang.model.script
 
-import com.estep.bigbangcode.model.TemplateCopy
-import com.estep.bigbangcode.model.TemplateCopy
-import com.estep.bigbangcode.model.Tuple
+import com.estep.bigcodebang.model.TemplateCopy
+import com.estep.bigcodebang.model.TemplateCopy
+import com.estep.bigcodebang.model.Tuple
 
 class ServerRestServiceSourceGeneratorScript {
 
