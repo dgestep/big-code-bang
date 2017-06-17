@@ -1,23 +1,23 @@
-package com.estep.bigbangcode.model
+package com.estep.bigcodebang.model
 
 /**
- * Returns properties related to the Server project.
+ * Returns properties related to the View project.
  */
-class ServerProperty {
-    static ServerProperty INSTANCE
+class ViewProperty {
+    static ViewProperty INSTANCE
     ConfigObject configs
 
-    private ServerProperty() {
-        configs = new ConfigSlurper().parse(ModelProperty.class)
+    private ViewProperty() {
+        configs = new ConfigSlurper().parse(WebProperty.class)
 
-        final URL url = this.getClass().getClassLoader().getResource("server_project.properties").toURI().toURL()
+        final URL url = this.getClass().getClassLoader().getResource("view_project.properties").toURI().toURL()
         final ConfigObject projectProps = new ConfigSlurper().parse(url)
         configs.merge(projectProps)
     }
 
-    private static ServerProperty instanceOf() {
+    private static ViewProperty instanceOf() {
         if (INSTANCE == null) {
-            INSTANCE = new ServerProperty()
+            INSTANCE = new ViewProperty()
         }
         return INSTANCE
     }
@@ -29,7 +29,7 @@ class ServerProperty {
      * @return the value or null if not found.
      */
     static String get(propertyName) {
-        ServerProperty manager = ServerProperty.instanceOf()
+        ViewProperty manager = ViewProperty.instanceOf()
         def value
 
         def elements = propertyName.split("\\.")

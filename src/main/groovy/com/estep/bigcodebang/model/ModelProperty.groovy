@@ -1,4 +1,4 @@
-package com.estep.bigbangcode.model
+package com.estep.bigcodebang.model
 
 root.folder.name = '${companyName}-${productName}'
 root.base.path = '${projectBase}/${rootFolderName}'

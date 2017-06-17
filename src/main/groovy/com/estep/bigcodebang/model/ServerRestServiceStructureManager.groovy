@@ -1,8 +1,8 @@
-package com.estep.bigbangcode.model
+package com.estep.bigcodebang.model
 
-import com.estep.bigbangcode.ProjectHelper
-import com.estep.bigbangcode.ProjectHelper
-import com.estep.bigbangcode.model.script.ScriptHelper
+import com.estep.bigcodebang.ProjectHelper
+import com.estep.bigcodebang.ProjectHelper
+import com.estep.bigcodebang.model.script.ScriptHelper
 import sun.reflect.generics.reflectiveObjects.NotImplementedException
 
 /**

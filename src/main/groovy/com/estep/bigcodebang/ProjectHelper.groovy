@@ -1,7 +1,7 @@
-package com.estep.bigbangcode
+package com.estep.bigcodebang
 
-import com.estep.bigbangcode.model.ServerProperty
-import com.estep.bigbangcode.model.TextTemplate
+import com.estep.bigcodebang.model.ServerProperty
+import com.estep.bigcodebang.model.TextTemplate
 
 /**
  * Contains static helper methods for project creation purposes.

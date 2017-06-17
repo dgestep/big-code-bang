@@ -1,14 +1,14 @@
-package com.estep.bigbangcode.model.script
+package com.estep.bigcodebang.model.script
 
-import com.estep.bigbangcode.model.TemplateCopy
-import com.estep.bigbangcode.model.TextTemplate
-import com.estep.bigbangcode.model.Tuple
-import com.estep.bigbangcode.model.ViewProperty
-import com.estep.bigbangcode.model.ServerProperty
-import com.estep.bigbangcode.model.TemplateCopy
-import com.estep.bigbangcode.model.TextTemplate
-import com.estep.bigbangcode.model.Tuple
-import com.estep.bigbangcode.model.ViewProperty
+import com.estep.bigcodebang.model.TemplateCopy
+import com.estep.bigcodebang.model.TextTemplate
+import com.estep.bigcodebang.model.Tuple
+import com.estep.bigcodebang.model.ViewProperty
+import com.estep.bigcodebang.model.ServerProperty
+import com.estep.bigcodebang.model.TemplateCopy
+import com.estep.bigcodebang.model.TextTemplate
+import com.estep.bigcodebang.model.Tuple
+import com.estep.bigcodebang.model.ViewProperty
 
 class ScriptHelper {
 

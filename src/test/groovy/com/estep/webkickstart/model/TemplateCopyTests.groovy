@@ -1,6 +1,6 @@
-package com.estep.bigbangcode.model
+package com.estep.bigcodebang.model
 
-import com.estep.bigbangcode.model.script.ScriptHelper
+import com.estep.bigcodebang.model.script.ScriptHelper
 
 class TemplateCopyTests extends GroovyTestCase {
     TemplateCopy manager

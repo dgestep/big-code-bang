@@ -1,6 +1,6 @@
-package com.estep.bigbangcode.model.script
+package com.estep.bigcodebang.model.script
 
-import com.estep.bigbangcode.model.*
+import com.estep.bigcodebang.model.*
 
 ServerModelStructureManager modelManager = new ServerModelStructureManager()
 modelManager.createModelStructure()

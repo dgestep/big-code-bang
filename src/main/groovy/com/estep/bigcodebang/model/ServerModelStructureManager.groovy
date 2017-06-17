@@ -1,7 +1,7 @@
-package com.estep.bigbangcode.model
+package com.estep.bigcodebang.model
 
-import com.estep.bigbangcode.ProjectHelper
-import com.estep.bigbangcode.ProjectHelper
+import com.estep.bigcodebang.ProjectHelper
+import com.estep.bigcodebang.ProjectHelper
 
 /**
  * Handles the creation of the project and module folder structures for the Model projects.
