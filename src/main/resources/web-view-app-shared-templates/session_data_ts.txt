@@ -1,6 +1,0 @@
-export class SessionData {
-    userUuid: string;
-    emailAddress: string;
-    token: string;
-    role: string;
-}

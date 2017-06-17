@@ -1,0 +1,45 @@
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {SessionHelper} from './shared/session.helper';
+import {ViewHelper} from './shared/view.helper';
+import {ResponseMessage} from './shared/response.message';
+import {MdSnackBar} from '@angular/material';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit, OnDestroy {
+  loggedIn: boolean;
+
+  constructor(private sessionHelper: SessionHelper, private viewHelper: ViewHelper, private snackBar: MdSnackBar) {
+  }
+
+  ngOnInit(): void {
+    this.sessionHelper.loggedInMonitor.subscribe(status => this.loggedIn = status);
+
+    this.viewHelper.messageUpdate.subscribe(data => {
+      let messages = '';
+      const responses: Array<ResponseMessage>  = data as Array<ResponseMessage>;
+      if (responses) {
+        for (let i = 0; i < responses.length; i++) {
+          const record: ResponseMessage = responses[i];
+          const message = record.message;
+          if (messages.length > 0) {
+            messages += ' -- ';
+          }
+          messages += message;
+        }
+
+        if (messages.length > 0) {
+          this.snackBar.open(messages, 'CLOSE', { duration: 15000 });
+        }
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.sessionHelper.loggedInMonitor.unsubscribe();
+    this.viewHelper.messageUpdate.unsubscribe();
+  }
+}

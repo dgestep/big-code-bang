@@ -1,0 +1,10 @@
+export class UserProfileFormData {
+  uuid: Array<string> = [];
+  firstName: Array<string> = [];
+  lastName: Array<string> = [];
+  emailAddress: Array<string> = [];
+  lastLoggedTs: Array<number> = [];
+  activeFlag: Array<string> = [];
+  name: Array<string> = [];
+  role: Array<string> = [];
+}

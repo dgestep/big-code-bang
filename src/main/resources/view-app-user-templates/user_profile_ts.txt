@@ -1,0 +1,12 @@
+export class UserProfile {
+  uuid: string;
+  name: string;
+  firstName: string;
+  lastName: string;
+  emailAddress: string;
+  createTs: number;
+  lastModifiedTs: number;
+  lastLoggedTs: number;
+  activeFlag: string;
+  role: string;
+}

@@ -1,7 +1,0 @@
-<div *ngIf="loggedIn">
-    <ul class="nav nav-tabs">
-        <li *ngFor="let tab of tabList; let i = index" [class.active]="i == activeTab" role="presentation">
-            <a (click)="navigate(i)">{{tab.title}}  <i class="glyphicon glyphicon-remove" (click)="closeTab(i)"></i></a>
-        </li>
-    </ul>
-</div>

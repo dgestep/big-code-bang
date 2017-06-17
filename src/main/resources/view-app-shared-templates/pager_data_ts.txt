@@ -1,0 +1,13 @@
+export class PagerData {
+  pagerName: string;
+  data: Array<any>;
+  pageNumber: number;
+  pageSize: number;
+
+  constructor(pagerName: string, data: Array<any>, pageNumber: number, pageSize: number) {
+    this.pagerName = pagerName;
+    this.data = data;
+    this.pageNumber = pageNumber;
+    this.pageSize = pageSize;
+  }
+}

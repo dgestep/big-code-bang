@@ -1,0 +1,50 @@
+<app-progress-spinner *ngIf="!formData"></app-progress-spinner>
+
+<div class="tab-pane" *ngIf="formData">
+  <form class="form-horizontal" [formGroup]="formData">
+    <fieldset>
+      <legend>{{formData.controls.firstName.value}} {{formData.controls.lastName.value}}</legend>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">&nbsp;</label>
+        <div class="col-sm-4">
+          <md-input-container>
+            <input mdInput type="text" placeholder="first name" formControlName="firstName" #firstName required size="25">
+          </md-input-container>
+        </div>
+
+        <label class="col-sm-2 control-label">&nbsp;</label>
+        <div class="col-sm-4">
+          <md-input-container>
+            <input mdInput type="text" placeholder="last name" formControlName="lastName" #lastName required size="25">
+          </md-input-container>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">&nbsp;</label>
+        <div class="col-sm-4">
+          <md-input-container>
+            <input mdInput type="email" placeholder="email address" formControlName="emailAddress" #emailAddress required size="40">
+          </md-input-container>
+        </div>
+
+        <label class="col-sm-2 control-label">Last Logged In</label>
+        <div class="col-sm-4">
+          <div class="form-control-static">{{formData.controls.lastLoggedTs.value | date: 'MM/dd/yyyy HH:mm:ss'}}</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-2">&nbsp;</div>
+        <div class="col-sm-10">
+          <div class="button-container">
+            <div class="button-row">
+              <button type="button" color="warn" (click)="save(formData.value)" md-fab>Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>

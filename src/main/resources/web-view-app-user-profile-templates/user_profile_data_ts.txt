@@ -1,8 +1,0 @@
-export class UserProfileData {
-    firstName : String;
-    lastName : String;
-    emailAddress : String;
-    role : String;
-    lastLogin : String;
-    userCreated : String;
-}

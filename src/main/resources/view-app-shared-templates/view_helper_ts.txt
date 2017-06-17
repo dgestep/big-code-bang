@@ -1,0 +1,146 @@
+import {Injectable} from '@angular/core';
+import {Headers} from '@angular/http';
+import {SessionHelper} from './session.helper';
+import {ResponseMessage} from './response.message';
+import {Subject} from 'rxjs/Subject';
+import {ALERT_DANGER, ALERT_INFO} from 'app/shared/constants';
+import {ServiceResults} from './service.results';
+import {ServiceError} from './service.error';
+import {EnvironmentService} from '../environment/environment.service';
+
+@Injectable()
+export class ViewHelper {
+  messages: Array<ResponseMessage> = [];
+  messageUpdate: Subject<Array<ResponseMessage>> = new Subject<Array<ResponseMessage>>();
+
+  constructor(private sessionHelper: SessionHelper, private environmentService: EnvironmentService) {
+  }
+
+  /**
+   * Creates the URL to the supplied service.
+   * @param path the URI path to the service.
+   * @returns {string} the service URL.
+   */
+  service(path: string) {
+    let url = this.environmentService.config('rest.service.uri');
+    url += path;
+    return url;
+  }
+
+  /**
+   * Returns the Headers object suitable for a service call accepting JSON.
+   * @returns {Headers} the headers.
+   */
+  headersJson() {
+    return this.headers('application/json');
+  }
+
+  /**
+   * Returns the Headers object suitable for a service call accepting URL encoded form fields.
+   * @returns {Headers} the headers.
+   */
+  headersForm() {
+    return this.headers('application/x-www-form-urlencoded');
+  }
+
+  /**
+   * Returns the Headers object suitable for a service call.
+   * @returns {Headers} the headers.
+   */
+  headers(contentType: string) {
+    const headers = new Headers();
+    headers.append('Content-Type', contentType);
+    if (this.sessionHelper.isLoggedIn()) {
+      headers.append('X-XSRF-TOKEN', this.sessionHelper.getSessionObject().token);
+    }
+    return headers;
+  }
+
+  /**
+   * Pushes the supplied message to the subscribers.
+   * @param msg the message.
+   * @param alertLevel the alertLevel.
+   */
+  setMessage(msg: string, alertLevel: string) {
+    let responseMessage: ResponseMessage = null;
+    if (alertLevel) {
+      responseMessage = new ResponseMessage(msg, alertLevel);
+    } else {
+      responseMessage = new ResponseMessage(msg, ALERT_INFO);
+    }
+
+    this.messages = [ responseMessage ];
+    this.messageUpdate.next(this.messages);
+  }
+
+  /**
+   * Pushes the supplied messages to the subscribers.
+   * @param msgs the messages.
+   */
+  setMessages(msgs: Array<ResponseMessage>) {
+    this.messages = msgs;
+    this.messageUpdate.next(this.messages);
+  }
+
+  /**
+   * Pushes the supplied messages to the subscribers.
+   * @param msgs the service error.
+   */
+  setMessagesFromServiceError(serviceError: ServiceError) {
+    this.messages = serviceError.messages;
+    for (let i = 0; i < this.messages.length; i++) {
+      this.messages[i].type = ALERT_DANGER;
+    }
+    this.messageUpdate.next(this.messages);
+  }
+
+  /**
+   * Clears the messages and pushes the cleared list to the subscribers.
+   */
+  clearMessages() {
+    this.messages = [];
+    this.messageUpdate.next(this.messages);
+  }
+
+  /**
+   * Pushes the supplied array of messages to all subscribers.
+   * @param rawMessages the messages.
+   * @param alertLevel the alert level.
+   */
+  parseAndPushMessages(rawMessages: Array<string>, alertLevel: string) {
+    const msgs: Array<ResponseMessage> = [];
+    for (let i = 0; i < rawMessages.length; i++) {
+      const msg = rawMessages[i];
+      msgs.push(new ResponseMessage(msg, alertLevel));
+    }
+    this.setMessages(msgs);
+  }
+
+  /**
+   * Returns the data returned from a service call.
+   * @param res the HTTP response.
+   * @returns {any} the data.
+   */
+  extractData(res): Object {
+    const body: any = res.json();
+    if (body.statusCode === 200) {
+      return new ServiceResults(body.data);
+    } else {
+      return new ServiceError(body.messages);
+    }
+  }
+
+  /**
+   * Handles service calls that resulted in a non successful response.
+   * @param error the HTTP response containing the error information.
+   * @returns {ResponseMessage[]|[{}]} the error messages.
+   */
+  handleError(error: Response) {
+    const status = error.status;
+    const msg = 'Status code: ' + status + ' Status Text: ' + error.statusText;
+    const errMsgs = new Array<ResponseMessage>();
+    errMsgs.push(new ResponseMessage(msg, ALERT_DANGER));
+
+    return errMsgs || [{}];
+  }
+}

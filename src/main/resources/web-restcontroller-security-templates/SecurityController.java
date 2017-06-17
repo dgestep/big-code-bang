@@ -30,7 +30,7 @@ public class SecurityController {
     @Resource(name = "AuthenticationService")
     private AuthenticationService authenticationService;
 
-    @Resource(name = "tokenRepository")
+    @Resource(name = "CsrfTokenRepository")
     private CsrfTokenRepository tokenRepository;
 
     /**

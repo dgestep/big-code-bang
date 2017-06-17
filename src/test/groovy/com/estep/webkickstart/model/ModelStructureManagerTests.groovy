@@ -1,11 +1,11 @@
 package com.estep.webkickstart.model
 
 class ModelStructureManagerTests extends GroovyTestCase {
-    ModelStructureManager manager
+    ServerModelStructureManager manager
     TemplateCopy templateCopy
 
     void setUp() {
-        manager = new ModelStructureManager()
+        manager = new ServerModelStructureManager()
         templateCopy = new TemplateCopy()
     }
 
@@ -157,13 +157,13 @@ class ModelStructureManagerTests extends GroovyTestCase {
     }
 
     private String renderValue(propertyName, folderName) {
-        def template = Property.get(propertyName) + File.separator + folderName + File.separator + "java"
+        def template = ServerProperty.get(propertyName) + File.separator + folderName + File.separator + "java"
         def path = TextTemplate.renderDeep(template)
 
         path
     }
 
     private String render(propertyName) {
-        TextTemplate.renderDeep(Property.get(propertyName))
+        TextTemplate.renderDeep(ServerProperty.get(propertyName))
     }
 }

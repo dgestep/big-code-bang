@@ -52,7 +52,8 @@ import java.util.Set;
  */
 public class DataSet { // NOPMD excessive class length
     private static final String FINAL_FIELD_MSG =
-            "Class: %s, Property: %s, Cannot apply value because the field is declared final and already has a value";
+            "Class: %s, ServerProperty: %s, Cannot apply value because the field is "
+                    + "declared final and already has a value";
     private static final Set<Class<?>> BASE_TYPES = getBaseTypes();
     private static final Set<Class<?>> BOTTOM_TYPES = getBottomTypes();
     private ResultSetManager resultSetManager;

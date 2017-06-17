@@ -1,8 +1,0 @@
-export class ServiceResults {
-    data: any;
-
-    constructor(data: any)
-    {
-        this.data = data;
-    }
-}
