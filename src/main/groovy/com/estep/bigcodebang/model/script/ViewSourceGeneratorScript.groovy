@@ -200,7 +200,7 @@ class ViewSourceGeneratorScript {
 
         def tmplFolder = "view-assets" + File.separator;
         TemplateCopy copy = new TemplateCopy()
-        copy.copy(tmplFolder + "Logo.png", getPathToViewCode(appRoot, "Logo.png"))
+        copy.copy(tmplFolder + "Logo.jpg", getPathToViewCode(appRoot, "Logo.jpg"))
         copy.copy(tmplFolder + "tabs.json", getPathToViewCode(appRoot, "tabs.json"))
 
         List<Tuple> apps = new ArrayList<>()

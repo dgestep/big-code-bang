@@ -1,5 +1,5 @@
 <md-toolbar color="primary">
-  <a [routerLink]="['/']"><img class="logo hidden-sm hidden-xs" alt="${applicationTitle} Logo" src="assets/Logo.png"/></a>
+  <a [routerLink]="['/']"><img class="logo hidden-sm hidden-xs" alt="${applicationTitle} Logo" src="assets/Logo.jpg"/></a>
   &nbsp;<span class="logotype"><a [routerLink]="['/']">${applicationTitle}</a></span>
   <span class="header-spacer"></span>
 

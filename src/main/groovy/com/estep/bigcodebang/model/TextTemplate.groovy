@@ -1,5 +1,6 @@
 package com.estep.bigcodebang.model
 
+import com.estep.bigcodebang.PackageNameManager
 import groovy.text.SimpleTemplateEngine
 
 /**
@@ -11,15 +12,20 @@ class TextTemplate {
     LinkedHashMap<String, String> bindings
 
     private TextTemplate() {
+        PackageNameManager pnm = new PackageNameManager()
+        String topLevelDomain = pnm.formatPackageElement(ServerProperty.get("top_level_domain"))
+        String companyName = pnm.formatPackageElement(ServerProperty.get("company_name"))
+        String productName = pnm.formatPackageElement(ServerProperty.get("product_name"))
+
         engine = new SimpleTemplateEngine()
         bindings = [
                 "projectBase"               : ServerProperty.get("project_base_folder"),
                 "rootFolderName"            : ServerProperty.get("root.folder.name"),
                 "rootBasePath"              : ServerProperty.get("root.base.path"),
-                "topLevelDomain"            : ServerProperty.get("top_level_domain"),
-                "companyName"               : ServerProperty.get("company_name"),
+                "topLevelDomain"            : topLevelDomain,
+                "companyName"               : companyName,
                 "companyNameLong"           : ServerProperty.get("company_name_long"),
-                "productName"               : ServerProperty.get("product_name"),
+                "productName"               : productName,
                 "gradleVersion"             : ServerProperty.get("gradle_version"),
                 "modelFolderName"           : ServerProperty.get("model.folder.name"),
                 "modelBasePath"             : ServerProperty.get("model.base.path"),
