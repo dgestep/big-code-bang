@@ -151,8 +151,6 @@ class ServerModelSourceGeneratorScript {
         apps.add(new Tuple("PasswordGeneratorRepository.java", getPathToRepoCode("main", "user", "PasswordGeneratorRepository.java")))
         apps.add(new Tuple("PasswordGeneratorRepositoryImpl.java", getPathToRepoCode("main", "user", "PasswordGeneratorRepositoryImpl.java")))
         apps.add(new Tuple("PasswordValidator.java", getPathToRepoCode("main", "user", "PasswordValidator.java")))
-        apps.add(new Tuple("UserCredentialRepository.java", getPathToRepoCode("main", "user", "UserCredentialRepository.java")))
-        apps.add(new Tuple("UserCredentialRepositoryImpl.java", getPathToRepoCode("main", "user", "UserCredentialRepositoryImpl.java")))
         apps.add(new Tuple("UserCredentialValidator.java", getPathToRepoCode("main", "user", "UserCredentialValidator.java")))
         apps.add(new Tuple("UserCredentialValidatorImpl.java", getPathToRepoCode("main", "user", "UserCredentialValidatorImpl.java")))
         apps.add(new Tuple("UserRepository.java", getPathToRepoCode("main", "user", "UserRepository.java")))

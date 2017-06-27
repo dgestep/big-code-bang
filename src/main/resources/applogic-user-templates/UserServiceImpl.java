@@ -11,10 +11,10 @@ import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.Role;
 import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.message.GeneralMessage;
 import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.message.UserMessage;
 import ${topLevelDomain}.${companyName}.${productName}.model.exception.DataInputException;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.CrudRepository;
 import ${topLevelDomain}.${companyName}.${productName}.model.repository.mail.MailRepository;
 import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.PasswordGeneratorRepository;
 import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.PasswordValidator;
-import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.UserCredentialRepository;
 import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.UserCredentialValidator;
 import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.UserRepository;
 import ${topLevelDomain}.${companyName}.${productName}.model.service.EntityAssertion;
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Resource(name = "UserCredentialRepository")
-    private UserCredentialRepository userCredentialRepository;
+    private CrudRepository<UserCredential> userCredentialRepository;
 
     @Resource(name = "UserCredentialValidator")
     private UserCredentialValidator userCredentialValidator;
@@ -282,7 +282,7 @@ public class UserServiceImpl implements UserService {
             SecurityHelper.assertCurrentPassword(retr, currentPassword, passwordValidator);
             retr.setPassword(encryptedPassword);
             retr.setLastModifiedTs(new Timestamp(new Date().getTime()));
-            userCredentialRepository.changePassword(retr);
+            userCredentialRepository.save(retr);
         }
     }
 
@@ -359,7 +359,7 @@ public class UserServiceImpl implements UserService {
         final String encryptedPassword = passwordValidator.encryptPassword(newPassword);
         userCredential.setPassword(encryptedPassword);
         userCredential.setLastModifiedTs(new Timestamp(new Date().getTime()));
-        userCredentialRepository.changePassword(userCredential);
+        userCredentialRepository.save(userCredential);
 
         final String to = retrUser.getEmailAddress();
         final String body = String.format(ConfigConstant.EMAIL_RESET_PASSWORD_BODY, newPassword);
