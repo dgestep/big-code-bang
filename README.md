@@ -1,5 +1,52 @@
 # The Big Code Bang Project
 
+The Big Code Bang project was created to expedite the process of creating an enterprise application, laying down a 
+proven architecture that can be built upon.  Big Code Bang generates the source code for both the server side and 
+client side projects, saving you weeks, if not months of time.  After you run the big code bang, you will have a 
+working web application using the latest/greatest technology stack.
+
+
+Architecting an enterprise web project can be complex and involves many decision points such as the following:
+
+* A server platform(s).  Linux, Windows, etc.  Clustered environment or single server?  If clustered, how many nodes 
+in the cluster and what about a load balancer.  F5 Big-IP, etc.
+* Deciding on a server-side software technology stack. Java, .NET, NodeJS, etc.  This decision may be based on your 
+server platform.  For example, if you want .NET then it most likely needs to run on Windows.  (.NET core runs on any OS). If
+ you choose a Java technology stack then you have library choices, such as Spring, etc.
+* Deciding on a software platform for the view into your web application.  Single Page Application technologies
+ such as Angular JS or a controller stack such as Spring MVC in Java or a .NET backed controller.  If you choose the 
+ single page application approach then there are more decisions to make; Bower, Gulp, NodeJS, Node Package Manager 
+ (NPM), and more.  (Lot's of moving parts for sure).
+* Security technologies.  Authentication and authorization.  LDAP, Active Directory, the honor system -- kidding :-).
+* Logging technologies, such as Log4j or Log4N (.NET), etc.
+* Database technologies. Structured data or big data? An ORM such as Hibernate or EclipseLink for Java or the entity 
+ framework for .NET. Or... go it old school and do straight JDBC or ODBC (don't mock... sometimes there's a valid 
+ use-case for old school).
+* Application Server.  Apache Tomcat, IBM Websphere, Oracle Weblogic, JBoss, IIS for .NET, etc.
+
+Once you have decided on the technology stack, the next step is to setup the tools and processes necessary for 
+the standard software development lifecycle stuff:
+
+* Setup a build script to build your application, including source code checks for style, code analyzers such as PMD 
+and FindBugs, and tools to report code coverage.  The choices differ based on your choice of server side technologies
+ to which your application is written.
+* Setting up a continuous integration environment. Jenkins, etc.
+* Picking a code repository (GIT, Subversion, Team Foundation Server (TFS), etc.)
+* Deciding on a tool for bug and issue tracking and project management.  (Jira by Atlassian, etc.)
+
+
+
+
+
+
+* [Spring](https://spring.io/) - REST services, Spring Security, Spring AOP, Spring ORM, Spring JDBC
+* [EclipseLink](http://www.eclipse.org/eclipselink)
+* [Gradle Build Tool](https://gradle.org/)
+* [MySQL](https://www.mysql.com/)
+* [Apache Tomcat](http://tomcat.apache.org/) version 8+
+* [Angular 4](https://angular.io/)
+* [Angular Material Design](https://material.angular.io/)
+
 The Big Code Bang project is a tool that generates the project structure and the code for the Model and View 
 components of a web application.  A typical web application involves a database layer, an application logic layer, a REST service 
 layer, security, and a view layer. Best practice suggests that each of these layers be decoupled in order to allow flexibility with 
