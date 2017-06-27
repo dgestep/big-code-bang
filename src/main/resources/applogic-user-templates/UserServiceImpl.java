@@ -17,6 +17,7 @@ import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.Pas
 import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.PasswordValidator;
 import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.UserCredentialValidator;
 import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.UserRepository;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.UserTokenRepository;
 import ${topLevelDomain}.${companyName}.${productName}.model.service.EntityAssertion;
 import ${topLevelDomain}.${companyName}.${productName}.model.service.SecurityHelper;
 import ${topLevelDomain}.${companyName}.${productName}.model.service.lookup.LookupKeyValueService;
@@ -49,6 +50,9 @@ public class UserServiceImpl implements UserService {
 
     @Resource(name = "UserCredentialValidator")
     private UserCredentialValidator userCredentialValidator;
+
+    @Resource(name = "UserTokenRepository")
+    private UserTokenRepository userTokenRepository;
 
     @Resource(name = "JasyptPasswordValidator")
     private PasswordValidator passwordValidator;
@@ -147,6 +151,12 @@ public class UserServiceImpl implements UserService {
         }
 
         assertProfileNotExistUsingChangedEmailAddress(retr, data);
+
+        if (!retr.getEmailAddress().equals(data.getEmailAddress())) {
+            final String fromEmailAddress = retr.getEmailAddress();
+            final String toEmailAddress = data.getEmailAddress();
+            userTokenRepository.updateByEmail(fromEmailAddress, toEmailAddress);
+        }
 
         final UserProfile updt = setDefaultValuesForUpdate(retr, data);
 
