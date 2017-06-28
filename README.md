@@ -148,6 +148,7 @@ examples. It is expected that you provide your own values for your project.
 | code_author | The name to assign as the author of all generated code. | "Wiley Coyote" |
 | web_war_name | The name of the generated WAR file which is used to serve up the REST services. | "wiley.war" |
 | application_log_file_location | The location for the application log file. | "/temp/logs" |
+| gradle_version | The gradle version you are using. | "3.1" |
 
 
 ### View Side Configuration
@@ -344,7 +345,7 @@ ng serve
 * Open a browser and navigate to ( http://localhost:4200 ) to login into the application.
 * From the login page, enter _me@gmail.com_ as the email address, _DietCoke1_ as the password, and click Login.
 * You are now logged in as Admin.  Click the _Admin Admin_ menu choice and choose _User Profile_.
-* Change the first and last names to your name and click Save.
+* Change the first and last names to your name and change the email address to your email address. Click Save.
 * Click your name on the menu and choose _User Administration_.  This screen allows you to search, add, and change 
 user profiles.
 * Click your name on the menu and choose _Change Password_.  This screen allows you to change your current password.
