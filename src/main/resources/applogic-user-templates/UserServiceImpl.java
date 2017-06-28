@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
     @Resource(name = "UserRepository")
     private UserRepository userRepository;
 
-    @Resource(name = "UserCredentialRepository")
+    @Resource(name = "CrudRepository")
     private CrudRepository<UserCredential> userCredentialRepository;
 
     @Resource(name = "UserCredentialValidator")

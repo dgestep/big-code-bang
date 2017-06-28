@@ -85,7 +85,7 @@ Import Projects
 		 OK.
 		- enter /${contextRoot} in the "Application context" box.
 	- Click OK to save the server.
-	- You should see and "Application Servers" tab appear at the bottom of your IDE.
+	- You should see an "Application Servers" tab appear at the bottom of your IDE.
 - Start your local Tomcat server
 	- Within the "Application Servers" (appears at the bottom-left), click the Run icon.
 	- Invoke REST health service at : http://localhost:8080/${contextRoot}/restcontroller/health
