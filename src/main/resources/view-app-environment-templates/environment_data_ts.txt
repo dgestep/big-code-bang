@@ -1,3 +1,0 @@
-export class EnvironmentData {
-  restServiceUri: string;
-}

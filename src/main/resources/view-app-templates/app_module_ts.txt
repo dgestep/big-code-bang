@@ -28,7 +28,6 @@ import {PagerCommunicationService} from './shared/pager.communication.service';
 import {PagerService} from './shared/pager.service';
 import {PagerComponent} from './shared/pager.component';
 import {ProgressComponent} from './shared/progress.component';
-import {EnvironmentService} from './environment/environment.service';
 import {UserProfileEditComponent} from './user/user.edit.profile.component';
 import {ListResultSummaryComponent} from './shared/list.result.summary.component';
 import {UserProfileAddComponent} from './user/user.add.profile.component';
@@ -63,7 +62,7 @@ import {UserChangePasswordComponent} from './user/user.change.password.component
     MdAutocompleteModule
   ],
   providers: [UserService, SessionHelper, ViewHelper, LoggedInGuard, PagerCommunicationService, PagerService,
-    EnvironmentService, TabManagerService],
+    TabManagerService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

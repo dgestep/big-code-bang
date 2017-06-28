@@ -332,13 +332,13 @@ npm install
 * Using the Node Package Manager, update all dependencies to the latest version.
 
 ```npm
-npm update
+npm update --save
 ```
 
 * From the terminal, execute the production build to build the distribution.
 
 ```
-ng build --prod
+ng build --env=prod
 ```
 This will create a dist folder at the root of the project containing the production deployment artifacts.
 

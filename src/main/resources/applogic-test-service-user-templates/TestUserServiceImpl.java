@@ -13,6 +13,7 @@ import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.Pas
 import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.PasswordValidator;
 import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.UserCredentialValidator;
 import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.UserRepository;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.UserTokenRepository;
 import ${topLevelDomain}.${companyName}.${productName}.model.service.lookup.LookupKeyValueService;
 import junit.framework.TestCase;
 import mockit.Expectations;

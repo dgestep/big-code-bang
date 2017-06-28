@@ -22,9 +22,7 @@ class ViewStructureManager {
 
         def rf = TextTemplate.renderDeep(ViewProperty.get(ROOT_FOLDER))
 
-//        createCodeStructure(bf, rf, "e2e")
         createCodeStructure(bf, rf, SRC_FOLDER + File.separator + APP_FOLDER)
-        createCodeStructure(bf, rf, SRC_FOLDER + File.separator + APP_FOLDER + File.separator + "environment")
         createCodeStructure(bf, rf, SRC_FOLDER + File.separator + APP_FOLDER + File.separator + "footer")
         createCodeStructure(bf, rf, SRC_FOLDER + File.separator + APP_FOLDER + File.separator + "header")
         createCodeStructure(bf, rf, SRC_FOLDER + File.separator + APP_FOLDER + File.separator + "home")

@@ -152,6 +152,10 @@ public class UserServiceImpl implements UserService {
 
         assertProfileNotExistUsingChangedEmailAddress(retr, data);
 
+        if (data.getRole() != Role.ADMIN && retr.getRole() == Role.ADMIN) {
+            assertAdminExists();
+        }
+
         if (!retr.getEmailAddress().equals(data.getEmailAddress())) {
             final String fromEmailAddress = retr.getEmailAddress();
             final String toEmailAddress = data.getEmailAddress();
@@ -248,18 +252,25 @@ public class UserServiceImpl implements UserService {
         }
 
         if (profile.getRole() == Role.ADMIN) {
-            final UserSearchCriteriaData criteria = new UserSearchCriteriaData();
-            criteria.setRole(Role.ADMIN);
-            final List<UserProfile> admins = userRepository.search(criteria);
-            if (admins.size() == 1) {
-                // can't delete the last admin user
-                final MessageData md = new MessageData(UserMessage.U008);
-                throw new DataInputException(md);
-            }
+            assertAdminExists();
         }
 
         userCredentialRepository.delete(UserCredential.class, data.getUuid());
         userRepository.delete(UserProfile.class, data.getUuid());
+    }
+
+    /**
+     * Asserts that at least one user with ADMIN rights exists in the system. Assumes an action resulting in the
+     * current users role being changed.
+     */
+    private void assertAdminExists() {
+        final UserSearchCriteriaData criteria = new UserSearchCriteriaData();
+        criteria.setRole(Role.ADMIN);
+        final List<UserProfile> admins = userRepository.search(criteria);
+        if (admins.size() == 1) {
+            final MessageData md = new MessageData(UserMessage.U008);
+            throw new DataInputException(md);
+        }
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
