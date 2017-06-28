@@ -1,6 +1,5 @@
 package ${topLevelDomain}.${companyName}.${productName}.model.service.security;
 
-import ${topLevelDomain}.${companyName}.${productName}.model.criteria.UserSearchCriteriaData;
 import ${topLevelDomain}.${companyName}.${productName}.model.data.MessageData;
 import ${topLevelDomain}.${companyName}.${productName}.model.data.UserCredential;
 import ${topLevelDomain}.${companyName}.${productName}.model.data.UserData;
@@ -110,7 +109,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         final long timestamp = createTs.getTime();
         Timestamp sqlTimestamp = new Timestamp(timestamp);
 
-        // saveDocumentAssociation the token data
+        // save the token data
         final UserToken userToken = new UserToken();
         userToken.setTokenUuid(tokenUuid);
         userToken.setUserUuid(userProfile.getUuid());
@@ -120,7 +119,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         userTokenRepository.save(userToken);
 
         // create the encrypted token
-        final String token = tokenUuid + DELIM + userProfile.getEmailAddress() + DELIM + timestamp;
+        final String token = tokenUuid + DELIM + userProfile.getUuid() + DELIM + timestamp;
         final StandardPBEStringEncryptor encryptor = createEncryptor();
         return encryptor.encrypt(token);
     }
@@ -230,7 +229,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             return null;
         }
 
-        final UserProfile userProfile = getUserProfile(userToken.getEmailAddress());
+        final UserProfile userProfile = userRepository.retrieve(UserProfile.class, userToken.getUserUuid());
         return populateUserDataFrom(userProfile, token);
     }
 
@@ -258,19 +257,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     /**
-     * Returns the user profile associated with the supplied email address.
-     *
-     * @param emailAddress the email address.
-     * @return the user profile or null if not found.
-     */
-    private UserProfile getUserProfile(final String emailAddress) {
-        final UserSearchCriteriaData criteria = new UserSearchCriteriaData();
-        criteria.setEmailAddress(emailAddress);
-        final List<UserProfile> profiles = userRepository.search(criteria);
-        return profiles.isEmpty() ? null : profiles.get(0);
-    }
-
-    /**
      * Decrypts and extracts the data points from within the token.
      *
      * @param token the token.
@@ -285,7 +271,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         if (parts.countTokens() == 3) { //NOCHECKSTYLE
             userToken = new UserToken();
             userToken.setTokenUuid(parts.nextToken());
-            userToken.setEmailAddress(parts.nextToken());
+            userToken.setUserUuid(parts.nextToken());
 
             final Timestamp timestamp = new Timestamp(Long.parseLong(parts.nextToken()));
             userToken.setCreateTs(timestamp);

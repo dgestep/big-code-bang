@@ -1,6 +1,6 @@
 <footer class="footer">
     <div>
-        <img class="footer-logo" alt="${applicationTitle} Logo" src="assets/Logo.png"/>
+        <img class="footer-logo" alt="${applicationTitle} Logo" src="assets/Logo.jpg"/>
         <small>&copy; ${applicationTitle}. All rights reserved.</small>
     </div>
 </footer>

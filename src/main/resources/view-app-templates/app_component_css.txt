@@ -1,3 +1,16 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  font-family: "LatoRegular", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333333;
+  background-color: #ffffff;
+}
+
 .content{
   min-height: 100%;
   padding-top: 69px; /*navbar height + 5px*/
@@ -9,6 +22,11 @@
 
 .widget-content{
   padding: 0 5px;
+}
+
+.admin-toolbar{
+  margin-bottom: 15px;
+  clear: both;
 }
 
 .button-container {
@@ -24,4 +42,51 @@
 .tab-pane {
   margin: auto;
   padding: 0 15px;
+}
+
+.responsive-table {
+    margin: 1em 0;
+    min-width: 300px;
+}
+.responsive-table tr {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.responsive-table th {
+    display: none;
+}
+.responsive-table td {
+    display: block;
+}
+.responsive-table td:first-child {
+    padding-top: .5em;
+}
+.responsive-table td:last-child {
+    padding-bottom: .5em;
+}
+.responsive-table td:before {
+    content: attr(data-th) ": ";
+    font-weight: bold;
+    width: 6.5em;
+    display: inline-block;
+}
+@media (min-width: 768px) { /*was 480px making allowance for bs col-sm- (-_-) */
+    .responsive-table td:before {
+        display: none;
+    }
+}
+.responsive-table th, .responsive-table td { /*was 480px making allowance for bs col-sm- (-_-) */
+    text-align: left;
+}
+@media (min-width: 768px) { /*was 480px making allowance for bs col-sm- (-_-) */
+    .responsive-table th, .responsive-table td {
+        display: table-cell;
+        padding: .25em .5em;
+    }
+    .responsive-table th:first-child, .responsive-table td:first-child {
+        padding-left: .4em;
+    }
+    .responsive-table th:last-child, .responsive-table td:last-child {
+        padding-right: 0;
+    }
 }

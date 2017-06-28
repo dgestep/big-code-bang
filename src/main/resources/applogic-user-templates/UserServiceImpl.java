@@ -11,12 +11,13 @@ import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.Role;
 import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.message.GeneralMessage;
 import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.message.UserMessage;
 import ${topLevelDomain}.${companyName}.${productName}.model.exception.DataInputException;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.CrudRepository;
 import ${topLevelDomain}.${companyName}.${productName}.model.repository.mail.MailRepository;
 import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.PasswordGeneratorRepository;
 import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.PasswordValidator;
-import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.UserCredentialRepository;
 import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.UserCredentialValidator;
 import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.UserRepository;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.UserTokenRepository;
 import ${topLevelDomain}.${companyName}.${productName}.model.service.EntityAssertion;
 import ${topLevelDomain}.${companyName}.${productName}.model.service.SecurityHelper;
 import ${topLevelDomain}.${companyName}.${productName}.model.service.lookup.LookupKeyValueService;
@@ -44,11 +45,14 @@ public class UserServiceImpl implements UserService {
     @Resource(name = "UserRepository")
     private UserRepository userRepository;
 
-    @Resource(name = "UserCredentialRepository")
-    private UserCredentialRepository userCredentialRepository;
+    @Resource(name = "CrudRepository")
+    private CrudRepository<UserCredential> userCredentialRepository;
 
     @Resource(name = "UserCredentialValidator")
     private UserCredentialValidator userCredentialValidator;
+
+    @Resource(name = "UserTokenRepository")
+    private UserTokenRepository userTokenRepository;
 
     @Resource(name = "JasyptPasswordValidator")
     private PasswordValidator passwordValidator;
@@ -148,6 +152,16 @@ public class UserServiceImpl implements UserService {
 
         assertProfileNotExistUsingChangedEmailAddress(retr, data);
 
+        if (data.getRole() != Role.ADMIN && retr.getRole() == Role.ADMIN) {
+            assertAdminExists();
+        }
+
+        if (!retr.getEmailAddress().equals(data.getEmailAddress())) {
+            final String fromEmailAddress = retr.getEmailAddress();
+            final String toEmailAddress = data.getEmailAddress();
+            userTokenRepository.updateByEmail(fromEmailAddress, toEmailAddress);
+        }
+
         final UserProfile updt = setDefaultValuesForUpdate(retr, data);
 
         EntityAssertion entity = new EntityAssertion();
@@ -238,18 +252,25 @@ public class UserServiceImpl implements UserService {
         }
 
         if (profile.getRole() == Role.ADMIN) {
-            final UserSearchCriteriaData criteria = new UserSearchCriteriaData();
-            criteria.setRole(Role.ADMIN);
-            final List<UserProfile> admins = userRepository.search(criteria);
-            if (admins.size() == 1) {
-                // can't delete the last admin user
-                final MessageData md = new MessageData(UserMessage.U008);
-                throw new DataInputException(md);
-            }
+            assertAdminExists();
         }
 
         userCredentialRepository.delete(UserCredential.class, data.getUuid());
         userRepository.delete(UserProfile.class, data.getUuid());
+    }
+
+    /**
+     * Asserts that at least one user with ADMIN rights exists in the system. Assumes an action resulting in the
+     * current users role being changed.
+     */
+    private void assertAdminExists() {
+        final UserSearchCriteriaData criteria = new UserSearchCriteriaData();
+        criteria.setRole(Role.ADMIN);
+        final List<UserProfile> admins = userRepository.search(criteria);
+        if (admins.size() == 1) {
+            final MessageData md = new MessageData(UserMessage.U008);
+            throw new DataInputException(md);
+        }
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -282,7 +303,7 @@ public class UserServiceImpl implements UserService {
             SecurityHelper.assertCurrentPassword(retr, currentPassword, passwordValidator);
             retr.setPassword(encryptedPassword);
             retr.setLastModifiedTs(new Timestamp(new Date().getTime()));
-            userCredentialRepository.changePassword(retr);
+            userCredentialRepository.save(retr);
         }
     }
 
@@ -359,7 +380,7 @@ public class UserServiceImpl implements UserService {
         final String encryptedPassword = passwordValidator.encryptPassword(newPassword);
         userCredential.setPassword(encryptedPassword);
         userCredential.setLastModifiedTs(new Timestamp(new Date().getTime()));
-        userCredentialRepository.changePassword(userCredential);
+        userCredentialRepository.save(userCredential);
 
         final String to = retrUser.getEmailAddress();
         final String body = String.format(ConfigConstant.EMAIL_RESET_PASSWORD_BODY, newPassword);

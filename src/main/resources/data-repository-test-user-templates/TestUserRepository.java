@@ -5,7 +5,7 @@ import ${topLevelDomain}.${companyName}.${productName}.model.data.UserCredential
 import ${topLevelDomain}.${companyName}.${productName}.model.data.UserProfile;
 import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.Role;
 import ${topLevelDomain}.${companyName}.${productName}.model.repository.ApplicationTestCase;
-import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.UserCredentialRepository;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.CrudRepository;
 import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.UserRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
@@ -23,8 +23,8 @@ public class TestUserRepository extends ApplicationTestCase {
     @Resource(name = "UserRepository")
     private UserRepository userRepository;
 
-    @Resource(name = "UserCredentialRepository")
-    private UserCredentialRepository userCredentialRepository;
+    @Resource(name = "CrudRepository")
+    private CrudRepository<UserCredential> userCredentialRepository;
 
     public TestUserRepository() {
     }
@@ -189,7 +189,7 @@ public class TestUserRepository extends ApplicationTestCase {
 
         userCredential.setPassword("blah");
         bean.setLastModifiedTs(new Timestamp(System.currentTimeMillis()));
-        userCredentialRepository.changePassword(userCredential);
+        userCredentialRepository.save(userCredential);
         final UserCredential newPass = userCredentialRepository.retrieve(UserCredential.class, uuid);
         assertNotNull(newPass);
         assertTrue(newPass.getPassword().equals("blah"));
