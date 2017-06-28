@@ -230,6 +230,12 @@ information, do the following:
 * Locate the "dataSource" bean entry and validate that the connection information is correct.  If it is not correct, 
 the unit tests that interact with the database will fail.
 
+Execute the following from the command prompt to execute the unit tests:
+
+```groovy
+gradle test
+```
+
 ### Checkstyle
 _config/checkstyle/proj-checkstyle.xml_
 

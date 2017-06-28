@@ -52,6 +52,9 @@ public class TestUserServiceImpl extends TestCase {
     private PasswordGeneratorRepository passwordGeneratorRepository;
 
     @Injectable
+    private UserTokenRepository userTokenRepository;
+
+    @Injectable
     private MailRepository emailRepository;
 
     @Injectable

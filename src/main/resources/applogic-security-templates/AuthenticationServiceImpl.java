@@ -1,6 +1,5 @@
 package ${topLevelDomain}.${companyName}.${productName}.model.service.security;
 
-import ${topLevelDomain}.${companyName}.${productName}.model.criteria.UserSearchCriteriaData;
 import ${topLevelDomain}.${companyName}.${productName}.model.data.MessageData;
 import ${topLevelDomain}.${companyName}.${productName}.model.data.UserCredential;
 import ${topLevelDomain}.${companyName}.${productName}.model.data.UserData;
