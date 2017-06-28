@@ -151,12 +151,12 @@ class ServerModelSourceGeneratorScript {
         apps.add(new Tuple("PasswordGeneratorRepository.java", getPathToRepoCode("main", "user", "PasswordGeneratorRepository.java")))
         apps.add(new Tuple("PasswordGeneratorRepositoryImpl.java", getPathToRepoCode("main", "user", "PasswordGeneratorRepositoryImpl.java")))
         apps.add(new Tuple("PasswordValidator.java", getPathToRepoCode("main", "user", "PasswordValidator.java")))
-        apps.add(new Tuple("UserCredentialRepository.java", getPathToRepoCode("main", "user", "UserCredentialRepository.java")))
-        apps.add(new Tuple("UserCredentialRepositoryImpl.java", getPathToRepoCode("main", "user", "UserCredentialRepositoryImpl.java")))
         apps.add(new Tuple("UserCredentialValidator.java", getPathToRepoCode("main", "user", "UserCredentialValidator.java")))
         apps.add(new Tuple("UserCredentialValidatorImpl.java", getPathToRepoCode("main", "user", "UserCredentialValidatorImpl.java")))
         apps.add(new Tuple("UserRepository.java", getPathToRepoCode("main", "user", "UserRepository.java")))
         apps.add(new Tuple("UserRepositoryImpl.java", getPathToRepoCode("main", "user", "UserRepositoryImpl.java")))
+        apps.add(new Tuple("UserTokenRepository.java", getPathToRepoCode("main", "user", "UserTokenRepository.java")))
+        apps.add(new Tuple("UserTokenRepositoryImpl.java", getPathToRepoCode("main", "user", "UserTokenRepositoryImpl.java")))
 
         ScriptHelper.render("data-repository-user-templates", apps)
     }
@@ -167,6 +167,7 @@ class ServerModelSourceGeneratorScript {
         apps.add(new Tuple("TestPasswordGeneratorRepository.java", getPathToRepoCode("test", "user", "TestPasswordGeneratorRepository.java")))
         apps.add(new Tuple("TestUserCredentialValidator.java", getPathToRepoCode("test", "user", "TestUserCredentialValidator.java")))
         apps.add(new Tuple("TestUserRepository.java", getPathToRepoCode("test", "user", "TestUserRepository.java")))
+        apps.add(new Tuple("TestUserToken.java", getPathToRepoCode("test", "user", "TestUserToken.java")))
 
         ScriptHelper.render("data-repository-test-user-templates", apps)
     }

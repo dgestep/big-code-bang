@@ -7,10 +7,10 @@ import ${topLevelDomain}.${companyName}.${productName}.model.data.UserCredential
 import ${topLevelDomain}.${companyName}.${productName}.model.data.UserProfile;
 import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.Role;
 import ${topLevelDomain}.${companyName}.${productName}.model.exception.DataInputException;
+import ${topLevelDomain}.${companyName}.${productName}.model.repository.CrudRepository;
 import ${topLevelDomain}.${companyName}.${productName}.model.repository.mail.MailRepository;
 import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.PasswordGeneratorRepository;
 import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.PasswordValidator;
-import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.UserCredentialRepository;
 import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.UserCredentialValidator;
 import ${topLevelDomain}.${companyName}.${productName}.model.repository.user.UserRepository;
 import ${topLevelDomain}.${companyName}.${productName}.model.service.lookup.LookupKeyValueService;
@@ -40,7 +40,7 @@ public class TestUserServiceImpl extends TestCase {
     private UserRepository userRepository;
 
     @Injectable
-    private UserCredentialRepository userCredentialRepository;
+    private CrudRepository<UserCredential> userCredentialRepository;
 
     @Injectable
     private UserCredentialValidator userCredentialValidator;
@@ -537,7 +537,7 @@ public class TestUserServiceImpl extends TestCase {
                 userCredentialRepository.add((UserCredential) any);
                 times = 1;
 
-                userCredentialRepository.changePassword((UserCredential) any);
+                userCredentialRepository.save((UserCredential) any);
                 times = 0;
             }
         };
@@ -584,7 +584,7 @@ public class TestUserServiceImpl extends TestCase {
                 userCredentialRepository.add((UserCredential) any);
                 times = 0;
 
-                userCredentialRepository.changePassword((UserCredential) any);
+                userCredentialRepository.save((UserCredential) any);
                 times = 1;
             }
         };
@@ -673,7 +673,7 @@ public class TestUserServiceImpl extends TestCase {
                 passwordValidator.encryptPassword(anyString);
                 times = 0;
 
-                userCredentialRepository.changePassword((UserCredential) any);
+                userCredentialRepository.save((UserCredential) any);
                 times = 0;
 
                 emailRepository.send((Properties) any);
@@ -738,7 +738,7 @@ public class TestUserServiceImpl extends TestCase {
                 passwordValidator.encryptPassword(anyString);
                 times = 1;
 
-                userCredentialRepository.changePassword((UserCredential) any);
+                userCredentialRepository.save((UserCredential) any);
                 times = 1;
 
                 emailRepository.send((Properties) any);

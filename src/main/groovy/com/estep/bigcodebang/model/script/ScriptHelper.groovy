@@ -1,5 +1,6 @@
 package com.estep.bigcodebang.model.script
 
+import com.estep.bigcodebang.PackageNameManager
 import com.estep.bigcodebang.model.TemplateCopy
 import com.estep.bigcodebang.model.TextTemplate
 import com.estep.bigcodebang.model.Tuple
@@ -28,7 +29,20 @@ class ScriptHelper {
     }
 
     static String serverRender(propertyName) {
-        TextTemplate.renderDeep(ServerProperty.get(propertyName))
+        String value
+        if (propertyName.equals("top_level_domain")) {
+            PackageNameManager pnm = new PackageNameManager()
+            value = pnm.formatPackageElement(ServerProperty.get("top_level_domain"))
+        } else if (propertyName.equals("company_name")) {
+            PackageNameManager pnm = new PackageNameManager()
+            value = pnm.formatPackageElement(ServerProperty.get("company_name"))
+        } else if (propertyName.equals("product_name")) {
+            PackageNameManager pnm = new PackageNameManager()
+            value = pnm.formatPackageElement(ServerProperty.get("product_name"))
+        } else {
+            value = TextTemplate.renderDeep(ServerProperty.get(propertyName))
+        }
+        value
     }
 
     static void render(templateFolder, paths) {

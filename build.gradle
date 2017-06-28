@@ -41,7 +41,7 @@ task generateViewProject(type: JavaExec) {
     description 'Generates the View project'
 
     // Set main property to name of Groovy script class.
-    main = 'com.estep.bigcodebang.model.script.ViewSourceGeneratorScript'
+    main = 'com.estep.bigcodebang.model.script.SourceViewCodeGeneratorScript'
 
     // Set classpath for running the Groovy script.
     classpath = sourceSets.main.runtimeClasspath
