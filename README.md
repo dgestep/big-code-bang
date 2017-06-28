@@ -1,62 +1,99 @@
 # The Big Code Bang Project
 
-The Big Code Bang project was created to expedite the process of creating an enterprise application, laying down a 
-proven architecture that can be built upon.  Big Code Bang generates the source code for both the server side and 
-client side projects, saving you weeks, if not months of time.  After you run the big code bang, you will have a 
-working web application using the latest/greatest technology stack.
+I have architected and developed many enterprise applications throughout my career. I discuss my past work on my 
+[online resume](http://dougestep.com/resume/). I leverage the knowledge and experiences from my past projects and 
+work with every new project that I architect and develop, piecing together the initial commit with a common 
+architecture and libraries that have worked well for me in the past. Regardless of the numerous applications I have 
+developed, the initial setup and commit always seems to take too long. The Big Code Bang project was created to 
+expedite the process of creating an enterprise application, using a proven architecture that can be built upon. I 
+created the Big Code Bang Project to leverage these same technologies and libraries, generating the source code for both
+ the server side and client side projects.  The result of executing the Big Code Bang is a working web application 
+ using the latest/greatest technology stack, ready to be imported into your IDE and checked into your code repository. 
+ 
 
+The generated source code is yours to build upon, saving weeks, if not months of time and money. 
+
+**Go ahead and give it a BIG bang! :-)**
+
+
+--Doug Estep
+
+
+## Architecting Enterprise Applications
 
 Architecting an enterprise web project can be complex and involves many decision points such as the following:
 
-* A server platform(s).  Linux, Windows, etc.  Clustered environment or single server?  If clustered, how many nodes 
-in the cluster and what about a load balancer.  F5 Big-IP, etc.
-* Deciding on a server-side software technology stack. Java, .NET, NodeJS, etc.  This decision may be based on your 
-server platform.  For example, if you want .NET then it most likely needs to run on Windows.  (.NET core runs on any OS). If
- you choose a Java technology stack then you have library choices, such as Spring, etc.
-* Deciding on a software platform for the view into your web application.  Single Page Application technologies
- such as Angular JS or a controller stack such as Spring MVC in Java or a .NET backed controller.  If you choose the 
- single page application approach then there are more decisions to make; Bower, Gulp, NodeJS, Node Package Manager 
- (NPM), and more.  (Lot's of moving parts for sure).
-* Security technologies.  Authentication and authorization.  LDAP, Active Directory, the honor system -- kidding :-).
+* A server platform -- Linux, Windows, etc.  Clustered environment or single server?  If clustered then a load 
+balancer will be needed (F5 Big-IP, etc.).
+* Deciding on a server-side software technology stack such as Java, .NET, NodeJS, etc.  This decision may be based on
+ your server platform.  For example, if you want a .NET technology stack then it most likely needs to run on Windows.
+  (.NET core runs on any OS). If you choose a Java technology stack then you have library choices, such as Spring, EJB, 
+  etc.
+* Deciding on a software platform for the view into your web application.  Do you want a single page application or a
+ traditional request/response application?  If you want a single page application, then you have framework choices; 
+ Angular JS, JQuery, Backbone, etc., or a controller stack such as Spring MVC in Java or a .NET backed controller.  
+ If you choose the single page application approach then there are more tools to decide on and learn; Bower, Gulp, 
+ NodeJS, Node Package Manager (NPM), and more.  (Lot's of moving parts for sure).
+* Security technologies.  Authentication and authorization.  LDAP, Active Directory, emdedded 
+authentication/authorization, the honor system -- kidding :-).
 * Logging technologies, such as Log4j or Log4N (.NET), etc.
-* Database technologies. Structured data or big data? An ORM such as Hibernate or EclipseLink for Java or the entity 
+* Database? Structured data or big data? An ORM such as Hibernate or EclipseLink for Java or the entity 
  framework for .NET. Or... go it old school and do straight JDBC or ODBC (don't mock... sometimes there's a valid 
  use-case for old school).
-* Application Server.  Apache Tomcat, IBM Websphere, Oracle Weblogic, JBoss, IIS for .NET, etc.
+* What application server will your web application run in?  Apache Tomcat, IBM Websphere, Oracle Weblogic, JBoss, IIS 
+for .NET, etc.
 
 Once you have decided on the technology stack, the next step is to setup the tools and processes necessary for 
 the standard software development lifecycle stuff:
 
 * Setup a build script to build your application, including source code checks for style, code analyzers such as PMD 
 and FindBugs, and tools to report code coverage.  The choices differ based on your choice of server side technologies
- to which your application is written.
-* Setting up a continuous integration environment. Jenkins, etc.
-* Picking a code repository (GIT, Subversion, Team Foundation Server (TFS), etc.)
-* Deciding on a tool for bug and issue tracking and project management.  (Jira by Atlassian, etc.)
+ to which your application will be written.
+* Setting up a continuous integration environment such as Jenkins, etc.
+* Picking a code repository, such as GIT, Subversion, Team Foundation Server (TFS), etc.
+* Deciding on a tool for bug and issue tracking and project management such as Jira by Atlassian, etc.
+* Training developers on the tools and technologies that you have selected.
 
+As an architect, doing your due diligence on each of these decision points is crucial for a successful and secure 
+application.  However, doing so usually takes a considerable amount of time and money.
 
+## The Power of the Big Code Bang
 
-
-
-
-* [Spring](https://spring.io/) - REST services, Spring Security, Spring AOP, Spring ORM, Spring JDBC
-* [EclipseLink](http://www.eclipse.org/eclipselink)
-* [Gradle Build Tool](https://gradle.org/)
-* [MySQL](https://www.mysql.com/)
-* [Apache Tomcat](http://tomcat.apache.org/) version 8+
-* [Angular 4](https://angular.io/)
-* [Angular Material Design](https://material.angular.io/)
-
-The Big Code Bang project is a tool that generates the project structure and the code for the Model and View 
-components of a web application.  A typical web application involves a database layer, an application logic layer, a REST service 
-layer, security, and a view layer. Best practice suggests that each of these layers be decoupled in order to allow flexibility with 
-regards to the implementation details. Big Code Bang generates the projects and code architected in a manner that can
- be built upon and adheres to best practices.  Run Big Code Bang and... bing bang boom, you have a runnable 
- application separated into two projects; one project containing your application/database logic and another project 
- containing your View logic.  
+Although I have done some work using Microsoft's technologies, a big portion of my career has been using Java. I have
+ done some with with NodeJS on the server as well.  Any of these choices are fine for the server-side and all have 
+ their pros and cons.  The initial rollout of the Big Code Bang project is using Java as the server-side technology 
+ of choice.  I intend to create a .NET and NodeJS implementation of the server-side in future versions.
  
- 
- **Go ahead and give it a BIG bang! :-)**
+The common architecture and libraries the Big Bang Project uses/generates are described below:
+
+### Server Side REST Service Layer
+* [Spring](https://spring.io/) - an application framework and inversion of control container for the Java platform. 
+Spring is used to aid in the creation of the REST services, controlling Security, and database access using Spring 
+ORM and Spring JDBC.
+* [EclipseLink](http://www.eclipse.org/eclipselink) - an open source Eclipse Persistence Services Project from the 
+Eclipse Foundation. The software provides an extensible framework that allows Java developers to interact with 
+various data services, including databases, web services, Object XML mapping (OXM), and Enterprise Information 
+Systems (EIS).
+* [Gradle Build Tool](https://gradle.org/) an open source build automation system that builds upon the concepts of 
+Apache Ant and Apache Maven.  Gradle is used for its dependency management and build capabilities.
+* [MySQL](https://www.mysql.com/) an open source relational database management system (RDBMS) based on Structured 
+Query Language (SQL).  Any database vendor can be used with the Big Code Bang.  I chose MySQL because of its ease of 
+use.  If you are using a different database vendor, you will need to adjust the SQL create scripts to adhere to your 
+DBMS syntax and adjust the JPA adapter settings in the generated model-sprint-context XML file.
+* [Apache Tomcat](http://tomcat.apache.org/) version 8+.  Used to deploy a Web ARchive (WAR) file to serve up REST 
+services.  You're not tied to Tomcat.  You can use any application server.  I chose Tomcat because of it's ease of 
+use. I describe how to setup a database connection pool in Tomcat.  If you choose a different application server, you
+ will need to setup your database connection pool using the instructions provided by your application server. 
+* JUnit - a unit testing framework for the Java programming language.
+
+### Client Side Layer
+* A single page application using [Angular 4](https://angular.io/) and [Angular Material Design](https://material.angular.io/)
+* [Typescript](https://www.typescriptlang.org/) - a typed superset of JavaScript that compiles to plain JavaScript
+* [Twitter Bootstrap](http://getbootstrap.com/) - an open source front-end web framework for designing websites and 
+web applications.
+* Cascading Style Sheets (CSS) - a style sheet language used for describing the presentation of a document written in
+ a markup language.
+* Hypertext Markup Language (HTML)
 
 ## Prequisites
 To run the Big Code Bang, you will need the following :
@@ -76,7 +113,8 @@ after this installation.
 * Install MySQL version 5+. The MySQL service needs to be running when the Big Code Bang project is executing.
 * Install Apache Tomcat version 8+.
 * Clone or download this project.
-* Download latest version of the [Gradle Build Tool](https://gradle.org/) and unzip the gradle archive to a location on your disk.  Remember the location.
+* Download latest version of the [Gradle Build Tool](https://gradle.org/) and unzip the gradle archive to a location 
+on your disk.  Make a note of the location because you will need it later.  
 
 ## Configuring the Big Code Bang
 The Big Code Bang project generates two applications; a server side WAR project which serves up REST services
@@ -85,8 +123,10 @@ The Big Code Bang project generates two applications; a server side WAR project 
  each application.
 
 ### Server Side Configuration
-
 _resources/server_project.properties_
+
+The properties below are used to generate the source code for the server-side projects.  The values supplied are 
+examples. It is expected that you provide your own values for your project.
 
 **Note:** All properties are String values and must be surrounded by double quotes.
 
@@ -111,8 +151,10 @@ _resources/server_project.properties_
 
 
 ### View Side Configuration
-
 _resources/view_project.properties_
+
+The properties below are used to generate the source code for the client-side project.  The values supplied are 
+examples. It is expected that you provide your own values for your project.
 
 **Note:** All properties are String values and must be surrounded by double quotes.
 
@@ -137,6 +179,9 @@ You should be in the same folder as the build.gradle file.
 cd /path/to/BigCodeBang
 gradle generateProjects
 ```
+
+The generated source code is located at the location that you provided in the _project_base_folder_ 
+properties within the _resources/server_project.properties_ and _resources/view_project.properties_ files.
 
 * type "gradle deleteProjects" to delete the projects generated by the Big Code Bang.
 
@@ -305,4 +350,9 @@ user profiles.
 * Click your name on the menu and choose _Change Password_.  This screen allows you to change your current password.
 * Click your name on the menu and choose _Logout_.  You are logged out and taken back to the login page.
 
-**Congratulations!** You now have a working application that you can build upon.  Enjoy!
+**Congratulations!** You now have a working application that you can build upon.  
+
+Good luck with your project!
+
+
+Doug Estep
