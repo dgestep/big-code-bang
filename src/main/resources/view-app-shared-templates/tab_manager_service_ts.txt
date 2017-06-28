@@ -24,7 +24,7 @@ export class TabManagerService {
   }
 
   private getTabJSON(): Observable<any> {
-    return this.http.get('/assets/tabs.json')
+    return this.http.get('assets/tabs.json')
       .map(response => response.json())
       .catch(error => {
         throw new Error(error);

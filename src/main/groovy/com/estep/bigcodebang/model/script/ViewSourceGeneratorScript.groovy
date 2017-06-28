@@ -22,7 +22,6 @@ class ViewSourceGeneratorScript {
 
         copyGoogleAssets()
 
-        copyAppEnvironment()
         copyAppFooter()
         copyAppHeader()
         copyAppHome()
@@ -64,15 +63,6 @@ class ViewSourceGeneratorScript {
         apps.add(new Tuple("environment_ts.txt", getPathToViewCode(appRoot, "environment.ts")))
 
         ScriptHelper.render("view-environments-templates", apps)
-    }
-
-    private void copyAppEnvironment() {
-        def appRoot = "src" + File.separator + "app" + File.separator + "environment";
-        List<Tuple> apps = new ArrayList<>()
-        apps.add(new Tuple("environment_data_ts.txt", getPathToViewCode(appRoot, "environment.data.ts")))
-        apps.add(new Tuple("environment_service_ts.txt", getPathToViewCode(appRoot, "environment.service.ts")))
-
-        ScriptHelper.render("view-app-environment-templates", apps)
     }
 
     private void copyAppFooter() {
@@ -202,13 +192,6 @@ class ViewSourceGeneratorScript {
         TemplateCopy copy = new TemplateCopy()
         copy.copy(tmplFolder + "Logo.jpg", getPathToViewCode(appRoot, "Logo.jpg"))
         copy.copy(tmplFolder + "tabs.json", getPathToViewCode(appRoot, "tabs.json"))
-
-        List<Tuple> apps = new ArrayList<>()
-        apps.add(new Tuple("environment_config_json.txt", getPathToViewCode(appRoot, "environment.config.json")))
-        apps.add(new Tuple("environment_production_config_json.txt", getPathToViewCode(appRoot, "environment" +
-                ".production.config.json")))
-
-        ScriptHelper.render("view-assets", apps)
     }
 
     private void copyBootstrapCssAssets() {

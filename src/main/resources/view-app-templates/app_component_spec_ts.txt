@@ -22,8 +22,6 @@ import {HomeComponent} from './home/home.component';
 import {LoggedInGuard} from './security/logged-in.guard';
 import {SessionLostComponent} from './security/session.lost.component';
 import {TabManagerService} from './shared/tab.manager.service';
-import {HsmHelpDialogComponent} from './home/hsm.help.component';
-import {EnvironmentService} from './environment/environment.service';
 import {CatalogService} from './catalog/catalog.service';
 import {DocumentService} from './document/document.service';
 
