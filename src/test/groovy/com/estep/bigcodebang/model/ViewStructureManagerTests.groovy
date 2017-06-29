@@ -24,33 +24,31 @@ class ViewStructureManagerTests extends GroovyTestCase {
     }
 
     private void assertViewStructure() {
-        def path = renderFromBase("src" + File.separator + "app" + File.separator + "environment")
+        def path = renderFromBase("src/app/footer")
         assertPath(path, true)
-        path = renderFromBase("src" + File.separator + "app" + File.separator + "footer")
+        path = renderFromBase("src/app/header")
         assertPath(path, true)
-        path = renderFromBase("src" + File.separator + "app" + File.separator + "header")
+        path = renderFromBase("src/app/home")
         assertPath(path, true)
-        path = renderFromBase("src" + File.separator + "app" + File.separator + "home")
+        path = renderFromBase("src/app/security")
         assertPath(path, true)
-        path = renderFromBase("src" + File.separator + "app" + File.separator + "security")
+        path = renderFromBase("src/app/shared")
         assertPath(path, true)
-        path = renderFromBase("src" + File.separator + "app" + File.separator + "shared")
+        path = renderFromBase("src/app/user")
         assertPath(path, true)
-        path = renderFromBase("src" + File.separator + "app" + File.separator + "user")
+        path = renderFromBase("src/environments")
         assertPath(path, true)
-        path = renderFromBase("src" + File.separator + "environments")
+        path = renderFromBase("src/assets/bootstrap")
         assertPath(path, true)
-        path = renderFromBase("src" + File.separator + "assets" + File.separator + "bootstrap")
+        path = renderFromBase("src/assets/font-awesome")
         assertPath(path, true)
-        path = renderFromBase("src" + File.separator + "assets" + File.separator + "font-awesome")
-        assertPath(path, true)
-        path = renderFromBase("src" + File.separator + "assets" + File.separator + "google")
+        path = renderFromBase("src/assets/google")
         assertPath(path, true)
     }
 
     private String renderFromBase(folderName) {
-        def base = renderValue("project_base_folder") + File.separator + renderValue("view_root_folder_name")
-        def template = base + File.separator + folderName
+        def base = renderValue("project_base_folder") + '/' + renderValue("view_root_folder_name")
+        def template = base + '/' + folderName
         def path = TextTemplate.renderDeep(template)
 
         path

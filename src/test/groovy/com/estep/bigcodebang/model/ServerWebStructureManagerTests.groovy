@@ -19,14 +19,14 @@ class ServerWebStructureManagerTests extends GroovyTestCase {
     }
 
     private void assertWebStructure() {
-        def mainPath = renderValue("web.base.path", "src" + File.separator + "main")
-        def testPath = renderValue("web.base.path", "src" + File.separator + "test")
+        def mainPath = renderValue("web.base.path", "src/main")
+        def testPath = renderValue("web.base.path", "src/test")
         assertWebPathsExist(mainPath, true)
         assertWebPathsExist(testPath, true)
     }
 
     private String renderValue(propertyName, folderName) {
-        def template = ServerProperty.get(propertyName) + File.separator + folderName + File.separator + "java"
+        def template = ServerProperty.get(propertyName) + '/' + folderName + "/java"
         def path = TextTemplate.renderDeep(template)
 
         path
@@ -35,8 +35,8 @@ class ServerWebStructureManagerTests extends GroovyTestCase {
     private void assertWebPathsExist(path, exists) {
         assertPath(path, exists)
 
-        assertPath(path + File.separator + render("web.security.path"), exists)
-        assertPath(path + File.separator + render("web.user.path"), exists)
+        assertPath(path + '/' + render("web.security.path"), exists)
+        assertPath(path + '/' + render("web.user.path"), exists)
     }
 
     private void assertPath(path, exists) {

@@ -18,7 +18,7 @@ class ScriptHelper {
         buf.append(startPackage)
 
         for (String subPackage in subPackages) {
-            buf.append(File.separator).append(subPackage)
+            buf.append('/').append(subPackage)
         }
 
         buf.toString()
@@ -49,7 +49,7 @@ class ScriptHelper {
         TemplateCopy templateCopy = new TemplateCopy()
 
         for (Tuple path : paths) {
-            StringBuilder template = new StringBuilder().append(templateFolder).append(File.separator).append(path.get(0))
+            StringBuilder template = new StringBuilder().append(templateFolder).append('/').append(path.get(0))
 
             templateCopy.renderAndCopy(template.toString(), path.get(1))
         }
@@ -59,7 +59,7 @@ class ScriptHelper {
         TemplateCopy templateCopy = new TemplateCopy()
 
         for (Tuple path : paths) {
-            StringBuilder template = new StringBuilder().append(templateFolder).append(File.separator).append(path.get(0))
+            StringBuilder template = new StringBuilder().append(templateFolder).append('/').append(path.get(0))
 
             templateCopy.copy(template.toString(), path.get(1))
         }

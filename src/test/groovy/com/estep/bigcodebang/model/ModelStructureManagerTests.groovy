@@ -58,60 +58,56 @@ class ModelStructureManagerTests extends GroovyTestCase {
     }
 
     private void copyCheckstyle() {
-        String destination = render("root.base.path") + File.separator + "config" + File.separator +
-                "checkstyle/proj-checkstyle.xml"
+        String destination = render("root.base.path") + "/config/checkstyle/proj-checkstyle.xml"
         templateCopy.copy("proj-checkstyle.xml", destination)
 
         assertPath(destination, true)
     }
 
     private void copyPmd() {
-        String destination = render("root.base.path") + File.separator + "config" + File.separator +
-                "rulesets/proj-pmd-rules.xml"
+        String destination = render("root.base.path") + "/config/rulesets/proj-pmd-rules.xml"
         templateCopy.copy("proj-pmd-rules.xml", destination)
 
         assertPath(destination, true)
     }
 
     private void copyModelGradleRootBuildScript() {
-        String destination = render("model.base.path") + File.separator + "build.gradle"
+        String destination = render("model.base.path") + "/build.gradle"
         templateCopy.renderAndCopy("model_build_gradle_root.txt", destination)
 
         assertPath(destination, true)
     }
 
     private void copyModelApplLogicGradleRootBuildScript() {
-        String destination = render("applogic.base.root") + File.separator + "build.gradle"
+        String destination = render("applogic.base.root") + "/build.gradle"
         templateCopy.renderAndCopy("model_applogic_gradle_root.txt", destination)
 
         assertPath(destination, true)
     }
 
     private void copyModelDataGradleRootBuildScript() {
-        String destination = render("data.base.root") + File.separator + "build.gradle"
+        String destination = render("data.base.root") + "/build.gradle"
         templateCopy.renderAndCopy("model_data_gradle_root.txt", destination)
 
         assertPath(destination, true)
     }
 
     private void copyModelSharedGradleRootBuildScript() {
-        String destination = render("shared.base.root") + File.separator + "build.gradle"
+        String destination = render("shared.base.root") + "/build.gradle"
         templateCopy.renderAndCopy("model_shared_gradle_root.txt", destination)
 
         assertPath(destination, true)
     }
 
     private void copyModelSpringContextXml() {
-        String destination = render("applogic.base.path") + File.separator + "main" + File.separator + "resources" +
-                File.separator + "model-spring-context.xml"
+        String destination = render("applogic.base.path") + "/main/resources/model-spring-context.xml"
         templateCopy.renderAndCopy("model_spring_context_xml.txt", destination)
 
         assertPath(destination, true)
     }
 
     private void copyModelTestSpringContextXml() {
-        String destination = render("data.base.path") + File.separator + "test" + File.separator + "resources" +
-                File.separator + "test-model-spring-context.xml"
+        String destination = render("data.base.path") + "/test/resources/test-model-spring-context.xml"
         templateCopy.renderAndCopy("model_test_spring_context_xml.txt", destination)
 
         assertPath(destination, true)
@@ -120,35 +116,35 @@ class ModelStructureManagerTests extends GroovyTestCase {
     private void assertConfigPathsExist(rootBasePath, modelPath, exists) {
         assertPath(modelPath, exists)
 
-        assertPath(rootBasePath + File.separator + "config" + File.separator + "checkstyle", exists)
-        assertPath(rootBasePath + File.separator + "config" + File.separator + "rulesets", exists)
+        assertPath(rootBasePath + "/config/checkstyle", exists)
+        assertPath(rootBasePath + "/config/rulesets", exists)
     }
 
     private void assertAppLogicPathsExist(path, exists) {
         assertPath(path, exists)
 
-        assertPath(path + File.separator + render("applogic.aspect"), exists)
-        assertPath(path + File.separator + render("applogic.service.lookup"), exists)
-        assertPath(path + File.separator + render("applogic.service.security"), exists)
-        assertPath(path + File.separator + render("applogic.service.user"), exists)
+        assertPath(path + '/' + render("applogic.aspect"), exists)
+        assertPath(path + '/' + render("applogic.service.lookup"), exists)
+        assertPath(path + '/' + render("applogic.service.security"), exists)
+        assertPath(path + '/' + render("applogic.service.user"), exists)
     }
 
     private void assertDataPathsExist(path, exists) {
         assertPath(path, exists)
 
-        assertPath(path + File.separator + render("model.data.lookup"), exists)
-        assertPath(path + File.separator + render("model.data.mail"), exists)
-        assertPath(path + File.separator + render("model.data.user"), exists)
+        assertPath(path + '/' + render("model.data.lookup"), exists)
+        assertPath(path + '/' + render("model.data.mail"), exists)
+        assertPath(path + '/' + render("model.data.user"), exists)
     }
 
     private void assertSharedPathsExist(path, exists) {
         assertPath(path, exists)
 
-        assertPath(path + File.separator + render("model.shared.exception"), exists)
-        assertPath(path + File.separator + render("model.shared.criteria"), exists)
-        assertPath(path + File.separator + render("model.shared.data"), exists)
-        assertPath(path + File.separator + render("model.shared.message"), exists)
-        assertPath(path + File.separator + render("model.shared.log"), exists)
+        assertPath(path + '/' + render("model.shared.exception"), exists)
+        assertPath(path + '/' + render("model.shared.criteria"), exists)
+        assertPath(path + '/' + render("model.shared.data"), exists)
+        assertPath(path + '/' + render("model.shared.message"), exists)
+        assertPath(path + '/' + render("model.shared.log"), exists)
     }
 
     private void assertPath(path, exists) {
@@ -157,7 +153,7 @@ class ModelStructureManagerTests extends GroovyTestCase {
     }
 
     private String renderValue(propertyName, folderName) {
-        def template = ServerProperty.get(propertyName) + File.separator + folderName + File.separator + "java"
+        def template = ServerProperty.get(propertyName) + '/' + folderName + "/java"
         def path = TextTemplate.renderDeep(template)
 
         path

@@ -41,7 +41,7 @@ class TemplateCopy {
         File[] files = source.listFiles()
         for (File file : files) {
             String sourceFileName = file.absolutePath;
-            String destinationFileName = destination + File.separator + file.name;
+            String destinationFileName = destination + '/' + file.name;
             copy(sourceFileName, destinationFileName)
         }
     }

@@ -39,7 +39,7 @@ class ServerRestServiceStructureManager {
      * @param folderName the folder name to place the structure in.
      */
     protected void createWebModuleSourceStructure(folderName) {
-        def srcPath = "src" + File.separator + folderName
+        def srcPath = "src/" + folderName
         def path = ProjectHelper.createSourceStructure("web.base.path", srcPath)
         ProjectHelper.createCodeStructure("web.security.path", path)
         ProjectHelper.createCodeStructure("web.user.path", path)
@@ -50,7 +50,7 @@ class ServerRestServiceStructureManager {
      * @param folderName the folder name to place the structure in.
      */
     protected void createWebContentSourceStructure(folderName) {
-        def template = ServerProperty.get("web.base.path") + File.separator + "WebContent" + File.separator + folderName
+        def template = ServerProperty.get("web.base.path") + "/WebContent/" + folderName
         def path = TextTemplate.renderDeep(template)
         ProjectHelper.makeDirectories(path)
     }

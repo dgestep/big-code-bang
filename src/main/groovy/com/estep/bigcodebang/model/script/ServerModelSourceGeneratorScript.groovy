@@ -27,7 +27,7 @@ class ServerModelSourceGeneratorScript {
     private void copyModelGradleRootBuildScript() {
         StringBuilder buf = new StringBuilder()
         buf.append(ScriptHelper.serverRender("model.base.path"))
-        buf.append(File.separator).append("build.gradle")
+        buf.append("/build.gradle")
 
         TemplateCopy templateCopy = new TemplateCopy()
         templateCopy.renderAndCopy("gradle-scripts-templates/model_build_gradle_root.txt", buf.toString())
@@ -36,7 +36,7 @@ class ServerModelSourceGeneratorScript {
     private void copyModelApplLogicGradleRootBuildScript() {
         StringBuilder buf = new StringBuilder()
         buf.append(ScriptHelper.serverRender("applogic.base.root"))
-        buf.append(File.separator).append("build.gradle")
+        buf.append("/build.gradle")
 
         TemplateCopy templateCopy = new TemplateCopy()
         templateCopy.renderAndCopy("gradle-scripts-templates/model_applogic_gradle_root.txt", buf.toString())
@@ -45,7 +45,7 @@ class ServerModelSourceGeneratorScript {
     private void copyModelDataGradleRootBuildScript() {
         StringBuilder buf = new StringBuilder()
         buf.append(ScriptHelper.serverRender("data.base.root"))
-        buf.append(File.separator).append("build.gradle")
+        buf.append("/build.gradle")
 
         TemplateCopy templateCopy = new TemplateCopy()
         templateCopy.renderAndCopy("gradle-scripts-templates/model_data_gradle_root.txt", buf.toString())
@@ -54,7 +54,7 @@ class ServerModelSourceGeneratorScript {
     private void copyModelSharedGradleRootBuildScript() {
         StringBuilder buf = new StringBuilder()
         buf.append(ScriptHelper.serverRender("shared.base.root"))
-        buf.append(File.separator).append("build.gradle")
+        buf.append("/build.gradle")
 
         TemplateCopy templateCopy = new TemplateCopy()
         templateCopy.renderAndCopy("gradle-scripts-templates/model_shared_gradle_root.txt", buf.toString())
@@ -63,9 +63,9 @@ class ServerModelSourceGeneratorScript {
     private void copyModelSpringContextXml() {
         StringBuilder buf = new StringBuilder()
         buf.append(ScriptHelper.serverRender("applogic.base.path"))
-        buf.append(File.separator).append("main")
-        buf.append(File.separator).append("resources")
-        buf.append(File.separator).append("model-spring-context.xml")
+        buf.append("/main")
+        buf.append("/resources")
+        buf.append("/model-spring-context.xml")
 
         TemplateCopy templateCopy = new TemplateCopy()
         templateCopy.renderAndCopy("applogic-spring-templates/model_spring_context_xml.txt", buf.toString())
@@ -74,9 +74,9 @@ class ServerModelSourceGeneratorScript {
     private void copyModelTestSpringContextXml() {
         StringBuilder buf = new StringBuilder()
         buf.append(ScriptHelper.serverRender("data.base.path"))
-        buf.append(File.separator).append("test")
-        buf.append(File.separator).append("resources")
-        buf.append(File.separator).append("test-model-spring-context.xml")
+        buf.append("/test")
+        buf.append("/resources")
+        buf.append("/test-model-spring-context.xml")
 
         TemplateCopy templateCopy = new TemplateCopy()
         templateCopy.renderAndCopy("applogic-spring-templates/model_test_spring_context_xml.txt", buf.toString())
@@ -404,17 +404,17 @@ class ServerModelSourceGeneratorScript {
         StringBuilder buf = new StringBuilder()
 
         buf.append(ScriptHelper.serverRender("applogic.base.path"))
-        buf.append(File.separator).append(folderName)
-        buf.append(File.separator).append("java")
-        buf.append(File.separator).append(ScriptHelper.serverRender("top_level_domain"))
-        buf.append(File.separator).append(ScriptHelper.serverRender("company_name"))
-        buf.append(File.separator).append(ScriptHelper.serverRender("product_name"))
-        buf.append(File.separator).append("model")
+        buf.append('/').append(folderName)
+        buf.append("/java")
+        buf.append('/').append(ScriptHelper.serverRender("top_level_domain"))
+        buf.append('/').append(ScriptHelper.serverRender("company_name"))
+        buf.append('/').append(ScriptHelper.serverRender("product_name"))
+        buf.append("/model")
         if (subPackage != null) {
-            buf.append(File.separator).append(subPackage)
+            buf.append('/').append(subPackage)
         }
 
-        buf.append(File.separator).append(programName)
+        buf.append('/').append(programName)
 
         buf.toString()
     }
@@ -423,18 +423,18 @@ class ServerModelSourceGeneratorScript {
         StringBuilder buf = new StringBuilder()
 
         buf.append(ScriptHelper.serverRender("data.base.path"))
-        buf.append(File.separator).append(folderName)
-        buf.append(File.separator).append("java")
-        buf.append(File.separator).append(ScriptHelper.serverRender("top_level_domain"))
-        buf.append(File.separator).append(ScriptHelper.serverRender("company_name"))
-        buf.append(File.separator).append(ScriptHelper.serverRender("product_name"))
-        buf.append(File.separator).append("model")
-        buf.append(File.separator).append("repository")
+        buf.append('/').append(folderName)
+        buf.append("/java")
+        buf.append('/').append(ScriptHelper.serverRender("top_level_domain"))
+        buf.append('/').append(ScriptHelper.serverRender("company_name"))
+        buf.append('/').append(ScriptHelper.serverRender("product_name"))
+        buf.append("/model")
+        buf.append("/repository")
         if (subPackage != null) {
-            buf.append(File.separator).append(subPackage)
+            buf.append('/').append(subPackage)
         }
 
-        buf.append(File.separator).append(programName)
+        buf.append('/').append(programName)
 
         buf.toString()
     }
@@ -443,17 +443,17 @@ class ServerModelSourceGeneratorScript {
         StringBuilder buf = new StringBuilder()
 
         buf.append(ScriptHelper.serverRender("shared.base.path"))
-        buf.append(File.separator).append(folderName)
-        buf.append(File.separator).append("java")
-        buf.append(File.separator).append(ScriptHelper.serverRender("top_level_domain"))
-        buf.append(File.separator).append(ScriptHelper.serverRender("company_name"))
-        buf.append(File.separator).append(ScriptHelper.serverRender("product_name"))
-        buf.append(File.separator).append("model")
+        buf.append('/').append(folderName)
+        buf.append("/java")
+        buf.append('/').append(ScriptHelper.serverRender("top_level_domain"))
+        buf.append('/').append(ScriptHelper.serverRender("company_name"))
+        buf.append('/').append(ScriptHelper.serverRender("product_name"))
+        buf.append("/model")
         if (subPackage != null) {
-            buf.append(File.separator).append(subPackage)
+            buf.append('/').append(subPackage)
         }
 
-        buf.append(File.separator).append(programName)
+        buf.append('/').append(programName)
 
         buf.toString()
     }

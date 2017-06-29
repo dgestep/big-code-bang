@@ -13,8 +13,8 @@ class ProjectHelper {
      */
     static void createConfigStructure() {
         def basePath = TextTemplate.renderDeep(ServerProperty.get("root.base.path"))
-        makeDirectories(basePath + File.separator + "config" + File.separator + "checkstyle")
-        makeDirectories(basePath + File.separator + "config" + File.separator + "rulesets")
+        makeDirectories(basePath + "/config/checkstyle")
+        makeDirectories(basePath + "/config/rulesets")
     }
 
     /**
@@ -38,7 +38,7 @@ class ProjectHelper {
      */
     static void createCodeStructure(basePathProperty, path) {
         def value = TextTemplate.renderDeep(ServerProperty.get(basePathProperty))
-        File file = new File(path + File.separator + value)
+        File file = new File(path + '/' + value)
         file.mkdirs()
     }
 
@@ -50,13 +50,13 @@ class ProjectHelper {
      * @return the created path.
      */
     static String createSourceStructure(basePathProperty, folderName) {
-        def template = ServerProperty.get(basePathProperty) + File.separator + folderName
+        def template = ServerProperty.get(basePathProperty) + '/' + folderName
         def path = TextTemplate.renderDeep(template)
 
-        def resources = path + File.separator + "resources"
+        def resources = path + "/resources"
         ProjectHelper.makeDirectories(resources)
 
-        path += File.separator + "java"
+        path += "/java"
         ProjectHelper.makeDirectories(path)
 
         path
