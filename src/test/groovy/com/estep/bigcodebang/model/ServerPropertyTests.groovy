@@ -13,6 +13,6 @@ class ServerPropertyTests extends GroovyTestCase {
 
     void testGetPropertyWithSlashInValue() {
         def location = ServerProperty.get("application_log_file_location")
-        assert location.equals("C:\\temp\\logs")
+        assert location.equals("C:\\\\temp\\\\logs")
     }
 }
