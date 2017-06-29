@@ -11,4 +11,13 @@ class TextTemplateTests extends GroovyTestCase {
         def value = TextTemplate.renderDeep(template)
         assert value.equals(projectBase + "/" + companyName + "." + productName)
     }
+
+    void testRenderNestedLevelWithSlashInValue() {
+        def location = ServerProperty.get("application_log_file_location")
+        def companyName = ServerProperty.get("company_name")
+
+        def template = '${applicationLogFileLocation}/${companyName}'
+        def value = TextTemplate.renderDeep(template)
+        assert value.equals(location + "/" + companyName)
+    }
 }
