@@ -121,7 +121,7 @@ The Big Code Bang project generates two applications; a server side WAR project 
  each application.
 
 ### Server Side Configuration
-_resources/server_project.properties_
+_src/main/resources/server_project.properties_
 
 The properties below are used to generate the source code for the server-side projects.  The values supplied are 
 examples. It is expected that you provide your own values for your project.
@@ -150,7 +150,7 @@ examples. It is expected that you provide your own values for your project.
 
 
 ### View Side Configuration
-_resources/view_project.properties_
+_src/main/resources/view_project.properties_
 
 The properties below are used to generate the source code for the client-side project.  The values supplied are 
 examples. It is expected that you provide your own values for your project.
