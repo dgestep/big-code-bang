@@ -1,10 +1,6 @@
 package com.estep.bigcodebang.model.script
 
 import com.estep.bigcodebang.PackageNameManager
-import com.estep.bigcodebang.model.TemplateCopy
-import com.estep.bigcodebang.model.TextTemplate
-import com.estep.bigcodebang.model.Tuple
-import com.estep.bigcodebang.model.ViewProperty
 import com.estep.bigcodebang.model.ServerProperty
 import com.estep.bigcodebang.model.TemplateCopy
 import com.estep.bigcodebang.model.TextTemplate

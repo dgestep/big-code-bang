@@ -1,7 +1,5 @@
 package com.estep.bigcodebang.model
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException
-
 /**
  * Handles the creation of the project and module folder structures for the web UI and services project.
  */

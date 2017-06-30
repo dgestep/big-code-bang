@@ -1,13 +1,13 @@
 package com.estep.bigcodebang.model.script
 
 import com.estep.bigcodebang.model.TemplateCopy
-import com.estep.bigcodebang.model.TemplateCopy
 import com.estep.bigcodebang.model.Tuple
 
 class ServerRestServiceSourceGeneratorScript {
 
     void execute() {
-        copyWebProjectCode()
+        copyWebGradleRootBuildScript()
+        copyWebGradleWrapperFiles()
         copyWebSecurityProjectCode()
         copyWebUserProjectCode()
 
@@ -21,6 +21,18 @@ class ServerRestServiceSourceGeneratorScript {
         copyLog4XmlFiles("log4j-production", "web-resources-templates/web_log4j_production_xml.txt")
         copyServicesServletXml()
         copyWebXml()
+    }
+
+    private void copyWebGradleWrapperFiles() {
+        String webBasePath = ScriptHelper.serverRender("web.base.path")
+        String jar = webBasePath + "/gradle/wrapper/gradle-wrapper.jar"
+        String props = webBasePath + "/gradle/wrapper/gradle-wrapper.properties"
+
+        TemplateCopy templateCopy = new TemplateCopy()
+        templateCopy.copy("gradle-wrapper-files/gradle-wrapper.jar", jar)
+        templateCopy.copy("gradle-wrapper-files/gradle-wrapper.properties", props)
+        templateCopy.copy("gradle-wrapper-files/gradlew", webBasePath + "/gradlew")
+        templateCopy.copy("gradle-wrapper-files/gradlew.bat", webBasePath + "/gradlew.bat")
     }
 
     private void copyWebProjectCode() {

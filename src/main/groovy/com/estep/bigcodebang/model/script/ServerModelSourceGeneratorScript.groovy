@@ -2,14 +2,14 @@ package com.estep.bigcodebang.model.script
 
 import com.estep.bigcodebang.model.TemplateCopy
 import com.estep.bigcodebang.model.Tuple
-import com.estep.bigcodebang.model.TemplateCopy
-import com.estep.bigcodebang.model.Tuple
 
 class ServerModelSourceGeneratorScript {
     ServerModelSourceGeneratorScript() {
     }
 
     void execute() {
+        copyRootGradleWrapperFiles()
+        copyModelGradleWrapperFiles()
         copyModelGradleRootBuildScript()
 
         copyModelApplLogicGradleRootBuildScript()
@@ -22,6 +22,30 @@ class ServerModelSourceGeneratorScript {
         copyModelProjectCode()
         copySharedProjectCode()
         copyAppLogicServiceCode()
+    }
+
+    private void copyRootGradleWrapperFiles() {
+        String rootBasePath = ScriptHelper.serverRender("root.base.path")
+        String jar = rootBasePath + "/gradle/wrapper/gradle-wrapper.jar"
+        String props = rootBasePath + "/gradle/wrapper/gradle-wrapper.properties"
+
+        TemplateCopy templateCopy = new TemplateCopy()
+        templateCopy.copy("gradle-wrapper-files/gradle-wrapper.jar", jar)
+        templateCopy.copy("gradle-wrapper-files/gradle-wrapper.properties", props)
+        templateCopy.copy("gradle-wrapper-files/gradlew", rootBasePath + "/gradlew")
+        templateCopy.copy("gradle-wrapper-files/gradlew.bat", rootBasePath + "/gradlew.bat")
+    }
+
+    private void copyModelGradleWrapperFiles() {
+        String modelBasePath = ScriptHelper.serverRender("model.base.path")
+        String jar = modelBasePath + "/gradle/wrapper/gradle-wrapper.jar"
+        String props = modelBasePath + "/gradle/wrapper/gradle-wrapper.properties"
+
+        TemplateCopy templateCopy = new TemplateCopy()
+        templateCopy.copy("gradle-wrapper-files/gradle-wrapper.jar", jar)
+        templateCopy.copy("gradle-wrapper-files/gradle-wrapper.properties", props)
+        templateCopy.copy("gradle-wrapper-files/gradlew", modelBasePath + "/gradlew")
+        templateCopy.copy("gradle-wrapper-files/gradlew.bat", modelBasePath + "/gradlew.bat")
     }
 
     private void copyModelGradleRootBuildScript() {

@@ -2,8 +2,6 @@ package com.estep.bigcodebang.model.script
 
 import com.estep.bigcodebang.model.TemplateCopy
 import com.estep.bigcodebang.model.Tuple
-import com.estep.bigcodebang.model.TemplateCopy
-import com.estep.bigcodebang.model.Tuple
 
 class ViewSourceGeneratorScript {
 
@@ -174,8 +172,6 @@ class ViewSourceGeneratorScript {
         copy.copy(tmplFolder + "polyfills.ts", getPathToViewCode(appRoot, "polyfills.ts"))
         copy.copy(tmplFolder + "typings.d.ts", getPathToViewCode(appRoot, "typings.d.ts"))
         copy.copy(tmplFolder + "tsconfig.app.json", getPathToViewCode(appRoot, "tsconfig.app.json"))
-//        copy.copy(tmplFolder + "tsconfig.spec.json", getPathToViewCode(appRoot, "tsconfig.spec.json"))
-//        copy.copy(tmplFolder + "test.ts", getPathToViewCode(appRoot, "test.ts"))
 
         List<Tuple> apps = new ArrayList<>()
         apps.add(new Tuple("index_html.txt", getPathToViewCode(appRoot, "index.html")))

@@ -1,9 +1,6 @@
 package com.estep.bigcodebang.model
 
 import com.estep.bigcodebang.ProjectHelper
-import com.estep.bigcodebang.ProjectHelper
-import com.estep.bigcodebang.model.script.ScriptHelper
-import sun.reflect.generics.reflectiveObjects.NotImplementedException
 
 /**
  * Handles the creation of the project and module folder structures for the REST services project.
@@ -16,22 +13,15 @@ class ServerRestServiceStructureManager {
      * Creates the web structure on the file system.
      */
     void createRestServiceStructure() {
+        def modelPath = TextTemplate.renderDeep(ServerProperty.get("web.base.path"))
+        ProjectHelper.makeDirectories(modelPath + "/gradle/wrapper")
+
         ProjectHelper.createConfigStructure()
 
         createWebModuleSourceStructure("main")
         createWebModuleSourceStructure("test")
 
         createWebContentSourceStructure("WEB-INF")
-    }
-
-    /**
-     * Deletes the web structure from the file system.
-     */
-    void deleteRestServiceStructure() {
-        def modelBasePath = TextTemplate.renderDeep(ServerProperty.get("web.base.path"))
-
-        File file = new File(modelBasePath)
-        file.deleteDir()
     }
 
     /**
