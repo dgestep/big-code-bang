@@ -2,8 +2,6 @@ package com.estep.bigcodebang.model.script
 
 import com.estep.bigcodebang.model.TemplateCopy
 import com.estep.bigcodebang.model.Tuple
-import com.estep.bigcodebang.model.TemplateCopy
-import com.estep.bigcodebang.model.Tuple
 
 class ViewSourceGeneratorScript {
 
@@ -57,7 +55,7 @@ class ViewSourceGeneratorScript {
     }
 
     private void copyEnvironments() {
-        def appRoot = "src" + File.separator + "environments"
+        def appRoot = "src/environments"
         List<Tuple> apps = new ArrayList<>()
         apps.add(new Tuple("environment_prod_ts.txt", getPathToViewCode(appRoot, "environment.prod.ts")))
         apps.add(new Tuple("environment_ts.txt", getPathToViewCode(appRoot, "environment.ts")))
@@ -66,7 +64,7 @@ class ViewSourceGeneratorScript {
     }
 
     private void copyAppFooter() {
-        def appRoot = "src" + File.separator + "app" + File.separator + "footer";
+        def appRoot = "src/app/footer";
         List<Tuple> apps = new ArrayList<>()
         apps.add(new Tuple("footer_component_html.txt", getPathToViewCode(appRoot, "footer.component.html")))
         apps.add(new Tuple("footer_component_css.txt", getPathToViewCode(appRoot, "footer.component.css")))
@@ -76,7 +74,7 @@ class ViewSourceGeneratorScript {
     }
 
     private void copyAppHeader() {
-        def appRoot = "src" + File.separator + "app" + File.separator + "header";
+        def appRoot = "src/app/header";
         List<Tuple> apps = new ArrayList<>()
         apps.add(new Tuple("header_component_css.txt", getPathToViewCode(appRoot, "header.component.css")))
         apps.add(new Tuple("header_component_html.txt", getPathToViewCode(appRoot, "header.component.html")))
@@ -86,7 +84,7 @@ class ViewSourceGeneratorScript {
     }
 
     private void copyAppHome() {
-        def appRoot = "src" + File.separator + "app" + File.separator + "home";
+        def appRoot = "src/app/home";
         List<Tuple> apps = new ArrayList<>()
         apps.add(new Tuple("home_component_html.txt", getPathToViewCode(appRoot, "home.component.html")))
         apps.add(new Tuple("home_component_ts.txt", getPathToViewCode(appRoot, "home.component.ts")))
@@ -95,7 +93,7 @@ class ViewSourceGeneratorScript {
     }
 
     private void copyAppSecurity() {
-        def appRoot = "src" + File.separator + "app" + File.separator + "security";
+        def appRoot = "src/app/security";
         List<Tuple> apps = new ArrayList<>()
         apps.add(new Tuple("logged_in_guard_ts.txt", getPathToViewCode(appRoot, "logged-in.guard.ts")))
         apps.add(new Tuple("login_component_html.txt", getPathToViewCode(appRoot, "login.component.html")))
@@ -107,7 +105,7 @@ class ViewSourceGeneratorScript {
     }
 
     private void copyAppShared() {
-        def appRoot = "src" + File.separator + "app" + File.separator + "shared";
+        def appRoot = "src/app/shared";
         List<Tuple> apps = new ArrayList<>()
         apps.add(new Tuple("constants_ts.txt", getPathToViewCode(appRoot, "constants.ts")))
         apps.add(new Tuple("list_result_summary_component_ts.txt", getPathToViewCode(appRoot, "list.result.summary.component.ts")))
@@ -131,7 +129,7 @@ class ViewSourceGeneratorScript {
     }
 
     private void copyAppUser() {
-        def appRoot = "src" + File.separator + "app" + File.separator + "user";
+        def appRoot = "src/app/user";
         List<Tuple> apps = new ArrayList<>()
         apps.add(new Tuple("add_profile_component_html.txt", getPathToViewCode(appRoot, "add.profile.component.html")))
         apps.add(new Tuple("change_password_component_html.txt", getPathToViewCode(appRoot, "change.password.component.html")))
@@ -153,11 +151,10 @@ class ViewSourceGeneratorScript {
     }
 
     private void copyApp() {
-        def appRoot = "src" + File.separator + "app";
+        def appRoot = "src/app";
         List<Tuple> apps = new ArrayList<>()
         apps.add(new Tuple("app_component_css.txt", getPathToViewCode(appRoot, "app.component.css")))
         apps.add(new Tuple("app_component_html.txt", getPathToViewCode(appRoot, "app.component.html")))
-//        apps.add(new Tuple("app_component_spec_ts.txt", getPathToViewCode(appRoot, "app.component.spec.ts")))
         apps.add(new Tuple("app_component_ts.txt", getPathToViewCode(appRoot, "app.component.ts")))
         apps.add(new Tuple("app_module_ts.txt", getPathToViewCode(appRoot, "app.module.ts")))
         apps.add(new Tuple("app_routes_ts.txt", getPathToViewCode(appRoot, "app.routes.ts")))
@@ -168,15 +165,13 @@ class ViewSourceGeneratorScript {
     private void copySrc() {
         def appRoot = "src";
 
-        def tmplFolder = "view-src-templates" + File.separator;
+        def tmplFolder = "view-src-templates/"
         TemplateCopy copy = new TemplateCopy()
         copy.copy(tmplFolder + "favicon.ico", getPathToViewCode(appRoot, "favicon.ico"))
         copy.copy(tmplFolder + "main.ts", getPathToViewCode(appRoot, "main.ts"))
         copy.copy(tmplFolder + "polyfills.ts", getPathToViewCode(appRoot, "polyfills.ts"))
         copy.copy(tmplFolder + "typings.d.ts", getPathToViewCode(appRoot, "typings.d.ts"))
         copy.copy(tmplFolder + "tsconfig.app.json", getPathToViewCode(appRoot, "tsconfig.app.json"))
-//        copy.copy(tmplFolder + "tsconfig.spec.json", getPathToViewCode(appRoot, "tsconfig.spec.json"))
-//        copy.copy(tmplFolder + "test.ts", getPathToViewCode(appRoot, "test.ts"))
 
         List<Tuple> apps = new ArrayList<>()
         apps.add(new Tuple("index_html.txt", getPathToViewCode(appRoot, "index.html")))
@@ -186,9 +181,9 @@ class ViewSourceGeneratorScript {
     }
 
     private void copyAssets() {
-        def appRoot = "src" + File.separator + "assets";
+        def appRoot = "src/assets";
 
-        def tmplFolder = "view-assets" + File.separator;
+        def tmplFolder = "view-assets/"
         TemplateCopy copy = new TemplateCopy()
         copy.copy(tmplFolder + "Logo.jpg", getPathToViewCode(appRoot, "Logo.jpg"))
         copy.copy(tmplFolder + "tabs.json", getPathToViewCode(appRoot, "tabs.json"))
@@ -238,10 +233,10 @@ class ViewSourceGeneratorScript {
 
     private String getPathToViewCode(folderName) {
         StringBuilder buf = new StringBuilder()
-        buf.append(ScriptHelper.viewRender("project_base_folder")).append(File.separator)
-        buf.append(ScriptHelper.viewRender("view_root_folder_name")).append(File.separator)
+        buf.append(ScriptHelper.viewRender("project_base_folder")).append('/')
+        buf.append(ScriptHelper.viewRender("view_root_folder_name")).append('/')
         if (folderName != null) {
-            buf.append(folderName).append(File.separator)
+            buf.append(folderName).append('/')
         }
 
         buf.toString()

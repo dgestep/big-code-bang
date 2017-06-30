@@ -1,7 +1,6 @@
 package com.estep.bigcodebang.model
 
 import com.estep.bigcodebang.ProjectHelper
-import com.estep.bigcodebang.ProjectHelper
 
 /**
  * Handles the creation of the project and module folder structures for the Model projects.
@@ -14,6 +13,12 @@ class ServerModelStructureManager {
      * Creates the model structure on the file system.
      */
     void createModelStructure() {
+        def basePath = TextTemplate.renderDeep(ServerProperty.get("root.base.path"))
+        ProjectHelper.makeDirectories(basePath + "/gradle/wrapper")
+
+        def modelPath = TextTemplate.renderDeep(ServerProperty.get("model.base.path"))
+        ProjectHelper.makeDirectories(modelPath + "/gradle/wrapper")
+
         ProjectHelper.createConfigStructure()
         createAppLogicModuleStructure("main")
         createAppLogicModuleStructure("test")

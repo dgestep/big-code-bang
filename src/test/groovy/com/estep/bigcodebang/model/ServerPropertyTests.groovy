@@ -10,4 +10,9 @@ class ServerPropertyTests extends GroovyTestCase {
         def companyName = ServerProperty.get("notfound")
         assert companyName == null
     }
+
+    void testGetPropertyWithSlashInValue() {
+        def location = ServerProperty.get("application_log_file_location")
+        assert location.equals("C:\\\\temp\\\\logs")
+    }
 }

@@ -1,9 +1,6 @@
 Environment Setup Instructions
 ==========================
 
-Gradle Setup
-	- download latest version of Gradle and unzip the gradle archive to a location on your disk.  Remember the location.
-
 - Apache Tomcat Server Setup
 	- go to tomcat.apache.org and download the Tomcat 8 distribution (requires at least Tomcat 8).
 	    - at the time of this writing, this was at ( http://tomcat.apache.org/download-80.cgi )
@@ -20,29 +17,13 @@ Gradle Setup
         - Open an SQL window and run the mysql-import.sql script located in the config folder located at the root of
         this project.  This script creates the minimum database tables needed by the generated application.
         - Open an SQL window and create the '${databaseUsername}' user.
-            - Assuming you created a schema called 'myCoolDb' and your host name is 'localhost', the SQL necessary to
+            - Assuming you created a schema called 'widgetsDb' and your host name is 'localhost', the SQL necessary to
              grant all privs to your schema is:
-                - GRANT ALL PRIVILEGES ON myCoolDb.* To '${databaseUsername}'@'localhost' IDENTIFIED BY
-                '${databasePassword}';
-
-- Insomnia Setup (optional)
-    - Download the Insomnia tool to be used to test the REST web services.
-    - At the time of this writing, Insomnia can be found at ( https://insomnia.rest/download/ ).
-    - Install and start Insomnia
-    - Import the insomnia workspace file located in the src/test/resources/ folder within the web project.
-    - Use insomnia to test all generated rest services.
+                - GRANT ALL PRIVILEGES ON widgetsDb.* To '${databaseUsername}'@'localhost' IDENTIFIED BY '${databasePassword}';
 
 
 Intellij Instructions
 ==========================
-
-Import Projects
-	- Open Intellij IDEA and choose "Import Project"
-	- Browse and select the ${rootFolderName} folder
-	- Select the "Import project from external model" option and select the Gradle model.  Click Next.
-	- Ensure the Gradle home location is the location that you downloaded it at in the above steps.
-	- Click Finish
-	- Ensure all projects are checked on the "Gradle Project Data to Import" window. Click OK.
 
 - Setup Tomcat Server within Intellij
     - Define your local tomcat database connection pool
@@ -88,6 +69,5 @@ Import Projects
 	- You should see an "Application Servers" tab appear at the bottom of your IDE.
 - Start your local Tomcat server
 	- Within the "Application Servers" (appears at the bottom-left), click the Run icon.
-	- Invoke REST health service at : http://localhost:8080/${contextRoot}/restcontroller/health
-	-    ( adjust the URL if you assigned a different port )
+	- Invoke REST health service at : http://localhost:${localhostPort}/${contextRoot}/restcontroller/health
 	- Should see status of 200 and your host name displayed

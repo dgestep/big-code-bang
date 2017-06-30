@@ -28,9 +28,9 @@ viewScript.execute()
 private void copyCheckstyle() {
     StringBuilder buf = new StringBuilder()
     buf.append(ScriptHelper.serverRender("root.base.path"))
-    buf.append(File.separator).append("config")
-    buf.append(File.separator).append("checkstyle")
-    buf.append(File.separator).append("proj-checkstyle.xml")
+    buf.append("/config")
+    buf.append("/checkstyle")
+    buf.append("/proj-checkstyle.xml")
 
     TemplateCopy templateCopy = new TemplateCopy()
     templateCopy.copy("root-server-config-folder-templates/proj-checkstyle.xml", buf.toString())
@@ -39,9 +39,9 @@ private void copyCheckstyle() {
 private void copyPmd() {
     StringBuilder buf = new StringBuilder()
     buf.append(ScriptHelper.serverRender("root.base.path"))
-    buf.append(File.separator).append("config")
-    buf.append(File.separator).append("rulesets")
-    buf.append(File.separator).append("proj-pmd-rules.xml")
+    buf.append("/config")
+    buf.append("/rulesets")
+    buf.append("/proj-pmd-rules.xml")
 
     TemplateCopy templateCopy = new TemplateCopy()
     templateCopy.copy("root-server-config-folder-templates/proj-pmd-rules.xml", buf.toString())
@@ -50,8 +50,8 @@ private void copyPmd() {
 private void copyMySqlImport() {
     StringBuilder buf = new StringBuilder()
     buf.append(ScriptHelper.serverRender("root.base.path"))
-    buf.append(File.separator).append("config")
-    buf.append(File.separator).append("mysql-import.sql")
+    buf.append("/config")
+    buf.append("/mysql-import.sql")
 
     TemplateCopy templateCopy = new TemplateCopy()
     templateCopy.copy("root-server-config-folder-templates/mysql-import.sql", buf.toString())
@@ -60,8 +60,8 @@ private void copyMySqlImport() {
 private void copyReadme() {
     StringBuilder buf = new StringBuilder()
     buf.append(ScriptHelper.serverRender("root.base.path"))
-    buf.append(File.separator).append("config")
-    buf.append(File.separator).append("readme.txt")
+    buf.append("/config")
+    buf.append("/readme.txt")
 
     TemplateCopy templateCopy = new TemplateCopy()
     templateCopy.renderAndCopy("root-server-config-folder-templates/readme.txt", buf.toString())

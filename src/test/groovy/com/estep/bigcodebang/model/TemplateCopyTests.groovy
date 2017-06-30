@@ -14,11 +14,11 @@ class TemplateCopyTests extends GroovyTestCase {
 
     void testCopyTemplate() {
         def basePath = render("model.base.path")
-        basePath = basePath + File.separator + "config"
-        basePath = basePath + File.separator + "checkstyle"
+        basePath = basePath + "/config"
+        basePath = basePath + "/checkstyle"
         new File(basePath).mkdirs()
 
-        def fileName = basePath + File.separator + "proj-checkstyle.xml"
+        def fileName = basePath + "/proj-checkstyle.xml"
         manager.copy("proj-checkstyle.xml", fileName)
         assert new File(fileName).exists()
 
@@ -31,18 +31,18 @@ class TemplateCopyTests extends GroovyTestCase {
         new File(destinationFolder).mkdirs()
 
         manager.copyAll("view-assets-bootstrap-css-templates", destinationFolder)
-        assert new File(destinationFolder + File.separator + "bootstrap.css").exists()
-        assert new File(destinationFolder + File.separator + "bootstrap-theme.css").exists()
+        assert new File(destinationFolder + "/bootstrap.css").exists()
+        assert new File(destinationFolder + "/bootstrap-theme.css").exists()
 
         new File(destinationFolder).deleteDir()
     }
 
     private String getPathToViewCode(folderName) {
         StringBuilder buf = new StringBuilder()
-        buf.append(ScriptHelper.viewRender("project_base_folder")).append(File.separator)
-        buf.append(ScriptHelper.viewRender("view_root_folder_name")).append(File.separator)
+        buf.append(ScriptHelper.viewRender("project_base_folder")).append('/')
+        buf.append(ScriptHelper.viewRender("view_root_folder_name")).append('/')
         if (folderName != null) {
-            buf.append(folderName).append(File.separator)
+            buf.append(folderName).append('/')
         }
 
         buf.toString()

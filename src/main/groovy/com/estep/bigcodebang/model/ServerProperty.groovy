@@ -37,6 +37,15 @@ class ServerProperty {
             value = value == null ? manager.configs[element] : value[element]
         }
 
-        value instanceof ConfigObject ? null : value
+        value = value instanceof ConfigObject ? null : value
+        if (value == null) {
+            return null;
+        }
+
+        String propertyValue = (String) value;
+        if (propertyValue != null) {
+            propertyValue = propertyValue.replace("\\", "\\\\")
+        }
+        propertyValue
     }
 }
