@@ -1,12 +1,13 @@
 package com.estep.bigcodebang.model.script
 
 import com.estep.bigcodebang.model.TemplateCopy
-import com.estep.bigcodebang.model.TemplateCopy
 import com.estep.bigcodebang.model.Tuple
 
 class ServerRestServiceSourceGeneratorScript {
 
     void execute() {
+        copyWebGradleRootBuildScript()
+        copyWebGradleWrapperFiles()
         copyWebProjectCode()
         copyWebSecurityProjectCode()
         copyWebUserProjectCode()
@@ -15,12 +16,23 @@ class ServerRestServiceSourceGeneratorScript {
         copyWebOuterScripts("root-folder-templates/settings_gradle_outer.txt", "settings.gradle")
         copyWebOuterScripts("root-folder-templates/gitignore_outer.txt", ".gitignore")
         copyWebGradleRootBuildScript()
-        copyInsomniaWorkspaceJson("test")
         copyLog4jDtd("main")
         copyLog4XmlFiles("log4j-development", "web-resources-templates/web_log4j_development_xml.txt")
         copyLog4XmlFiles("log4j-production", "web-resources-templates/web_log4j_production_xml.txt")
         copyServicesServletXml()
         copyWebXml()
+    }
+
+    private void copyWebGradleWrapperFiles() {
+        String webBasePath = ScriptHelper.serverRender("web.base.path")
+        String jar = webBasePath + "/gradle/wrapper/gradle-wrapper.jar"
+        String props = webBasePath + "/gradle/wrapper/gradle-wrapper.properties"
+
+        TemplateCopy templateCopy = new TemplateCopy()
+        templateCopy.copy("gradle-wrapper-files/gradle-wrapper.jar", jar)
+        templateCopy.copy("gradle-wrapper-files/gradle-wrapper.properties", props)
+        templateCopy.copy("gradle-wrapper-files/gradlew", webBasePath + "/gradlew")
+        templateCopy.copy("gradle-wrapper-files/gradlew.bat", webBasePath + "/gradlew.bat")
     }
 
     private void copyWebProjectCode() {
@@ -58,7 +70,7 @@ class ServerRestServiceSourceGeneratorScript {
     private void copyWebGradleRootBuildScript() {
         StringBuilder buf = new StringBuilder()
         buf.append(ScriptHelper.serverRender("web.base.path"))
-        buf.append(File.separator).append("build.gradle")
+        buf.append("/build.gradle")
 
         TemplateCopy templateCopy = new TemplateCopy()
         templateCopy.renderAndCopy("gradle-scripts-templates/web_build_gradle_root.txt", buf.toString())
@@ -68,31 +80,19 @@ class ServerRestServiceSourceGeneratorScript {
         StringBuilder buf = new StringBuilder()
 
         buf.append(ScriptHelper.serverRender("root.base.path"))
-        buf.append(File.separator).append(fileName)
+        buf.append('/').append(fileName)
 
         TemplateCopy templateCopy = new TemplateCopy()
         templateCopy.renderAndCopy(templateName, buf.toString())
     }
 
-    private void copyInsomniaWorkspaceJson(folderName) {
-        StringBuilder buf = new StringBuilder()
-        buf.append(ScriptHelper.serverRender("web.base.path"))
-        buf.append(File.separator).append("src")
-        buf.append(File.separator).append(folderName)
-        buf.append(File.separator).append("resources")
-        buf.append(File.separator).append("insomnia-workspace.json")
-
-        TemplateCopy templateCopy = new TemplateCopy()
-        templateCopy.renderAndCopy("web-test-resources/web_insomnia_workspace_json.txt", buf.toString())
-    }
-
     private void copyLog4jDtd(folderName) {
         StringBuilder buf = new StringBuilder()
         buf.append(ScriptHelper.serverRender("web.base.path"))
-        buf.append(File.separator).append("src")
-        buf.append(File.separator).append(folderName)
-        buf.append(File.separator).append("resources")
-        buf.append(File.separator).append("log4j.dtd")
+        buf.append("/src")
+        buf.append('/').append(folderName)
+        buf.append("/resources")
+        buf.append("/log4j.dtd")
 
         TemplateCopy templateCopy = new TemplateCopy()
         templateCopy.renderAndCopy("web-resources-templates/web_log4j_dtd.txt", buf.toString())
@@ -101,10 +101,10 @@ class ServerRestServiceSourceGeneratorScript {
     private void copyLog4XmlFiles(name, templateName) {
         StringBuilder buf = new StringBuilder()
         buf.append(ScriptHelper.serverRender("web.base.path"))
-        buf.append(File.separator).append("src")
-        buf.append(File.separator).append("main")
-        buf.append(File.separator).append("resources")
-        buf.append(File.separator).append(name).append(".xml")
+        buf.append("/src")
+        buf.append("/main")
+        buf.append("/resources")
+        buf.append('/').append(name).append(".xml")
 
         TemplateCopy templateCopy = new TemplateCopy()
         templateCopy.renderAndCopy(templateName, buf.toString())
@@ -113,9 +113,9 @@ class ServerRestServiceSourceGeneratorScript {
     private void copyServicesServletXml() {
         StringBuilder buf = new StringBuilder()
         buf.append(ScriptHelper.serverRender("web.base.path"))
-        buf.append(File.separator).append("WebContent")
-        buf.append(File.separator).append("WEB-INF")
-        buf.append(File.separator).append("services-servlet.xml")
+        buf.append("/WebContent")
+        buf.append("/WEB-INF")
+        buf.append("/services-servlet.xml")
 
         TemplateCopy templateCopy = new TemplateCopy()
         templateCopy.renderAndCopy("web-webinf-templates/services_servlet_xml.txt", buf.toString())
@@ -124,9 +124,9 @@ class ServerRestServiceSourceGeneratorScript {
     private void copyWebXml() {
         StringBuilder buf = new StringBuilder()
         buf.append(ScriptHelper.serverRender("web.base.path"))
-        buf.append(File.separator).append("WebContent")
-        buf.append(File.separator).append("WEB-INF")
-        buf.append(File.separator).append("web.xml")
+        buf.append("/WebContent")
+        buf.append("/WEB-INF")
+        buf.append("/web.xml")
 
         TemplateCopy templateCopy = new TemplateCopy()
         templateCopy.renderAndCopy("web-webinf-templates/web_xml.txt", buf.toString())
@@ -136,28 +136,28 @@ class ServerRestServiceSourceGeneratorScript {
         StringBuilder buf = new StringBuilder()
 
         buf.append(ScriptHelper.serverRender("web.base.path"))
-        buf.append(File.separator).append("src")
-        buf.append(File.separator).append(folderName)
-        buf.append(File.separator).append("java")
-        buf.append(File.separator).append(ScriptHelper.serverRender("top_level_domain"))
-        buf.append(File.separator).append(ScriptHelper.serverRender("company_name"))
-        buf.append(File.separator).append(ScriptHelper.serverRender("product_name"))
-        buf.append(File.separator).append("restcontroller")
+        buf.append("/src")
+        buf.append('/').append(folderName)
+        buf.append("/java")
+        buf.append('/').append(ScriptHelper.serverRender("top_level_domain"))
+        buf.append('/').append(ScriptHelper.serverRender("company_name"))
+        buf.append('/').append(ScriptHelper.serverRender("product_name"))
+        buf.append("/restcontroller")
         if (subPackage != null) {
-            buf.append(File.separator).append(subPackage)
+            buf.append('/').append(subPackage)
         }
 
-        buf.append(File.separator).append(programName)
+        buf.append('/').append(programName)
 
         buf.toString()
     }
 
     private String getPathToViewCode(folderName) {
         StringBuilder buf = new StringBuilder()
-        buf.append(ScriptHelper.serverRender("web.base.path")).append(File.separator)
-        buf.append("WebContent").append(File.separator)
+        buf.append(ScriptHelper.serverRender("web.base.path")).append('/')
+        buf.append("WebContent/")
         if (folderName != null) {
-            buf.append(folderName).append(File.separator)
+            buf.append(folderName).append('/')
         }
 
         buf.toString()

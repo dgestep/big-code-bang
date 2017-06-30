@@ -1,7 +1,5 @@
 package com.estep.bigcodebang.model
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException
-
 /**
  * Handles the creation of the project and module folder structures for the web UI and services project.
  */
@@ -22,24 +20,24 @@ class ViewStructureManager {
 
         def rf = TextTemplate.renderDeep(ViewProperty.get(ROOT_FOLDER))
 
-        createCodeStructure(bf, rf, SRC_FOLDER + File.separator + APP_FOLDER)
-        createCodeStructure(bf, rf, SRC_FOLDER + File.separator + APP_FOLDER + File.separator + "footer")
-        createCodeStructure(bf, rf, SRC_FOLDER + File.separator + APP_FOLDER + File.separator + "header")
-        createCodeStructure(bf, rf, SRC_FOLDER + File.separator + APP_FOLDER + File.separator + "home")
-        createCodeStructure(bf, rf, SRC_FOLDER + File.separator + APP_FOLDER + File.separator + "security")
-        createCodeStructure(bf, rf, SRC_FOLDER + File.separator + APP_FOLDER + File.separator + "shared")
-        createCodeStructure(bf, rf, SRC_FOLDER + File.separator + APP_FOLDER + File.separator + "user")
+        createCodeStructure(bf, rf, SRC_FOLDER + '/' + APP_FOLDER)
+        createCodeStructure(bf, rf, SRC_FOLDER + '/' + APP_FOLDER + "/footer")
+        createCodeStructure(bf, rf, SRC_FOLDER + '/' + APP_FOLDER + "/header")
+        createCodeStructure(bf, rf, SRC_FOLDER + '/' + APP_FOLDER + "/home")
+        createCodeStructure(bf, rf, SRC_FOLDER + '/' + APP_FOLDER + "/security")
+        createCodeStructure(bf, rf, SRC_FOLDER + '/' + APP_FOLDER + "/shared")
+        createCodeStructure(bf, rf, SRC_FOLDER + '/' + APP_FOLDER + "/user")
 
-        createCodeStructure(bf, rf, SRC_FOLDER + File.separator + "assets" + File.separator + "bootstrap" + File.separator + "css")
-        createCodeStructure(bf, rf, SRC_FOLDER + File.separator + "assets" + File.separator + "bootstrap" + File.separator + "fonts")
-        createCodeStructure(bf, rf, SRC_FOLDER + File.separator + "assets" + File.separator + "bootstrap" + File.separator + "js")
+        createCodeStructure(bf, rf, SRC_FOLDER + "/assets/bootstrap/css")
+        createCodeStructure(bf, rf, SRC_FOLDER + "/assets/bootstrap/fonts")
+        createCodeStructure(bf, rf, SRC_FOLDER + "/assets/bootstrap/js")
 
-        createCodeStructure(bf, rf, SRC_FOLDER + File.separator + "assets" + File.separator + "font-awesome" + File.separator + "css")
-        createCodeStructure(bf, rf, SRC_FOLDER + File.separator + "assets" + File.separator + "font-awesome" + File.separator + "fonts")
+        createCodeStructure(bf, rf, SRC_FOLDER + "/assets/font-awesome/css")
+        createCodeStructure(bf, rf, SRC_FOLDER + "/assets/font-awesome/fonts")
 
-        createCodeStructure(bf, rf, SRC_FOLDER + File.separator + "assets" + File.separator + "google")
+        createCodeStructure(bf, rf, SRC_FOLDER + "/assets/google")
 
-        createCodeStructure(bf, rf, SRC_FOLDER + File.separator + "environments")
+        createCodeStructure(bf, rf, SRC_FOLDER + "/environments")
     }
 
     /**
@@ -51,7 +49,7 @@ class ViewStructureManager {
      * @return the created path.
      */
     void createCodeStructure(bf, rf, path) {
-        File file = new File(bf + File.separator + rf + File.separator + path)
+        File file = new File(bf + '/' + rf + '/' + path)
         file.mkdirs()
     }
 
