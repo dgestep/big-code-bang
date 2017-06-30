@@ -146,7 +146,7 @@ examples. It is expected that you provide your own values for your project.
 | code_author | The name to assign as the author of all generated code. | "Wiley Coyote" |
 | web_war_name | The name of the generated WAR file which is used to serve up the REST services. | "wiley.war" |
 | application_log_file_location | The location for the application log file. | "/temp/logs" or "C:\\\\temp\\\\logs" (you need to escape the backslash character using two backslashes). All folders must exist for logging to work. The application does not create the folders at runtime. |
-| gradle_version | The gradle version you are using. | "3.1" |
+| gradle_version | The version of gradle that you want to use for your application.  This application was created with version 3.1.  When the Big Code Bang is executed, it downloads the gradle version you specify here (along with all other dependencies that you specify) | "3.1" |
 
 
 ### View Side Configuration
@@ -174,6 +174,9 @@ To run the Big Code Bang, do the following :
 You should be in the same folder as this README.md and the gradle build.gradle file.
 * Use the appropriate gradle wrapper script to initiate a Big Code Bang. (If on a Mac or linux distribution, ensure 
 the gradlew script has execute privileges)  
+
+**Note:** the first execution will be slower because the gradle wrapper downloads the dependencies it needs to 
+execute.  Subsequent executions will be fast because the dependencies are not downloaded again.
 
 ```groovy
 cd /path/to/BigCodeBang
@@ -230,6 +233,15 @@ The following describe how to import the Model and REST service projects into th
  _Refresh_ button 
  to force a dependency refresh.
 * Expand the root project and open the config/readme.txt file and follow the instructions to continue setting up the application in Intellij.  These instructions were generated to match your specified server configuration values. 
+
+## Gradle Wrapper
+
+The [Gradle Build Tool](https://gradle.org/) is used to build your application and manage its dependencies. It is not 
+necessary for you to download and install Gradle. The Big Code Bang project includes the gradle wrapper, which is a 
+script that downloads gradle for you at runtime, along with all other dependencies. The first execution of the gradle
+ wrapper scripts will be slower because the gradle wrapper downloads the dependencies that are specified in the 
+ build.gradle file.  Subsequent executions will be fast because the dependencies aren't downloaded again.
+
 
 ## Quality Assurance Checks
 
