@@ -145,7 +145,7 @@ examples. It is expected that you provide your own values for your project.
 | database_password | The database user password used to get a connection. | "super-genius" |
 | code_author | The name to assign as the author of all generated code. | "Wiley Coyote" |
 | web_war_name | The name of the generated WAR file which is used to serve up the REST services. | "wiley.war" |
-| application_log_file_location | The location for the application log file. | "/temp/logs" or "C:\\\\temp\\\\logs" (you need to escape the backslash character using two backslashes)  |
+| application_log_file_location | The location for the application log file. | "/temp/logs" or "C:\\\\temp\\\\logs" (you need to escape the backslash character using two backslashes). All folders must exist for logging to work. The application does not create the folders at runtime. |
 | gradle_version | The gradle version you are using. | "3.1" |
 
 
