@@ -9,8 +9,21 @@
               <div class="jumbotron">
                 <div class="container">
                   <h2>Welcome to ${applicationTitle}</h2>
-                  <p>Describe your application here</p>
-                  <p><a class="btn btn-primary btn-lg" [routerLink]="['/app-home']" role="button">Learn more &raquo;</a></p>
+                  <legend></legend>
+                  <p>
+                  If the Big Code Bang project has helped you with your project then consider making a donation
+                    on <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3W84KU3SV3NSE">PayPal.</a>
+                    Your donation helps motivate me to enhance this project and build more open source projects like the...
+                  </p>
+
+                  <p><strong>Big Code BANG!</strong></p>
+
+                  <strong><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3W84KU3SV3NSE">MAKE A DONATION</a></strong>
+
+                  <br><br>
+                  <p>
+                    If you need help with your project, contact me at <a href="mailto:douglas.estep@gmail.com">douglas.estep@gmail.com</a>
+                  </p>
                 </div>
               </div>
             </div>
