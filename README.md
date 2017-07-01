@@ -434,7 +434,7 @@ Your donation keeps me moving to enhance this project and build more open source
  
 **Big Code BANG** 
 
-[MAKE A DONATION](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3W84KU3SV3NSE")
+[MAKE A DONATION](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3W84KU3SV3NSE)
 
 If you need help with your project, contact me at ( <douglas.estep@gmail.com> ).
 
