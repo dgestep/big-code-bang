@@ -1,5 +1,8 @@
 package com.estep.bigcodebang.model
 
+import com.estep.bigcodebang.PropertyManager
+import org.codehaus.groovy.control.MultipleCompilationErrorsException
+
 /**
  * Returns properties related to the View project.
  */
@@ -8,7 +11,10 @@ class ViewProperty {
     ConfigObject configs
 
     private ViewProperty() {
-        configs = new ConfigSlurper().parse(WebProperty.class)
+    }
+
+    private void initConfiguration() {
+        configs = new ConfigSlurper().parse(ModelProperty.class)
 
         final URL url = this.getClass().getClassLoader().getResource("view_project.properties").toURI().toURL()
         final ConfigObject projectProps = new ConfigSlurper().parse(url)
@@ -17,7 +23,29 @@ class ViewProperty {
 
     private static ViewProperty instanceOf() {
         if (INSTANCE == null) {
-            INSTANCE = new ViewProperty()
+            try {
+                INSTANCE = new ViewProperty()
+                INSTANCE.initConfiguration()
+
+                PropertyManager manager = new PropertyManager()
+                manager.validate()
+            } catch (MissingMethodException mme) {
+                String msg = "One or more property values contained within the view_project.properties file are " +
+                        "not surrounded by double quotes."
+                throw new IllegalArgumentException(msg)
+            } catch (MultipleCompilationErrorsException mcee) {
+                String message = mcee.getMessage()
+                if (message.contains("expecting anything but ''\\n''")) {
+                    int idx = message.indexOf("@ ")
+                    if (idx < 0) {
+                        throw mcee
+                    } else {
+                        String msg = "Property value not surrounded by double quotes within the view_project" +
+                                ".properties file " + message.substring(idx)
+                        throw new IllegalArgumentException(msg)
+                    }
+                }
+            }
         }
         return INSTANCE
     }

@@ -17,6 +17,15 @@ class TextTemplate {
         String companyName = pnm.formatPackageElement(ServerProperty.get("company_name"))
         String productName = pnm.formatPackageElement(ServerProperty.get("product_name"))
 
+        String localhostPort = ViewProperty.get("localhost_port")
+        if (!localhostPort.equals("")) {
+            localhostPort = ":" + localhostPort
+        }
+        String serverPort = ViewProperty.get("server_port")
+        if (!serverPort.equals("")) {
+            serverPort = ":" + serverPort
+        }
+
         engine = new SimpleTemplateEngine()
         bindings = [
                 "projectBase"               : ServerProperty.get("project_base_folder"),
@@ -58,9 +67,9 @@ class TextTemplate {
                 "viewRootFolderName"        : ViewProperty.get("view_root_folder_name"),
                 "applicationTitle"          : ViewProperty.get("application_title"),
                 "contextRoot"               : ViewProperty.get("context_root"),
-                "localhostPort"             : ViewProperty.get("localhost_port"),
+                "localhostPort"             : localhostPort,
                 "serverHostName"            : ViewProperty.get("server_host_name"),
-                "serverPort"                : ViewProperty.get("server_port")
+                "serverPort"                : serverPort
         ]
     }
 

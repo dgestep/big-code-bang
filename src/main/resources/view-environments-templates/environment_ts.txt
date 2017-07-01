@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  restServiceUri: 'http://localhost:${localhostPort}/${contextRoot}/restcontroller'
+  restServiceUri: 'http://localhost${localhostPort}/${contextRoot}/restcontroller'
 };
