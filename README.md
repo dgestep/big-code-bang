@@ -83,6 +83,7 @@ services.  You're not tied to Tomcat.  You can use any application server.  I ch
 use. I describe how to setup a database connection pool in Tomcat.  If you choose a different application server, you
  will need to setup your database connection pool using the instructions provided by your application server. 
 * JUnit - a unit testing framework for the Java programming language.
+* [JMockit](http://jmockit.org/) - An automated testing toolkit and mocking framework for Java.
 
 ### Client Side Layer
 
@@ -238,7 +239,7 @@ above server.properties, the model project is located in the /temp/wiley-app/acm
 
 ### Eclipse Instructions
 
-These instructions were written for the Oxygen release version for the Eclipse Java EE IDE.
+These instructions were written for the Oxygen release of the Eclipse Java EE IDE.
 
 * Open Eclipse and choose or create a workspace.
 * Select the menu option File -> Import...

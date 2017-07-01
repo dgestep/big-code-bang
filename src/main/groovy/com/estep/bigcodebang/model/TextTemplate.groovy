@@ -5,17 +5,31 @@ import groovy.text.SimpleTemplateEngine
 
 /**
  * Handles simple text template processing.
+ *
+ * @author dougestep.
  */
 class TextTemplate {
     static TextTemplate INSTANCE
     SimpleTemplateEngine engine
     LinkedHashMap<String, String> bindings
 
+    /**
+     * Creates an instance of this class.
+     */
     private TextTemplate() {
         PackageNameManager pnm = new PackageNameManager()
         String topLevelDomain = pnm.formatPackageElement(ServerProperty.get("top_level_domain"))
         String companyName = pnm.formatPackageElement(ServerProperty.get("company_name"))
         String productName = pnm.formatPackageElement(ServerProperty.get("product_name"))
+
+        String localhostPort = ViewProperty.get("localhost_port")
+        if (!localhostPort.equals("")) {
+            localhostPort = ":" + localhostPort
+        }
+        String serverPort = ViewProperty.get("server_port")
+        if (!serverPort.equals("")) {
+            serverPort = ":" + serverPort
+        }
 
         engine = new SimpleTemplateEngine()
         bindings = [
@@ -58,12 +72,16 @@ class TextTemplate {
                 "viewRootFolderName"        : ViewProperty.get("view_root_folder_name"),
                 "applicationTitle"          : ViewProperty.get("application_title"),
                 "contextRoot"               : ViewProperty.get("context_root"),
-                "localhostPort"             : ViewProperty.get("localhost_port"),
+                "localhostPort"             : localhostPort,
                 "serverHostName"            : ViewProperty.get("server_host_name"),
-                "serverPort"                : ViewProperty.get("server_port")
+                "serverPort"                : serverPort
         ]
     }
 
+    /**
+     * Returns an instance of this class.
+     * @return the instance.
+     */
     private static TextTemplate instanceOf() {
         if (INSTANCE == null) {
             INSTANCE = new TextTemplate()
