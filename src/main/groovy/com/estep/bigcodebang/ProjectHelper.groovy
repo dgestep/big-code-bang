@@ -5,6 +5,8 @@ import com.estep.bigcodebang.model.TextTemplate
 
 /**
  * Contains static helper methods for project creation purposes.
+ *
+ * @author dougestep.
  */
 class ProjectHelper {
 

@@ -5,12 +5,17 @@ import groovy.text.SimpleTemplateEngine
 
 /**
  * Handles simple text template processing.
+ *
+ * @author dougestep.
  */
 class TextTemplate {
     static TextTemplate INSTANCE
     SimpleTemplateEngine engine
     LinkedHashMap<String, String> bindings
 
+    /**
+     * Creates an instance of this class.
+     */
     private TextTemplate() {
         PackageNameManager pnm = new PackageNameManager()
         String topLevelDomain = pnm.formatPackageElement(ServerProperty.get("top_level_domain"))
@@ -73,6 +78,10 @@ class TextTemplate {
         ]
     }
 
+    /**
+     * Returns an instance of this class.
+     * @return the instance.
+     */
     private static TextTemplate instanceOf() {
         if (INSTANCE == null) {
             INSTANCE = new TextTemplate()

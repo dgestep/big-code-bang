@@ -4,6 +4,8 @@ import com.estep.bigcodebang.ProjectHelper
 
 /**
  * Handles the creation of the project and module folder structures for the Model projects.
+ *
+ * @author dougestep.
  */
 class ServerModelStructureManager {
     ServerModelStructureManager() {

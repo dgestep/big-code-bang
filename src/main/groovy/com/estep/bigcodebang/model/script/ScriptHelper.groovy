@@ -7,8 +7,19 @@ import com.estep.bigcodebang.model.TextTemplate
 import com.estep.bigcodebang.model.Tuple
 import com.estep.bigcodebang.model.ViewProperty
 
+/**
+ * Contains static helper methods for the scripts.
+ *
+ * @author dougestep.
+ */
 class ScriptHelper {
 
+    /**
+     * Returns a string representing the file structure for all supplied packages.
+     * @param startPackage the starting package.
+     * @param subPackages all sub packages.
+     * @return the file structure.
+     */
     static String createSubpackages(startPackage, ...subPackages) {
         StringBuilder buf = new StringBuilder()
         buf.append(startPackage)
@@ -20,10 +31,20 @@ class ScriptHelper {
         buf.toString()
     }
 
+    /**
+     * Renders the supplied view template.
+     * @param propertyName the property to render.
+     * @return the rendered value.
+     */
     static String viewRender(propertyName) {
         TextTemplate.renderDeep(ViewProperty.get(propertyName))
     }
 
+    /**
+     * Renders the supplied server template.
+     * @param propertyName the property to render.
+     * @return the rendered value.
+     */
     static String serverRender(propertyName) {
         String value
         if (propertyName.equals("top_level_domain")) {

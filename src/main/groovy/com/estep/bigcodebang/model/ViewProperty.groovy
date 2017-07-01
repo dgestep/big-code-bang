@@ -5,14 +5,22 @@ import org.codehaus.groovy.control.MultipleCompilationErrorsException
 
 /**
  * Returns properties related to the View project.
+ *
+ * @author dougestep.
  */
 class ViewProperty {
     static ViewProperty INSTANCE
     ConfigObject configs
 
+    /**
+     * Default constructor.
+     */
     private ViewProperty() {
     }
 
+    /**
+     * Initiates the ConfigObject instance with the property values.
+     */
     private void initConfiguration() {
         configs = new ConfigSlurper().parse(ModelProperty.class)
 
@@ -21,6 +29,10 @@ class ViewProperty {
         configs.merge(projectProps)
     }
 
+    /**
+     * Returns an instance of this class.
+     * @return the instance.
+     */
     private static ViewProperty instanceOf() {
         if (INSTANCE == null) {
             try {

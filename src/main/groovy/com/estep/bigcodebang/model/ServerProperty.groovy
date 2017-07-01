@@ -5,14 +5,22 @@ import org.codehaus.groovy.control.MultipleCompilationErrorsException
 
 /**
  * Returns properties related to the Server project.
+ *
+ * @author dougestep.
  */
 class ServerProperty {
     static ServerProperty INSTANCE
     ConfigObject configs
 
+    /**
+     * Default constructor.
+     */
     private ServerProperty() {
     }
 
+    /**
+     * Initiates the ConfigObject instance with the property values.
+     */
     private void initConfiguration() {
         configs = new ConfigSlurper().parse(ModelProperty.class)
 
@@ -21,6 +29,10 @@ class ServerProperty {
         configs.merge(projectProps)
     }
 
+    /**
+     * Returns an instance of this class.
+     * @return the instance.
+     */
     private static ServerProperty instanceOf() {
         if (INSTANCE == null) {
             try {
