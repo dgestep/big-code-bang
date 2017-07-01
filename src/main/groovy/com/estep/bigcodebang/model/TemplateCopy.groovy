@@ -1,7 +1,17 @@
 package com.estep.bigcodebang.model
 
+/**
+ * Handles the copying of file information from source to destination.
+ *
+ * @author dougestep.
+ */
 class TemplateCopy {
 
+    /**
+     * Copies a file.
+     * @param fileName the source file.
+     * @param destination the destination file.
+     */
     void copy(fileName, destination) {
         FileInputStream fis = null
         FileOutputStream fos = null
@@ -26,6 +36,11 @@ class TemplateCopy {
         }
     }
 
+    /**
+     * Returns the absolute file path for the supplied file name.
+     * @param fileName the file name.
+     * @return the absolute file path.
+     */
     private String getSourceName(fileName) {
         String sourceFileName = fileName;
         if (!new File(fileName).exists()) {
@@ -35,6 +50,11 @@ class TemplateCopy {
         sourceFileName
     }
 
+    /**
+     * Copies all files from the source folder to the destination folder.
+     * @param sourceFolder the source folder.
+     * @param destination the destination folder.
+     */
     void copyAll(sourceFolder, destination) {
         URI uri = this.getClass().getClassLoader().getResource(sourceFolder).toURI()
         File source = new File(uri)
@@ -46,6 +66,12 @@ class TemplateCopy {
         }
     }
 
+    /**
+     * Reads the template data from the supplied template, renders the template value replacing the placeholders with
+     * actual values, and copies the rendered template to the destination.
+     * @param templateName the template name.
+     * @param destination the destination.
+     */
     void renderAndCopy(templateName, destination) {
         URI uri = this.getClass().getClassLoader().getResource(templateName).toURI()
         String contents = new File(uri).text

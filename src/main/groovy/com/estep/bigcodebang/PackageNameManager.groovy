@@ -67,6 +67,11 @@ class PackageNameManager {
         RESERVED.add("false")
     }
 
+    /**
+     * Accepts a package element and returns the element suitable for inclusion in a java package name.
+     * @param element the package element.
+     * @return the formatted package element.
+     */
     String formatPackageElement(String element) {
         element = element.toLowerCase().trim()
         element = adjustForInvalidChars(element)
@@ -75,6 +80,11 @@ class PackageNameManager {
         element
     }
 
+    /**
+     * Replaces all characters within the supplied element that do not conform to a valid package name.
+     * @param element the package element.
+     * @return the adjusted element.
+     */
     private String adjustForInvalidChars(String element) {
         StringBuilder buf = new StringBuilder(64)
         for (int i = 0; i < element.size(); i++) {
@@ -90,6 +100,11 @@ class PackageNameManager {
         buf.toString()
     }
 
+    /**
+     * Adjusts the supplied element accounting for Java keywords.
+     * @param element the package element.
+     * @return the adjusted element.
+     */
     private String adjustForKeywords(String element) {
         if (KEYWORDS.contains(element) || RESERVED.contains(element)) {
             element = UND + element

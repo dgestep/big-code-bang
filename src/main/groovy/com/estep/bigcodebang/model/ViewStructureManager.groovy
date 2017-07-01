@@ -2,6 +2,8 @@ package com.estep.bigcodebang.model
 
 /**
  * Handles the creation of the project and module folder structures for the web UI and services project.
+ *
+ * @author dougestep.
  */
 class ViewStructureManager {
     private static final String BASE_FOLDER = "project_base_folder";
@@ -9,6 +11,9 @@ class ViewStructureManager {
     private static final String APP_FOLDER = "app";
     private static final String SRC_FOLDER = "src";
 
+    /**
+     * Creates an instance of this class.
+     */
     ViewStructureManager() {
     }
 

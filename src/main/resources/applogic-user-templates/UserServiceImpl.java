@@ -152,10 +152,6 @@ public class UserServiceImpl implements UserService {
 
         assertProfileNotExistUsingChangedEmailAddress(retr, data);
 
-        if (data.getRole() != Role.ADMIN && retr.getRole() == Role.ADMIN) {
-            assertAdminExists();
-        }
-
         if (!retr.getEmailAddress().equals(data.getEmailAddress())) {
             final String fromEmailAddress = retr.getEmailAddress();
             final String toEmailAddress = data.getEmailAddress();
@@ -163,6 +159,9 @@ public class UserServiceImpl implements UserService {
         }
 
         final UserProfile updt = setDefaultValuesForUpdate(retr, data);
+        if (updt.getRole() != Role.ADMIN && retr.getRole() == Role.ADMIN) {
+            assertAdminExists();
+        }
 
         EntityAssertion entity = new EntityAssertion();
         entity.evaluate(updt);
