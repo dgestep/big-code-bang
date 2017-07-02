@@ -10,7 +10,7 @@ with a time-tested technology stack and ready to be imported into your IDE and c
  
 The generated source code is yours to build upon, saving weeks, if not months of time and money. 
 
-**Go ahead and give it a BIG bang! :-)**
+**Go ahead and give it a BIG code bang! :-)**
 
 
 --Doug Estep
@@ -28,7 +28,7 @@ balancer will be needed (F5 Big-IP, etc.).
   etc.
 * What software platform for the view into your web application?  Do you want a single page application or a
  traditional request/response application?  If you want a single page application, then you have framework choices; 
- Angular JS, JQuery, Backbone, etc., or a controller stack such as Spring MVC in Java or a .NET backed controller.  
+ Angular, JQuery, Backbone, etc., or a controller stack such as Spring MVC in Java or a .NET backed controller.  
  If you choose the single page application approach then there are more tools to decide on and learn; Bower, Gulp, 
  NodeJS, Node Package Manager (NPM), and more.  (Lot's of moving parts for sure).
 * What about security technologies?  Authentication and authorization. LDAP, Active Directory, emdedded 
@@ -77,7 +77,7 @@ Apache Ant and Apache Maven.  Gradle is used for its dependency management and b
 * [MySQL](https://www.mysql.com/) an open source relational database management system (RDBMS) based on Structured 
 Query Language (SQL).  Any database vendor can be used with the Big Code Bang.  I chose MySQL because of its ease of 
 use.  If you are using a different database vendor, you will need to adjust the SQL create scripts to adhere to your 
-DBMS syntax and adjust the JPA adapter settings in the generated model-sprint-context XML file.
+DBMS syntax and adjust the JPA adapter settings in the generated model-spring-context XML file.
 * [Apache Tomcat](http://tomcat.apache.org/) version 8+.  Used to deploy a Web ARchive (WAR) file to serve up REST 
 services.  You're not tied to Tomcat.  You can use any application server.  I chose Tomcat because of it's ease of 
 use. I describe how to setup a database connection pool in Tomcat.  If you choose a different application server, you
@@ -91,6 +91,8 @@ use. I describe how to setup a database connection pool in Tomcat.  If you choos
 * [Typescript](https://www.typescriptlang.org/) - a typed superset of JavaScript that compiles to plain JavaScript
 * [Twitter Bootstrap](http://getbootstrap.com/) - an open source front-end web framework for designing websites and 
 web applications.
+* [Font Awesome](http://fontawesome.io/) - a web font containing all the icons from the Twitter Bootstrap framework, 
+and now many more.
 * Cascading Style Sheets (CSS) - a style sheet language used for describing the presentation of a document written in
  a markup language.
 * Hypertext Markup Language (HTML)

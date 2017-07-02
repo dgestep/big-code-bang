@@ -58,24 +58,26 @@ Intellij Instructions
 				- LOG_PATH is the path on your disk to store the application log file 
 					- pick a path that is relevant to your computer. 
 					- you must manually create any folder that is in your path. 
-				- runtime.environment is the environment with which the tomcat server is running in. "development" is the right value for your local environment.
+				- runtime.environment is the environment with which the tomcat server is running in. "development" is
+				 the right value for your local environment. "production" is the value for your production environment.
 		- Ensure the JRE is 1.8 or higher.
 	- Within the Deployment tab
 		- Click the + button at the bottom-left of the box labeled, "Deploy at the server startup" and choose "Artifact"
-		- Choose the exploded version of the ${webWarName} file" option to be deployed at server startup and click
+		- Choose the "exploded version of the ${webWarName} file" option to be deployed at server startup and click
 		 OK.
 		- enter /${contextRoot} in the "Application context" box.
 	- Click OK to save the server.
 	- You should see an "Application Servers" tab appear at the bottom of your IDE.
 - Start your local Tomcat server
 	- Within the "Application Servers" (appears at the bottom-left), click the Run icon.
-	- Invoke the REST health service at ( http://localhost:${localhostPort}/${contextRoot}/restcontroller/health ).
+	- Invoke the REST health service at ( http://localhost${localhostPort}${formattedContextRoot}/restcontroller/health ).
 	- A status of 200 should be displayed.
 
 Eclipse Instructions
 ==========================
 - Right-click on the -web project and select Properties.
-- Select the Web Project Settings property and enter ${contextRoot} in the Context root input box.
+- Select the Web Project Settings property and enter '${contextRoot}' in the Context root input box (minus the single
+ quotes).
 - Click Apply and Close.
 
 - Create a Tomcat Server within Eclipse
@@ -100,7 +102,7 @@ Eclipse Instructions
 - Configure your Tomcat Server within Eclipse
     - Within the Server perspective, double-click the Tomcat server that was added in the prior steps to open the
     server properties.
-    - Ensure the HTTP/1.1 port is set to ${localhostPort} within the Ports section.
+    - Ensure the HTTP/1.1 port is set to ${localhostRawPort} within the Ports section.
     - Click the Open launch configuration link located within the General Information section to open the Edit
     Configuration window.
     - Click the Arguments tab.
@@ -109,11 +111,12 @@ Eclipse Instructions
             - LOG_PATH is the path on your disk to store the application log file
                 - pick a path that is relevant to your computer.
                 - you must manually create any folder that is in your path.
-            - runtime.environment is the environment with which the tomcat server is running in. "development" is the right value for your local environment.
+            - runtime.environment is the environment with which the tomcat server is running in. "development" is the
+             right value for your local environment. "production" is the value for your production environment.
     - Click OK to close the Edit Configuration window.
 
 - Start your local Tomcat server
 	- Click the Start button within the Servers perspective. Wait for the server to start and ensure there are no
 	errors displayed in the console.
-	- Invoke the REST health service at ( http://localhost:${localhostPort}/${contextRoot}/restcontroller/health ).
+	- Invoke the REST health service at ( http://localhost${localhostPort}${formattedContextRoot}/restcontroller/health ).
 	- A status of 200 should be displayed.
