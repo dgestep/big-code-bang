@@ -50,9 +50,10 @@ class TextTemplate {
                 "rootBasePath"              : ServerProperty.get("root.base.path"),
                 "topLevelDomain"            : topLevelDomain,
                 "companyName"               : companyName,
-                "companyNameLong"           : ServerProperty.get("company_name_long"),
+                "companyNameLong"           : defaultValue(ServerProperty.get("company_name_long"), "Big Code Bang " +
+                        "Generated Application"),
                 "productName"               : productName,
-                "gradleVersion"             : ServerProperty.get("gradle_version"),
+                "gradleVersion"             : defaultValue(ServerProperty.get("gradle_version"), "3.1"),
                 "modelFolderName"           : ServerProperty.get("model.folder.name"),
                 "modelBasePath"             : ServerProperty.get("model.base.path"),
                 "webFolderName"             : ServerProperty.get("web.folder.name"),
@@ -70,19 +71,21 @@ class TextTemplate {
                 "applogicServiceLookup"     : ServerProperty.get("applogic.service.lookup"),
                 "applogicServiceSecurity"   : ServerProperty.get("applogic.service.security"),
                 "applogicServiceUser"       : ServerProperty.get("applogic.service.user"),
-                "javaVersion"               : ServerProperty.get("java_version"),
-                "mailHostName"              : ServerProperty.get("mail_host_name"),
-                "mailFromAddress"           : ServerProperty.get("mail_from_address"),
-                "databaseJndiName"          : ServerProperty.get("database_jndi_name"),
-                "databaseDriverClass"       : ServerProperty.get("database_driver_class"),
-                "databaseUrl"               : ServerProperty.get("database_url"),
-                "databaseUsername"          : ServerProperty.get("database_username"),
-                "databasePassword"          : ServerProperty.get("database_password"),
-                "codeAuthor"                : ServerProperty.get("code_author"),
-                "webWarName"                : ServerProperty.get("web_war_name"),
+                "javaVersion"               : defaultValue(ServerProperty.get("java_version"), "1.8"),
+                "mailHostName"              : defaultValue(ServerProperty.get("mail_host_name"), "localhost"),
+                "mailFromAddress"           : defaultValue(ServerProperty.get("mail_from_address"), "webmaster@localhost"),
+                "databaseJndiName"          : defaultValue(ServerProperty.get("database_jndi_name"), "jdbc/bcb"),
+                "databaseDriverClass"       : defaultValue(ServerProperty.get("database_driver_class"), "com.mysql.cj.jdbc.Driver"),
+                "databaseUrl"               : defaultValue(ServerProperty.get("database_url"), "jdbc:mysql://localhost/<my-database-goes-here>"),
+                "databaseUsername"          : defaultValue(ServerProperty.get("database_username"),
+                        "<my-database-user-goes-here>"),
+                "databasePassword"          : defaultValue(ServerProperty.get("database_password"),
+                        "my-database-password-goes-here>"),
+                "codeAuthor"                : defaultValue(ServerProperty.get("code_author"), "Big Code Bang"),
+                "webWarName"                : defaultValue(ServerProperty.get("web_war_name"), "bcb.war"),
                 "applicationLogFileLocation": ServerProperty.get("application_log_file_location"),
                 "viewRootFolderName"        : ViewProperty.get("view_root_folder_name"),
-                "applicationTitle"          : ViewProperty.get("application_title"),
+                "applicationTitle"          : defaultValue(ViewProperty.get("application_title"), "Big Code Bang"),
                 "contextRoot"               : rawContextRoot,
                 "formattedContextRoot"      : formattedContextRoot,
                 "localhostPort"             : localhostPort,
@@ -90,6 +93,14 @@ class TextTemplate {
                 "serverHostName"            : ViewProperty.get("server_host_name"),
                 "serverPort"                : serverPort
         ]
+    }
+
+    private String defaultValue(String value, String defaultValue) {
+        String formattedValue = formatProperty(value)
+        if (formattedValue.size() == 0) {
+            formattedValue = defaultValue
+        }
+        formattedValue
     }
 
     /**
@@ -114,7 +125,7 @@ class TextTemplate {
         if (INSTANCE == null) {
             INSTANCE = new TextTemplate()
         }
-        return INSTANCE
+        INSTANCE
     }
 
     /**
