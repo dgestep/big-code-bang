@@ -344,7 +344,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
      */
     private StandardPBEStringEncryptor createEncryptor() {
         final StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
-        encryptor.setPassword("UDRI-DEFAULT-PW");
+        encryptor.setPassword("BIG-CODE-BANG-DEFAULT-PW");
         return encryptor;
     }
 }
