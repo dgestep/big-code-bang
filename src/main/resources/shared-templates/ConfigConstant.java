@@ -14,7 +14,7 @@ public final class ConfigConstant {
     /**
      * Emails sent use this FROM address.
      */
-    public static final String EMAIL_FROM_ADDRESS = "info@udri.udayton.edu";
+    public static final String EMAIL_FROM_ADDRESS = "${mailFromAddress}";
 
     /**
      * The subject of a password reset email.
@@ -25,17 +25,17 @@ public final class ConfigConstant {
      * The body of a password reset email.
      */
     public static final String EMAIL_RESET_PASSWORD_CONFIRMATION_BODY = "A request has been made to reset your password"
-            + " for the Hypersonic Materials and Structures application. If you did not make this request or you do "
+            + " for the ${applicationTitle} application. If you did not make this request or you do "
             + "not want to reset your password then ignore this email. This link will be inactivated after you reset "
             + "your password or if you have not reset your password within 24 hours. %s";
 
     /**
      * The body of a password reset email.
      */
-    public static final String EMAIL_RESET_PASSWORD_BODY = "Your password for Hypersonic Materials and Structures "
+    public static final String EMAIL_RESET_PASSWORD_BODY = "Your password for ${applicationTitle} "
             + "application has been reset. Your new password is ( %s ), minus the surrounding parenthesis. Please "
-            + "return to Hypersonic Materials and Structures application to login.  You can change your password "
-            + "after logging in to the Hypersonic Materials and Structures application by going to your profile "
+            + "return to ${applicationTitle} application to login.  You can change your password "
+            + "after logging in to the ${applicationTitle} application by going to your profile "
             + "page and clicking the Password button.";
 
     /**
@@ -43,12 +43,19 @@ public final class ConfigConstant {
      */
     //    public static final String EMAIL_HOST = "localhost";
 
-    public static final String EMAIL_HOST = "10.110.1.193"; //NOPMD - will address later.
+    public static final String EMAIL_HOST = "${mailHostName}"; //NOPMD
 
     /**
-     * The email server host address.
+     * The email server host address for local.
      */
-    public static final String EMAIL_PASSWORD_RESET_URL = "http://localhost:8080/hsm/catch-reset?email=%s&lookupkey=%s";
+    public static final String EMAIL_PASSWORD_LOCAL_RESET_URL =
+            "http://localhost${localhostPort}${formattedContextRoot}/catch-reset?email=%s&lookupkey=%s";
+
+    /**
+     * The email server host address for production.
+     */
+    public static final String EMAIL_PASSWORD_PROD_RESET_URL =
+            "http://${serverHostName}${serverPort}/${contextRoot}/catch-reset?email=%s&lookupkey=%s";
 
     /**
      * Default constructor.

@@ -129,7 +129,6 @@ public class UserController {
      * @param emailAddress the users email address to send the reset email to.
      * @return the saved data.
      */
-    @Secured(value = ControllerHelper.PERMISSION_USER)
     @RequestMapping(value = "/reset-confirmation", method = RequestMethod.POST, produces = {
             ControllerHelper.APPLICATION_JSON })
     public ResponseEntity<JsonResponseData> sendResetConfirmation(@RequestParam String emailAddress) {
@@ -146,7 +145,6 @@ public class UserController {
      * @param resetUuid    identifies the confirmation request.
      * @return the saved data.
      */
-    @Secured(value = ControllerHelper.PERMISSION_USER)
     @RequestMapping(value = "/reset-password-by-confirmation", method = RequestMethod.POST, produces = {
             ControllerHelper.APPLICATION_JSON })
     public ResponseEntity<JsonResponseData> resetPasswordByConfirmation(@RequestParam String emailAddress,

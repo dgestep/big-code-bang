@@ -1,12 +1,14 @@
 package ${topLevelDomain}.${companyName}.${productName}.model.service.user;
 
 import ${topLevelDomain}.${companyName}.${productName}.model.ConfigConstant;
+import ${topLevelDomain}.${companyName}.${productName}.model.EnvironmentConfiguration;
 import ${topLevelDomain}.${companyName}.${productName}.model.criteria.UserSearchCriteriaData;
 import ${topLevelDomain}.${companyName}.${productName}.model.data.LookupKeyValue;
 import ${topLevelDomain}.${companyName}.${productName}.model.data.LookupKeyValuePK;
 import ${topLevelDomain}.${companyName}.${productName}.model.data.MessageData;
 import ${topLevelDomain}.${companyName}.${productName}.model.data.UserCredential;
 import ${topLevelDomain}.${companyName}.${productName}.model.data.UserProfile;
+import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.Region;
 import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.Role;
 import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.message.GeneralMessage;
 import ${topLevelDomain}.${companyName}.${productName}.model.enumeration.message.UserMessage;
@@ -412,7 +414,7 @@ public class UserServiceImpl implements UserService {
         final String to = retr.getEmailAddress();
         final String html = getResetHtml(retr, lookupUuid);
         final String body = String.format(ConfigConstant.EMAIL_RESET_PASSWORD_CONFIRMATION_BODY, html);
-        sendEmail(to, String.format(body, body));
+        sendEmail(to, body);
         //
         //        Logger logger = LogFactory.getLogger();
         //        logger.debug("\\nPassword Reset Email Contents:\\n" + body);
@@ -448,8 +450,9 @@ public class UserServiceImpl implements UserService {
      */
     private String getResetHtml(final UserProfile user, final String uuid) {
         final String template = "<br><br><a href=\"%s\">CLICK HERE TO RESET YOUR PASSWORD</a>";
-        final String url = String.format(ConfigConstant.EMAIL_PASSWORD_RESET_URL, user.getEmailAddress(), uuid);
-        return String.format(template, url);
+        final String url = EnvironmentConfiguration.getRegion() == Region.PRODUCTION ? ConfigConstant.EMAIL_PASSWORD_PROD_RESET_URL
+                : ConfigConstant.EMAIL_PASSWORD_LOCAL_RESET_URL;
+        return String.format(template, String.format(url, user.getEmailAddress(), uuid));
     }
 
     @Override
