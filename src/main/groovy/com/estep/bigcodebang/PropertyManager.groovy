@@ -50,7 +50,7 @@ class PropertyManager {
      * @param value the port value.
      */
     private void validatePort(String propertyName, String value) {
-        if (value.trim().equals("")) {
+        if (value == null || value.trim().equals("")) {
             return;
         }
         BigDecimal port = toNumber(propertyName, value)

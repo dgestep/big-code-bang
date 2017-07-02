@@ -22,10 +22,22 @@ class TextTemplate {
         String companyName = pnm.formatPackageElement(ServerProperty.get("company_name"))
         String productName = pnm.formatPackageElement(ServerProperty.get("product_name"))
 
-        String localhostPort = ViewProperty.get("localhost_port")
-        if (!localhostPort.equals("")) {
+        String rawContextRoot = formatProperty(ViewProperty.get("context_root"))
+        String formattedContextRoot = rawContextRoot
+        if (rawContextRoot.size() != 0) {
+            formattedContextRoot = "/" + rawContextRoot
+        }
+
+        String localhostPort = formatProperty(ViewProperty.get("localhost_port"))
+
+        String localhostRawPort = localhostPort
+        if (localhostPort.size() > 0) {
             localhostPort = ":" + localhostPort
         }
+        if (localhostRawPort.size() == 0) {
+            localhostRawPort = "80"
+        }
+
         String serverPort = ViewProperty.get("server_port")
         if (!serverPort.equals("")) {
             serverPort = ":" + serverPort
@@ -71,11 +83,27 @@ class TextTemplate {
                 "applicationLogFileLocation": ServerProperty.get("application_log_file_location"),
                 "viewRootFolderName"        : ViewProperty.get("view_root_folder_name"),
                 "applicationTitle"          : ViewProperty.get("application_title"),
-                "contextRoot"               : ViewProperty.get("context_root"),
+                "contextRoot"               : rawContextRoot,
+                "formattedContextRoot"      : formattedContextRoot,
                 "localhostPort"             : localhostPort,
+                "localhostRawPort"          : localhostRawPort,
                 "serverHostName"            : ViewProperty.get("server_host_name"),
                 "serverPort"                : serverPort
         ]
+    }
+
+    /**
+     * Returns the property value or empty string if the property value is null.
+     * @param propertyValue the value.
+     * @return the formatted value.
+     */
+    private String formatProperty(String propertyValue) {
+        if (propertyValue == null) {
+            propertyValue = "";
+        } else {
+            propertyValue = propertyValue.trim()
+        }
+        propertyValue
     }
 
     /**
