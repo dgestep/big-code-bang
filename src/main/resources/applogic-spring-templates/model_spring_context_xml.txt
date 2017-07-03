@@ -82,9 +82,4 @@
         <property name="corePoolSize" value="8" />
         <property name="maxPoolSize" value="8" />
     </bean>
-
-    <util:properties id="app.mail.properties">
-        <prop key="mail.host">${mailHostName}</prop>
-        <prop key="mail.from">${mailFromAddress}</prop>
-    </util:properties>
 </beans>

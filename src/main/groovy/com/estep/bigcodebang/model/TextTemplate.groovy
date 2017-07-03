@@ -29,19 +29,21 @@ class TextTemplate {
         }
 
         String localhostPort = formatProperty(ViewProperty.get("localhost_port"))
-
         String localhostRawPort = localhostPort
-        if (localhostPort.size() > 0) {
-            localhostPort = ":" + localhostPort
-        }
-        if (localhostRawPort.size() == 0) {
-            localhostRawPort = "80"
-        }
+        localhostPort = prependColon(localhostPort)
+        localhostRawPort = appendPort80(localhostRawPort)
 
-        String serverPort = ViewProperty.get("server_port")
-        if (!serverPort.equals("")) {
-            serverPort = ":" + serverPort
-        }
+        String localhostViewPort = formatProperty(ViewProperty.get("localhost_view_port"))
+        String localhostRawViewPort = localhostViewPort
+        localhostViewPort = prependColon(localhostViewPort)
+        localhostRawViewPort = appendPort80(localhostRawViewPort)
+
+        String serverViewPort = formatProperty(ViewProperty.get("server_view_port"))
+        String serverRawViewPort = serverViewPort
+        serverViewPort = prependColon(serverViewPort)
+        serverRawViewPort = appendPort80(serverRawViewPort)
+
+        String serverPort = prependColon(ViewProperty.get("server_port"))
 
         engine = new SimpleTemplateEngine()
         bindings = [
@@ -90,9 +92,27 @@ class TextTemplate {
                 "formattedContextRoot"      : formattedContextRoot,
                 "localhostPort"             : localhostPort,
                 "localhostRawPort"          : localhostRawPort,
+                "localhostViewPort"         : defaultValue(localhostViewPort, ":4200"),
+                "localhostRawViewPort"      : localhostRawViewPort,
                 "serverHostName"            : ViewProperty.get("server_host_name"),
-                "serverPort"                : serverPort
+                "serverPort"                : serverPort,
+                "serverViewPort"            : defaultValue(serverViewPort, ""),
+                "serverViewRawPort"         : serverRawViewPort
         ]
+    }
+
+    private String appendPort80(String port) {
+        if (port.size() == 0) {
+            port = ":80"
+        }
+        port
+    }
+
+    private String prependColon(String port) {
+        if (port.size() > 0) {
+            port = ":" + port
+        }
+        port
     }
 
     private String defaultValue(String value, String defaultValue) {

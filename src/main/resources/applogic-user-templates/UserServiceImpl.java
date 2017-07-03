@@ -341,15 +341,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public void resetPassword(final String emailAddress, final String resetUuid) {
         if (resetUuid == null) {
-            final MessageData md = new MessageData(GeneralMessage.G001, "UUID");
+            final MessageData md = new MessageData(GeneralMessage.G001, "the UUID");
+            throw new DataInputException(md);
+        }
+        if (emailAddress == null) {
+            final MessageData md = new MessageData(GeneralMessage.G001, "the email address");
             throw new DataInputException(md);
         }
 
-        LookupKeyValuePK key = new LookupKeyValuePK();
+        final LookupKeyValuePK key = new LookupKeyValuePK();
         key.setGroupCode("USER");
         key.setLookupName(resetUuid);
         final LookupKeyValue bean = lookupKeyValueService.retrieve(key);
         if (bean == null) {
+            final MessageData md = new MessageData(UserMessage.U006);
+            throw new DataInputException(md);
+        }
+        if (!emailAddress.equals(bean.getLookupValue())) {
             final MessageData md = new MessageData(UserMessage.U006);
             throw new DataInputException(md);
         }
@@ -386,9 +394,6 @@ public class UserServiceImpl implements UserService {
         final String to = retrUser.getEmailAddress();
         final String body = String.format(ConfigConstant.EMAIL_RESET_PASSWORD_BODY, newPassword);
         sendEmail(to, String.format(body, newPassword));
-        //
-        //        Logger logger = LogFactory.getLogger();
-        //        logger.debug("\\nPassword Reset Email Contents:\\n" + body);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -408,16 +413,13 @@ public class UserServiceImpl implements UserService {
         }
 
         final String lookupUuid = UUID.randomUUID().toString();
-        final LookupKeyValue token = new LookupKeyValue("USER", lookupUuid, lookupUuid);
+        final LookupKeyValue token = new LookupKeyValue("USER", lookupUuid, emailAddress);
         lookupKeyValueService.add(token);
 
         final String to = retr.getEmailAddress();
         final String html = getResetHtml(retr, lookupUuid);
         final String body = String.format(ConfigConstant.EMAIL_RESET_PASSWORD_CONFIRMATION_BODY, html);
         sendEmail(to, body);
-        //
-        //        Logger logger = LogFactory.getLogger();
-        //        logger.debug("\\nPassword Reset Email Contents:\\n" + body);
     }
 
     /**
@@ -449,10 +451,12 @@ public class UserServiceImpl implements UserService {
      * @return the HTML.
      */
     private String getResetHtml(final UserProfile user, final String uuid) {
-        final String template = "<br><br><a href=\"%s\">CLICK HERE TO RESET YOUR PASSWORD</a>";
-        final String url = EnvironmentConfiguration.getRegion() == Region.PRODUCTION ? ConfigConstant.EMAIL_PASSWORD_PROD_RESET_URL
-                : ConfigConstant.EMAIL_PASSWORD_LOCAL_RESET_URL;
-        return String.format(template, String.format(url, user.getEmailAddress(), uuid));
+        String url = ConfigConstant.EMAIL_PASSWORD_LOCAL_RESET_URL;
+        final Region region = EnvironmentConfiguration.getRegion();
+        if (region == Region.PRODUCTION) {
+            url = ConfigConstant.EMAIL_PASSWORD_PROD_RESET_URL;
+        }
+        return String.format("\\r\\n\\r\\n%s", String.format(url, user.getEmailAddress(), uuid));
     }
 
     @Override

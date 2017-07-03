@@ -1,0 +1,12 @@
+<div class="tab-pane" *ngIf="emailAddress">
+  <fieldset>
+    <legend>Password Reset Request</legend>
+
+    Click <em>Reset</em> to reset the password for {{emailAddress}}.
+    <br><br>
+    <button type="button" color="primary" (click)="resetPassword(this.uuid, this.emailAddress)" md-fab>Reset</button>
+    &nbsp;&nbsp;
+    <button type="button" (click)="this.router.navigate(['app-session-lost']);" md-button>Cancel</button>
+    <br><br>
+  </fieldset>
+</div>

@@ -32,30 +32,26 @@ public final class ConfigConstant {
     /**
      * The body of a password reset email.
      */
-    public static final String EMAIL_RESET_PASSWORD_BODY = "Your password for ${applicationTitle} "
+    public static final String EMAIL_RESET_PASSWORD_BODY = "Your password for the ${applicationTitle} "
             + "application has been reset. Your new password is ( %s ), minus the surrounding parenthesis. Please "
-            + "return to ${applicationTitle} application to login.  You can change your password "
-            + "after logging in to the ${applicationTitle} application by going to your profile "
-            + "page and clicking the Password button.";
+            + "return to the ${applicationTitle} application to login. ";
 
     /**
      * The email server host address.
      */
-    //    public static final String EMAIL_HOST = "localhost";
-
     public static final String EMAIL_HOST = "${mailHostName}"; //NOPMD
 
     /**
      * The email server host address for local.
      */
     public static final String EMAIL_PASSWORD_LOCAL_RESET_URL =
-            "http://localhost${localhostPort}${formattedContextRoot}/catch-reset?email=%s&lookupkey=%s";
+            "http://localhost${localhostViewPort}/app-confirm-password-reset?email=%s&uuid=%s";
 
     /**
      * The email server host address for production.
      */
     public static final String EMAIL_PASSWORD_PROD_RESET_URL =
-            "http://${serverHostName}${serverPort}/${contextRoot}/catch-reset?email=%s&lookupkey=%s";
+            "http://${serverHostName}${serverViewPort}/app-confirm-password-reset?email=%s&uuid=%s";
 
     /**
      * Default constructor.

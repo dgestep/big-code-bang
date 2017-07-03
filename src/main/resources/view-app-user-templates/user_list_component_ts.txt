@@ -144,7 +144,8 @@ export class UserListComponent implements OnInit {
 
     this.userService.sendPasswordResetConfirm(emailAddress).subscribe(response => {
       if (response instanceof ServiceResults) {
-        this.viewHelper.setMessage('Success!', ALERT_SUCC);
+        const msg = 'An email has been sent to the user with instructions on how to reset the password!';
+        this.viewHelper.setMessage(msg, ALERT_SUCC);
       } else {
         const serviceError = response as ServiceError;
         this.viewHelper.setMessages(serviceError.messages);

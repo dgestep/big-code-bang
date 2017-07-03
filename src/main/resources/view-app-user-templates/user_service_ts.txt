@@ -96,13 +96,15 @@ export class UserService {
 
   /**
    * Issues a password reset using the supplied confirmation data.
-   * @param formData the HTML form data.
+   * @param uuid identifies the reset request.
+   * @param emailAddress identifies the user to reset.
    * @returns {Observable<R>} the observable.
    */
-  resetPasswordByConfirm(formData: any) {
+  resetPasswordByConfirm(uuid: string, emailAddress: string) {
     const headers: Headers = this.viewHelper.headersForm();
     const url = this.viewHelper.service('/user/reset-password-by-confirmation');
-    return this.http.post(url, formData, {headers})
+    const params = 'emailAddress=' + emailAddress + '&resetUuid=' + uuid;
+    return this.http.post(url, params, {headers})
       .map(res => this.viewHelper.extractData(res))
       .catch(res => this.viewHelper.handleError(res));
   }
