@@ -25,6 +25,8 @@
                       </md-input-container>
 
                       <button md-fab color="primary" (click)="onSubmit(username.value, password.value)">Login</button>
+                      <br>
+                      <button md-button (click)="forgotPassword(username.value)">Forgot Password</button>
                     </md-card-content>
                   </md-card-content>
                 </md-card>

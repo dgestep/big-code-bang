@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import {SessionData} from '../shared/session.data';
 import {ServiceResults} from '../shared/service.results';
 import {ServiceError} from '../shared/service.error';
+import {ALERT_DANGER, ALERT_SUCC} from '../shared/constants';
 
 @Component({
   selector: 'app-login',
@@ -48,5 +49,22 @@ export class LoginComponent {
     error => {
       this.viewHelper.setMessages(error as Array<ResponseMessage>);
     });
+  }
+
+  forgotPassword(emailAddress: string): void {
+    if (emailAddress) {
+      this.userService.sendPasswordResetConfirm(emailAddress).subscribe(response => {
+        if (response instanceof ServiceResults) {
+          const msg = 'An email has been sent to ' + emailAddress + ' with instructions on how to reset the password. '
+            + 'Check in your SPAM folder if you are not receiving emails from us.';
+          this.viewHelper.setMessage(msg, ALERT_SUCC);
+        } else {
+          const serviceError = response as ServiceError;
+          this.viewHelper.setMessages(serviceError.messages);
+        }
+      });
+    } else  {
+      this.viewHelper.setMessage('Please provide your email address and click the Forgot Password button again', ALERT_DANGER);
+    }
   }
 }
