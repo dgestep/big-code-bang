@@ -146,6 +146,10 @@ class ViewSourceGeneratorScript {
         apps.add(new Tuple("user_profile_form_data_ts.txt", getPathToViewCode(appRoot, "user.profile.form.data.ts")))
         apps.add(new Tuple("user_profile_ts.txt", getPathToViewCode(appRoot, "user.profile.ts")))
         apps.add(new Tuple("user_service_ts.txt", getPathToViewCode(appRoot, "user.service.ts")))
+        apps.add(new Tuple("user_reset_pw_by_confirm_component_html.txt", getPathToViewCode(appRoot, "user.reset" +
+                ".pw.by.confirm.component.html")))
+        apps.add(new Tuple("user_reset_pw_by_confirm_component_ts.txt", getPathToViewCode(appRoot, "user.reset" +
+                ".pw.by.confirm.component.ts")))
 
         ScriptHelper.render("view-app-user-templates", apps)
     }

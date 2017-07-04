@@ -32,12 +32,13 @@ import {UserProfileEditComponent} from './user/user.edit.profile.component';
 import {ListResultSummaryComponent} from './shared/list.result.summary.component';
 import {UserProfileAddComponent} from './user/user.add.profile.component';
 import {UserChangePasswordComponent} from './user/user.change.password.component';
+import {UserResetPwByConfirmComponent} from './user/user.reset.pw.by.confirm.component';
 
 @NgModule({
   declarations: [
     AppComponent, HeaderComponent, FooterComponent, LoginComponent, HomeComponent, SessionLostComponent,
     UserProfileComponent, UserListComponent, PagerComponent, ProgressComponent, UserProfileEditComponent,
-    ListResultSummaryComponent, UserProfileAddComponent, UserChangePasswordComponent
+    ListResultSummaryComponent, UserProfileAddComponent, UserChangePasswordComponent, UserResetPwByConfirmComponent
   ],
   imports: [
     BrowserModule,
