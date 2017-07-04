@@ -11,12 +11,14 @@
                   <h2>Welcome to ${applicationTitle}</h2>
                   <legend></legend>
                   <p>
-                  If the Big Code Bang project has helped you with your project then consider making a donation
-                    on <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3W84KU3SV3NSE">PayPal.</a>
-                    Your donation helps motivate me to enhance this project and build more open source projects like the...
-                  </p>
+                    <strong>Congratulations!</strong> You've done it!
 
-                  <p><strong>Big Code BANG!</strong></p>
+                    <br><br>
+                    If the Big Code Bang project has helped you with your project then consider making a donation
+                    on <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3W84KU3SV3NSE">PayPal.</a>
+                    Your donation helps motivate me to enhance this project and build more open source projects like
+                    the <strong>Big Code BANG!</strong>
+                  </p>
 
                   <strong><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3W84KU3SV3NSE">MAKE A DONATION</a></strong>
 

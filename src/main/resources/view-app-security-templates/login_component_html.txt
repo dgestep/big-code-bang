@@ -5,7 +5,7 @@
         <div class="jumbotron">
           <div class="container">
             <h2>${applicationTitle}</h2>
-            <p>Your application description goes here</p>
+            <p>Your application is up and running.  Try logging in!!</p>
 
             <md-grid-list cols="1" rowHeight="150px">
               <md-grid-tile>
