@@ -114,7 +114,7 @@ higher. The JAVA_HOME environment variable is required to be set to the location
 * Download and install [MySQL Community Edition](https://dev.mysql.com/downloads/) as well as the MySQL Workbench to 
 efficiently design, manage and document database schemata. 
 * Install [Apache Tomcat](http://tomcat.apache.org/) version 8+.
-* Download the latest release of the source code for this project at [Release Page](https://github.com/dgestep/big-code-bang/releases). The Big Code Bang project contains a series of [Groovy scripts](http://groovy-lang.org/), resource files, and a [Gradle](https://gradle.org/) script.  
+* Download the latest release of the source code for this project from the [Release Page](https://github.com/dgestep/big-code-bang/releases). The Big Code Bang project contains a series of [Groovy scripts](http://groovy-lang.org/), resource files, and a [Gradle](https://gradle.org/) script.  
 
 ## Configuring the Big Code Bang
 The Big Code Bang project generates two applications; a server side WAR project used to serve up REST service end 
