@@ -241,7 +241,7 @@ above server.properties, the model project is located in the /temp/wiley-app/acm
 
 ### Eclipse Instructions
 
-These instructions were written for the Oxygen release of the Eclipse Java EE IDE.
+The following describe how to import the Model and REST service projects into the Oxygen release of the Eclipse Java EE IDE.
 
 * Open Eclipse and choose or create a workspace.
 * Select the menu option File -> Import...
@@ -351,10 +351,10 @@ particular test suite runs. The Gradle build script includes tasks to build a co
 
 ```groovy
 // if running from a Mac or a linux distribution
-./gradlew jacocoTestReport
+./gradlew test jacocoTestReport
 
 // if running from Windows
-gradlew.bat jacocoTestReport
+gradlew.bat test jacocoTestReport
 ```
 
 The coverage report is generated in the build/reports/coverage folder.
@@ -437,8 +437,6 @@ Your donation keeps me moving to enhance this project and build more open source
 **Big Code BANG** 
 
 [MAKE A DONATION](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3W84KU3SV3NSE)
-
-If you need help with your project, contact me at ( <douglas.estep@gmail.com> ).
 
 Thank you and good luck with your project!
 
