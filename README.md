@@ -431,12 +431,11 @@ need to login using your email address that you changed in the above instruction
 
 If the Big Code Bang project has helped you with your project then consider making a donation 
 on [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3W84KU3SV3NSE). 
-Your donation keeps me moving to enhance this project and build more open source projects like the ...
- 
-**Big Code BANG** 
+Your donation keeps me moving to enhance this project and build more open source projects like the Big Code Bang. 
 
 [MAKE A DONATION](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3W84KU3SV3NSE)
 
+If you need help with your project, contact me on [LinkedIn](https://www.linkedin.com/in/doug-estep-6061a41).
 Thank you and good luck with your project!
 
 
