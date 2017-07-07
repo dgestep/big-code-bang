@@ -57,7 +57,7 @@ application.  However, doing so usually takes a considerable amount of time and 
 ## The Power of the Big Code Bang
 
 Although I have done some work using Microsoft's technologies, the majority of my career has been programming in Java. 
-I have done some with with NodeJS on the server as well. Any of these choices are fine for the server-side and all 
+I have done some work with NodeJS on the server as well. Any of these choices are fine for the server-side and all 
 have their pros and cons. However with this initial rollout of the Big Code Bang project, Java will be used as the 
 server-side technology.  
  
@@ -160,9 +160,11 @@ _src/main/resources/view_project.properties_
 | view_root_folder_name | The root folder of the project. | "wiley-view" |
 | application_title | The value assigned to the title of the web application. | "Wiley Coyote Road Runner Widgets" |
 | context_root | The context root for the web application. | "wiley" |
-| localhost_port | The port used when running the application locally in the IDE. | "8081" |
-| server_port | The port used when running the application on remote web server. | "80" |
-| server_host_name | The host name used when running the app on a remote server. | "mydomain.com" |
+| localhost_port | The port used when running the REST services application on your local machine. | "8081" |
+| localhost_view_port | The port used when running the HTML application on your local NodeJS server. | "4200" |
+| server_port | The port used when running the REST services application on the remote java web server. | "80" |
+| server_view_port | The port used when running the HTML application on the remote HTTP server. | "80" |
+| server_host_name | The host name pointing to the remote server. | "mydomain.com" |
 
 ## Executing The Big Code Bang
 
@@ -403,6 +405,12 @@ npm install
 
 ```npm
 npm update --save
+```
+
+* Install the CLI tool for Angular described at [https://github.com/angular/angular-cli](https://github.com/angular/angular-cli)
+
+```
+npm install -g @angular/cli
 ```
 
 * From the terminal, execute the production build to build the distribution.
